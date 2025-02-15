@@ -1,0 +1,25 @@
+trigger:
+- main  # Chạy pipeline khi có thay đổi trên nhánh main
+
+pool:
+  vmImage: ubuntu-latest  # Chạy trên Ubuntu mới nhất
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'  # Chọn phiên bản Node.js
+  displayName: 'Install Node.js'
+
+- script: |
+    npm ci  # Dùng npm ci thay vì npm install để cài đặt dependencies nhanh hơn
+  displayName: 'Install Dependencies'
+
+- script: |
+    npm run build  # Build Next.js (tạo .next/)
+  displayName: 'Build Next.js App'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '.next'  # Lưu thư mục build của Next.js
+    artifactName: 'nextjs_build'
+  displayName: 'Save Next.js Build Artifacts'
