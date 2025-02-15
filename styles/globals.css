@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -30,7 +30,10 @@ h5 {
   font-family: var(--font-red-hat-display) !important;
 }
 
-p {
+p,
+h2,
+h3,
+h4 {
   font-family: var(--font-inter) !important;
 }
 
