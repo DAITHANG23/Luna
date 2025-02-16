@@ -1,9 +1,11 @@
 import React from "react";
+import Toggles from "./Toggles";
 
 const Header = () => {
   return (
-    <div>
-      <h4>Header</h4>
+    <div className="not-prose">
+      <h4 className="text-primary-text">Header</h4>
+      <Toggles />
     </div>
   );
 };
