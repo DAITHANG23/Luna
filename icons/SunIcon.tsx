@@ -12,7 +12,7 @@ const SunIcon = () => {
       height="1em"
       width="1em"
       xmlns="http://www.w3.org/2000/svg"
-      //   className="relative z-10 text-lg md:text-sm"
+      className="relative z-10 text-lg md:text-sm"
     >
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>

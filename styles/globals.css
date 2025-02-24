@@ -22,7 +22,7 @@
 }
 
 .dark {
-  --background: 0, 0, 0;
+  --background: 33, 39, 55, 1;
   --primary: 255, 255, 255;
   --border: 38, 38, 38;
   --card: 23, 23, 23;
@@ -69,8 +69,6 @@
 } */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
@@ -78,7 +76,15 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex-grow: 1;
+  padding-top: 16px;
+}
 h1,
 h5 {
   font-family: var(--font-red-hat-display) !important;
