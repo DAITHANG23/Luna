@@ -1,11 +1,10 @@
 import React from "react";
-import Toggles from "./Toggles";
+import Navbars from "./components/Navbars";
 
 const Header = () => {
   return (
     <div className="not-prose">
-      <h4 className="text-primary-text">Header</h4>
-      <Toggles />
+      <Navbars />
     </div>
   );
 };
