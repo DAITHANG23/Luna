@@ -50,6 +50,7 @@ const Login = () => {
                 name="password"
                 required
                 type="password"
+                isPasswordFied
               />
 
               <button

@@ -15,15 +15,22 @@ interface AppContextType {
   isOpenDialog: boolean;
   theme: ThemeMode;
   setTheme: (theme: ThemeMode) => void;
+  accessToken: string;
 }
 const AppContext = createContext<AppContextType>({
   isOpenDialog: false,
   setIsOpenDialog: () => {},
   theme: "light",
   setTheme: () => {},
+  accessToken: "",
 });
 
 const AppContextProvider = ({ children }: AppContextProviderProps) => {
+  const accessToken =
+    typeof window !== "undefined"
+      ? sessionStorage.getItem("accessToken") || ""
+      : "";
+
   const [isOpenDialog, setIsOpenDialog] = useState<boolean>(false);
   const [theme, setTheme] = useState<"light" | "dark">();
   useEffect(() => {
@@ -50,7 +57,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   }, [theme]);
   return (
     <AppContext.Provider
-      value={{ isOpenDialog, setIsOpenDialog, theme, setTheme }}
+      value={{ isOpenDialog, setIsOpenDialog, theme, setTheme, accessToken }}
     >
       {children}
     </AppContext.Provider>

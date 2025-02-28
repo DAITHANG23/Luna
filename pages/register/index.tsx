@@ -6,7 +6,7 @@ import { Form, Formik } from "formik";
 import FieldInput from "@/share/components/FieldInput";
 import { UserLogin } from "@/@types/models/account";
 import useRegister from "./hooks/useRegisterAccount";
-
+import { differenceInYears, parseISO } from "date-fns";
 const Register = () => {
   const { mutate } = useRegister();
   const validationSchema = useMemo(() => {
@@ -50,7 +50,17 @@ const Register = () => {
         .required("Please enter your address!"),
       dateOfBirth: Yup.string()
         .trim()
-        .required("Please enter your birth of date!"),
+        .required("Please enter your birth of date!")
+        .test(
+          "is-old-enough",
+          "You must be at least 13 years old!",
+          (value) => {
+            if (!value) return false;
+            const birthDate = parseISO(value);
+            const today = new Date();
+            return differenceInYears(today, birthDate) >= 13;
+          }
+        ),
     });
   }, []);
   const handleSubmit = (formData: UserLogin) => {
@@ -117,6 +127,7 @@ const Register = () => {
                 name="password"
                 required
                 type="password"
+                isPasswordFied
               />
 
               <FieldInput
@@ -124,6 +135,7 @@ const Register = () => {
                 name="confirmPassword"
                 required
                 type="password"
+                isPasswordFied
               />
 
               <button
