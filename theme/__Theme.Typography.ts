@@ -3,7 +3,7 @@ export default {
   h1: {
     fontStyle: "normal",
     fontWeight: 700,
-    fontSize: "64px",
+    fontSize: "40px",
     lineHeight: "74px",
     letterSpacing: "-0.01em",
   },
@@ -23,8 +23,8 @@ export default {
   },
   h4: {
     fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "15px",
+    fontWeight: "bold",
+    fontSize: "18px",
     lineHeight: "22px",
     letterSpacing: "-0.01em",
   },

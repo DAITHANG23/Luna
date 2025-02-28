@@ -13,7 +13,7 @@ export default function Layout({
   const isLoginPage = pathname === "/login" || pathname === "/register";
   return (
     <AppContextProvider>
-      {!isLoginPage && <Header />}
+      <Header />
       <main>
         <DialogSetting />
         {children}
