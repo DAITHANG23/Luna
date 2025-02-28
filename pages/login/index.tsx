@@ -1,7 +1,69 @@
-import React from "react";
-
+import FormLayout from "@/share/components/FormLayout";
+import React, { useMemo } from "react";
+import Link from "next/link";
+import FieldInput from "@/share/components/FieldInput";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import { REGEX_VALIDATE_EMAIL } from "../contants";
+import useLogin from "./hooks/useLoginUser";
+import { UserLogin } from "@/@types/models/account";
 const Login = () => {
-  return <div>Login</div>;
+  const initialValues = { email: "", password: "" };
+
+  const { data, mutate } = useLogin();
+  console.log("data:", data);
+  const validationSchema = useMemo(() => {
+    return Yup.object({
+      email: Yup.string()
+        .trim()
+        .required("Please enter your email!")
+        .matches(REGEX_VALIDATE_EMAIL, "Invalid Email!"),
+      password: Yup.string().trim().required("Please enter your password!"),
+    });
+  }, []);
+  const handleSubmit = (formData: UserLogin) => {
+    mutate(formData);
+  };
+
+  return (
+    <Formik
+      onSubmit={handleSubmit}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+    >
+      {() => {
+        return (
+          <FormLayout>
+            <Form>
+              <FieldInput title="Email" name="email" required type="text" />
+
+              <h5 className="text-right mt-5">
+                <Link
+                  href={""}
+                  className="no-underline hover:underline text-primary-text"
+                >
+                  Forgot password?
+                </Link>
+              </h5>
+              <FieldInput
+                title="Password"
+                name="password"
+                required
+                type="password"
+              />
+
+              <button
+                type="submit"
+                className="w-full bg-error/80 hover:bg-error text-white rounded-md text-center py-2 px-4 mt-3"
+              >
+                Login
+              </button>
+            </Form>
+          </FormLayout>
+        );
+      }}
+    </Formik>
+  );
 };
 
 export default Login;

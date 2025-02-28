@@ -14,7 +14,7 @@ const TOGGLE_CLASSES =
 const TogglesDarkMode = () => {
   const { theme, setTheme } = useAppContext();
   return (
-    <div>
+    <div className="flex justify-center">
       <SliderToggle selected={theme} setSelected={setTheme} />
     </div>
   );

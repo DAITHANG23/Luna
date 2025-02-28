@@ -21,14 +21,25 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/context/AppContext";
+import apiService from "@/pages/api";
+import { useRouter } from "next/router";
+
 const Navbars = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const { setIsOpenDialog } = useAppContext();
   const [itemNavbar, setItemNavbar] = useState(pathname);
 
   useEffect(() => {
     setItemNavbar(pathname);
   }, [pathname]);
+
+  const handleSignOut = () => {
+    const token = sessionStorage.getItem("accessToken") || "";
+    apiService.account.logout(token);
+    router.replace("/login");
+    sessionStorage.removeItem("accessToken");
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800 p-5">
@@ -119,6 +130,10 @@ const Navbars = () => {
                           if (item.name === "Settings") {
                             return setIsOpenDialog((prev) => !prev);
                           }
+                          if (item.name === "Sign Out") {
+                            console.log("sign out");
+                            handleSignOut();
+                          }
                         }}
                       >
                         {item.name !== "Settings" ? (
@@ -128,16 +143,13 @@ const Navbars = () => {
                           >
                             {item.name === "Your Profile" ? (
                               <UserIcon className="w-5 h-5" />
-                            ) : item.name === "Order History" ? (
-                              <ArchiveBoxIcon className="w-5 h-5" />
                             ) : (
-                              <ArrowLeftStartOnRectangleIcon className="w-5 h-5" />
+                              <ArchiveBoxIcon className="w-5 h-5" />
                             )}
                             <p className="prose">{item.name}</p>
                           </Link>
                         ) : (
                           <div className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-200 focus:bg-gray-300">
-                            {" "}
                             <Cog6ToothIcon className="w-5 h-5" />
                             <p className="prose">Settings</p>
                           </div>
@@ -146,6 +158,17 @@ const Navbars = () => {
                     </MenuItem>
                   );
                 })}
+                <MenuItem>
+                  <button
+                    className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3"
+                    onClick={handleSignOut}
+                  >
+                    <div className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-200 focus:bg-gray-300">
+                      <ArrowLeftStartOnRectangleIcon className="w-5 h-5" />
+                      <p className="prose">Sign Out</p>
+                    </div>
+                  </button>
+                </MenuItem>
               </MenuItems>
             </Menu>
           </div>
