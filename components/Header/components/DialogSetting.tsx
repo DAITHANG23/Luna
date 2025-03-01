@@ -8,7 +8,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useAppContext } from "@/components/context/AppContext";
+import { useAppContext } from "@/components/contexts/AppContext";
 import TogglesDarkMode from "../TogglesDarkMode";
 
 const DialogSetting = () => {

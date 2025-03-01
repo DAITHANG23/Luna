@@ -1,4 +1,9 @@
+import { RootState } from "@/lib/redux/store";
+import { useSelector } from "react-redux";
+
 export default function Home() {
+  const userInfo = useSelector((state: RootState) => state.auth.accessToken);
+  console.log("userinfo:", userInfo);
   return (
     <div className="w-full">
       <h1 className="text-primary">Hello world</h1>

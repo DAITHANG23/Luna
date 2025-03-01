@@ -1,4 +1,4 @@
-import { useAppContext } from "@/components/context/AppContext";
+import { useAppContext } from "@/components/contexts/AppContext";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";

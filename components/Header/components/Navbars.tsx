@@ -20,14 +20,17 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAppContext } from "@/components/context/AppContext";
+import { useAppContext } from "@/components/contexts/AppContext";
 import apiService from "@/pages/api";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 
 const Navbars = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { setIsOpenDialog, accessToken } = useAppContext();
+  const { setIsOpenDialog } = useAppContext();
+  const accessToken = useSelector((state: RootState) => state.auth.accessToken);
   const [itemNavbar, setItemNavbar] = useState(pathname);
 
   useEffect(() => {
@@ -132,7 +135,6 @@ const Navbars = () => {
                               return setIsOpenDialog((prev) => !prev);
                             }
                             if (item.name === "Sign Out") {
-                              console.log("sign out");
                               handleSignOut();
                             }
                           }}

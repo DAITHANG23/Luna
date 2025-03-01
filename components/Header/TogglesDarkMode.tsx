@@ -1,8 +1,7 @@
-"use client";
 import MoonIcon from "@/icons/MoonIcon";
 import SunIcon from "@/icons/SunIcon";
 import { motion } from "framer-motion";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 interface SliderToggle {
   selected?: "light" | "dark";
   setSelected: (value: "light" | "dark") => void;
