@@ -2,15 +2,24 @@ import { usePathname } from "next/navigation";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import DialogSetting from "./Header/components/DialogSetting";
-import { AppContextProvider } from "./context/AppContext";
+import { AppContextProvider } from "./contexts/AppContext";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { accessToken } from "@/lib/redux/authSlice";
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-
+  const dispatch = useDispatch();
   const isLoginPage = pathname === "/login" || pathname === "/register";
+  useEffect(() => {
+    const token = sessionStorage.getItem("accessToken") || "";
+    dispatch(accessToken({ accessToken: token }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <AppContextProvider>
       <Header />

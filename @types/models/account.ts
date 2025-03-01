@@ -16,7 +16,7 @@ export interface UserLogin extends Partial<UserModel> {}
 export interface LoginResponse {
   accessToken: string;
   data: {
-    user: UserModel;
+    user: UserLogin;
   };
   status: string;
 }

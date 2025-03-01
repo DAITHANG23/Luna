@@ -10,8 +10,8 @@ import { UserLogin } from "@/@types/models/account";
 const Login = () => {
   const initialValues = { email: "", password: "" };
 
-  const { data, mutate } = useLogin();
-  console.log("data:", data);
+  const { mutate } = useLogin();
+
   const validationSchema = useMemo(() => {
     return Yup.object({
       email: Yup.string()

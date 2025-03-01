@@ -64,7 +64,6 @@ const Register = () => {
     });
   }, []);
   const handleSubmit = (formData: UserLogin) => {
-    console.log(formData);
     mutate(formData);
   };
   const initialValues: UserLogin = {
