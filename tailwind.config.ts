@@ -27,6 +27,7 @@ export default {
         "cta-active": "rgba(var(--cta-active))",
         "cta-text": "rgba(var(--cta-text))",
         grape: "rgba(var(--grape))",
+        "--success-bg": "rgba(var(--success-bg))",
       },
       typography: {
         DEFAULT: {

@@ -20,3 +20,10 @@ export interface LoginResponse {
   };
   status: string;
 }
+
+export interface ErrorResponse {
+  messageError: string;
+  statusCode: number;
+  status: string;
+  isOperational: boolean;
+}

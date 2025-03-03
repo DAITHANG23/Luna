@@ -6,6 +6,7 @@ import { AppContextProvider } from "./contexts/AppContext";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { accessToken } from "@/lib/redux/authSlice";
+import TransSnackbarProvider from "./contexts/SnackbarContext";
 export default function Layout({
   children,
 }: Readonly<{
@@ -22,12 +23,14 @@ export default function Layout({
 
   return (
     <AppContextProvider>
-      <Header />
-      <main>
-        <DialogSetting />
-        {children}
-      </main>
-      {!isLoginPage && <Footer />}
+      <TransSnackbarProvider>
+        <Header />
+        <main>
+          <DialogSetting />
+          {children}
+        </main>
+        {!isLoginPage && <Footer />}
+      </TransSnackbarProvider>
     </AppContextProvider>
   );
 }

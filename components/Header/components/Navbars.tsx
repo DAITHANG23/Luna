@@ -23,25 +23,30 @@ import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
 import apiService from "@/pages/api";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+import { accessToken } from "@/lib/redux/authSlice";
 
 const Navbars = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { setIsOpenDialog } = useAppContext();
-  const accessToken = useSelector((state: RootState) => state.auth.accessToken);
+  const accessTokenState = useSelector(
+    (state: RootState) => state.auth.accessToken
+  );
   const [itemNavbar, setItemNavbar] = useState(pathname);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setItemNavbar(pathname);
   }, [pathname]);
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     const token = sessionStorage.getItem("accessToken") || "";
-    apiService.account.logout(token);
+    await apiService.account.logout(token);
     router.replace("/login");
     sessionStorage.removeItem("accessToken");
+    dispatch(accessToken({ accessToken: "" }));
   };
 
   return (
@@ -106,7 +111,7 @@ const Navbars = () => {
             </button>
 
             {/* Profile dropdown */}
-            {accessToken ? (
+            {accessTokenState ? (
               <Menu as="div" className="relative ml-3">
                 <div>
                   <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
@@ -177,7 +182,7 @@ const Navbars = () => {
             ) : (
               <button
                 onClick={() => router.replace("/login")}
-                className="ml-2 border-none px-4 py-1 bg-error rounded-lg text-white font-bold transition duration-300 ease-in-out hover:scale-105"
+                className="ml-2 border-none px-4 py-1 bg-primary rounded-lg text-white font-bold transition duration-300 ease-in-out hover:scale-105"
               >
                 Login
               </button>
