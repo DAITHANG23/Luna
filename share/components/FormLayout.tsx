@@ -12,7 +12,7 @@ const FormLayout = ({ children }: FormLayoutProps) => {
 
   const isLoginPage = pathname === "/login";
   return (
-    <div className="grid p-4 sm:p-0 sm:grid-cols-3">
+    <div className="grid p-4 sm:p-0 sm:grid-cols-3 mb-12">
       <div className="flex col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">
         <h2 className="text-primary">Hi, Welcome Domique Fusion</h2>
         <p className="text-primary-text">

@@ -10,7 +10,7 @@ import { UserLogin } from "@/@types/models/account";
 const Login = () => {
   const initialValues = { email: "", password: "" };
 
-  const { mutate } = useLogin();
+  const { mutate: loginAccount } = useLogin();
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -22,7 +22,7 @@ const Login = () => {
     });
   }, []);
   const handleSubmit = (formData: UserLogin) => {
-    mutate(formData);
+    loginAccount(formData);
   };
 
   return (
@@ -55,7 +55,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full bg-error/80 hover:bg-error text-white rounded-md text-center py-2 px-4 mt-3"
+                className="w-full bg-primary/80 hover:bg-primary text-white rounded-md text-center py-2 px-4 mt-3"
               >
                 Login
               </button>

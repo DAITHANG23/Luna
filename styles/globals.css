@@ -15,8 +15,9 @@
   --cta-active: 124, 58, 237;
   --cta-text: 255, 255, 255;
   --success: 16, 255, 203;
-  --error: 255, 88, 131;
+  --error: 183, 29, 24;
   --warning: 255, 214, 0;
+  --succes-bg: 91, 228, 155;
   background: rgba(var(--background));
 }
 
@@ -33,8 +34,9 @@
   --cta-active: 79, 70, 229;
   --cta-text: 255, 255, 255;
   --success: 16, 255, 203;
-  --error: 255, 88, 131;
+  --error: 183, 29, 24;
   --warning: 255, 214, 0;
+  --success-bg: 91, 228, 155;
 
   background: rgba(var(--background));
 }
@@ -161,4 +163,19 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.04);
   border-radius: 20px;
+}
+.notistack-MuiContent {
+  border-radius: 8px !important;
+}
+
+.notistack-MuiContent-success {
+  background-color: rgb(var(--succes-bg)) !important;
+}
+
+.notistack-MuiContent-error {
+  background-color: rgba(var(--error)) !important;
+}
+
+.notistack-MuiContent-warning {
+  background-color: rgba(var(--warning)) !important;
 }
