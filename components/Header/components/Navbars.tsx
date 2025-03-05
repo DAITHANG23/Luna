@@ -214,8 +214,8 @@ const Navbars = () => {
               key={item.name}
               className={clsx(
                 itemNavbar === item.name
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  ? "bg-primary dark:bg-gray-900 text-white"
+                  : "text-primary-text dark:text-gray-300 hover:bg-primary dark:hover:bg-gray-700 hover:text-white",
                 "block rounded-md px-3 py-2 text-base font-medium "
               )}
             >

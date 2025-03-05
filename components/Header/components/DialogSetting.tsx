@@ -21,7 +21,12 @@ const DialogSetting = () => {
   }, [isOpenDialog]);
 
   return (
-    <Dialog open={open} onClose={setIsOpenDialog} className="relative z-10">
+    <Dialog
+      open={open}
+      onClose={setIsOpenDialog}
+      className="relative"
+      style={{ zIndex: 1000 }}
+    >
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
@@ -47,14 +52,16 @@ const DialogSetting = () => {
                   </button>
                 </div>
               </TransitionChild>
-              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl font-[inter]">
+              <div className="flex h-full dark:bg-gray-800 flex-col overflow-y-scroll bg-white py-6 shadow-xl font-[inter] ">
                 <div className="px-4 sm:px-6">
-                  <DialogTitle className="text-base font-semibold text-gray-900">
+                  <DialogTitle className="text-base font-semibold text-primary-text">
                     <p className="text-[25px]">Settings</p>
                   </DialogTitle>
                 </div>
                 <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                  <p className="text-bold font-bold mb-4">Theme Mode</p>
+                  <p className="text-bold font-bold mb-4 text-primary-text">
+                    Theme Mode
+                  </p>
                   <TogglesDarkMode />
                 </div>
               </div>
