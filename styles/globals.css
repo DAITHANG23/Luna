@@ -71,7 +71,7 @@
 body {
   padding: 0;
   margin: 0 auto;
-  box-sizing: border-box;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -164,6 +164,19 @@ html::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.04);
   border-radius: 20px;
 }
+
+.prose :where(button):not(:where([class~="not-prose"] *)) {
+  min-width: 0;
+}
+
+.prose :where(img):not(:where([class~="not-prose"] *)) {
+  margin: 0;
+}
+
+.prose :where(.prose > :first-child):not(:where([class~="not-prose"] *)) {
+  z-index: 100;
+}
+
 .notistack-MuiContent {
   border-radius: 8px !important;
 }
@@ -178,4 +191,27 @@ html::-webkit-scrollbar-track {
 
 .notistack-MuiContent-warning {
   background-color: rgba(var(--warning)) !important;
+}
+
+.slider-container {
+  width: 100%;
+  margin: auto;
+}
+
+.slick-slider {
+  height: 100%;
+  width: 100%;
+}
+
+.slick-slide {
+  text-align: center;
+}
+
+.slick-next {
+  right: 15px !important;
+}
+
+.slick-prev {
+  left: 15px !important;
+  z-index: 10;
 }

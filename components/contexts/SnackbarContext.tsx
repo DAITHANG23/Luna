@@ -16,7 +16,7 @@ const TransSnackbarProvider = ({ children }: PropsWithChildren<unknown>) => {
       ref={notistackRef}
       action={(key) => (
         <button
-          className="min-w-0 leading-none pt-1 pb-[6px] w-[25px] text-center rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-900 transition duration-200"
+          className="min-w-0 leading-none pt-1 pb-[6px] w-[25px] text-center rounded-full bg-gray-200 hover:bg-gray-300 text-secondary-text hover:text-gray-900 transition duration-200"
           onClick={onClickDismiss(key)}
         >
           x

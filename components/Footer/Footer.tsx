@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="">
+    <div className="text-primary-text">
       <p>Footer</p>
     </div>
   );

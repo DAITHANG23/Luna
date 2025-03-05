@@ -21,11 +21,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
-import apiService from "@/pages/api";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { accessToken } from "@/lib/redux/authSlice";
+import { accessToken, logout } from "@/lib/redux/authSlice";
+
+import { useAppDispatch } from "@/lib/redux/hooks";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -35,22 +36,40 @@ const Navbars = () => {
     (state: RootState) => state.auth.accessToken
   );
   const [itemNavbar, setItemNavbar] = useState(pathname);
-  const dispatch = useDispatch();
+  const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const handleSroll = () => {
+      if (window.scrollY && window.scrollY > 64) setFixedHeaderBackground(true);
+      else setFixedHeaderBackground(false);
+    };
+    window.addEventListener("scroll", handleSroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleSroll);
+    };
+  }, []);
 
   useEffect(() => {
     setItemNavbar(pathname);
   }, [pathname]);
 
   const handleSignOut = async () => {
-    const token = sessionStorage.getItem("accessToken") || "";
-    await apiService.account.logout(token);
-    router.replace("/login");
-    sessionStorage.removeItem("accessToken");
     dispatch(accessToken({ accessToken: "" }));
+    dispatch(logout());
   };
 
   return (
-    <Disclosure as="nav" className="bg-gray-800 p-5">
+    <Disclosure
+      as="nav"
+      className={clsx(
+        "fixed top-0 left-0 p-5 w-full",
+        fixedHeaderBackground
+          ? "bg-white/80 dark:bg-gray-800/80"
+          : " bg-white dark:bg-gray-800"
+      )}
+    >
       <div className="sm:w-[90%] mx-auto max-w-7xl lg:px-8 content-center text-center">
         <div className="relative flex h-16 items-center justify-between al">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -88,8 +107,8 @@ const Navbars = () => {
                     href={item.href}
                     className={clsx(
                       itemNavbar === item.href
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        ? "bg-primary dark:bg-gray-900 text-white"
+                        : "text-primary-text dark:text-gray-300 hover:bg-primary dark:hover:bg-gray-700 hover:text-white",
                       "rounded-md px-3 py-2 text-sm font-medium flex items-center justify-center"
                     )}
                     onClick={() => setItemNavbar(item.name)}
@@ -103,7 +122,7 @@ const Navbars = () => {
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
               type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
+              className="relative rounded-full hover:bg-primary hover:text-white dark:bg-gray-800 p-1 text-primary-text dark:text-gray-400 dark:hover:text-primary-text  focus:ring-2 focus:ring-white focus:ring-offset-2  focus:outline-hidden"
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
@@ -114,7 +133,7 @@ const Navbars = () => {
             {accessTokenState ? (
               <Menu as="div" className="relative ml-3">
                 <div>
-                  <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                  <MenuButton className="relative flex rounded-full hover:ring-offset-primary/80 bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-hidden">
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
                     <Image
@@ -138,9 +157,6 @@ const Navbars = () => {
                           onClick={() => {
                             if (item.name === "Settings") {
                               return setIsOpenDialog((prev) => !prev);
-                            }
-                            if (item.name === "Sign Out") {
-                              handleSignOut();
                             }
                           }}
                         >

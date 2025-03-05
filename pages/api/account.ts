@@ -1,5 +1,9 @@
 import { API_VERSION_V1 } from "../contants";
-import { LoginResponse, UserLogin } from "@/@types/models/account";
+import {
+  LoginResponse,
+  RefreshTokenResponse,
+  UserLogin,
+} from "@/@types/models/account";
 import apiRequest from "@/hooks/useApiRequest";
 
 const baseURL = `${API_VERSION_V1}/users`;
@@ -20,11 +24,15 @@ const account = {
     return await apiRequest(`${baseURL}/signup`, "POST", formData);
   },
 
-  logout: (token: string) => {
+  logout: () => {
     return apiRequest(`${baseURL}/logout`, "POST", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      refreshToken: localStorage.getItem("refreshToken"),
+    });
+  },
+
+  refreshToken: (): Promise<RefreshTokenResponse> => {
+    return apiRequest(`${baseURL}/refreshToken`, "POST", {
+      refreshToken: localStorage.getItem("refreshToken"),
     });
   },
 };

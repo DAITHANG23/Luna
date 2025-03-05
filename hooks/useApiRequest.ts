@@ -1,3 +1,4 @@
+import { ErrorResponse } from "@/@types/models/account";
 import axiosWrapper from "@/utils/axios";
 import { AxiosError, AxiosRequestConfig } from "axios";
 
@@ -21,7 +22,7 @@ const apiRequest = async <T>(
 
     return response.data;
   } catch (error) {
-    const axiosError = error as AxiosError;
+    const axiosError = error as AxiosError<ErrorResponse>;
     if (axiosError.response?.data) {
       throw axiosError.response.data;
     }

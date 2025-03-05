@@ -1,10 +1,28 @@
 import { UserLogin } from "@/@types/models/account";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import apiService from "@/pages/api";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Router from "next/router";
 
 interface AuthState {
   user: UserLogin;
   accessToken: string;
 }
+
+export const logout = createAsyncThunk("auth/logout", async () => {
+  try {
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    if (refreshToken) {
+      await apiService.account.logout();
+    }
+  } catch (error) {
+    console.error("Error logging out:", error);
+  } finally {
+    sessionStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    Router.push("/login");
+  }
+});
 
 const initialState: AuthState = {
   user: {
