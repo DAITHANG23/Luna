@@ -28,12 +28,17 @@ const useLogin = () => {
   >({
     mutationFn: loginAccount,
     mutationKey: [ACCOUNT_LOGIN_QUERY_KEY],
-    onSuccess: (res) => {
+    onSuccess: (res: LoginResponse) => {
       showSuccess("Login successfully!");
       const accessTokenRes = res?.accessToken;
+      const refreshToken = res?.refreshToken;
 
       if (accessTokenRes) {
         sessionStorage.setItem("accessToken", accessTokenRes);
+      }
+
+      if (refreshToken) {
+        localStorage.setItem("refreshToken", refreshToken);
       }
 
       dispatch(userInfo({ user: res.data.user }));

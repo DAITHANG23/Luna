@@ -23,7 +23,7 @@ const NavbarsLogin = () => {
           className="cursor-pointer sm:mr-20 hover:bg-gray-200 rounded-full p-2"
           onClick={() => setIsOpenDialog((prev) => !prev)}
         >
-          <Cog6ToothIcon className="w-7 h-7 animate-[spin_5s_linear_infinite] dark:text-error" />
+          <Cog6ToothIcon className="w-7 h-7 animate-[spin_5s_linear_infinite] dark:text-primary" />
         </button>
       </div>
     </div>
