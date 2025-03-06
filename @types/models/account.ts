@@ -9,6 +9,7 @@ export interface UserModel {
   gender: string;
   numberPhone: string;
   role: string;
+  avatar: string;
 }
 
 export interface UserLogin extends Partial<UserModel> {}
