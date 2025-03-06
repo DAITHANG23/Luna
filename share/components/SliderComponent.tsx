@@ -31,14 +31,14 @@ const SliderComponent = () => {
           return (
             <div
               key={i.name}
-              className="h-[1000px] w-full flex items-center justify-center overflow-hidden"
+              className="h-[219px] xl:h-[1000px] sm:h-[500px] w-full flex items-center justify-center overflow-hidden"
             >
               <Image
                 src={i.img}
                 alt={i.name}
                 width={10000}
                 height={500}
-                className="w-full h-full"
+                className="w-full h-full object-cover sm:object-fill"
               />
             </div>
           );
