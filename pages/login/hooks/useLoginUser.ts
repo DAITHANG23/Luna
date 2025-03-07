@@ -7,7 +7,10 @@ import apiService from "@/pages/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/redux/store";
-import { ACCOUNT_LOGIN_QUERY_KEY } from "@/pages/contants";
+import {
+  ACCOUNT_LOGIN_QUERY_KEY,
+  GET_DATA_USER_QUERY_KEY,
+} from "@/pages/contants";
 import { useRouter } from "next/router";
 import { userInfo, accessToken } from "@/lib/redux/authSlice";
 import useNotification from "@/hooks/useNotification";
@@ -44,9 +47,7 @@ const useLogin = () => {
       dispatch(userInfo({ user: res.data.user }));
 
       dispatch(accessToken({ accessToken: res.accessToken }));
-
-      queryClient.invalidateQueries({ queryKey: [ACCOUNT_LOGIN_QUERY_KEY] });
-
+      queryClient.invalidateQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
       router.push("/");
     },
     onError: (err: AxiosError<ErrorResponse>) => {

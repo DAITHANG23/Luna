@@ -3,6 +3,7 @@ import {
   LoginResponse,
   RefreshTokenResponse,
   UserLogin,
+  UserResponse,
 } from "@/@types/models/account";
 import apiRequest from "@/hooks/useApiRequest";
 
@@ -34,6 +35,10 @@ const account = {
     return apiRequest(`${baseURL}/refreshToken`, "POST", {
       refreshToken: localStorage.getItem("refreshToken"),
     });
+  },
+
+  getDataUser: (): Promise<UserResponse> => {
+    return apiRequest(`${baseURL}/me`, "GET");
   },
 };
 

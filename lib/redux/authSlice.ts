@@ -1,6 +1,7 @@
 import { UserLogin } from "@/@types/models/account";
 import apiService from "@/pages/api";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 import Router from "next/router";
 
 interface AuthState {
@@ -20,6 +21,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   } finally {
     sessionStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    delete axios.defaults.headers.common.Authorization;
     Router.push("/login");
   }
 });
