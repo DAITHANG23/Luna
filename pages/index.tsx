@@ -1,10 +1,9 @@
-import { RootState } from "@/lib/redux/store";
 import SliderComponent from "@/share/components/SliderComponent";
-import { useSelector } from "react-redux";
+import useGetDataUser from "./login/hooks/useGetDataUser";
 
 export default function Home() {
-  const userInfo = useSelector((state: RootState) => state.auth.user);
-  console.log("userinfo:", userInfo);
+  const { userData } = useGetDataUser();
+  console.log(userData);
   return (
     <div className="w-full mt-[100px]">
       <SliderComponent />

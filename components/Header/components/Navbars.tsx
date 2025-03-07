@@ -27,6 +27,7 @@ import { RootState } from "@/lib/redux/store";
 import { accessToken, logout } from "@/lib/redux/authSlice";
 
 import { useAppDispatch } from "@/lib/redux/hooks";
+import { DEFAULT_AVATAR } from "@/pages/contants";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -35,6 +36,7 @@ const Navbars = () => {
   const accessTokenState = useSelector(
     (state: RootState) => state.auth.accessToken
   );
+  console.log("accessTokenState:", accessTokenState);
   const userInfo = useSelector((state: RootState) => state.auth.user);
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
@@ -134,12 +136,12 @@ const Navbars = () => {
             {accessTokenState ? (
               <Menu as="div" className="relative ml-3">
                 <div>
-                  <MenuButton className="relative flex rounded-full hover:ring-offset-primary/80 bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-hidden">
+                  <MenuButton className="relative flex rounded-full hover:ring-offset-primary/80 dark:bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-hidden">
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt=""
-                      src={userInfo?.avatar || ""}
+                      src={userInfo?.avatar || DEFAULT_AVATAR}
                       className="size-8 rounded-full"
                       width={32}
                       height={32}

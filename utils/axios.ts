@@ -5,7 +5,6 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;
 }
-let token: string | null = null;
 
 const axiosWrapper = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -21,9 +20,8 @@ axiosWrapper.interceptors.request.use(
   async (
     config: CustomAxiosRequestConfig
   ): Promise<CustomAxiosRequestConfig> => {
-    if (!token) {
-      token = sessionStorage.getItem("accessToken");
-    }
+    const token = sessionStorage.getItem("accessToken");
+
     config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
   }
