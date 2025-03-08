@@ -4,7 +4,7 @@ import { AxiosError, AxiosRequestConfig } from "axios";
 
 const apiRequest = async <T>(
   url: string,
-  method: "GET" | "POST" | "PUT" | "DELETE",
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
   data?: unknown,
   config?: AxiosRequestConfig
 ): Promise<T> => {

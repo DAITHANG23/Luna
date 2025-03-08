@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { accessToken } from "@/lib/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
+import useGetDataUser from "@/pages/login/hooks/useGetDataUser";
 export default function Layout({
   children,
 }: Readonly<{
@@ -15,6 +16,8 @@ export default function Layout({
   const pathname = usePathname();
   const dispatch = useDispatch();
   const isLoginPage = pathname === "/login" || pathname === "/register";
+  const { userData } = useGetDataUser();
+  console.log(userData);
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken") || "";
     dispatch(accessToken({ accessToken: token }));

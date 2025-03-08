@@ -11,6 +11,7 @@ interface FromTextFieldProps {
   onchange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   isPasswordFied?: boolean;
+  isReadOnly?: boolean;
 }
 
 const FieldInput = ({
@@ -20,6 +21,7 @@ const FieldInput = ({
   type = "text",
   required = false,
   isPasswordFied = false,
+  isReadOnly = false,
   ...props
 }: FromTextFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,22 +34,24 @@ const FieldInput = ({
     <div className={clsx("mb-4 relative", className)}>
       <label
         className={clsx(
-          isError
-            ? "text-error dark:text-error"
-            : "text-primay-text dark:text-primay-text",
-          "text-sm font-medium text-primary-text"
+          isError ? "text-error" : "text-primary-text",
+          "text-sm font-medium"
         )}
       >
         {title}
         {required && <span className="ml-1 text-error">*</span>}
       </label>
+
       <div>
         <input
           className={clsx(
-            "block w-full rounded-md py-[16.5px] px-[14px] text-sm dark:bg-white",
+            "block w-full rounded-md py-[16.5px] px-[14px] text-sm dark:bg-[#1C252E] dark:border ",
+            isReadOnly
+              ? "border-transparent dark:border-gray-500 p-2 rounded-md bg-gray-100 text-gray-500 read-only:bg-gray-200 read-only:cursor-not-allowed"
+              : "border border-gray-300 dark:border-gray-300",
             isError
-              ? "border border-red-500 dark:border border-red-500"
-              : "border border-gray-300 dark:border-none",
+              ? "border border-red-500 dark:border-red-500"
+              : "border border-gray-300 dark:border-gray-500",
             className,
             "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-black/25 dark:data-[focus]:outline-white/25"
           )}
@@ -58,6 +62,7 @@ const FieldInput = ({
                 ? "text"
                 : "password"
           }
+          readOnly={isReadOnly}
           {...field}
           {...props}
         />

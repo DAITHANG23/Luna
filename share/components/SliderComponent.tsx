@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
-const coverImages = [
+const coverImages: Array<{ img: string; name: string }> = [
   { img: "/assets/images/cover-img-1.jpg", name: "cover-1-img" },
   { img: "/assets/images/cover-img-2.jpg", name: "cover-2-img" },
   { img: "/assets/images/cover-img-3.png", name: "cover-3-img" },

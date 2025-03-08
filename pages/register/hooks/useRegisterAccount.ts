@@ -24,7 +24,7 @@ const useRegister = () => {
   >({
     mutationFn: registerAccount,
     onSuccess: (res) => {
-      showSuccess("Register successfully!");
+      showSuccess("Register successful!");
       const accessToken = res?.accessToken;
       if (accessToken) {
         sessionStorage.setItem("accessToken", accessToken);

@@ -40,6 +40,21 @@ const account = {
   getDataUser: (): Promise<UserResponse> => {
     return apiRequest(`${baseURL}/me`, "GET");
   },
+
+  updateUser: async ({
+    formData,
+  }: {
+    formData: UserLogin;
+  }): Promise<UserResponse> => {
+    return await apiRequest(`${baseURL}/updateMe`, "PATCH", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
+  deleteAccount: async () => {
+    return await apiRequest(`${baseURL}/deleteMe`, "DELETE");
+  },
 };
 
 export default account;

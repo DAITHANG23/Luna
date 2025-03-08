@@ -64,7 +64,11 @@ const Register = () => {
     });
   }, []);
   const handleSubmit = (formData: UserLogin) => {
-    mutate(formData);
+    const { firstName, lastName } = formData;
+
+    const fullName = `${firstName} ${lastName}`;
+    const newFormData = { ...formData, fullName };
+    mutate(newFormData);
   };
   const initialValues: UserLogin = {
     email: "",
