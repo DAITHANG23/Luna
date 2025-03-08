@@ -37,7 +37,7 @@ axiosWrapper.interceptors.response.use(
     const status = error.response?.status;
     if (error.response) {
       if (
-        (status === 401 || status === 403) &&
+        (status === 401 || status === 403 || status === 500) &&
         error.response?.data?.error?.name === "TokenExpiredError" &&
         !originalRequest._retry
       ) {

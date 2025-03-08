@@ -36,7 +36,7 @@ const Navbars = () => {
   const accessTokenState = useSelector(
     (state: RootState) => state.auth.accessToken
   );
-  console.log("accessTokenState:", accessTokenState);
+
   const userInfo = useSelector((state: RootState) => state.auth.user);
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
@@ -141,7 +141,7 @@ const Navbars = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt=""
-                      src={userInfo?.avatar || DEFAULT_AVATAR}
+                      src={userInfo?.avatarUrl || DEFAULT_AVATAR}
                       className="size-8 rounded-full"
                       width={32}
                       height={32}
