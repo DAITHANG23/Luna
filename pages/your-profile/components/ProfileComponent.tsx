@@ -104,17 +104,6 @@ const ProfileComponent = () => {
     });
   }, []);
 
-  const handleImageChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length > 0) {
-        const file = e.target.files[0];
-        setSelectedFile(file);
-        setPreviewImage(URL.createObjectURL(file));
-      }
-    },
-    []
-  );
-
   const handleSubmit = useCallback((values: UserLogin) => {
     console.log("values:", values);
     const formData = new FormData();
@@ -136,7 +125,7 @@ const ProfileComponent = () => {
     formData.append("fullName", fullName);
     if (selectedFile) {
       formData.append("avatar", selectedFile);
-      data.avatar = selectedFile;
+      data.avatar = values.avatar;
     }
     data.fullName = fullName;
 
@@ -161,10 +150,18 @@ const ProfileComponent = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
     >
-      {() => {
+      {({ setFieldValue }) => {
+        const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0];
+            setFieldValue("avatar", file);
+            setSelectedFile(file);
+            setPreviewImage(URL.createObjectURL(file));
+          }
+        };
         return (
           <Form>
-            {isOpenModalDelete ? (
+            {isOpenModalDelete && (
               <ModalNotification
                 title="Delete Account"
                 content="Are you sure you want to delete your account? All of your data will be permanently removed. This action cannot be undone."
@@ -188,7 +185,8 @@ const ProfileComponent = () => {
                   </button>
                 }
               />
-            ) : (
+            )}
+            {isOpenModalUpdate && (
               <ModalNotification
                 title="Update Account"
                 content="Are you sure update your profile?"

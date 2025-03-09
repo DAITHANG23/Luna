@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import React from "react";
-
+import { useFormikContext } from "formik";
 interface ButtonLoadingProps {
   title: string;
   isLoading?: boolean;
   type?: "submit" | "button";
   disabled?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onHandleSubmit: (value: any) => void;
+  onHandleSubmit?: (values: any) => void;
 }
 
 const ButtonLoading = ({
@@ -17,11 +17,19 @@ const ButtonLoading = ({
   disabled,
   onHandleSubmit,
 }: ButtonLoadingProps) => {
+  const { values, handleSubmit } = useFormikContext();
+
+  const handleClick = () => {
+    if (onHandleSubmit) {
+      onHandleSubmit(values);
+    }
+    handleSubmit();
+  };
   return (
     <button
       type={type}
       disabled={isLoading || disabled}
-      onClick={onHandleSubmit}
+      onClick={handleClick}
       className="relative inline-flex w-full justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3 sm:w-auto"
     >
       <p
