@@ -16,7 +16,7 @@ const updateAccount = async (formData: UserLogin): Promise<UserResponse> => {
 const useUpdateProfile = () => {
   const queryClient = useQueryClient();
   const { showError, showSuccess } = useNotification();
-  const { mutate, error, isPending } = useMutation<
+  const { mutate, error, isPending, isSuccess } = useMutation<
     UserResponse,
     AxiosError<ErrorResponse>,
     UserLogin
@@ -30,7 +30,7 @@ const useUpdateProfile = () => {
       showError(err.message);
     },
   });
-  return { mutate, error, isPending };
+  return { mutate, error, isPending, isSuccess };
 };
 
 export default useUpdateProfile;

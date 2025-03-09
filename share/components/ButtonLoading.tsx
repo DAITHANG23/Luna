@@ -6,6 +6,8 @@ interface ButtonLoadingProps {
   isLoading?: boolean;
   type?: "submit" | "button";
   disabled?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onHandleSubmit: (value: any) => void;
 }
 
 const ButtonLoading = ({
@@ -13,17 +15,19 @@ const ButtonLoading = ({
   isLoading,
   type,
   disabled,
+  onHandleSubmit,
 }: ButtonLoadingProps) => {
   return (
     <button
       type={type}
       disabled={isLoading || disabled}
-      className="relative cursor-pointer text-white bg-primary/70 hover:bg-primary/80 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm text-center me-2 dark:focus:ring-primary inline-flex items-center"
+      onClick={onHandleSubmit}
+      className="relative inline-flex w-full justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3 sm:w-auto"
     >
       <p
         className={clsx(
           isLoading ? "opacity-20 " : "opacity-100",
-          "!my-2 !mx-2 text-sm"
+          " !mx-2 text-sm"
         )}
       >
         {title}
