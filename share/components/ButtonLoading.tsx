@@ -17,13 +17,12 @@ const ButtonLoading = ({
   disabled,
   onHandleSubmit,
 }: ButtonLoadingProps) => {
-  const { values, handleSubmit } = useFormikContext();
+  const { values } = useFormikContext();
 
   const handleClick = () => {
     if (onHandleSubmit) {
       onHandleSubmit(values);
     }
-    handleSubmit();
   };
   return (
     <button

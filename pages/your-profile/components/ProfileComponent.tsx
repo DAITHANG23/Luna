@@ -125,10 +125,10 @@ const ProfileComponent = () => {
     formData.append("fullName", fullName);
     if (selectedFile) {
       formData.append("avatar", selectedFile);
-      data.avatar = values.avatar;
     }
+    data.avatar = values.avatar;
     data.fullName = fullName;
-
+    console.log("data:", data);
     updateAccount(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
