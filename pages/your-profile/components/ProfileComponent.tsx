@@ -15,12 +15,10 @@ import useNotification from "@/hooks/useNotification";
 import ButtonLoading from "@/share/components/ButtonLoading";
 import RadioGroupComponent from "@/share/components/RadioGroupComponent";
 import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+  ArrowPathIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/outline";
+import ModalNotification from "@/share/components/ModalNotification";
 
 const GENDER_LIST = [
   { id: "male-radio", name: "gender", value: "male" },
@@ -31,15 +29,26 @@ const ProfileComponent = () => {
   const { showSuccess } = useNotification();
 
   const { userData, isLoading } = useGetDataUser();
+  const {
+    mutate: updateAccount,
+    isPending: isLoadingUpdateProfile,
+    isSuccess: isSuccessUpdateProfile,
+  } = useUpdateProfile();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [open, setOpen] = useState(false);
+  const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
+  const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>(
     userData?.data.data.avatarUrl || "/assets/images/defaultAvatar.jpg"
   );
+
   useEffect(() => {
     if (userData?.data.data.avatarUrl)
       setPreviewImage(userData?.data.data.avatarUrl);
   }, [userData?.data.data.avatarUrl]);
+
+  useEffect(() => {
+    if (isSuccessUpdateProfile) setIsOpenModalUpdate(false);
+  }, [isSuccessUpdateProfile]);
 
   const initialValues: UserLogin = {
     email: userData?.data.data.email || "",
@@ -51,8 +60,6 @@ const ProfileComponent = () => {
     dateOfBirth: userData?.data.data.dateOfBirth || "",
     gender: userData?.data.data.gender || "male",
   };
-  const { mutate: updateAccount, isPending: isLoadingUpdateProfile } =
-    useUpdateProfile();
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -97,25 +104,14 @@ const ProfileComponent = () => {
     });
   }, []);
 
-  const handleImageChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length > 0) {
-        const file = e.target.files[0];
-        setSelectedFile(file);
-        setPreviewImage(URL.createObjectURL(file));
-      }
-    },
-    []
-  );
-
-  const handleSubmit = (values: UserLogin) => {
+  const handleSubmit = useCallback((values: UserLogin) => {
+    console.log("values:", values);
     const formData = new FormData();
     const data: Partial<UserModel> = {};
 
     (Object.keys(values) as Array<keyof UserLogin>).forEach((key) => {
       const value = values[key];
 
-      // Kiểm tra nếu giá trị là string hoặc number
       if (typeof value === "string" || typeof value === "number") {
         formData.append(key, value.toString());
         data[key] = value;
@@ -129,12 +125,13 @@ const ProfileComponent = () => {
     formData.append("fullName", fullName);
     if (selectedFile) {
       formData.append("avatar", selectedFile);
-      data.avatar = selectedFile;
     }
+    data.avatar = values.avatar;
     data.fullName = fullName;
-
+    console.log("data:", data);
     updateAccount(data);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDeleteAccount = async () => {
     try {
@@ -153,67 +150,67 @@ const ProfileComponent = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
     >
-      {() => {
+      {({ setFieldValue }) => {
+        const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0];
+            setFieldValue("avatar", file);
+            setSelectedFile(file);
+            setPreviewImage(URL.createObjectURL(file));
+          }
+        };
         return (
           <Form>
-            <Dialog open={open} onClose={setOpen} className="relative z-10">
-              <DialogBackdrop
-                transition
-                className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
-              />
-
-              <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                  <DialogPanel
-                    transition
-                    className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+            {isOpenModalDelete && (
+              <ModalNotification
+                title="Delete Account"
+                content="Are you sure you want to delete your account? All of your data will be permanently removed. This action cannot be undone."
+                icon={
+                  <ExclamationTriangleIcon
+                    aria-hidden="true"
+                    className="size-6 text-red-600"
+                  />
+                }
+                open={isOpenModalDelete}
+                setOpen={setIsOpenModalDelete}
+                labelButton="Delete"
+                type="delete"
+                action={
+                  <button
+                    type="button"
+                    className="inline-flex w-full justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3 sm:w-auto"
+                    onClick={handleDeleteAccount}
                   >
-                    <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                      <div className="sm:flex sm:items-start">
-                        <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:size-10">
-                          <ExclamationTriangleIcon
-                            aria-hidden="true"
-                            className="size-6 text-red-600"
-                          />
-                        </div>
-                        <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                          <DialogTitle
-                            as="h3"
-                            className="text-base font-semibold text-gray-900"
-                          >
-                            Deactivate account
-                          </DialogTitle>
-                          <div className="mt-2">
-                            <p className="text-sm text-gray-500">
-                              Are you sure you want to deactivate your account?
-                              All of your data will be permanently removed. This
-                              action cannot be undone.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                      <button
-                        type="button"
-                        onClick={handleDeleteAccount}
-                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto"
-                      >
-                        Deactivate
-                      </button>
-                      <button
-                        type="button"
-                        data-autofocus
-                        onClick={() => setOpen(false)}
-                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </DialogPanel>
-                </div>
-              </div>
-            </Dialog>
+                    Delete
+                  </button>
+                }
+              />
+            )}
+            {isOpenModalUpdate && (
+              <ModalNotification
+                title="Update Account"
+                content="Are you sure update your profile?"
+                icon={
+                  <ArrowPathIcon
+                    aria-hidden="true"
+                    className="w-8 h-8 text-green-500 animate-spin"
+                    type="update"
+                  />
+                }
+                open={isOpenModalUpdate}
+                setOpen={setIsOpenModalUpdate}
+                labelButton="Update"
+                type="update"
+                action={
+                  <ButtonLoading
+                    type="submit"
+                    title="Update"
+                    isLoading={isLoadingUpdateProfile}
+                    onHandleSubmit={handleSubmit}
+                  />
+                }
+              />
+            )}
             <div
               className="flex flex-col items-start justify-start gap-6 lg:flex-row"
               style={{ fontFamily: "Inter" }}
@@ -256,7 +253,7 @@ const ProfileComponent = () => {
 
                 <button
                   type="button"
-                  onClick={() => setOpen(true)}
+                  onClick={() => setIsOpenModalDelete(true)}
                   className="p-2 border-none rounded-lg font-bold text-sm text-white bg-primary/70 hover:bg-primary mt-[50px]"
                 >
                   Delete Account
@@ -313,11 +310,15 @@ const ProfileComponent = () => {
                   />
                 </div>
                 <div className="justify-end text-end">
-                  <ButtonLoading
-                    title="Upload Account"
-                    type="submit"
-                    isLoading={isLoadingUpdateProfile}
-                  />
+                  <button
+                    type="button"
+                    className="cursor-pointer text-white bg-primary/70 hover:bg-primary/80 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm text-center me-2 dark:focus:ring-primary inline-flex items-center"
+                    onClick={() => setIsOpenModalUpdate(true)}
+                  >
+                    <p className={"!my-2 !mx-2 text-sm  opacity-100"}>
+                      Update Account
+                    </p>
+                  </button>
                 </div>
               </div>
             </div>
