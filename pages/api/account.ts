@@ -2,6 +2,7 @@ import { API_VERSION_V1 } from "../contants";
 import {
   LoginResponse,
   RefreshTokenResponse,
+  UpdatePasswordType,
   UserLogin,
   UserResponse,
 } from "@/@types/models/account";
@@ -52,8 +53,17 @@ const account = {
       },
     });
   },
+
   deleteAccount: async () => {
     return await apiRequest(`${baseURL}/deleteMe`, "DELETE");
+  },
+
+  updatePassword: async ({
+    formData,
+  }: {
+    formData: UpdatePasswordType;
+  }): Promise<LoginResponse> => {
+    return apiRequest(`${baseURL}/updateMyPassword`, "PATCH", formData);
   },
 };
 

@@ -11,7 +11,7 @@ const tabList: Array<{ name: string; icon: JSX.Element }> = [
 const YourProfile = () => {
   const [activeTab, setActiveTab] = useState(tabList[0].name);
   return (
-    <div className="xl:w-[70%] w-[85%] flex flex-col justify-start m-auto my-20">
+    <div className="xl:w-[70%] w-[85%] flex flex-col justify-start m-auto my-5 sm:my-20">
       <h1 className="text-primary-text">Profile</h1>
       <TabsComponent
         tabList={tabList}

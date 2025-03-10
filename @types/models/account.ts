@@ -47,3 +47,9 @@ export interface ErrorResponse {
 export interface RefreshTokenResponse {
   accessToken: string;
 }
+
+export interface UpdatePasswordType {
+  passwordConfirm: string;
+  password: string;
+  passwordCurrent: string;
+}
