@@ -19,6 +19,7 @@ import {
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
 import ModalNotification from "@/share/components/ModalNotification";
+import Skeleton from "./Skeleton";
 
 const GENDER_LIST = [
   { id: "male-radio", name: "gender", value: "male" },
@@ -105,7 +106,6 @@ const ProfileComponent = () => {
   }, []);
 
   const handleSubmit = useCallback((values: UserLogin) => {
-    console.log("values:", values);
     const formData = new FormData();
     const data: Partial<UserModel> = {};
 
@@ -128,7 +128,7 @@ const ProfileComponent = () => {
     }
     data.avatar = values.avatar;
     data.fullName = fullName;
-    console.log("data:", data);
+
     updateAccount(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -142,7 +142,7 @@ const ProfileComponent = () => {
       console.error("Error deleting account:", error);
     }
   };
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Skeleton />;
 
   return (
     <Formik
