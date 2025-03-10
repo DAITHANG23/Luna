@@ -8,6 +8,8 @@ interface ButtonLoadingProps {
   disabled?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onHandleSubmit?: (values: any) => void;
+  className?: string;
+  sizeButton?: "large" | "small";
 }
 
 const ButtonLoading = ({
@@ -16,6 +18,8 @@ const ButtonLoading = ({
   type,
   disabled,
   onHandleSubmit,
+  className,
+  sizeButton = "small",
 }: ButtonLoadingProps) => {
   const { values } = useFormikContext();
 
@@ -29,7 +33,11 @@ const ButtonLoading = ({
       type={type}
       disabled={isLoading || disabled}
       onClick={handleClick}
-      className="relative inline-flex w-full justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3 sm:w-auto"
+      className={clsx(
+        sizeButton === "large" ? "w-full" : "sm:w-auto",
+        className,
+        "relative inline-flex justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3"
+      )}
     >
       <p
         className={clsx(

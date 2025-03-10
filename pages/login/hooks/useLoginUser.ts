@@ -24,7 +24,7 @@ const useLogin = () => {
   const { showSuccess, showError } = useNotification();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const { data, mutate, error } = useMutation<
+  const { data, mutate, error, isPending } = useMutation<
     LoginResponse,
     AxiosError<ErrorResponse>,
     UserLogin
@@ -54,7 +54,7 @@ const useLogin = () => {
       showError(err.message);
     },
   });
-  return { data, mutate, error };
+  return { data, mutate, error, isPending };
 };
 
 export default useLogin;
