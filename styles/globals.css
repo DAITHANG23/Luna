@@ -182,6 +182,10 @@ html::-webkit-scrollbar-track {
   margin: 0;
 }
 
+.prose :where(h3):not(:where([class~="not-prose"] *)) {
+  margin: 0;
+}
+
 .notistack-MuiContent {
   border-radius: 8px !important;
 }

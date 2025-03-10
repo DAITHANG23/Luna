@@ -12,10 +12,10 @@ const FormLayout = ({ children }: FormLayoutProps) => {
 
   const isLoginPage = pathname === "/login";
   return (
-    <div className="grid p-4 sm:p-0 sm:grid-cols-3 mb-12">
-      <div className="flex col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">
+    <div className="grid p-4 sm:px-10 sm:p-0 sm:grid-cols-2 lg:grid-cols-3 mb-12 sm:gap-4">
+      <div className="flex sm:col-span-1 lg:col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">
         <h2 className="text-primary">Hi, Welcome Domique Fusion</h2>
-        <p className="text-primary-text">
+        <p className="text-primary-text pb-6">
           Here, we serve you the best food and quality service.
         </p>
         <Image
@@ -27,7 +27,7 @@ const FormLayout = ({ children }: FormLayoutProps) => {
         />
       </div>
 
-      <div className="flex-1 col-span-2 flex flex-col justify-start items-center">
+      <div className="flex-1 sm:col-span-1 lg:col-span-2 flex flex-col justify-start items-center">
         <h4 className="mt-20 text-primary-text">
           {isLoginPage
             ? "Sign in to your account"
