@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { accessToken } from "@/lib/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
 import useGetDataUser from "@/pages/login/hooks/useGetDataUser";
+import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 export default function Layout({
   children,
 }: Readonly<{
@@ -30,6 +31,7 @@ export default function Layout({
         <Header />
         <main>
           <DialogSetting />
+          <ScrollToTop />
           {children}
         </main>
         {!isLoginPage && <Footer />}
