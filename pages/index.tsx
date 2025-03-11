@@ -1,6 +1,7 @@
 import SliderComponent from "@/share/components/SliderComponent";
 import BusinessHighlights from "./components/BusinessHighlights";
 import InformationRestaurants from "./components/InformationRestaurants";
+import ConceptsList from "./components/ConceptsList";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <SliderComponent />
       <BusinessHighlights />
       <InformationRestaurants />
+      <ConceptsList />
     </div>
   );
 }
