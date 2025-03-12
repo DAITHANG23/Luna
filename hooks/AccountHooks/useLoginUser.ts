@@ -25,7 +25,7 @@ const useLogin = () => {
     mutationFn: loginAccount,
     mutationKey: [ACCOUNT_LOGIN_QUERY_KEY],
     onSuccess: async (res: LoginResponse) => {
-      showSuccess("Login successfully!");
+      showSuccess("Login successful!");
       const accessTokenRes = res?.accessToken;
       const refreshToken = res?.refreshToken;
 

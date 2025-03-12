@@ -9,7 +9,8 @@ import { UpdatePasswordType } from "@/@types/models/account";
 import Popover from "./PopoverComponent";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 const SecurityComponent = () => {
-  const mutation = useUpdatePassword();
+  const { mutate: updatePasswordAccount, isPending: isLoadingUpdatePassword } =
+    useUpdatePassword();
 
   const initialValues = {
     passwordCurrent: "",
@@ -45,7 +46,7 @@ const SecurityComponent = () => {
   }, []);
 
   const handleSubmit = (formData: UpdatePasswordType) => {
-    mutation.mutate(formData);
+    updatePasswordAccount(formData);
   };
   return (
     <Formik
@@ -55,7 +56,7 @@ const SecurityComponent = () => {
     >
       {() => {
         return (
-          <Form className="w-full ">
+          <Form className="w-full lg:w-[70%] m-auto">
             <div className="p-6 dark:bg-[#1C252E] shadow-[rgba(145,158,171,0.16)_0px_4px_8px_0px] rounded-2xl overflow-hidden bg-white text-primary-text flex flex-col">
               <div className="grid grid-cols-1 gap-4 w-full">
                 <FieldInput
@@ -100,7 +101,7 @@ const SecurityComponent = () => {
               </div>
               <div className="justify-end text-end mt-4">
                 <ButtonLoading
-                  isLoading={mutation.isPending}
+                  isLoading={isLoadingUpdatePassword}
                   title="Save changes"
                 />
               </div>

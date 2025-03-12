@@ -8,7 +8,7 @@ import { UserLogin } from "@/@types/models/account";
 import useRegister from "@/hooks/AccountHooks/useRegisterAccount";
 import { differenceInYears, parseISO } from "date-fns";
 const Register = () => {
-  const mutation = useRegister();
+  const { mutate: registerAccount } = useRegister();
   const validationSchema = useMemo(() => {
     return Yup.object({
       email: Yup.string()
@@ -68,7 +68,7 @@ const Register = () => {
 
     const fullName = `${firstName}${lastName}`;
     const newFormData = { ...formData, fullName };
-    mutation.mutate(newFormData);
+    registerAccount(newFormData);
   };
   const initialValues: UserLogin = {
     email: "",
