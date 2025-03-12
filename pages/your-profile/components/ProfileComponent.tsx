@@ -22,16 +22,19 @@ import ModalNotification from "@/share/components/ModalNotification";
 import Skeleton from "./Skeleton";
 
 const GENDER_LIST = [
-  { id: "male-radio", name: "gender", value: "male" },
-  { id: "female-radio", name: "gender", value: "female" },
+  { id: "male-radio", name: "gender", value: "male", title: "Male" },
+  { id: "female-radio", name: "gender", value: "female", title: "Female" },
 ];
 
 const ProfileComponent = () => {
   const { showSuccess } = useNotification();
 
   const { userData, isLoading } = useGetDataUser();
-  const mutation = useUpdateProfile();
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const {
+    mutate: updateAccount,
+    isSuccess: isUpdateSuccess,
+    isPending: isUpdateLoading,
+  } = useUpdateProfile();
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>(
@@ -44,10 +47,10 @@ const ProfileComponent = () => {
   }, [userData?.data.data.avatarUrl]);
 
   useEffect(() => {
-    if (mutation.isSuccess) {
+    if (isUpdateSuccess) {
       setIsOpenModalUpdate(false);
     }
-  }, [mutation.isSuccess]);
+  }, [isUpdateSuccess]);
 
   const initialValues: UserLogin = {
     email: userData?.data.data.email || "",
@@ -104,14 +107,12 @@ const ProfileComponent = () => {
   }, []);
 
   const handleSubmit = useCallback((values: UserLogin) => {
-    const formData = new FormData();
     const data: Partial<UserModel> = {};
 
     (Object.keys(values) as Array<keyof UserLogin>).forEach((key) => {
       const value = values[key];
 
       if (typeof value === "string" || typeof value === "number") {
-        formData.append(key, value.toString());
         data[key] = value;
       }
     });
@@ -120,14 +121,10 @@ const ProfileComponent = () => {
     const lastName = values.lastName || "";
     const fullName = `${firstName} ${lastName}`.trim();
 
-    formData.append("fullName", fullName);
-    if (selectedFile) {
-      formData.append("avatar", selectedFile);
-    }
     data.avatar = values.avatar;
     data.fullName = fullName;
 
-    mutation.mutate(data);
+    updateAccount(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -153,7 +150,6 @@ const ProfileComponent = () => {
           if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
             setFieldValue("avatar", file);
-            setSelectedFile(file);
             setPreviewImage(URL.createObjectURL(file));
           }
         };
@@ -203,7 +199,7 @@ const ProfileComponent = () => {
                   <ButtonLoading
                     type="submit"
                     title="Update"
-                    isLoading={mutation.isPending}
+                    isLoading={isUpdateLoading}
                     onHandleSubmit={handleSubmit}
                     sizeButton="large"
                   />

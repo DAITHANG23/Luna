@@ -3,7 +3,7 @@ import React from "react";
 
 interface RadioGroupComponentProps {
   title: string;
-  itemList: Array<{ id: string; name: string; value: string }>;
+  itemList: Array<{ id: string; name: string; value: string; title: string }>;
 }
 const RadioGroupComponent = ({ title, itemList }: RadioGroupComponentProps) => {
   return (
@@ -26,7 +26,7 @@ const RadioGroupComponent = ({ title, itemList }: RadioGroupComponentProps) => {
                 htmlFor={item.id}
                 className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Male
+                {item.title}
               </label>
             </div>
           );

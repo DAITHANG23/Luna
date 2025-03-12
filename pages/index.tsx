@@ -1,7 +1,7 @@
 import SliderComponent from "@/share/components/SliderComponent";
-import BusinessHighlights from "./components/BusinessHighlights";
-import InformationRestaurants from "./components/InformationRestaurants";
-import ConceptsList from "./components/ConceptsList";
+import BusinessHighlights from "@/components/Home/BusinessHighlights";
+import InformationRestaurants from "@/components/Home/InformationRestaurants";
+import ConceptsList from "@/components/Home/ConceptsList";
 
 export default function Home() {
   return (

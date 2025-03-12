@@ -10,7 +10,7 @@ import { UserLogin } from "@/@types/models/account";
 const Login = () => {
   const initialValues = { email: "", password: "" };
 
-  const mutation = useLogin();
+  const { mutate: loginAccount } = useLogin();
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -22,7 +22,7 @@ const Login = () => {
     });
   }, []);
   const handleSubmit = (formData: UserLogin) => {
-    mutation.mutate(formData);
+    loginAccount(formData);
   };
 
   return (
@@ -39,7 +39,7 @@ const Login = () => {
 
               <h5 className="text-right mt-5">
                 <Link
-                  href={""}
+                  href={"/reset-password"}
                   className="no-underline hover:underline text-primary-text"
                 >
                   Forgot password?
