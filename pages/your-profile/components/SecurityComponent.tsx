@@ -1,16 +1,16 @@
-import { REGEX_VALIDTATE_PASSWORD } from "@/pages/contants";
+import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
 import ButtonLoading from "@/share/components/ButtonLoading";
 import FieldInput from "@/share/components/FieldInput";
 import { Form, Formik } from "formik";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
-import useUpdatePassword from "../hooks/useUpdatePassword";
+import useUpdatePassword from "@/hooks/AccountHooks/useUpdatePassword";
 import { UpdatePasswordType } from "@/@types/models/account";
 import Popover from "./PopoverComponent";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 const SecurityComponent = () => {
-  const { mutate: updatePassword, isPending: isLoadingUpdatePassword } =
-    useUpdatePassword();
+  const mutation = useUpdatePassword();
+
   const initialValues = {
     passwordCurrent: "",
     password: "",
@@ -45,7 +45,7 @@ const SecurityComponent = () => {
   }, []);
 
   const handleSubmit = (formData: UpdatePasswordType) => {
-    updatePassword(formData);
+    mutation.mutate(formData);
   };
   return (
     <Formik
@@ -100,7 +100,7 @@ const SecurityComponent = () => {
               </div>
               <div className="justify-end text-end mt-4">
                 <ButtonLoading
-                  isLoading={isLoadingUpdatePassword}
+                  isLoading={mutation.isPending}
                   title="Save changes"
                 />
               </div>

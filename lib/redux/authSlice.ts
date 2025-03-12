@@ -1,5 +1,5 @@
 import { UserLogin } from "@/@types/models/account";
-import apiService from "@/pages/api";
+import apiService from "@/api/index";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import Router from "next/router";

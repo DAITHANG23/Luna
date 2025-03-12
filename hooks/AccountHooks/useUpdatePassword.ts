@@ -6,7 +6,7 @@ import {
 import useNotification from "@/hooks/useNotification";
 import { logout } from "@/lib/redux/authSlice";
 import { useAppDispatch } from "@/lib/redux/hooks";
-import apiService from "@/pages/api";
+import apiService from "@/api/index";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
@@ -19,7 +19,7 @@ const updatePasswordAccount = async (
 const useUpdatePassword = () => {
   const { showError, showSuccess } = useNotification();
   const dispatch = useAppDispatch();
-  const { mutate, error, isPending, isSuccess } = useMutation<
+  return useMutation<
     LoginResponse,
     AxiosError<ErrorResponse>,
     UpdatePasswordType
@@ -33,7 +33,6 @@ const useUpdatePassword = () => {
       showError(err.message);
     },
   });
-  return { mutate, error, isPending, isSuccess };
 };
 
 export default useUpdatePassword;

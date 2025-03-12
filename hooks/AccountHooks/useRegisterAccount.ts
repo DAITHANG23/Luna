@@ -3,9 +3,9 @@ import {
   LoginResponse,
   UserLogin,
 } from "@/@types/models/account";
-import apiService from "@/pages/api";
+import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ACCOUNT_REGISTER_QUERY_KEY } from "@/pages/contants";
+import { ACCOUNT_REGISTER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
 import useNotification from "@/hooks/useNotification";
 import { AxiosError } from "axios";
@@ -17,11 +17,7 @@ const useRegister = () => {
   const queryClient = useQueryClient();
   const { showError, showSuccess } = useNotification();
   const router = useRouter();
-  const { mutate, error } = useMutation<
-    LoginResponse,
-    AxiosError<ErrorResponse>,
-    UserLogin
-  >({
+  return useMutation<LoginResponse, AxiosError<ErrorResponse>, UserLogin>({
     mutationFn: registerAccount,
     onSuccess: (res) => {
       showSuccess("Register successful!");
@@ -37,7 +33,6 @@ const useRegister = () => {
       showError(err.message);
     },
   });
-  return { mutate, error };
 };
 
 export default useRegister;

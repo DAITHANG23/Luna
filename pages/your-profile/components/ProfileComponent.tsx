@@ -4,13 +4,13 @@ import { CameraIcon } from "@heroicons/react/24/solid";
 import FieldInput from "@/share/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { REGEX_VALIDATE_EMAIL } from "@/pages/contants";
+import { REGEX_VALIDATE_EMAIL } from "@/contants";
 import { differenceInYears, parseISO } from "date-fns";
 import { UserLogin, UserModel } from "@/@types/models/account";
-import useUpdateProfile from "../hooks/useUpdateProfile";
-import useGetDataUser from "@/pages/login/hooks/useGetDataUser";
+import useUpdateProfile from "@/hooks/AccountHooks/useUpdateProfile";
+import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
 import Router from "next/router";
-import apiService from "@/pages/api";
+import apiService from "@/api/index";
 import useNotification from "@/hooks/useNotification";
 import ButtonLoading from "@/share/components/ButtonLoading";
 import RadioGroupComponent from "@/share/components/RadioGroupComponent";
@@ -30,11 +30,7 @@ const ProfileComponent = () => {
   const { showSuccess } = useNotification();
 
   const { userData, isLoading } = useGetDataUser();
-  const {
-    mutate: updateAccount,
-    isPending: isLoadingUpdateProfile,
-    isSuccess: isSuccessUpdateProfile,
-  } = useUpdateProfile();
+  const mutation = useUpdateProfile();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
@@ -48,14 +44,16 @@ const ProfileComponent = () => {
   }, [userData?.data.data.avatarUrl]);
 
   useEffect(() => {
-    if (isSuccessUpdateProfile) setIsOpenModalUpdate(false);
-  }, [isSuccessUpdateProfile]);
+    if (mutation.isSuccess) {
+      setIsOpenModalUpdate(false);
+    }
+  }, [mutation.isSuccess]);
 
   const initialValues: UserLogin = {
     email: userData?.data.data.email || "",
     avatarUrl: userData?.data.data.avatarUrl || "",
     firstName: userData?.data.data.fullName?.split(" ")[0] || "",
-    lastName: userData?.data.data.fullName?.split(" ")[1] || "",
+    lastName: userData?.data.data.fullName?.split(" ").slice(1).join(" ") || "",
     numberPhone: userData?.data.data.numberPhone || "",
     address: userData?.data.data.address || "",
     dateOfBirth: userData?.data.data.dateOfBirth || "",
@@ -129,7 +127,7 @@ const ProfileComponent = () => {
     data.avatar = values.avatar;
     data.fullName = fullName;
 
-    updateAccount(data);
+    mutation.mutate(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -205,8 +203,9 @@ const ProfileComponent = () => {
                   <ButtonLoading
                     type="submit"
                     title="Update"
-                    isLoading={isLoadingUpdateProfile}
+                    isLoading={mutation.isPending}
                     onHandleSubmit={handleSubmit}
+                    sizeButton="large"
                   />
                 }
               />
@@ -263,7 +262,7 @@ const ProfileComponent = () => {
                 className="w-[100%] lg:w-[70%] dark:bg-[#1C252E] flex flex-col h-auto p-4 shadow-[rgba(145,158,171,0.16)_0px_4px_8px_0px] rounded-2xl overflow-hidden bg-white text-primary-text font-inter"
                 style={{ fontFamily: "Inter" }}
               >
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FieldInput
                     title="Email"
                     name="email"

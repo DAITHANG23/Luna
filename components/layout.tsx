@@ -1,3 +1,4 @@
+"use client";
 import { usePathname } from "next/navigation";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
@@ -7,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { accessToken } from "@/lib/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
-import useGetDataUser from "@/pages/login/hooks/useGetDataUser";
+import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 export default function Layout({
   children,
