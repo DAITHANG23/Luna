@@ -3,14 +3,11 @@ import {
   LoginResponse,
   UserLogin,
 } from "@/@types/models/account";
-import apiService from "@/pages/api";
+import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/redux/store";
-import {
-  ACCOUNT_LOGIN_QUERY_KEY,
-  GET_DATA_USER_QUERY_KEY,
-} from "@/pages/contants";
+import { ACCOUNT_LOGIN_QUERY_KEY, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
 import { userInfo, accessToken } from "@/lib/redux/authSlice";
 import useNotification from "@/hooks/useNotification";
@@ -24,11 +21,7 @@ const useLogin = () => {
   const { showSuccess, showError } = useNotification();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const { data, mutate, error, isPending } = useMutation<
-    LoginResponse,
-    AxiosError<ErrorResponse>,
-    UserLogin
-  >({
+  return useMutation<LoginResponse, AxiosError<ErrorResponse>, UserLogin>({
     mutationFn: loginAccount,
     mutationKey: [ACCOUNT_LOGIN_QUERY_KEY],
     onSuccess: async (res: LoginResponse) => {
@@ -54,7 +47,6 @@ const useLogin = () => {
       showError(err.message);
     },
   });
-  return { data, mutate, error, isPending };
 };
 
 export default useLogin;

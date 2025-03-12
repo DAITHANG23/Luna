@@ -4,13 +4,13 @@ import Link from "next/link";
 import FieldInput from "@/share/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { REGEX_VALIDATE_EMAIL } from "../contants";
-import useLogin from "./hooks/useLoginUser";
+import { REGEX_VALIDATE_EMAIL } from "../../contants";
+import useLogin from "@/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models/account";
 const Login = () => {
   const initialValues = { email: "", password: "" };
 
-  const { mutate: loginAccount } = useLogin();
+  const mutation = useLogin();
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -22,7 +22,7 @@ const Login = () => {
     });
   }, []);
   const handleSubmit = (formData: UserLogin) => {
-    loginAccount(formData);
+    mutation.mutate(formData);
   };
 
   return (

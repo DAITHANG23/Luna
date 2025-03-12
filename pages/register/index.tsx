@@ -1,14 +1,14 @@
 import FormLayout from "@/share/components/FormLayout";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
-import { REGEX_VALIDATE_EMAIL, REGEX_VALIDTATE_PASSWORD } from "../contants";
+import { REGEX_VALIDATE_EMAIL, REGEX_VALIDTATE_PASSWORD } from "../../contants";
 import { Form, Formik } from "formik";
 import FieldInput from "@/share/components/FieldInput";
 import { UserLogin } from "@/@types/models/account";
-import useRegister from "./hooks/useRegisterAccount";
+import useRegister from "@/hooks/AccountHooks/useRegisterAccount";
 import { differenceInYears, parseISO } from "date-fns";
 const Register = () => {
-  const { mutate } = useRegister();
+  const mutation = useRegister();
   const validationSchema = useMemo(() => {
     return Yup.object({
       email: Yup.string()
@@ -66,9 +66,9 @@ const Register = () => {
   const handleSubmit = (formData: UserLogin) => {
     const { firstName, lastName } = formData;
 
-    const fullName = `${firstName} ${lastName}`;
+    const fullName = `${firstName}${lastName}`;
     const newFormData = { ...formData, fullName };
-    mutate(newFormData);
+    mutation.mutate(newFormData);
   };
   const initialValues: UserLogin = {
     email: "",

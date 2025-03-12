@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ErrorResponse } from "@/@types/models/account";
-import apiService from "@/pages/api";
+import apiService from "@/api/index";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;

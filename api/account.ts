@@ -1,4 +1,4 @@
-import { API_VERSION_V1 } from "../contants";
+import { API_VERSION_V1 } from "@/contants";
 import {
   LoginResponse,
   RefreshTokenResponse,

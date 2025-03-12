@@ -4,8 +4,8 @@ import {
   UserResponse,
 } from "@/@types/models/account";
 import useNotification from "@/hooks/useNotification";
-import apiService from "@/pages/api";
-import { GET_DATA_USER_QUERY_KEY } from "@/pages/contants";
+import apiService from "@/api/index";
+import { GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
@@ -16,11 +16,7 @@ const updateAccount = async (formData: UserLogin): Promise<UserResponse> => {
 const useUpdateProfile = () => {
   const queryClient = useQueryClient();
   const { showError, showSuccess } = useNotification();
-  const { mutate, error, isPending, isSuccess } = useMutation<
-    UserResponse,
-    AxiosError<ErrorResponse>,
-    UserLogin
-  >({
+  return useMutation<UserResponse, AxiosError<ErrorResponse>, UserLogin>({
     mutationFn: updateAccount,
     onSuccess: () => {
       showSuccess("Update Account successful!");
@@ -30,7 +26,6 @@ const useUpdateProfile = () => {
       showError(err.message);
     },
   });
-  return { mutate, error, isPending, isSuccess };
 };
 
 export default useUpdateProfile;

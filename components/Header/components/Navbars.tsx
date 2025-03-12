@@ -27,7 +27,7 @@ import { RootState } from "@/lib/redux/store";
 import { accessToken, logout } from "@/lib/redux/authSlice";
 
 import { useAppDispatch } from "@/lib/redux/hooks";
-import { DEFAULT_AVATAR } from "@/pages/contants";
+import { DEFAULT_AVATAR } from "@/contants";
 
 const Navbars = () => {
   const pathname = usePathname();
