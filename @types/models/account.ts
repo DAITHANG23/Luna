@@ -4,7 +4,7 @@ export interface UserModel {
   dateOfBirth: string;
   address: string;
   password: string;
-  confirmPassword: string;
+  passwordConfirm: string;
   email: string;
   gender: string;
   numberPhone: string;
@@ -52,4 +52,11 @@ export interface UpdatePasswordType {
   passwordConfirm: string;
   password: string;
   passwordCurrent: string;
+}
+
+export interface ForgotPasswordType {
+  email?: string;
+  password?: string;
+  passwordConfirm?: string;
+  token?: string;
 }

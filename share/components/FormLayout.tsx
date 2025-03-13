@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,6 +12,8 @@ const FormLayout = ({ children }: FormLayoutProps) => {
   const pathname = usePathname();
 
   const isLoginPage = pathname === "/login";
+  const isResetPasswordPage =
+    !(pathname === "/login") && !(pathname === "/register");
   return (
     <div className="grid p-4 sm:px-10 sm:p-0 sm:grid-cols-2 lg:grid-cols-3 mb-12 sm:gap-4">
       <div className="flex sm:col-span-1 lg:col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">
@@ -28,23 +31,36 @@ const FormLayout = ({ children }: FormLayoutProps) => {
       </div>
 
       <div className="flex-1 sm:col-span-1 lg:col-span-2 flex flex-col justify-start items-center">
-        <h4 className="mt-20 text-primary-text">
-          {isLoginPage
-            ? "Sign in to your account"
-            : "Get started absolutely free"}
-        </h4>
-        <p className="text-primary-text">
-          {isLoginPage ? "Don’t have an account?" : "Already have an account?"}
-          <span className="ml-1">
-            <Link
-              href={isLoginPage ? "/register" : "/login"}
-              className="no-underline text-success hover:underline"
-            >
-              Get started
-            </Link>
-          </span>
-        </p>
-        <div className="w-full max-w-md mt-2">{children}</div>
+        {!isResetPasswordPage && (
+          <h4 className="mt-20 text-primary-text">
+            {isLoginPage
+              ? "Sign in to your account"
+              : "Get started absolutely free"}
+          </h4>
+        )}
+        {!isResetPasswordPage && (
+          <p className="text-primary-text">
+            {isLoginPage
+              ? "Don’t have an account?"
+              : "Already have an account?"}
+            <span className="ml-1">
+              <Link
+                href={isLoginPage ? "/register" : "/login"}
+                className="no-underline text-success hover:underline"
+              >
+                Get started
+              </Link>
+            </span>
+          </p>
+        )}
+        <div
+          className={clsx(
+            isResetPasswordPage ? "mt-[120px]" : "mt-2",
+            "w-full max-w-md"
+          )}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
