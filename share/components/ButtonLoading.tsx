@@ -41,6 +41,7 @@ const ButtonLoading = ({
     >
       <p
         className={clsx(
+          className,
           isLoading ? "opacity-20 " : "opacity-100",
           " !mx-2 text-sm"
         )}

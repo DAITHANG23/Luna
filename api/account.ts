@@ -1,5 +1,6 @@
 import { API_VERSION_V1 } from "@/contants";
 import {
+  ForgotPasswordType,
   LoginResponse,
   RefreshTokenResponse,
   UpdatePasswordType,
@@ -64,6 +65,19 @@ const account = {
     formData: UpdatePasswordType;
   }): Promise<LoginResponse> => {
     return apiRequest(`${baseURL}/updateMyPassword`, "PATCH", formData);
+  },
+
+  resetPassword: async ({ formData }: { formData: ForgotPasswordType }) => {
+    return apiRequest(`${baseURL}/forgotPassword`, "POST", formData);
+  },
+
+  createNewPassword: async ({
+    formData,
+  }: {
+    formData: ForgotPasswordType;
+  }): Promise<LoginResponse> => {
+    const { token } = formData;
+    return apiRequest(`${baseURL}/resetPassword/${token}`, "PATCH", formData);
   },
 };
 

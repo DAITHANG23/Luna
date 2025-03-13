@@ -39,7 +39,7 @@ const Register = () => {
         .min(10, "Phone number must be at least 10 digits")
         .max(15, "Phone number must not exceed 15 digits")
         .required("Vui lòng nhập thông tin này"),
-      confirmPassword: Yup.string()
+      passwordConfirm: Yup.string()
         .trim()
         .oneOf([Yup.ref("password")], "Password must match")
         .required("Please enter confirm password!"),
@@ -76,7 +76,7 @@ const Register = () => {
     firstName: "",
     lastName: "",
     numberPhone: "",
-    confirmPassword: "",
+    passwordConfirm: "",
     address: "",
     dateOfBirth: "",
   };
@@ -135,7 +135,7 @@ const Register = () => {
 
               <FieldInput
                 title="Confirm Password"
-                name="confirmPassword"
+                name="passwordConfirm"
                 required
                 type="password"
                 isPasswordFied
