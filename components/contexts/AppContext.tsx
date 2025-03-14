@@ -1,3 +1,4 @@
+import { UserLogin } from "@/@types/models/account";
 import React, {
   useState,
   useContext,
@@ -15,16 +16,22 @@ interface AppContextType {
   isOpenDialog: boolean;
   theme: ThemeMode;
   setTheme: (theme: ThemeMode) => void;
+  setRegisterData: (values: UserLogin) => void;
+  registerData: UserLogin | null;
 }
 const AppContext = createContext<AppContextType>({
   isOpenDialog: false,
   setIsOpenDialog: () => {},
   theme: "light",
   setTheme: () => {},
+  setRegisterData: () => {},
+  registerData: null,
 });
 
 const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [isOpenDialog, setIsOpenDialog] = useState<boolean>(false);
+
+  const [registerData, setRegisterData] = useState<UserLogin | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">();
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -50,7 +57,14 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   }, [theme]);
   return (
     <AppContext.Provider
-      value={{ isOpenDialog, setIsOpenDialog, theme, setTheme }}
+      value={{
+        isOpenDialog,
+        setIsOpenDialog,
+        theme,
+        setTheme,
+        setRegisterData,
+        registerData,
+      }}
     >
       {children}
     </AppContext.Provider>

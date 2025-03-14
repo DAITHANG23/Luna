@@ -7,10 +7,11 @@ import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL } from "../../contants";
 import useLogin from "@/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models/account";
+import ButtonLoading from "@/share/components/ButtonLoading";
 const Login = () => {
   const initialValues = { email: "", password: "" };
 
-  const { mutate: loginAccount } = useLogin();
+  const { mutate: loginAccount, isPending: isLoadingLogin } = useLogin();
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -53,12 +54,13 @@ const Login = () => {
                 isPasswordFied
               />
 
-              <button
+              <ButtonLoading
                 type="submit"
-                className="w-full bg-primary/80 hover:bg-primary text-white rounded-md text-center py-2 px-4 mt-3"
-              >
-                Login
-              </button>
+                title="Login"
+                isLoading={isLoadingLogin}
+                sizeButton="large"
+                className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
+              />
             </Form>
           </FormLayout>
         );

@@ -19,11 +19,7 @@ const account = {
     return await apiRequest(`${baseURL}/login`, "POST", formData);
   },
 
-  register: async ({
-    formData,
-  }: {
-    formData: UserLogin;
-  }): Promise<LoginResponse> => {
+  register: async ({ formData }: { formData: UserLogin }) => {
     return await apiRequest(`${baseURL}/signup`, "POST", formData);
   },
 
@@ -64,11 +60,11 @@ const account = {
   }: {
     formData: UpdatePasswordType;
   }): Promise<LoginResponse> => {
-    return apiRequest(`${baseURL}/updateMyPassword`, "PATCH", formData);
+    return await apiRequest(`${baseURL}/updateMyPassword`, "PATCH", formData);
   },
 
   resetPassword: async ({ formData }: { formData: ForgotPasswordType }) => {
-    return apiRequest(`${baseURL}/forgotPassword`, "POST", formData);
+    return await apiRequest(`${baseURL}/forgotPassword`, "POST", formData);
   },
 
   createNewPassword: async ({
@@ -77,7 +73,19 @@ const account = {
     formData: ForgotPasswordType;
   }): Promise<LoginResponse> => {
     const { token } = formData;
-    return apiRequest(`${baseURL}/resetPassword/${token}`, "PATCH", formData);
+    return await apiRequest(
+      `${baseURL}/resetPassword/${token}`,
+      "PATCH",
+      formData
+    );
+  },
+
+  verifyOtp: async ({
+    formData,
+  }: {
+    formData: ForgotPasswordType;
+  }): Promise<LoginResponse> => {
+    return await apiRequest(`${baseURL}/verify-otp`, "POST", formData);
   },
 };
 

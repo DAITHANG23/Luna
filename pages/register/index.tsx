@@ -7,8 +7,14 @@ import FieldInput from "@/share/components/FieldInput";
 import { UserLogin } from "@/@types/models/account";
 import useRegister from "@/hooks/AccountHooks/useRegisterAccount";
 import { differenceInYears, parseISO } from "date-fns";
+import { useAppContext } from "@/components/contexts/AppContext";
+import ButtonLoading from "@/share/components/ButtonLoading";
 const Register = () => {
-  const { mutate: registerAccount } = useRegister();
+  const { mutate: registerAccount, isPending: isLoadingRegister } =
+    useRegister();
+
+  const { setRegisterData } = useAppContext();
+
   const validationSchema = useMemo(() => {
     return Yup.object({
       email: Yup.string()
@@ -63,13 +69,18 @@ const Register = () => {
         ),
     });
   }, []);
+
   const handleSubmit = (formData: UserLogin) => {
     const { firstName, lastName } = formData;
-
-    const fullName = `${firstName}${lastName}`;
+    if (formData?.email) {
+      localStorage.setItem("emailResetPassword", formData.email);
+    }
+    const fullName = `${firstName} ${lastName}`;
     const newFormData = { ...formData, fullName };
+    setRegisterData(newFormData);
     registerAccount(newFormData);
   };
+
   const initialValues: UserLogin = {
     email: "",
     password: "",
@@ -140,13 +151,13 @@ const Register = () => {
                 type="password"
                 isPasswordFied
               />
-
-              <button
+              <ButtonLoading
                 type="submit"
-                className="w-full bg-primary/80 hover:bg-primary text-white rounded-md text-center py-2 px-4 mt-3"
-              >
-                Create account
-              </button>
+                title="Create account"
+                isLoading={isLoadingRegister}
+                sizeButton="large"
+                className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
+              />
             </Form>
           </FormLayout>
         );
