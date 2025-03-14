@@ -59,4 +59,5 @@ export interface ForgotPasswordType {
   password?: string;
   passwordConfirm?: string;
   token?: string;
+  otp?: string;
 }

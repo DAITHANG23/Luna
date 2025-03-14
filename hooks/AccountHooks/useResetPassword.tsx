@@ -30,6 +30,7 @@ const useResetPassword = () => {
       showSuccess(
         "Change password successful! Please login your account again!"
       );
+      localStorage.removeItem("emailResetPassword");
       Router.push("/login");
     },
     onError: (err: AxiosError<ErrorResponse>) => {

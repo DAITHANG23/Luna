@@ -1,6 +1,6 @@
 import { ForgotPasswordType } from "@/@types/models/account";
-import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
-import useResetPassword from "@/hooks/AccountHooks/useResetPassword";
+import { useAppContext } from "@/components/contexts/AppContext";
+import useVerifyOtp from "@/hooks/AccountHooks/useVerifyOtp";
 import ButtonLoading from "@/share/components/ButtonLoading";
 import FieldInput from "@/share/components/FieldInput";
 import FormLayout from "@/share/components/FormLayout";
@@ -9,44 +9,27 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useCallback, useMemo, useState } from "react";
-import * as Yup from "yup";
+import React, { useCallback, useState } from "react";
 
-const CreateNewPassword = () => {
+const VerifyOTP = () => {
   const router = useRouter();
-  const { id } = router.query;
-
+  const { registerData } = useAppContext();
   const [userOtp, setUserOtp] = useState("");
 
   const emailResetPassword =
     typeof window !== "undefined" && localStorage.getItem("emailResetPassword");
 
-  const { mutate: createNewPassword, isPending: isLoadingCreateNewPassword } =
-    useResetPassword();
+  const { mutate: verifyOtp, isPending: isLoadingVerifyOtp } = useVerifyOtp();
 
   const initialValues = {
     email: emailResetPassword || "",
-    password: "",
-    passwordConfirm: "",
+    password: registerData?.password || "",
+    fullName: registerData?.fullName || "",
+    numberPhone: registerData?.numberPhone || "",
+    passwordConfirm: registerData?.passwordConfirm || "",
+    address: registerData?.address || "",
+    dateOfBirth: registerData?.dateOfBirth || "",
   };
-
-  const validationSchema = useMemo(() => {
-    return Yup.object({
-      password: Yup.string()
-        .trim()
-        .required("Please enter your password!")
-        .min(8, "Password must be at least 8 characters!")
-        .max(20, "Password must be max 20 characters!")
-        .matches(
-          REGEX_VALIDTATE_PASSWORD,
-          "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character."
-        ),
-      passwordConfirm: Yup.string()
-        .trim()
-        .oneOf([Yup.ref("password")], "Password must match")
-        .required("Please enter confirm password!"),
-    });
-  }, []);
 
   const handleOTPComplete = useCallback(
     (otp: string) => {
@@ -56,15 +39,12 @@ const CreateNewPassword = () => {
   );
 
   const handleSubmit = (formData: ForgotPasswordType) => {
-    const newFormData = { ...formData, token: id as string, otp: userOtp };
-    createNewPassword(newFormData);
+    const newFormData = { ...formData, otp: userOtp };
+
+    verifyOtp(newFormData);
   };
   return (
-    <Formik
-      onSubmit={handleSubmit}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-    >
+    <Formik onSubmit={handleSubmit} initialValues={initialValues}>
       {() => {
         return (
           <FormLayout>
@@ -78,7 +58,8 @@ const CreateNewPassword = () => {
                 />
                 <h3>Request sent successfully</h3>
                 <p className="text-center">
-                  Please enter new password in below box.
+                  We&apos;ve sent a 6-digit confirmation email to your email.
+                  Please enter the code in below box to verify your email.
                 </p>
                 <div className="w-full">
                   <FieldInput
@@ -89,31 +70,16 @@ const CreateNewPassword = () => {
                     isReadOnly
                   />
                 </div>
-                <OTPInput length={6} onComplete={handleOTPComplete} />
-                <div className="w-full">
-                  <FieldInput
-                    title="Password"
-                    name="password"
-                    required
-                    type="password"
-                    isPasswordFied
-                  />
-                </div>
-
-                <div className="w-full">
-                  <FieldInput
-                    title="Confirm Password"
-                    name="passwordConfirm"
-                    required
-                    type="password"
-                    isPasswordFied
-                  />
-                </div>
+                <OTPInput
+                  name="otp"
+                  length={6}
+                  onComplete={handleOTPComplete}
+                />
 
                 <ButtonLoading
                   type="submit"
-                  title="Update password"
-                  isLoading={isLoadingCreateNewPassword}
+                  title="Verify"
+                  isLoading={isLoadingVerifyOtp}
                   sizeButton="large"
                   className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
                 />
@@ -135,4 +101,4 @@ const CreateNewPassword = () => {
   );
 };
 
-export default CreateNewPassword;
+export default VerifyOTP;

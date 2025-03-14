@@ -19,7 +19,7 @@ const useUpdateProfile = () => {
   return useMutation<UserResponse, AxiosError<ErrorResponse>, UserLogin>({
     mutationFn: updateAccount,
     onSuccess: () => {
-      showSuccess("Update Account successful!");
+      showSuccess("Update account successful!");
       queryClient.refetchQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
     },
     onError: (err: AxiosError<ErrorResponse>) => {
