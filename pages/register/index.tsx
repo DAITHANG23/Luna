@@ -72,9 +72,15 @@ const Register = () => {
 
   const handleSubmit = (formData: UserLogin) => {
     const { firstName, lastName } = formData;
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("resendOtp", "true");
+    }
+
     if (formData?.email) {
       localStorage.setItem("emailResetPassword", formData.email);
     }
+
     const fullName = `${firstName} ${lastName}`;
     const newFormData = { ...formData, fullName };
     setRegisterData(newFormData);

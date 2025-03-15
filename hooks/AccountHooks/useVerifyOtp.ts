@@ -24,6 +24,7 @@ const useVerifyOtp = () => {
     mutationFn: verifyOtpRegister,
     onSuccess: (res) => {
       showSuccess("Verify successful, your account is actived!");
+      localStorage.removeItem("resendOtp");
       const accessToken = res?.accessToken;
       if (accessToken) {
         sessionStorage.setItem("accessToken", accessToken);

@@ -87,6 +87,10 @@ const account = {
   }): Promise<LoginResponse> => {
     return await apiRequest(`${baseURL}/verify-otp`, "POST", formData);
   },
+
+  resendOtp: async ({ formData }: { formData: ForgotPasswordType }) => {
+    return await apiRequest(`${baseURL}/resendOtp`, "POST", formData);
+  },
 };
 
 export default account;

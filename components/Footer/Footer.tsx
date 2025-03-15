@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <div className="text-white grid grid-cols-1 text-center sm:grid-cols-3 w-full p-[50px] gap-[50px] bg-[#1C252E]">
-      <div className="w-full sm:w-[200px] lg:w-[280px]">
+      <div className="w-full sm:w-[200px] lg:w-[400px]">
         <h4 className="text-white">Domique Fusion Corporation</h4>
         <p className="text-secondary-text">
           Address: Thong Nhat Street, Go Vap Distric, Ho Chi Minh City

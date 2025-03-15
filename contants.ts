@@ -12,3 +12,4 @@ export const ACCOUNT_REGISTER_QUERY_KEY = "account-register";
 export const GET_DATA_USER_QUERY_KEY = "get-data-user";
 export const FORGOT_PASSWORD_QUERY_KEY = "forgot-password";
 export const CREATE_NEW_PASSWORD_QUERY_KEY = "create-new-password";
+export const RESEND_OTP_CODE = "resend-otp-code";
