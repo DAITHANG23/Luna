@@ -49,8 +49,8 @@ const ResetPassword = () => {
                   width={120}
                   height={120}
                 />
-                <h3>Forgot your password?</h3>
-                <p className="text-center">
+                <h3 className="text-primary-text">Forgot your password?</h3>
+                <p className="text-center text-secondary-text">
                   Please enter the email address associated with your account
                   and we&apos;ll email you a link to reset your password.
                 </p>
@@ -70,7 +70,7 @@ const ResetPassword = () => {
 
                 <button
                   type="button"
-                  className="flex items-center gap-2 hover:underline"
+                  className="flex items-center gap-2 hover:underline text-primary-text"
                   onClick={() => router.back()}
                 >
                   <ChevronLeftIcon width={16} height={16} />{" "}

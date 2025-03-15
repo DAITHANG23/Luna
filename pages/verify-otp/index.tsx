@@ -5,16 +5,21 @@ import ButtonLoading from "@/share/components/ButtonLoading";
 import FieldInput from "@/share/components/FieldInput";
 import FormLayout from "@/share/components/FormLayout";
 import OTPInput from "@/share/components/OTPInput";
+import ResendButton from "@/share/components/ResendButton";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const VerifyOTP = () => {
   const router = useRouter();
   const { registerData } = useAppContext();
   const [userOtp, setUserOtp] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("resendOtp", "true");
+  }, []);
 
   const emailResetPassword =
     typeof window !== "undefined" && localStorage.getItem("emailResetPassword");
@@ -81,19 +86,22 @@ const VerifyOTP = () => {
                   title="Verify"
                   isLoading={isLoadingVerifyOtp}
                   sizeButton="large"
-                  className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
+                  className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4 mt-4"
                 />
-
-                <button
-                  type="button"
-                  className="flex items-center gap-2 hover:underline"
-                  onClick={() => router.push("/login")}
-                >
-                  <ChevronLeftIcon width={16} height={16} />{" "}
-                  <span>Return to sign in</span>
-                </button>
               </div>
             </Form>
+            <div className="flex flex-col mt-6 text-center items-center gap-4">
+              <ResendButton />
+
+              <button
+                type="button"
+                className="flex items-center gap-2 hover:underline"
+                onClick={() => router.push("/login")}
+              >
+                <ChevronLeftIcon width={16} height={16} />
+                <span>Return to sign in</span>
+              </button>
+            </div>
           </FormLayout>
         );
       }}

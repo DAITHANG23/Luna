@@ -145,7 +145,7 @@ const ProfileComponent = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
     >
-      {({ setFieldValue }) => {
+      {({ setFieldValue, isValid }) => {
         const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
@@ -306,9 +306,13 @@ const ProfileComponent = () => {
                 </div>
                 <div className="justify-end text-end">
                   <button
-                    type="button"
+                    type="submit"
                     className="cursor-pointer text-white bg-primary/70 hover:bg-primary/80 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm text-center me-2 dark:focus:ring-primary inline-flex items-center"
-                    onClick={() => setIsOpenModalUpdate(true)}
+                    onClick={() => {
+                      if (!isValid) {
+                        setIsOpenModalUpdate(true);
+                      }
+                    }}
                   >
                     <p className={"!my-2 !mx-2 text-sm  opacity-100"}>
                       Update Account
