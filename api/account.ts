@@ -91,6 +91,10 @@ const account = {
   resendOtp: async ({ formData }: { formData: ForgotPasswordType }) => {
     return await apiRequest(`${baseURL}/resendOtp`, "POST", formData);
   },
+
+  loginByGmail: async () => {
+    return await apiRequest(`${baseURL}/google`, "GET");
+  },
 };
 
 export default account;
