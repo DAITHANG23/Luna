@@ -306,10 +306,10 @@ const ProfileComponent = () => {
                 </div>
                 <div className="justify-end text-end">
                   <button
-                    type="submit"
+                    type="button"
                     className="cursor-pointer text-white bg-primary/70 hover:bg-primary/80 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm text-center me-2 dark:focus:ring-primary inline-flex items-center"
                     onClick={() => {
-                      if (!isValid) {
+                      if (isValid) {
                         setIsOpenModalUpdate(true);
                       }
                     }}
