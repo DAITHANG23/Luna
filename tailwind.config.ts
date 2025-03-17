@@ -28,11 +28,19 @@ export default {
         "cta-text": "rgba(var(--cta-text))",
         grape: "rgba(var(--grape))",
         "--success-bg": "rgba(var(--success-bg))",
+        accent: "hsl(var(--accent))",
+        "accent-foreground": "hsl(var(--accent-foreground))",
       },
       typography: {
         DEFAULT: {
           css: Typography,
         },
+      },
+      boxShadow: {
+        glass: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        "glass-hover": "0 8px 32px rgba(0, 0, 0, 0.12)",
+        button: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        "button-hover": "0 4px 8px rgba(0, 0, 0, 0.12)",
       },
     },
   },

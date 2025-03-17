@@ -18,6 +18,8 @@
   --error: 183, 29, 24;
   --warning: 255, 214, 0;
   --succes-bg: 91, 228, 155;
+  --accent: 221 83% 95%;
+  --accent-foreground: 221 83% 53%;
   background: rgba(var(--background));
 }
 
@@ -37,6 +39,8 @@
   --error: 183, 29, 24;
   --warning: 255, 214, 0;
   --success-bg: 91, 228, 155;
+  --accent: 221 83% 95%;
+  --accent-foreground: 221 83% 53%;
 
   background: rgba(var(--background));
 }

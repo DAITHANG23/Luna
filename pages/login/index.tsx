@@ -8,6 +8,7 @@ import { REGEX_VALIDATE_EMAIL } from "../../contants";
 import useLogin from "@/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models/account";
 import ButtonLoading from "@/share/components/ButtonLoading";
+import SocialLogin from "./components/SocialLogin";
 const Login = () => {
   const initialValues = { email: "", password: "" };
 
@@ -62,6 +63,7 @@ const Login = () => {
                 className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
               />
             </Form>
+            <SocialLogin />
           </FormLayout>
         );
       }}
