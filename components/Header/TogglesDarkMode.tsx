@@ -2,6 +2,7 @@ import MoonIcon from "@/icons/MoonIcon";
 import SunIcon from "@/icons/SunIcon";
 import { motion } from "framer-motion";
 import { useAppContext } from "../contexts/AppContext";
+import { useTranslation } from "react-i18next";
 interface SliderToggle {
   selected?: "light" | "dark";
   setSelected: (value: "light" | "dark") => void;
@@ -20,6 +21,7 @@ const TogglesDarkMode = () => {
 };
 
 const SliderToggle = ({ selected, setSelected }: SliderToggle) => {
+  const { t } = useTranslation("translation");
   return (
     <div className="relative flex w-fit items-center rounded-full not-prose">
       <button
@@ -31,7 +33,7 @@ const SliderToggle = ({ selected, setSelected }: SliderToggle) => {
         }}
       >
         <MoonIcon />
-        <p className="relative z-10 ">Light</p>
+        <p className="relative z-10 ">{t("settings.light")}</p>
       </button>
       <button
         className={`${TOGGLE_CLASSES} ${
@@ -42,7 +44,7 @@ const SliderToggle = ({ selected, setSelected }: SliderToggle) => {
         }}
       >
         <SunIcon />
-        <p className="relative z-10">Dark</p>
+        <p className="relative z-10">{t("settings.dark")}</p>
       </button>
       <div
         className={`absolute inset-0 z-0 flex ${

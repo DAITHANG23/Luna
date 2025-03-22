@@ -9,20 +9,24 @@ import useLogin from "@/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models/account";
 import ButtonLoading from "@/share/components/ButtonLoading";
 import SocialLogin from "./components/SocialLogin";
+import { useTranslation } from "react-i18next";
+
 const Login = () => {
   const initialValues = { email: "", password: "" };
-
+  const { t } = useTranslation("translation");
   const { mutate: loginAccount, isPending: isLoadingLogin } = useLogin();
 
   const validationSchema = useMemo(() => {
     return Yup.object({
       email: Yup.string()
         .trim()
-        .required("Please enter your email!")
-        .matches(REGEX_VALIDATE_EMAIL, "Invalid Email!"),
-      password: Yup.string().trim().required("Please enter your password!"),
+        .required(`${t(`login.validate.email`)}`)
+        .matches(REGEX_VALIDATE_EMAIL, `${t(`login.validate.invalidEmail`)}`),
+      password: Yup.string()
+        .trim()
+        .required(`${t(`login.validate.password`)}`),
     });
-  }, []);
+  }, [t]);
   const handleSubmit = (formData: UserLogin) => {
     loginAccount(formData);
   };
@@ -44,11 +48,11 @@ const Login = () => {
                   href={"/reset-password"}
                   className="no-underline hover:underline text-primary-text"
                 >
-                  Forgot password?
+                  {t(`login.forgotPassword`)}
                 </Link>
               </h5>
               <FieldInput
-                title="Password"
+                title={`${t("login.password")}`}
                 name="password"
                 required
                 type="password"
@@ -57,7 +61,7 @@ const Login = () => {
 
               <ButtonLoading
                 type="submit"
-                title="Login"
+                title={t("button.signIn")}
                 isLoading={isLoadingLogin}
                 sizeButton="large"
                 className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"

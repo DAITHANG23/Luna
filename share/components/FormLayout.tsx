@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface FormLayoutProps {
   children: React.ReactNode;
@@ -10,17 +11,15 @@ interface FormLayoutProps {
 
 const FormLayout = ({ children }: FormLayoutProps) => {
   const pathname = usePathname();
-
+  const { t } = useTranslation("translation");
   const isLoginPage = pathname === "/login";
   const isResetPasswordPage =
     !(pathname === "/login") && !(pathname === "/register");
   return (
     <div className="grid p-4 sm:px-10 sm:p-0 sm:grid-cols-2 lg:grid-cols-3 mb-12 sm:gap-4">
       <div className="flex sm:col-span-1 lg:col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">
-        <h2 className="text-primary">Hi, Welcome Domique Fusion</h2>
-        <p className="text-primary-text pb-6">
-          Here, we serve you the best food and quality service.
-        </p>
+        <h2 className="text-primary max-w-[450px]">{t("title")}</h2>
+        <p className="text-primary-text pb-6 max-w-[450px]">{t("content")}</p>
         <Image
           src={"/assets/images/restaurantLogin.png"}
           alt="restaurant"
@@ -34,21 +33,21 @@ const FormLayout = ({ children }: FormLayoutProps) => {
         {!isResetPasswordPage && (
           <h4 className="mt-20 text-primary-text">
             {isLoginPage
-              ? "Sign in to your account"
-              : "Get started absolutely free"}
+              ? `${t("login.titleLogin")}`
+              : `${t("register.titleRegister")}`}
           </h4>
         )}
         {!isResetPasswordPage && (
           <p className="text-primary-text">
             {isLoginPage
-              ? "Don’t have an account?"
-              : "Already have an account?"}
+              ? `${t("login.dontHaveAccount")}`
+              : `${t("register.alreadyHaveAnAccount")}`}
             <span className="ml-1">
               <Link
                 href={isLoginPage ? "/register" : "/login"}
                 className="no-underline text-success hover:underline"
               >
-                Get started
+                {`${t("button.getStarted")}`}
               </Link>
             </span>
           </p>

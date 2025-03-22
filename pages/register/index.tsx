@@ -9,7 +9,9 @@ import useRegister from "@/hooks/AccountHooks/useRegisterAccount";
 import { differenceInYears, parseISO } from "date-fns";
 import { useAppContext } from "@/components/contexts/AppContext";
 import ButtonLoading from "@/share/components/ButtonLoading";
+import { useTranslation } from "react-i18next";
 const Register = () => {
+  const { t } = useTranslation("translation");
   const { mutate: registerAccount, isPending: isLoadingRegister } =
     useRegister();
 
@@ -19,47 +21,50 @@ const Register = () => {
     return Yup.object({
       email: Yup.string()
         .trim()
-        .required("Please enter your email!")
-        .matches(REGEX_VALIDATE_EMAIL, "Invalid Email!"),
+        .required(`${t("register.validate.email")}`)
+        .matches(
+          REGEX_VALIDATE_EMAIL,
+          `${t("register.validate.invalidEmail")}`
+        ),
       password: Yup.string()
         .trim()
-        .required("Please enter your password!")
-        .min(8, "Password must be at least 8 characters!")
-        .max(20, "Password must be max 20 characters!")
+        .required(`${t("register.validate.password")}`)
+        .min(8, `${t("register.validate.minPassword")}`)
+        .max(20, `${t("register.validate.maxPassword")}`)
         .matches(
           REGEX_VALIDTATE_PASSWORD,
-          "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character."
+          `${t("register.validate.formatPassword")}`
         ),
       firstName: Yup.string()
         .trim()
-        .min(3, "First name must be at least 3 characters")
-        .max(50, "First name must not exceed 50 characters")
-        .required("Please enter your first name!"),
+        .min(3, `${t("register.validate.minFirstName")}`)
+        .max(50, `${t("register.validate.maxFirstName")}`)
+        .required(`${t("register.validate.firstName")}`),
       lastName: Yup.string()
         .trim()
-        .min(3, "Last name must be at least 3 characters")
-        .max(50, "Last name must not exceed 50 characters")
-        .required("Please enter your last name!"),
+        .min(3, `${t("register.validate.minLastName")}`)
+        .max(50, `${t("register.validate.maxLastName")}`)
+        .required(`${t("register.validate.lastName")}`),
       numberPhone: Yup.string()
         .trim()
-        .min(10, "Phone number must be at least 10 digits")
-        .max(15, "Phone number must not exceed 15 digits")
-        .required("Vui lòng nhập thông tin này"),
+        .min(10, `${t("register.validate.minNumberPhone")}`)
+        .max(15, `${t("register.validate.maxNumberPhone")}`)
+        .required(`${t("register.validate.numberPhone")}`),
       passwordConfirm: Yup.string()
         .trim()
-        .oneOf([Yup.ref("password")], "Password must match")
-        .required("Please enter confirm password!"),
+        .oneOf([Yup.ref("password")], `${t("register.validate.matchPassword")}`)
+        .required(`${t("register.validate.confirmPassword")}`),
       address: Yup.string()
         .trim()
-        .min(5, "Address must be at least 5 characters")
-        .max(100, "Address must not exceed 100 characters")
-        .required("Please enter your address!"),
+        .min(5, `${t("register.validate.minAddress")}`)
+        .max(100, `${t("register.validate.maxAddress")}`)
+        .required(`${t("register.validate.address")}`),
       dateOfBirth: Yup.string()
         .trim()
-        .required("Please enter your birth of date!")
+        .required(`${t("register.validate.dateOfBirth")}`)
         .test(
           "is-old-enough",
-          "You must be at least 13 years old!",
+          `${t("register.validate.ageRequirement")}`,
           (value) => {
             if (!value) return false;
             const birthDate = parseISO(value);
@@ -68,7 +73,7 @@ const Register = () => {
           }
         ),
     });
-  }, []);
+  }, [t]);
 
   const handleSubmit = (formData: UserLogin) => {
     const { firstName, lastName } = formData;
@@ -109,14 +114,14 @@ const Register = () => {
             <Form>
               <div className="flex gap-4 justify-between">
                 <FieldInput
-                  title="First Name"
+                  title={t("register.firstName")}
                   name="firstName"
                   required
                   type="text"
                   className="w-full"
                 />
                 <FieldInput
-                  title="Last Name"
+                  title={t("register.lastName")}
                   name="lastName"
                   required
                   type="text"
@@ -126,14 +131,14 @@ const Register = () => {
 
               <div className="flex justify-between gap-4">
                 <FieldInput
-                  title="Date Of Birth"
+                  title={t("register.dateOfBirth")}
                   name="dateOfBirth"
                   required
                   type="date"
                   className="w-full"
                 />
                 <FieldInput
-                  title="Number Phone"
+                  title={t("register.numberPhone")}
                   name="numberPhone"
                   required
                   type="text"
@@ -141,9 +146,14 @@ const Register = () => {
                 />
               </div>
               <FieldInput title="Email" name="email" required type="text" />
-              <FieldInput title="Address" name="address" required type="text" />
               <FieldInput
-                title="Password"
+                title={t("register.address")}
+                name="address"
+                required
+                type="text"
+              />
+              <FieldInput
+                title={t("register.password")}
                 name="password"
                 required
                 type="password"
@@ -151,7 +161,7 @@ const Register = () => {
               />
 
               <FieldInput
-                title="Confirm Password"
+                title={t("register.confirmPassword")}
                 name="passwordConfirm"
                 required
                 type="password"
@@ -159,7 +169,7 @@ const Register = () => {
               />
               <ButtonLoading
                 type="submit"
-                title="Create account"
+                title={t("register.createAccount")}
                 isLoading={isLoadingRegister}
                 sizeButton="large"
                 className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"

@@ -10,6 +10,7 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useAppContext } from "@/components/contexts/AppContext";
 import TogglesDarkMode from "../TogglesDarkMode";
+import { t } from "i18next";
 
 const DialogSetting = () => {
   const { isOpenDialog, setIsOpenDialog } = useAppContext();
@@ -55,12 +56,12 @@ const DialogSetting = () => {
               <div className="flex h-full dark:bg-gray-800 flex-col overflow-y-scroll bg-white py-6 shadow-xl font-[inter] ">
                 <div className="px-4 sm:px-6">
                   <DialogTitle className="text-base font-semibold text-primary-text">
-                    <p className="text-[25px]">Settings</p>
+                    <p className="text-[25px]">{t("settings.title")}</p>
                   </DialogTitle>
                 </div>
                 <div className="relative mt-6 flex-1 px-4 sm:px-6">
                   <p className="text-bold font-bold mb-4 text-primary-text">
-                    Theme Mode
+                    {t("settings.themeMode")}
                   </p>
                   <TogglesDarkMode />
                 </div>

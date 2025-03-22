@@ -1,0 +1,92 @@
+{
+  "title": "Xin chào, Chào mừng đến với Domique Fusion",
+  "content": "Ở đây, chúng tôi phục vụ bạn những món ăn và dịch vụ chất lượng tốt nhất.",
+  "login": {
+    "titleLogin": "Đăng nhập tài khoản bạn",
+    "dontHaveAccount": "Không có tài khoản?",
+    "forgotPassword": "Quên mật khẩu?",
+    "continueWith": "hoặc tiếp tục với",
+    "password": "Mật khẩu",
+    "validate": {
+      "email": "Vui lòng nhập email!",
+      "invalidEmail": "Email không hợp lệ!",
+      "password": "Vui lòng nhập mật khẩu!"
+    }
+  },
+  "register": {
+    "alreadyHaveAnAccount": "Đã có tài khoản?",
+    "titleRegister": "Bắt đầu hoàn toàn miễn phí",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "dateOfBirth": "Ngày sinh",
+    "numberPhone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "createAccount": "Tạo tài khoản",
+    "validate": {
+      "email": "Vui lòng nhập email!",
+      "invalidEmail": "Email không hợp lệ!",
+      "password": "Vui lòng nhập mật khẩu!",
+      "minPassword": "Mật khẩu phải tổi thiểu 8 kí tự!",
+      "maxPassword": "Mật khẩu tối đa 20 kí tự!",
+      "formatPassword": "Mật khẩu phải có tổi thiểu 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt.",
+      "firstName": "Vui lòng nhập tên!",
+      "minFirstName": "Tên phải tổi thiểu 3 kí tự!",
+      "maxFirstName": "Tên tối đa 50 kí tự!",
+      "lastName": "Vui lòng nhập họ!",
+      "minLastName": "Họ phải tổi thiểu 3 kí tự!",
+      "maxLastName": "Họ tối đa 50 kí tự!",
+      "dateOfBirth": "Vui lòng nhập ngày sinh!",
+      "numberPhone": "Vui lòng nhập số điện thoại!",
+      "minNumberPhone": "Số điện thoại tổi thiểu 10 chữ số",
+      "maxNumberPhone": "Số điện thoại tối đa 50 chữ số",
+      "address": "Vui lòng nhập địa chỉ!",
+      "minAddress": "Địa chỉ tối thiểu 5 kí tự",
+      "maxAddress": "Địa chỉ tối đa 100 kí tự",
+      "confirmPassword": "Vui lòng nhập mật khẩu xác nhận!",
+      "matchPassword": "Mật khẩu xác nhận phải trùng khớp",
+      "ageRequirement": "Phải ít nhất 13 tuổi trở lên!"
+    }
+  },
+  "button": {
+    "signIn": "Đăng nhập",
+    "signUp": "Đăng kí",
+    "back": "Trở về",
+    "next": "Tiếp tục",
+    "submit": "Nộp",
+    "cancel": "Hủy bỏ",
+    "detail": "Chi tiết",
+    "verify": "Xác nhận",
+    "getStarted": "Bắt đầu"
+  },
+  "navbar": {
+    "home": "Trang Chủ",
+    "about": "Về Domique Fusion",
+    "restaurantConcept": "Thương Hiệu Nhà Hàng",
+    "blog": "Blog",
+    "yourProfile": "Thông tin của bạn",
+    "orderHistory": "Lịch sử đặt bàn",
+    "settings": "Cài đặt",
+    "signOut": "Đăng xuất",
+    "login": "Đăng nhập"
+  },
+  "footer": {
+    "title": "Tập đoàn Domique Fusion",
+    "address": "Địa chỉ: đường Thống Nhất, quận Gò Vấp, TP.Hồ Chí Minh",
+    "responsible": "Trách nhiệm nội dung: Mr.Dom Nguyen",
+    "customerSupport": "Hỗ trợ khách hàng",
+    "termsOfUse": "Điều khoản sử dụng",
+    "membershipPolicy": "Chính sách thành viên",
+    "privacyPolicy": "Chính sách bảo mật",
+    "copyright": "© 2025 Domique Fushion.,JSC. Mọi quyền được bảo lưu."
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "themeMode": "Chế độ đêm / sáng",
+    "light": "Sáng",
+    "dark": "Đêm",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
+  }
+}
