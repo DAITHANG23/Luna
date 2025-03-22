@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 const GoogleIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -14,9 +16,8 @@ const GoogleIcon = () => (
 );
 
 const SocialLogin = () => {
+  const { t } = useTranslation("translation");
   const handleGoogleLogin = async () => {
-    console.log("Login with Google");
-
     window.location.href = "http://localhost:8001/api/v1/auth/google";
   };
 
@@ -28,7 +29,7 @@ const SocialLogin = () => {
       <div className="relative flex items-center py-2 ">
         <div className="flex-grow border-t border-border dark:border-primary-text"></div>
         <span className="flex-shrink mx-4 text-muted-foreground dark:text-primary-text text-sm">
-          or continue with
+          {`${t("login.continueWith")}`}
         </span>
         <div className="flex-grow border-t border-border dark:border-primary-text"></div>
       </div>

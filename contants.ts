@@ -6,6 +6,10 @@ export const REGEX_VALIDTATE_PASSWORD =
 
 export const API_VERSION_V1 = "/api/v1";
 export const DEFAULT_AVATAR = "/assets/images/defaultAvatar.jpg";
+export const UK_FLAG =
+  "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg";
+export const VN_FLAG =
+  "https://purecatamphetamine.github.io/country-flag-icons/3x2/VN.svg";
 
 export const ACCOUNT_LOGIN_QUERY_KEY = "account-login";
 export const ACCOUNT_REGISTER_QUERY_KEY = "account-register";

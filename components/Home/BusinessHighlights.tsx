@@ -1,40 +1,43 @@
 import Image from "next/image";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const ITEMS_LIST = [
   {
     img: "/assets/images/icon1.png",
-    title: "Concept",
-    content: "40+ Concepts",
+    title: "concept",
+    content: "contentConcept",
   },
   {
     img: "/assets/images/icon2.png",
-    title: "Restaurant",
-    content: "500+ Restaurants",
+    title: "restaurant",
+    content: "contentRestaurant",
   },
   {
     img: "/assets/images/icon3.png",
-    title: "Location",
-    content: "42 Provinces",
+    title: "location",
+    content: "contentLocation",
   },
   {
     img: "/assets/images/icon4-1.png",
-    title: "Amount of visits in 2024",
-    content: "18 million",
+    title: "amountVisits",
+    content: "contentAmount",
   },
   {
     img: "/assets/images/icon4-1.png",
-    title: "Loyal customer",
-    content: "Over 1,600,000",
+    title: "loyalCustomer",
+    content: "contentLoyalCustomer",
   },
   {
     img: "/assets/images/icon6.png",
-    title: "Partners",
-    content: "With 118 organizations and companies",
+    title: "partners",
+    content: "contentPartners",
   },
 ];
 
 const BusinessHighlights = () => {
+  const { t, ready } = useTranslation("home");
+  if (!ready) return null;
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] p-4 w-full sm:w-[85%] m-auto py-[80px]">
       {ITEMS_LIST.map((i) => {
@@ -54,9 +57,9 @@ const BusinessHighlights = () => {
             </div>
             <div>
               <h3 className="text-primary-text hover:text-primary">
-                {i.title}
+                {`${t(`${i.title}`)}`}
               </h3>
-              <p className="text-secondary-text">{i.content}</p>
+              <p className="text-secondary-text">{`${t(`${i.content}`)}`}</p>
             </div>
           </div>
         );
