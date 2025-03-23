@@ -32,22 +32,20 @@ const FormLayout = ({ children }: FormLayoutProps) => {
       <div className="flex-1 sm:col-span-1 lg:col-span-2 flex flex-col justify-start items-center">
         {!isResetPasswordPage && (
           <h4 className="mt-20 text-primary-text">
-            {isLoginPage
-              ? `${t("login.titleLogin")}`
-              : `${t("register.titleRegister")}`}
+            {isLoginPage ? t("login.titleLogin") : t("register.titleRegister")}
           </h4>
         )}
         {!isResetPasswordPage && (
           <p className="text-primary-text">
             {isLoginPage
-              ? `${t("login.dontHaveAccount")}`
-              : `${t("register.alreadyHaveAnAccount")}`}
+              ? t("login.dontHaveAccount")
+              : t("register.alreadyHaveAnAccount")}
             <span className="ml-1">
               <Link
                 href={isLoginPage ? "/register" : "/login"}
                 className="no-underline text-success hover:underline"
               >
-                {`${t("button.getStarted")}`}
+                {t("button.getStarted")}
               </Link>
             </span>
           </p>

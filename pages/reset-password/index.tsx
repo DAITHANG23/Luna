@@ -10,9 +10,11 @@ import { useRouter } from "next/router";
 import useForgotPassword from "@/hooks/AccountHooks/useForgotPassword";
 import { ForgotPasswordType } from "@/@types/models/account";
 import ButtonLoading from "@/share/components/ButtonLoading";
+import Head from "next/head";
+import { useTranslation } from "react-i18next";
 const ResetPassword = () => {
   const router = useRouter();
-
+  const { t } = useTranslation("translation");
   const { mutate: forgotPassword, isPending: isLoadingSendEmail } =
     useForgotPassword();
   const initialValues = { email: "" };
@@ -21,10 +23,10 @@ const ResetPassword = () => {
     return Yup.object({
       email: Yup.string()
         .trim()
-        .required("Please enter your email!")
-        .matches(REGEX_VALIDATE_EMAIL, "Invalid Email!"),
+        .required(t("resetPassword.validate.password"))
+        .matches(REGEX_VALIDATE_EMAIL, t("register.validate.invalidEmail")),
     });
-  }, []);
+  }, [t]);
 
   const handleSubmit = (formData: ForgotPasswordType) => {
     if (formData?.email) {
@@ -33,55 +35,66 @@ const ResetPassword = () => {
     forgotPassword(formData);
   };
   return (
-    <Formik
-      onSubmit={handleSubmit}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-    >
-      {() => {
-        return (
-          <FormLayout>
-            <Form>
-              <div className="flex flex-col items-center gap-4">
-                <Image
-                  src={"/assets/images/illustration-dashboard.png"}
-                  alt="reset-password"
-                  width={120}
-                  height={120}
-                />
-                <h3 className="text-primary-text">Forgot your password?</h3>
-                <p className="text-center text-secondary-text">
-                  Please enter the email address associated with your account
-                  and we&apos;ll email you a link to reset your password.
-                </p>
-                <div className="w-full">
-                  <FieldInput title="Email" name="email" required type="text" />
-                </div>
-
-                <div className="w-full">
-                  <ButtonLoading
-                    type="submit"
-                    title="Send request"
-                    isLoading={isLoadingSendEmail}
-                    sizeButton="large"
-                    className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
+    <>
+      <Head>
+        <title>{t("headTitle.resetPassword")}</title>
+      </Head>
+      <Formik
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+      >
+        {() => {
+          return (
+            <FormLayout>
+              <Form>
+                <div className="flex flex-col items-center gap-4">
+                  <Image
+                    src={"/assets/images/illustration-dashboard.png"}
+                    alt="reset-password"
+                    width={120}
+                    height={120}
                   />
-                </div>
+                  <h3 className="text-primary-text">
+                    {t("forgotPassword.title")}
+                  </h3>
+                  <p className="text-center text-secondary-text">
+                    {t("forgotPassword.content")}
+                  </p>
+                  <div className="w-full">
+                    <FieldInput
+                      title="Email"
+                      name="email"
+                      required
+                      type="text"
+                    />
+                  </div>
 
-                <button
-                  type="button"
-                  className="flex items-center gap-2 hover:underline text-primary-text"
-                  onClick={() => router.back()}
-                >
-                  <ChevronLeftIcon width={16} height={16} />{" "}
-                  <span>Return to sign in</span>
-                </button>
-              </div>
-            </Form>
-          </FormLayout>
-        );
-      }}
-    </Formik>
+                  <div className="w-full">
+                    <ButtonLoading
+                      type="submit"
+                      title={t("forgotPassword.button")}
+                      isLoading={isLoadingSendEmail}
+                      sizeButton="large"
+                      className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 hover:underline text-primary-text"
+                    onClick={() => router.back()}
+                  >
+                    <ChevronLeftIcon width={16} height={16} />{" "}
+                    <span>{t("forgotPassword.return")}</span>
+                  </button>
+                </div>
+              </Form>
+            </FormLayout>
+          );
+        }}
+      </Formik>
+    </>
   );
 };
 

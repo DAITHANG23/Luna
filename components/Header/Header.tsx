@@ -6,7 +6,11 @@ import NavbarsLogin from "./components/NavbarsLogin";
 const Header = () => {
   const pathname = usePathname();
 
-  const isLoginPage = pathname === "/login" || pathname === "/register";
+  const isLoginPage =
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname?.includes("/reset-password") ||
+    pathname === "/forgot-password";
   return (
     <div className="not-prose">
       {isLoginPage ? <NavbarsLogin /> : <Navbars />}

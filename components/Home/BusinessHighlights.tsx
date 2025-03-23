@@ -57,9 +57,9 @@ const BusinessHighlights = () => {
             </div>
             <div>
               <h3 className="text-primary-text hover:text-primary">
-                {`${t(`${i.title}`)}`}
+                {t(`${i.title}`)}
               </h3>
-              <p className="text-secondary-text">{`${t(`${i.content}`)}`}</p>
+              <p className="text-secondary-text">{t(`${i.content}`)}</p>
             </div>
           </div>
         );

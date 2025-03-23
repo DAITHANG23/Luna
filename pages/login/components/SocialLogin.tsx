@@ -29,7 +29,7 @@ const SocialLogin = () => {
       <div className="relative flex items-center py-2 ">
         <div className="flex-grow border-t border-border dark:border-primary-text"></div>
         <span className="flex-shrink mx-4 text-muted-foreground dark:text-primary-text text-sm">
-          {`${t("login.continueWith")}`}
+          {t("login.continueWith")}
         </span>
         <div className="flex-grow border-t border-border dark:border-primary-text"></div>
       </div>

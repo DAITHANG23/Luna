@@ -14,11 +14,7 @@ import {
   ArrowLeftStartOnRectangleIcon,
   Cog6ToothIcon,
 } from "@heroicons/react/24/solid";
-import {
-  dropdownList,
-  navigation,
-  languageList,
-} from "@/components/Header/contants";
+import { dropdownList, navigation } from "@/components/Header/contants";
 import clsx from "clsx";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -31,22 +27,14 @@ import { RootState } from "@/lib/redux/store";
 import { accessToken, logout } from "@/lib/redux/authSlice";
 
 import { useAppDispatch } from "@/lib/redux/hooks";
-import { DEFAULT_AVATAR, UK_FLAG, VN_FLAG } from "@/contants";
-import i18n from "@/lib/i18n/i18n";
+import { DEFAULT_AVATAR } from "@/contants";
 import { useTranslation } from "react-i18next";
+import LanguageSelect from "@/share/components/LanguageSelect";
 
 const Navbars = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [langValue, setLangValue] = useState("en-GB");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const langGetStorage = localStorage.getItem("i18nextLng") || "";
-      setLangValue(langGetStorage);
-    }
-  }, []);
   const { setIsOpenDialog } = useAppContext();
   const accessTokenState = useSelector(
     (state: RootState) => state.auth.accessToken
@@ -78,12 +66,6 @@ const Navbars = () => {
   const handleSignOut = async () => {
     dispatch(accessToken({ accessToken: "" }));
     dispatch(logout());
-  };
-
-  const onChangeLanguage = (lng: string) => {
-    setLangValue(lng);
-
-    i18n.changeLanguage(lng);
   };
 
   return (
@@ -139,7 +121,7 @@ const Navbars = () => {
                     )}
                     onClick={() => setItemNavbar(item.name)}
                   >
-                    <p className="text-[16px]">{`${t(`navbar.${item.name}`)}`}</p>
+                    <p className="text-[16px]">{t(`navbar.${item.name}`)}</p>
                   </Link>
                 ))}
               </div>
@@ -162,47 +144,7 @@ const Navbars = () => {
               <Cog6ToothIcon className="w-7 h-7 animate-[spin_5s_linear_infinite] dark:text-primary" />
             </button>
 
-            <Menu as="div" className="relative mx-3">
-              <div>
-                <MenuButton className="relative flex !rounded-md hover:ring-offset-primary/80 dark:bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-hidden">
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open user menu</span>
-                  <Image
-                    src={langValue === "en-GB" ? UK_FLAG : VN_FLAG}
-                    alt={`${langValue}-img`}
-                    width={30}
-                    height={24}
-                    className="!rounded-[5px]"
-                  />
-                </MenuButton>
-              </div>
-              <MenuItems
-                transition
-                className="absolute right-0 z-10 mt-4 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in "
-              >
-                {languageList.map((l) => {
-                  return (
-                    <MenuItem key={l.value}>
-                      <button
-                        className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 "
-                        onClick={() => onChangeLanguage(l.value)}
-                      >
-                        <div className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-200 focus:bg-gray-300">
-                          <Image
-                            src={l.img}
-                            alt={l.name}
-                            width={30}
-                            height={24}
-                            className="!rounded-[5px]"
-                          />{" "}
-                          <span className="text-base">{l.name}</span>
-                        </div>
-                      </button>
-                    </MenuItem>
-                  );
-                })}
-              </MenuItems>
-            </Menu>
+            <LanguageSelect />
 
             {/* Profile dropdown */}
             {accessTokenState ? (
@@ -245,7 +187,9 @@ const Navbars = () => {
                               ) : (
                                 <ArchiveBoxIcon className="w-5 h-5" />
                               )}
-                              <p className="prose">{`${t(`navbar.${item.name}`)}`}</p>
+                              <p className="prose">
+                                {t(`navbar.${item.name}`)}
+                              </p>
                             </Link>
                           ) : (
                             <div className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-200 focus:bg-gray-300">
