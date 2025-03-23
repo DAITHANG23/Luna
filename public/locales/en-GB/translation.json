@@ -49,6 +49,31 @@
       "ageRequirement": "You must be at least 13 years old!"
     }
   },
+  "forgotPassword": {
+    "title": "Forgot your password?",
+    "content": "Please enter the email address associated with your account and we'll email you a link to reset your password.",
+    "button": "Send request",
+    "return": "Return to sign in"
+  },
+  "resetPassword": {
+    "title": "Request sent successfully",
+    "content": "We've sent a 6-digit confirmation email to your email. Please enter the code in below box to verify your email.",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "updatePassword": "Update password",
+    "dontHaveACode": "Don’t have a code?",
+    "return": "Return to sign in",
+    "verify": "Verify",
+    "validate": {
+      "password": "Password is required!",
+      "minPassword": "Password must be at least 8 characters!",
+      "maxPassword": "Password must be max 20 characters!",
+      "formatPassword": "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character.",
+      "confirmPassword": "Confirm password is required!",
+      "matchPassword": "Password must match"
+    },
+    "resend": "Resend"
+  },
   "button": {
     "signIn": "Sign in",
     "signUp": "Sign up",
@@ -88,5 +113,13 @@
     "dark": "Dark",
     "english": "English",
     "vietnamese": "Vietnamese"
+  },
+  "headTitle": {
+    "login": "Domique Fusion | Login",
+    "register": "Domique Fusion | Register",
+    "about": "Domique Fusion | About",
+    "home": "Domique Fusion | Home",
+    "resetPassword": "Domique Fusion | Reset Password",
+    "forgotPassword": "Domique Fusion | Forgot Password"
   }
 }

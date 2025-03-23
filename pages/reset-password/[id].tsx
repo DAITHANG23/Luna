@@ -11,12 +11,13 @@ import { Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useCallback, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 
 const CreateNewPassword = () => {
   const router = useRouter();
   const { id } = router.query;
-
+  const { t } = useTranslation("translation");
   const [userOtp, setUserOtp] = useState("");
 
   const emailResetPassword =
@@ -35,19 +36,19 @@ const CreateNewPassword = () => {
     return Yup.object({
       password: Yup.string()
         .trim()
-        .required("Please enter your password!")
-        .min(8, "Password must be at least 8 characters!")
-        .max(20, "Password must be max 20 characters!")
+        .required(t("resetPassword.validate.password"))
+        .min(8, t("resetPassword.validate.minPassword"))
+        .max(20, t("resetPassword.validate.maxPassword"))
         .matches(
           REGEX_VALIDTATE_PASSWORD,
-          "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character."
+          t("resetPassword.validate.formatPassword")
         ),
       passwordConfirm: Yup.string()
         .trim()
-        .oneOf([Yup.ref("password")], "Password must match")
-        .required("Please enter confirm password!"),
+        .oneOf([Yup.ref("password")], t("resetPassword.validate.matchPassword"))
+        .required(t("resetPassword.validate.confirmPassword")),
     });
-  }, []);
+  }, [t]);
 
   const handleOTPComplete = useCallback(
     (otp: string) => {
@@ -77,10 +78,11 @@ const CreateNewPassword = () => {
                   width={120}
                   height={120}
                 />
-                <h3 className="text-primary-text">Request sent successfully</h3>
+                <h3 className="text-primary-text">
+                  {t("resetPassword.title")}
+                </h3>
                 <p className="text-center text-secondary-text">
-                  We&apos;ve sent a 6-digit confirmation email to your email.
-                  Please enter the code in below box to verify your email.
+                  {t("resetPassword.content")}
                 </p>
                 <div className="w-full">
                   <FieldInput
@@ -94,7 +96,7 @@ const CreateNewPassword = () => {
                 <OTPInput length={6} onComplete={handleOTPComplete} />
                 <div className="w-full">
                   <FieldInput
-                    title="Password"
+                    title={t("resetPassword.password")}
                     name="password"
                     required
                     type="password"
@@ -104,7 +106,7 @@ const CreateNewPassword = () => {
 
                 <div className="w-full">
                   <FieldInput
-                    title="Confirm Password"
+                    title={t("resetPassword.confirmPassword")}
                     name="passwordConfirm"
                     required
                     type="password"
@@ -114,7 +116,7 @@ const CreateNewPassword = () => {
 
                 <ButtonLoading
                   type="submit"
-                  title="Update password"
+                  title={t("resetPassword.updatePassword")}
                   isLoading={isLoadingCreateNewPassword}
                   sizeButton="large"
                   className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4"
@@ -129,7 +131,7 @@ const CreateNewPassword = () => {
                 onClick={() => router.push("/login")}
               >
                 <ChevronLeftIcon width={16} height={16} />
-                <span>Return to sign in</span>
+                <span>{t("resetPassword.return")}</span>
               </button>
             </div>
           </FormLayout>

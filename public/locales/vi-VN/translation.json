@@ -49,6 +49,31 @@
       "ageRequirement": "Phải ít nhất 13 tuổi trở lên!"
     }
   },
+  "forgotPassword": {
+    "title": "Quên mật khẩu?",
+    "content": "Vui lòng nhập địa chỉ email được liên kết với tài khoản của bạn và chúng tôi sẽ gửi cho bạn liên kết để đặt lại mật khẩu.",
+    "button": "Gửi yêu cầu",
+    "return": "Quay lại trang đăng nhập"
+  },
+  "resetPassword": {
+    "title": "Yêu cầu gửi thành công",
+    "content": "Chúng tôi đã gửi email xác nhận gồm 6 chữ số đến email của bạn. Vui lòng nhập mã vào ô bên dưới để xác minh email của bạn.",
+    "password": "Mật khẩu",
+    "confirmPassword": "Mật khẩu xác nhận",
+    "updatePassword": "Cập nhật mật khẩu",
+    "dontHaveACode": "Chưa có code?",
+    "return": "Quay lại trang đăng nhập",
+    "verify": "Xác nhận",
+    "validate": {
+      "password": "Vui lòng nhập mật khẩu!",
+      "minPassword": "Mật khẩu phải tổi thiểu 8 kí tự!",
+      "maxPassword": "Mật khẩu tối đa 20 kí tự!",
+      "formatPassword": "Mật khẩu phải có tổi thiểu 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt.",
+      "confirmPassword": "Vui lòng nhập mật khẩu xác nhận!",
+      "matchPassword": "Mật khẩu xác nhận phải trùng khớp"
+    },
+    "resend": "Gửi lại"
+  },
   "button": {
     "signIn": "Đăng nhập",
     "signUp": "Đăng kí",
@@ -88,5 +113,13 @@
     "dark": "Đêm",
     "english": "Tiếng Anh",
     "vietnamese": "Tiếng Việt"
+  },
+  "headTitle": {
+    "login": "Domique Fusion | Đăng nhập",
+    "register": "Domique Fusion | Đăng kí",
+    "about": "Domique Fusion | Hiểu biết chúng tôi",
+    "home": "Domique Fusion | Trang chủ",
+    "resetPassword": "Domique Fusion | Thay đổi mật khẩu",
+    "forgotPassword": "Domique Fusion | Quên mật khẩu"
   }
 }

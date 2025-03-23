@@ -2,10 +2,13 @@
 import useResendOtp from "@/hooks/AccountHooks/useResendOtp";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ResendButton = () => {
   const resendOtp =
     typeof window !== "undefined" && localStorage.getItem("resendOtp");
+
+  const { t } = useTranslation("translation");
 
   const [timeLeft, setTimeLeft] = useState(resendOtp === "true" ? 90 : 0);
 
@@ -39,7 +42,7 @@ const ResendButton = () => {
 
   return (
     <div>
-      <span className="mr-2">Don’t have a code?</span>
+      <span className="mr-2">{t("resetPassword.dontHaveACode")}</span>
       <button
         onClick={timeLeft === 0 ? handleResend : undefined}
         disabled={timeLeft !== 0}
@@ -51,7 +54,7 @@ const ResendButton = () => {
         )}
       >
         {timeLeft === 0
-          ? "Resend"
+          ? t("resetPassword.resend")
           : `${Math.floor(timeLeft / 60)}:${(timeLeft % 60).toString().padStart(2, "0")}`}
       </button>
     </div>

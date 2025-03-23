@@ -11,18 +11,22 @@ import { Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const VerifyOTP = () => {
   const router = useRouter();
   const { registerData } = useAppContext();
   const [userOtp, setUserOtp] = useState("");
-
+  const [emailResetPassword, setEmailResetPassword] = useState("");
   useEffect(() => {
     localStorage.setItem("resendOtp", "true");
   }, []);
 
-  const emailResetPassword =
-    typeof window !== "undefined" && localStorage.getItem("emailResetPassword");
+  useEffect(() => {
+    const email = localStorage.getItem("emailResetPassword");
+    setEmailResetPassword(email || "");
+  }, []);
+  const { t } = useTranslation("translation");
 
   const { mutate: verifyOtp, isPending: isLoadingVerifyOtp } = useVerifyOtp();
 
@@ -61,11 +65,8 @@ const VerifyOTP = () => {
                   width={120}
                   height={120}
                 />
-                <h3>Request sent successfully</h3>
-                <p className="text-center">
-                  We&apos;ve sent a 6-digit confirmation email to your email.
-                  Please enter the code in below box to verify your email.
-                </p>
+                <h3> {t("resetPassword.title")}</h3>
+                <p className="text-center">{t("resetPassword.content")}</p>
                 <div className="w-full">
                   <FieldInput
                     title="Email"
@@ -83,7 +84,7 @@ const VerifyOTP = () => {
 
                 <ButtonLoading
                   type="submit"
-                  title="Verify"
+                  title={t("resetPassword.verify")}
                   isLoading={isLoadingVerifyOtp}
                   sizeButton="large"
                   className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4 mt-4"
@@ -99,7 +100,7 @@ const VerifyOTP = () => {
                 onClick={() => router.push("/login")}
               >
                 <ChevronLeftIcon width={16} height={16} />
-                <span>Return to sign in</span>
+                <span>{t("resetPassword.return")}</span>
               </button>
             </div>
           </FormLayout>
