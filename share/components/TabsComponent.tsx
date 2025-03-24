@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { JSX } from "react";
+import { useTranslation } from "react-i18next";
 
 interface TablistProps {
   tabList: Array<{ name: string; icon: JSX.Element }>;
@@ -8,6 +9,8 @@ interface TablistProps {
 }
 
 const TabsComponent = ({ tabList, setActiveTab, activeTab }: TablistProps) => {
+  const { t, ready } = useTranslation("profile");
+  if (!ready) return null;
   return (
     <div className="border-gray-200 dark:border-gray-700 not-prose">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -27,7 +30,7 @@ const TabsComponent = ({ tabList, setActiveTab, activeTab }: TablistProps) => {
                     : ""
                 )}
               >
-                {tab.icon} <span className="ml-1">{tab.name}</span>
+                {tab.icon} <span className="ml-1">{t(tab.name)}</span>
               </p>
             </li>
           );

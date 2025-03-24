@@ -8,6 +8,7 @@ import OTPInput from "@/share/components/OTPInput";
 import ResendButton from "@/share/components/ResendButton";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -17,16 +18,15 @@ const VerifyOTP = () => {
   const router = useRouter();
   const { registerData } = useAppContext();
   const [userOtp, setUserOtp] = useState("");
-  const [emailResetPassword, setEmailResetPassword] = useState("");
+
   useEffect(() => {
     localStorage.setItem("resendOtp", "true");
   }, []);
 
-  useEffect(() => {
-    const email = localStorage.getItem("emailResetPassword");
-    setEmailResetPassword(email || "");
-  }, []);
-  const { t } = useTranslation("translation");
+  const emailResetPassword =
+    typeof window !== "undefined" && localStorage.getItem("emailResetPassword");
+
+  const { t, ready } = useTranslation("translation");
 
   const { mutate: verifyOtp, isPending: isLoadingVerifyOtp } = useVerifyOtp();
 
@@ -52,61 +52,68 @@ const VerifyOTP = () => {
 
     verifyOtp(newFormData);
   };
+
+  if (!ready) return null;
   return (
-    <Formik onSubmit={handleSubmit} initialValues={initialValues}>
-      {() => {
-        return (
-          <FormLayout>
-            <Form>
-              <div className="flex flex-col items-center gap-4 w-full">
-                <Image
-                  src={"/assets/images/illustration-dashboard.png"}
-                  alt="reset-password"
-                  width={120}
-                  height={120}
-                />
-                <h3> {t("resetPassword.title")}</h3>
-                <p className="text-center">{t("resetPassword.content")}</p>
-                <div className="w-full">
-                  <FieldInput
-                    title="Email"
-                    name="email"
-                    required
-                    type="text"
-                    isReadOnly
+    <>
+      <Head>
+        <title>{t("headTitle.verifyOtp")}</title>
+      </Head>
+      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+        {() => {
+          return (
+            <FormLayout>
+              <Form>
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <Image
+                    src={"/assets/images/illustration-dashboard.png"}
+                    alt="reset-password"
+                    width={120}
+                    height={120}
+                  />
+                  <h3> {t("resetPassword.title")}</h3>
+                  <p className="text-center">{t("resetPassword.content")}</p>
+                  <div className="w-full">
+                    <FieldInput
+                      title="Email"
+                      name="email"
+                      required
+                      type="text"
+                      isReadOnly
+                    />
+                  </div>
+                  <OTPInput
+                    name="otp"
+                    length={6}
+                    onComplete={handleOTPComplete}
+                  />
+
+                  <ButtonLoading
+                    type="submit"
+                    title={t("resetPassword.verify")}
+                    isLoading={isLoadingVerifyOtp}
+                    sizeButton="large"
+                    className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4 mt-4"
                   />
                 </div>
-                <OTPInput
-                  name="otp"
-                  length={6}
-                  onComplete={handleOTPComplete}
-                />
+              </Form>
+              <div className="flex flex-col mt-6 text-center items-center gap-4">
+                <ResendButton />
 
-                <ButtonLoading
-                  type="submit"
-                  title={t("resetPassword.verify")}
-                  isLoading={isLoadingVerifyOtp}
-                  sizeButton="large"
-                  className="!w-full !ml-0 !font-bold !text-base text-white text-center py-1 px-4 mt-4"
-                />
+                <button
+                  type="button"
+                  className="flex items-center gap-2 hover:underline"
+                  onClick={() => router.push("/login")}
+                >
+                  <ChevronLeftIcon width={16} height={16} />
+                  <span>{t("resetPassword.return")}</span>
+                </button>
               </div>
-            </Form>
-            <div className="flex flex-col mt-6 text-center items-center gap-4">
-              <ResendButton />
-
-              <button
-                type="button"
-                className="flex items-center gap-2 hover:underline"
-                onClick={() => router.push("/login")}
-              >
-                <ChevronLeftIcon width={16} height={16} />
-                <span>{t("resetPassword.return")}</span>
-              </button>
-            </div>
-          </FormLayout>
-        );
-      }}
-    </Formik>
+            </FormLayout>
+          );
+        }}
+      </Formik>
+    </>
   );
 };
 

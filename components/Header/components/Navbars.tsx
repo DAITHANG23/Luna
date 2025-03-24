@@ -22,11 +22,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { accessToken, logout } from "@/lib/redux/authSlice";
+import { accessToken, authentication, logout } from "@/lib/redux/authSlice";
 
-import { useAppDispatch } from "@/lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { DEFAULT_AVATAR } from "@/contants";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/share/components/LanguageSelect";
@@ -36,13 +35,13 @@ const Navbars = () => {
   const router = useRouter();
 
   const { setIsOpenDialog } = useAppContext();
-  const accessTokenState = useSelector(
+  const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
 
   const { t } = useTranslation("translation");
 
-  const userInfo = useSelector((state: RootState) => state.auth.user);
+  const userInfoState = useAppSelector((state: RootState) => state.auth.user);
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
   const dispatch = useAppDispatch();
@@ -66,6 +65,7 @@ const Navbars = () => {
   const handleSignOut = async () => {
     dispatch(accessToken({ accessToken: "" }));
     dispatch(logout());
+    dispatch(authentication({ isAuthenticated: false }));
   };
 
   return (
@@ -155,7 +155,7 @@ const Navbars = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt="avatar"
-                      src={userInfo?.avatarUrl || DEFAULT_AVATAR}
+                      src={userInfoState?.avatarUrl || DEFAULT_AVATAR}
                       className="size-8 rounded-full"
                       width={32}
                       height={32}

@@ -1,6 +1,10 @@
 {
   "title": "Hi, Welcome Domique Fusion",
   "content": "Here, we serve you the best food and quality service.",
+  "notFound": "Sorry, Page Not Found",
+  "authorize": "Sorry, You Need Login To Access",
+  "returnHome": "Return To Home",
+  "returnLogin": "Return To Login",
   "login": {
     "titleLogin": "Sign in to your account",
     "dontHaveAccount": "Don’t have an account?",
@@ -120,6 +124,7 @@
     "about": "Domique Fusion | About",
     "home": "Domique Fusion | Home",
     "resetPassword": "Domique Fusion | Reset Password",
-    "forgotPassword": "Domique Fusion | Forgot Password"
+    "forgotPassword": "Domique Fusion | Forgot Password",
+    "verifyOtp": "Domique Fusion | Verify OTP"
   }
 }

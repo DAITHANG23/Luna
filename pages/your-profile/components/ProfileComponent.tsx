@@ -20,6 +20,7 @@ import {
 } from "@heroicons/react/24/outline";
 import ModalNotification from "@/share/components/ModalNotification";
 import Skeleton from "./Skeleton";
+import { useTranslation } from "react-i18next";
 
 const GENDER_LIST = [
   { id: "male-radio", name: "gender", value: "male", title: "Male" },
@@ -28,7 +29,7 @@ const GENDER_LIST = [
 
 const ProfileComponent = () => {
   const { showSuccess } = useNotification();
-
+  const { t, ready } = useTranslation("profile");
   const { userData, isLoading } = useGetDataUser();
   const {
     mutate: updateAccount,
@@ -71,31 +72,31 @@ const ProfileComponent = () => {
         .matches(REGEX_VALIDATE_EMAIL, "Invalid Email!"),
       firstName: Yup.string()
         .trim()
-        .min(3, "First name must be at least 3 characters")
-        .max(50, "First name must not exceed 50 characters")
-        .required("Please enter your first name!"),
+        .min(3, t("profile.validate.minFirstName"))
+        .max(50, t("profile.validate.maxFirstName"))
+        .required(t("profile.validate.firstName")),
       lastName: Yup.string()
         .trim()
-        .min(3, "Last name must be at least 3 characters")
-        .max(50, "Last name must not exceed 50 characters")
-        .required("Please enter your last name!"),
+        .min(3, t("profile.validate.minLastName"))
+        .max(50, t("profile.validate.maxLastName"))
+        .required(t("profile.validate.lastName")),
       gender: Yup.string().trim().required("Please provide your gender!"),
       numberPhone: Yup.string()
         .trim()
-        .min(10, "Phone number must be at least 10 digits")
-        .max(15, "Phone number must not exceed 15 digits")
-        .required("Vui lòng nhập thông tin này"),
+        .min(10, t("profile.validate.minNumberPhone"))
+        .max(15, t("profile.validate.maxNumberPhone"))
+        .required(t("profile.validate.numberPhone")),
       address: Yup.string()
         .trim()
-        .min(5, "Address must be at least 5 characters")
-        .max(100, "Address must not exceed 100 characters")
-        .required("Please enter your address!"),
+        .min(5, t("profile.validate.minAddress"))
+        .max(100, t("profile.validate.maxAddress"))
+        .required(t("profile.validate.address")),
       dateOfBirth: Yup.string()
         .trim()
-        .required("Please enter your birth of date!")
+        .required(t("profile.validate.dateOfBirth"))
         .test(
           "is-old-enough",
-          "You must be at least 13 years old!",
+          t("profile.validate.ageRequirement"),
           (value) => {
             if (!value) return false;
             const birthDate = parseISO(value);
@@ -104,7 +105,7 @@ const ProfileComponent = () => {
           }
         ),
     });
-  }, []);
+  }, [t]);
 
   const handleSubmit = useCallback((values: UserLogin) => {
     const data: Partial<UserModel> = {};
@@ -127,6 +128,8 @@ const ProfileComponent = () => {
     updateAccount(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!ready) return null;
 
   const handleDeleteAccount = async () => {
     try {
@@ -157,8 +160,8 @@ const ProfileComponent = () => {
           <Form>
             {isOpenModalDelete && (
               <ModalNotification
-                title="Delete Account"
-                content="Are you sure you want to delete your account? All of your data will be permanently removed. This action cannot be undone."
+                title={t("modal.delete.title")}
+                content={t("modal.delete.content")}
                 icon={
                   <ExclamationTriangleIcon
                     aria-hidden="true"
@@ -167,7 +170,7 @@ const ProfileComponent = () => {
                 }
                 open={isOpenModalDelete}
                 setOpen={setIsOpenModalDelete}
-                labelButton="Delete"
+                labelButton={t("modal.delete.labelButton")}
                 type="delete"
                 action={
                   <button
@@ -175,15 +178,15 @@ const ProfileComponent = () => {
                     className="inline-flex w-full justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3 sm:w-auto"
                     onClick={handleDeleteAccount}
                   >
-                    Delete
+                    {t("modal.delete.button")}
                   </button>
                 }
               />
             )}
             {isOpenModalUpdate && (
               <ModalNotification
-                title="Update Account"
-                content="Are you sure update your profile?"
+                title={t("modal.update.title")}
+                content={t("modal.update.content")}
                 icon={
                   <ArrowPathIcon
                     aria-hidden="true"
@@ -193,12 +196,12 @@ const ProfileComponent = () => {
                 }
                 open={isOpenModalUpdate}
                 setOpen={setIsOpenModalUpdate}
-                labelButton="Update"
+                labelButton={t("modal.update.labelButton")}
                 type="update"
                 action={
                   <ButtonLoading
                     type="submit"
-                    title="Update"
+                    title={t("modal.update.labelButton")}
                     isLoading={isUpdateLoading}
                     onHandleSubmit={handleSubmit}
                     sizeButton="large"
@@ -232,7 +235,7 @@ const ProfileComponent = () => {
                         <div className="absolute inset-0 flex flex-col gap-2 items-center justify-center bg-[rgba(22,28,36,0.64)] text-white opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
                           <CameraIcon className="w-8 h-8" />
                           <span className="text-xs font-normal">
-                            Photo Update
+                            {t("photoUpdate")}
                           </span>
                         </div>
                       </div>
@@ -241,9 +244,9 @@ const ProfileComponent = () => {
                 </div>
 
                 <span className="mt-6 mx-auto text-xs font-nomal leading-6 text-primary-text block text-center">
-                  Allow *.jpeg, *.jpg, *.png, *.gif
+                  {t("allowType")}
                   <br />
-                  max size of 3.1MB
+                  {t("maxSize")}
                 </span>
 
                 <button
@@ -251,7 +254,7 @@ const ProfileComponent = () => {
                   onClick={() => setIsOpenModalDelete(true)}
                   className="p-2 border-none rounded-lg font-bold text-sm text-white bg-primary/70 hover:bg-primary mt-[50px]"
                 >
-                  Delete Account
+                  {t("modal.delete.title")}
                 </button>
               </div>
               <div
@@ -267,13 +270,13 @@ const ProfileComponent = () => {
                     isReadOnly
                   />
                   <FieldInput
-                    title="First Name"
+                    title={t("profile.firstName")}
                     name="firstName"
                     required
                     type="text"
                   />
                   <FieldInput
-                    title="Last Name"
+                    title={t("profile.lastName")}
                     name="lastName"
                     required
                     type="text"
@@ -281,24 +284,24 @@ const ProfileComponent = () => {
 
                   <div>
                     <RadioGroupComponent
-                      title="Gender"
+                      title={t("profile.gender")}
                       itemList={GENDER_LIST}
                     />
                   </div>
                   <FieldInput
-                    title="Address"
+                    title={t("profile.address")}
                     name="address"
                     required
                     type="text"
                   />
                   <FieldInput
-                    title="Number Phone"
+                    title={t("profile.numberPhone")}
                     name="numberPhone"
                     required
                     type="text"
                   />
                   <FieldInput
-                    title="Date Of Birth"
+                    title={t("profile.dateOfBirth")}
                     name="dateOfBirth"
                     required
                     type="date"
@@ -315,7 +318,7 @@ const ProfileComponent = () => {
                     }}
                   >
                     <p className={"!my-2 !mx-2 text-sm  opacity-100"}>
-                      Update Account
+                      {t("profile.button")}
                     </p>
                   </button>
                 </div>
