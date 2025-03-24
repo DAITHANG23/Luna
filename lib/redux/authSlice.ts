@@ -7,6 +7,7 @@ import Router from "next/router";
 interface AuthState {
   user: UserLogin;
   accessToken: string;
+  isAuthenticated: boolean;
 }
 
 export const logout = createAsyncThunk("auth/logout", async () => {
@@ -36,6 +37,7 @@ const initialState: AuthState = {
     gender: "",
     email: "",
   },
+  isAuthenticated: false,
   accessToken: "",
 };
 
@@ -49,8 +51,14 @@ const authSlice = createSlice({
     accessToken: (state, action: PayloadAction<{ accessToken: string }>) => {
       state.accessToken = action.payload.accessToken;
     },
+    authentication: (
+      state,
+      action: PayloadAction<{ isAuthenticated: boolean }>
+    ) => {
+      state.isAuthenticated = action.payload.isAuthenticated;
+    },
   },
 });
 
-export const { userInfo, accessToken } = authSlice.actions;
+export const { userInfo, accessToken, authentication } = authSlice.actions;
 export default authSlice.reducer;

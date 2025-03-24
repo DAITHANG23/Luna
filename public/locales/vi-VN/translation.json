@@ -1,6 +1,10 @@
 {
   "title": "Xin chào, Chào mừng đến với Domique Fusion",
   "content": "Ở đây, chúng tôi phục vụ bạn những món ăn và dịch vụ chất lượng tốt nhất.",
+  "notFound": "Xin lỗi, trang này không tồn tại",
+  "authorize": "Xin lỗi, bạn cần đăng nhập để truy cập",
+  "returnHome": "Trở về trang chủ",
+  "returnLogin": "Trở lại trang đăng nhập",
   "login": {
     "titleLogin": "Đăng nhập tài khoản bạn",
     "dontHaveAccount": "Không có tài khoản?",
@@ -90,7 +94,7 @@
     "about": "Về Domique Fusion",
     "restaurantConcept": "Thương Hiệu Nhà Hàng",
     "blog": "Blog",
-    "yourProfile": "Thông tin của bạn",
+    "yourProfile": "Hồ sơ của bạn",
     "orderHistory": "Lịch sử đặt bàn",
     "settings": "Cài đặt",
     "signOut": "Đăng xuất",
@@ -120,6 +124,7 @@
     "about": "Domique Fusion | Hiểu biết chúng tôi",
     "home": "Domique Fusion | Trang chủ",
     "resetPassword": "Domique Fusion | Thay đổi mật khẩu",
-    "forgotPassword": "Domique Fusion | Quên mật khẩu"
+    "forgotPassword": "Domique Fusion | Quên mật khẩu",
+    "verifyOtp": "Domique Fusion | Xác nhận OTP"
   }
 }

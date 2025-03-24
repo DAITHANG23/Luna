@@ -1,15 +1,15 @@
 import { UserResponse } from "@/@types/models/account";
 import { userInfo } from "@/lib/redux/authSlice";
-import { useAppDispatch } from "@/lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { RootState } from "@/lib/redux/store";
 import apiService from "@/api/index";
 import { GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+
 const useGetDataUser = () => {
   const dispatch = useAppDispatch();
-  const accessTokenState = useSelector(
+  const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
   const { data: userData, isLoading } = useQuery<UserResponse>({

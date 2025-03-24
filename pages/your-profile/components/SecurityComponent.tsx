@@ -8,10 +8,11 @@ import useUpdatePassword from "@/hooks/AccountHooks/useUpdatePassword";
 import { UpdatePasswordType } from "@/@types/models/account";
 import Popover from "./PopoverComponent";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 const SecurityComponent = () => {
   const { mutate: updatePasswordAccount, isPending: isLoadingUpdatePassword } =
     useUpdatePassword();
-
+  const { t, ready } = useTranslation("profile");
   const initialValues = {
     passwordCurrent: "",
     password: "",
@@ -22,28 +23,30 @@ const SecurityComponent = () => {
     return Yup.object({
       password: Yup.string()
         .trim()
-        .required("Please enter your password!")
-        .min(8, "Password must be at least 8 characters!")
-        .max(20, "Password must be max 20 characters!")
+        .required(t("security.validate.newPassword"))
+        .min(8, t("security.validate.minPassword"))
+        .max(20, t("security.validate.maxPassword"))
         .matches(
           REGEX_VALIDTATE_PASSWORD,
-          "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character."
+          t("security.validate.formatPassword")
         ),
       passwordCurrent: Yup.string()
         .trim()
-        .required("Please enter your password!")
+        .required(t("security.validate.currentPassword"))
         .min(8, "Password must be at least 8 characters!")
         .max(20, "Password must be max 20 characters!")
         .matches(
           REGEX_VALIDTATE_PASSWORD,
-          "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character."
+          t("security.validate.formatPassword")
         ),
       passwordConfirm: Yup.string()
         .trim()
-        .required("Please enter your password!")
-        .oneOf([Yup.ref("password")], "Password must match"),
+        .required(t("security.validate.confirmPassword"))
+        .oneOf([Yup.ref("password")], t("security.validate.matchPassword")),
     });
-  }, []);
+  }, [t]);
+
+  if (!ready) return null;
 
   const handleSubmit = (formData: UpdatePasswordType) => {
     updatePasswordAccount(formData);
@@ -60,14 +63,14 @@ const SecurityComponent = () => {
             <div className="p-6 dark:bg-[#1C252E] shadow-[rgba(145,158,171,0.16)_0px_4px_8px_0px] rounded-2xl overflow-hidden bg-white text-primary-text flex flex-col">
               <div className="grid grid-cols-1 gap-4 w-full">
                 <FieldInput
-                  title="Current Password"
+                  title={t("security.currentPassword")}
                   name="passwordCurrent"
                   required
                   isPasswordFied
                 />
                 <div className="relative">
                   <FieldInput
-                    title="New Password"
+                    title={t("security.newPassword")}
                     name="password"
                     required
                     isPasswordFied
@@ -81,19 +84,13 @@ const SecurityComponent = () => {
                           height={20}
                         />
                       }
-                      content={
-                        <p>
-                          Password must have at least 8 characters, one
-                          uppercase, one lowercase, one number, and one special
-                          character.
-                        </p>
-                      }
+                      content={<p>{t("security.validate.formatPassword")}</p>}
                     />
                   </div>
                 </div>
 
                 <FieldInput
-                  title="Confirm Password"
+                  title={t("security.confirmPassword")}
                   name="passwordConfirm"
                   required
                   isPasswordFied
@@ -102,7 +99,7 @@ const SecurityComponent = () => {
               <div className="justify-end text-end mt-4">
                 <ButtonLoading
                   isLoading={isLoadingUpdatePassword}
-                  title="Save changes"
+                  title={t("security.save")}
                 />
               </div>
             </div>
