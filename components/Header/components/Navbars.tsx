@@ -72,7 +72,7 @@ const Navbars = () => {
     <Disclosure
       as="nav"
       className={clsx(
-        "fixed top-0 left-0 p-5 w-full",
+        "fixed top-0 left-0 p-0 sm:p-4 lg:p-5 w-full",
         fixedHeaderBackground
           ? "bg-white/80 dark:bg-gray-800/80"
           : " bg-white dark:bg-gray-800"
@@ -80,7 +80,7 @@ const Navbars = () => {
     >
       <div className="sm:w-[90%] mx-auto max-w-7xl lg:px-8 content-center text-center">
         <div className="relative flex h-16 items-center justify-between al">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
               <span className="absolute -inset-0.5" />
@@ -95,7 +95,7 @@ const Navbars = () => {
               />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
             <div className="flex shrink-0 items-center">
               <Link href={"/"}>
                 <Image
@@ -107,7 +107,7 @@ const Navbars = () => {
                 />
               </Link>
             </div>
-            <div className="hidden sm:ml-20 sm:block content-center">
+            <div className="hidden lg:ml-20 lg:block content-center">
               <div className="flex space-x-4 ">
                 {navigation.map((item) => (
                   <Link
@@ -226,7 +226,7 @@ const Navbars = () => {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      <DisclosurePanel className="lg:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3 flex items-center justify-center flex-col">
           {navigation.map((item) => (
             <DisclosureButton
@@ -243,7 +243,7 @@ const Navbars = () => {
                 onClick={() => setItemNavbar(item.name)}
                 className="flex items-center justify-center"
               >
-                {item.name}
+                {t(`navbar.${item.name}`)}
               </Link>
             </DisclosureButton>
           ))}

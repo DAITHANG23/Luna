@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReduxProvider } from "@/lib/redux/provider";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/lib/i18n/i18n";
+import "leaflet/dist/leaflet.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();

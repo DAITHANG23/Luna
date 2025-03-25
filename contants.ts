@@ -17,3 +17,19 @@ export const GET_DATA_USER_QUERY_KEY = "get-data-user";
 export const FORGOT_PASSWORD_QUERY_KEY = "forgot-password";
 export const CREATE_NEW_PASSWORD_QUERY_KEY = "create-new-password";
 export const RESEND_OTP_CODE = "resend-otp-code";
+
+export const COVER_IMAGES: Array<{ img: string; name: string }> = [
+  { img: "/assets/images/cover-img-1.jpg", name: "cover-1-img" },
+  { img: "/assets/images/cover-img-2.jpg", name: "cover-2-img" },
+  { img: "/assets/images/cover-img-3.png", name: "cover-3-img" },
+  { img: "/assets/images/cover-img-4.png", name: "cover-4-img" },
+  { img: "/assets/images/cover-img-5.png", name: "cover-5-img" },
+  { img: "/assets/images/cover-img-6.jpg", name: "cover-6-img" },
+];
+
+export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
+  { img: "/assets/images/img-about-1.png", name: "img-about-1-img" },
+  { img: "/assets/images/img-about-2.png", name: "img-about-2-img" },
+  { img: "/assets/images/img-about-3.png", name: "img-about-3-img" },
+  { img: "/assets/images/img-about-4.png", name: "img-about-4-img" },
+];

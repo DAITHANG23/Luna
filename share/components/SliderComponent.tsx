@@ -3,17 +3,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import clsx from "clsx";
 
-const coverImages: Array<{ img: string; name: string }> = [
-  { img: "/assets/images/cover-img-1.jpg", name: "cover-1-img" },
-  { img: "/assets/images/cover-img-2.jpg", name: "cover-2-img" },
-  { img: "/assets/images/cover-img-3.png", name: "cover-3-img" },
-  { img: "/assets/images/cover-img-4.png", name: "cover-4-img" },
-  { img: "/assets/images/cover-img-5.png", name: "cover-5-img" },
-  { img: "/assets/images/cover-img-6.jpg", name: "cover-6-img" },
-];
+interface SliderComponentProps {
+  isSmallSize?: boolean;
+  coverImages: Array<{ img: string; name: string }>;
+}
 
-const SliderComponent = () => {
+const SliderComponent = ({
+  isSmallSize = false,
+  coverImages,
+}: SliderComponentProps) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -26,19 +26,30 @@ const SliderComponent = () => {
   };
   return (
     <div className="slider-container">
-      <Slider {...settings} className=" text-center items-center">
+      <Slider
+        {...settings}
+        className={clsx(
+          isSmallSize ? "w-[90%] sm:!w-[60%] " : "w-full",
+          " text-center items-center m-auto"
+        )}
+      >
         {coverImages.map((i) => {
           return (
             <div
               key={i.name}
-              className="h-[219px] xl:h-[1000px] sm:h-[500px] w-full flex items-center justify-center overflow-hidden"
+              className={clsx(
+                isSmallSize
+                  ? "h-[219px] sm:h-[300px] xl:h-[500px] border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md mb-10"
+                  : "h-[219px] xl:h-[1000px] sm:h-[500px]",
+                "w-full flex items-center justify-center overflow-hidden "
+              )}
             >
               <Image
                 src={i.img}
                 alt={i.name}
                 width={10000}
                 height={500}
-                className="w-full h-full object-cover sm:object-fill"
+                className="w-full h-full rounded-md object-cover sm:object-fill hover:scale-105 transition-transform duration-500"
               />
             </div>
           );
