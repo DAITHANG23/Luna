@@ -108,7 +108,7 @@
     "termsOfUse": "Terms of Use",
     "membershipPolicy": "Membership policy",
     "privacyPolicy": "Privacy policy",
-    "copyright": "© 2025 Domique Fushion.,JSC. All rights reserved."
+    "copyright": "© {{currentYear}} Domique Fushion.,JSC. All rights reserved."
   },
   "settings": {
     "title": "Settings",

@@ -14,11 +14,12 @@ export default {
       colors: {
         background: "rgba(var(--background))",
         primary: "rgba(var(--primary))",
+        secondary: "hsl(var(--secondary))",
         success: "rgba(var(--success))",
         error: "rgba(var(--error))",
         warning: "rgba(var(--warning))",
         border: "rgba(var(--border))",
-        card: "rgba(var(--card))",
+        card: "hsl(var(--card))",
         "primary-text": "rgba(var(--primary-text))",
         "secondary-text": "rgba(var(--secondary-text))",
         "copy-primary": "rgba(var(--copy-primary))",

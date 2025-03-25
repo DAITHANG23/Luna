@@ -95,7 +95,7 @@
     "restaurantConcept": "Thương Hiệu Nhà Hàng",
     "blog": "Blog",
     "yourProfile": "Hồ sơ của bạn",
-    "orderHistory": "Lịch sử đặt bàn",
+    "bookingHistory": "Lịch sử đặt bàn",
     "settings": "Cài đặt",
     "signOut": "Đăng xuất",
     "login": "Đăng nhập"
@@ -108,7 +108,7 @@
     "termsOfUse": "Điều khoản sử dụng",
     "membershipPolicy": "Chính sách thành viên",
     "privacyPolicy": "Chính sách bảo mật",
-    "copyright": "© 2025 Domique Fushion.,JSC. Mọi quyền được bảo lưu."
+    "copyright": "© {{currentYear}} Domique Fushion.,JSC. Mọi quyền được bảo lưu."
   },
   "settings": {
     "title": "Cài đặt",
