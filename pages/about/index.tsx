@@ -1,4 +1,5 @@
 import { ABOUT_IMAGES } from "@/contants";
+import ContactComponent from "@/share/components/ContactComponent";
 import SliderComponent from "@/share/components/SliderComponent";
 import {
   Utensils,
@@ -9,9 +10,6 @@ import {
   Award,
   Users,
   Leaf,
-  Facebook,
-  Github,
-  Linkedin,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -177,29 +175,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="flex items-center space-x-4 pt-0 p-6">
-              <a
-                href="#"
-                className="bg-primary/10 p-2 rounded-full hover:bg-primary/20 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={18} className="text-primary" />
-              </a>
-              <a
-                href="#"
-                className="bg-primary/10 p-2 rounded-full hover:bg-primary/20 transition-colors"
-                aria-label="Instagram"
-              >
-                <Linkedin size={18} className="text-primary" />
-              </a>
-              <a
-                href="#"
-                className="bg-primary/10 p-2 rounded-full hover:bg-primary/20 transition-colors"
-                aria-label="Twitter"
-              >
-                <Github size={18} className="text-primary" />
-              </a>
-            </div>
+            <ContactComponent />
           </div>
         </div>
 
