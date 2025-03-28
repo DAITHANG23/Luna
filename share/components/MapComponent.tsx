@@ -5,8 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 // Fix lỗi icon không hiện
 const customMarker = new L.Icon({
-  iconUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  iconUrl: "/assets/images/marker-icon-red.png",
   shadowUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41], // Kích thước icon
@@ -18,19 +17,19 @@ const customMarker = new L.Icon({
 const locations = [
   {
     id: 1,
-    name: "Địa điểm 1",
+    name: "Gogi 1",
     lat: 10.834674530216235,
     lng: 106.66214388804457,
   },
   {
     id: 2,
-    name: "Địa điểm 2",
+    name: "Gogi 2",
     lat: 10.838012896765624,
     lng: 106.67126317878606,
   },
   {
     id: 3,
-    name: "Địa điểm 3",
+    name: "Gogi 3",
     lat: 10.841889960490747,
     lng: 106.63714429045586,
   },

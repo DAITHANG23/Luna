@@ -181,7 +181,7 @@ html::-webkit-scrollbar-track {
 }
 
 .prose :where(.prose > :first-child):not(:where([class~="not-prose"] *)) {
-  z-index: 100;
+  z-index: 1000;
 }
 
 .prose :where(p):not(:where([class~="not-prose"] *)) {

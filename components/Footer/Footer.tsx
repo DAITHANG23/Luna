@@ -1,4 +1,4 @@
-"use client";
+import ContactComponent from "@/share/components/ContactComponent";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -13,6 +13,9 @@ const Footer = () => {
         <h4 className="text-white">{t(`footer.title`)}</h4>
         <p className="text-gray-400">{t(`footer.address`)}</p>
         <p className="text-gray-400">{t(`footer.responsible`)}</p>
+        <div className="pt-4 flex justify-center">
+          <ContactComponent />
+        </div>
       </div>
 
       <div>
