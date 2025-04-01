@@ -121,10 +121,11 @@
   "headTitle": {
     "login": "Domique Fusion | Đăng nhập",
     "register": "Domique Fusion | Đăng kí",
-    "about": "Domique Fusion | Hiểu biết chúng tôi",
+    "about": "Domique Fusion | Hiểu biết về chúng tôi",
     "home": "Domique Fusion | Trang chủ",
     "resetPassword": "Domique Fusion | Thay đổi mật khẩu",
     "forgotPassword": "Domique Fusion | Quên mật khẩu",
-    "verifyOtp": "Domique Fusion | Xác nhận OTP"
+    "verifyOtp": "Domique Fusion | Xác nhận OTP",
+    "yourProfile": "Domique Fusion | Hồ sơ của bạn"
   }
 }
