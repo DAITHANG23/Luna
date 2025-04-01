@@ -12,6 +12,7 @@ export interface UserModel {
   avatar?: File | string;
   avatarUrl?: string;
   fullName: string;
+  googleId?: string;
 }
 
 export interface UserLogin extends Partial<UserModel> {}

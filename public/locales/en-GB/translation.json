@@ -125,6 +125,7 @@
     "home": "Domique Fusion | Home",
     "resetPassword": "Domique Fusion | Reset Password",
     "forgotPassword": "Domique Fusion | Forgot Password",
-    "verifyOtp": "Domique Fusion | Verify OTP"
+    "verifyOtp": "Domique Fusion | Verify OTP",
+    "yourProfile": "Domique Fusion | Your Profile"
   }
 }
