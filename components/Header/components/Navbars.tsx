@@ -43,16 +43,30 @@ const Navbars = () => {
   const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
-
+  const loading = useAppSelector((state: RootState) => state.auth.loading);
+  const userInfoState = useAppSelector(
+    (state: RootState) => state.auth.accountInfo
+  );
   const { t } = useTranslation("translation");
 
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
-    dispatch(getAccountInfo());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const handleFocus = () => {
+      if (!userInfoState) {
+        dispatch(getAccountInfo());
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+    };
+  }, [dispatch, userInfoState]);
+
   useEffect(() => {
     const handleSroll = () => {
       if (window.scrollY && window.scrollY > 64) setFixedHeaderBackground(true);
@@ -75,12 +89,6 @@ const Navbars = () => {
     dispatch(authentication({ isAuthenticated: false }));
   };
 
-  const loading = useAppSelector((state: RootState) => state.auth.loading);
-  const userInfoState = useAppSelector(
-    (state: RootState) => state.auth.accountInfo
-  );
-
-  console.log("userInfoState", userInfoState);
   if (loading) return <div>loading...</div>;
 
   return (

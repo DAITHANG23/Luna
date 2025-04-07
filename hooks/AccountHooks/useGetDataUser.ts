@@ -11,7 +11,7 @@ const useGetDataUser = () => {
   );
   const { data: userData, isLoading } = useQuery<UserResponse>({
     queryFn: apiService.account.getDataUser,
-    queryKey: [GET_DATA_USER_QUERY_KEY],
+    queryKey: [GET_DATA_USER_QUERY_KEY, accessTokenState],
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: true,
     enabled: !!accessTokenState,

@@ -9,8 +9,7 @@ import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 import { useRouter } from "next/router";
 import { getAllConcepts } from "@/lib/redux/masterDataSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { RootState } from "@/lib/redux/store";
+import { useAppDispatch } from "@/lib/redux/hooks";
 
 export default function Layout({
   children,
@@ -23,11 +22,12 @@ export default function Layout({
     accessToken: accessTokenLoginWithGmail,
     refreshToken: refreshTokenLoginWithGmail,
   } = router.query;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getAccountInfo());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
+
   useEffect(() => {
     if (accessTokenLoginWithGmail) {
       sessionStorage.setItem(
@@ -44,17 +44,15 @@ export default function Layout({
         refreshTokenLoginWithGmail as string
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessTokenLoginWithGmail, refreshTokenLoginWithGmail]);
-  const dispatch = useAppDispatch();
+  }, [accessTokenLoginWithGmail, refreshTokenLoginWithGmail, dispatch]);
+
   const isLoginPage = pathname === "/login" || pathname === "/register";
 
   useEffect(() => {
     const token = sessionStorage.getItem("accessToken") || "";
     dispatch(accessToken({ accessToken: token }));
     dispatch(getAllConcepts());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   return (
     <AppContextProvider>
