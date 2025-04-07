@@ -1,14 +1,11 @@
 import { UserResponse } from "@/@types/models/account";
-import { userInfo } from "@/lib/redux/authSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { useAppSelector } from "@/lib/redux/hooks";
 import { RootState } from "@/lib/redux/store";
 import apiService from "@/api/index";
 import { GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 
 const useGetDataUser = () => {
-  const dispatch = useAppDispatch();
   const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
@@ -19,12 +16,6 @@ const useGetDataUser = () => {
     refetchOnWindowFocus: true,
     enabled: !!accessTokenState,
   });
-
-  useEffect(() => {
-    if (userData) {
-      dispatch(userInfo({ user: userData.data.data }));
-    }
-  }, [dispatch, userData]);
 
   return { userData, isLoading };
 };

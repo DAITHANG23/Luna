@@ -23,7 +23,12 @@ import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
 import { useRouter } from "next/router";
 import { RootState } from "@/lib/redux/store";
-import { accessToken, authentication, logout } from "@/lib/redux/authSlice";
+import {
+  accessToken,
+  authentication,
+  getAccountInfo,
+  logout,
+} from "@/lib/redux/authSlice";
 
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { DEFAULT_AVATAR } from "@/contants";
@@ -41,11 +46,13 @@ const Navbars = () => {
 
   const { t } = useTranslation("translation");
 
-  const userInfoState = useAppSelector((state: RootState) => state.auth.user);
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
   const dispatch = useAppDispatch();
-
+  useEffect(() => {
+    dispatch(getAccountInfo());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const handleSroll = () => {
       if (window.scrollY && window.scrollY > 64) setFixedHeaderBackground(true);
@@ -67,6 +74,14 @@ const Navbars = () => {
     dispatch(logout());
     dispatch(authentication({ isAuthenticated: false }));
   };
+
+  const loading = useAppSelector((state: RootState) => state.auth.loading);
+  const userInfoState = useAppSelector(
+    (state: RootState) => state.auth.accountInfo
+  );
+
+  console.log("userInfoState", userInfoState);
+  if (loading) return <div>loading...</div>;
 
   return (
     <Disclosure
@@ -155,7 +170,9 @@ const Navbars = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt="avatar"
-                      src={userInfoState?.avatarUrl || DEFAULT_AVATAR}
+                      src={
+                        userInfoState?.data?.data.avatarUrl || DEFAULT_AVATAR
+                      }
                       className="size-8 rounded-full"
                       width={32}
                       height={32}
