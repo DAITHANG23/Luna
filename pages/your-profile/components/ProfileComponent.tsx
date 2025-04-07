@@ -31,6 +31,7 @@ const ProfileComponent = () => {
   const { showSuccess } = useNotification();
   const { t, ready } = useTranslation("profile");
   const { userData, isLoading } = useGetDataUser();
+
   const {
     mutate: updateAccount,
     isSuccess: isUpdateSuccess,

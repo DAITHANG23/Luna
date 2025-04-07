@@ -41,7 +41,7 @@ export const getAccountInfo = createAsyncThunk<
     if (!data) {
       return thunkAPI.rejectWithValue("Không có dữ liệu từ API");
     }
-    console.log("data", data);
+
     return data;
   } catch (error: any) {
     console.error("Error fetching account info:", error);
