@@ -20,7 +20,7 @@ const YourProfile = () => {
     (state: RootState) => state.auth.isAuthenticated
   );
   const userInfoState = useAppSelector((state: RootState) => state.auth.user);
-
+  console.log("userInfoState:", userInfoState);
   const updateTablist = useMemo(() => {
     if (userInfoState.googleId) {
       return tabList.filter((i) => i.name !== "tabSecurity");

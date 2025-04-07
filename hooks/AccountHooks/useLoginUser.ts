@@ -9,7 +9,11 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/redux/store";
 import { ACCOUNT_LOGIN_QUERY_KEY, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
-import { userInfo, accessToken, authentication } from "@/lib/redux/authSlice";
+import {
+  accessToken,
+  authentication,
+  getAccountInfo,
+} from "@/lib/redux/authSlice";
 import useNotification from "@/hooks/useNotification";
 import { AxiosError } from "axios";
 
@@ -37,7 +41,7 @@ const useLogin = () => {
         localStorage.setItem("refreshToken", refreshToken);
       }
 
-      dispatch(userInfo({ user: res.data.user }));
+      dispatch(getAccountInfo());
       dispatch(authentication({ isAuthenticated: true }));
       dispatch(accessToken({ accessToken: res.accessToken }));
 

@@ -41,7 +41,7 @@ const SliderComponent = ({
                 isSmallSize
                   ? "h-[219px] sm:h-[300px] xl:h-[500px] border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md mb-10"
                   : "h-[219px] xl:h-[1000px] sm:h-[500px]",
-                "w-full flex items-center justify-center overflow-hidden "
+                "w-full flex items-center justify-center overflow-hidden relative"
               )}
             >
               <Image
@@ -49,7 +49,7 @@ const SliderComponent = ({
                 alt={i.name}
                 width={10000}
                 height={500}
-                className="w-full h-full rounded-md object-cover sm:object-fill hover:scale-105 transition-transform duration-500"
+                className="object-cover sm:object-fill hover:scale-105 transition-transform duration-500"
               />
             </div>
           );
