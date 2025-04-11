@@ -43,6 +43,9 @@ export default {
         button: "0 2px 4px rgba(0, 0, 0, 0.1)",
         "button-hover": "0 4px 8px rgba(0, 0, 0, 0.12)",
       },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
     },
   },
   plugins: [typographyPlugin],
