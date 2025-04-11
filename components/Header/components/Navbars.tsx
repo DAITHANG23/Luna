@@ -36,16 +36,16 @@ const Navbars = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { userData, isLoading } = useGetDataUser();
+  const dispatch = useAppDispatch();
+  const accountInfo = useAppSelector((state) => state.auth.accountInfo);
   const { setIsOpenDialog } = useAppContext();
   const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
 
   const { t } = useTranslation("translation");
-
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const handleSroll = () => {
@@ -159,7 +159,11 @@ const Navbars = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt="avatar"
-                      src={userData?.data?.data.avatarUrl || DEFAULT_AVATAR}
+                      src={
+                        (accountInfo?.data?.data.avatarUrl
+                          ? accountInfo?.data?.data.avatarUrl
+                          : userData?.data?.data.avatarUrl) || DEFAULT_AVATAR
+                      }
                       className="size-8 rounded-full"
                       width={32}
                       height={32}

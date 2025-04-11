@@ -45,8 +45,6 @@ export default function Layout({
   const isLoginPage = pathname === "/login" || pathname === "/register";
 
   useEffect(() => {
-    const token = sessionStorage.getItem("accessToken") || "";
-    dispatch(accessToken({ accessToken: token }));
     dispatch(getAllConcepts());
   }, [dispatch]);
 

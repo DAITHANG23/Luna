@@ -196,7 +196,7 @@ const ProfileComponent = () => {
                 icon={
                   <ArrowPathIcon
                     aria-hidden="true"
-                    className="w-8 h-8 text-green-500 animate-spin"
+                    className="w-8 h-8 text-green-500 animate-spin-slow"
                     type="update"
                   />
                 }
