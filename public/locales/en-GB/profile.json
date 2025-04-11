@@ -27,6 +27,8 @@
     "numberPhone": "Number Phone",
     "dateOfBirth": "Date Of Birth",
     "button": "Update Account",
+    "male": "Male",
+    "female": "Female",
     "validate": {
       "firstName": "Please enter your first name!",
       "minFirstName": "First name must be at least 3 characters",

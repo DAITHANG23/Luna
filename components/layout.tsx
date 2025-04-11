@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import DialogSetting from "./Header/components/DialogSetting";
 import { AppContextProvider } from "./contexts/AppContext";
 import { useEffect } from "react";
-import { accessToken, getAccountInfo } from "@/lib/redux/authSlice";
+import { accessToken } from "@/lib/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 import { useRouter } from "next/router";
@@ -23,10 +23,6 @@ export default function Layout({
     refreshToken: refreshTokenLoginWithGmail,
   } = router.query;
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getAccountInfo());
-  });
 
   useEffect(() => {
     if (accessTokenLoginWithGmail) {

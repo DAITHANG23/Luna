@@ -1,11 +1,14 @@
 import { Field } from "formik";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface RadioGroupComponentProps {
   title: string;
   itemList: Array<{ id: string; name: string; value: string; title: string }>;
 }
 const RadioGroupComponent = ({ title, itemList }: RadioGroupComponentProps) => {
+  const { t, ready } = useTranslation("profile");
+  if (!ready) return null;
   return (
     <div>
       <label className="text-sm font-medium text-primary-text">
@@ -26,7 +29,7 @@ const RadioGroupComponent = ({ title, itemList }: RadioGroupComponentProps) => {
                 htmlFor={item.id}
                 className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                {item.title}
+                {t(`${item.title}`)}
               </label>
             </div>
           );

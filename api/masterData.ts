@@ -5,7 +5,7 @@ import apiRequest from "@/hooks/useApiRequest";
 const baseURL = `${API_VERSION_V1}/concepts`;
 const masterData = {
   getAllConcepts: async (): Promise<AllConceptsResponse> => {
-    return await apiRequest(`${baseURL}/`, "GET");
+    return await apiRequest(`${baseURL}`, "GET");
   },
 };
 

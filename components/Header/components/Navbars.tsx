@@ -23,49 +23,29 @@ import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
 import { useRouter } from "next/router";
 import { RootState } from "@/lib/redux/store";
-import {
-  accessToken,
-  authentication,
-  getAccountInfo,
-  logout,
-} from "@/lib/redux/authSlice";
-
+import { accessToken, authentication, logout } from "@/lib/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { DEFAULT_AVATAR } from "@/contants";
+import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/share/components/LanguageSelect";
+import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Navbars = () => {
   const pathname = usePathname();
   const router = useRouter();
-
+  const queryClient = useQueryClient();
+  const { userData, isLoading } = useGetDataUser();
   const { setIsOpenDialog } = useAppContext();
   const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
-  const loading = useAppSelector((state: RootState) => state.auth.loading);
-  const userInfoState = useAppSelector(
-    (state: RootState) => state.auth.accountInfo
-  );
+
   const { t } = useTranslation("translation");
 
   const [itemNavbar, setItemNavbar] = useState(pathname);
   const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const handleFocus = () => {
-      if (!userInfoState) {
-        dispatch(getAccountInfo());
-      }
-    };
-
-    window.addEventListener("focus", handleFocus);
-
-    return () => {
-      window.removeEventListener("focus", handleFocus);
-    };
-  }, [dispatch, userInfoState]);
 
   useEffect(() => {
     const handleSroll = () => {
@@ -87,9 +67,10 @@ const Navbars = () => {
     dispatch(accessToken({ accessToken: "" }));
     dispatch(logout());
     dispatch(authentication({ isAuthenticated: false }));
+    queryClient.removeQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
   };
 
-  if (loading) return <div>loading...</div>;
+  if (isLoading) return <div>loading...</div>;
 
   return (
     <Disclosure
@@ -178,9 +159,7 @@ const Navbars = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt="avatar"
-                      src={
-                        userInfoState?.data?.data.avatarUrl || DEFAULT_AVATAR
-                      }
+                      src={userData?.data?.data.avatarUrl || DEFAULT_AVATAR}
                       className="size-8 rounded-full"
                       width={32}
                       height={32}
