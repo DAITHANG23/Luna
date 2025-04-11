@@ -23,8 +23,13 @@ import Skeleton from "./Skeleton";
 import { useTranslation } from "react-i18next";
 
 const GENDER_LIST = [
-  { id: "male-radio", name: "gender", value: "male", title: "Male" },
-  { id: "female-radio", name: "gender", value: "female", title: "Female" },
+  { id: "male-radio", name: "gender", value: "male", title: "profile.male" },
+  {
+    id: "female-radio",
+    name: "gender",
+    value: "female",
+    title: "profile.female",
+  },
 ];
 
 const ProfileComponent = () => {

@@ -25,10 +25,11 @@ export interface ConceptModel {
   timeSlot: TimeSlotType;
   dishes: Array<Dish>;
   type: string;
+  totalRatings: number;
 }
 
 export interface AllConceptsResponse {
-  data: { data: { data: Array<ConceptModel> } };
+  data: { data: Array<ConceptModel> };
   status: string;
-  result: number;
+  results: number;
 }

@@ -27,6 +27,8 @@
     "numberPhone": "Số điện thoại",
     "dateOfBirth": "Ngày sinh",
     "button": "Cập nhật tài khoản",
+    "male": "Nam",
+    "female": "Nữ",
     "validate": {
       "firstName": "Vui lòng nhập tên!",
       "minFirstName": "Tên phải tổi thiểu 3 kí tự!",
