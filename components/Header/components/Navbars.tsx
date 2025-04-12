@@ -35,7 +35,7 @@ const Navbars = () => {
   const pathname = usePathname();
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { userData, isLoading } = useGetDataUser();
+  const { userData, isLoading, isFetching } = useGetDataUser();
   const dispatch = useAppDispatch();
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
   const { setIsOpenDialog } = useAppContext();
@@ -70,7 +70,7 @@ const Navbars = () => {
     queryClient.removeQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
   };
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading || isFetching) return <div>loading...</div>;
 
   return (
     <Disclosure
