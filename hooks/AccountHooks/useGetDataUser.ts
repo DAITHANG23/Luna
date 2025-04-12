@@ -18,7 +18,6 @@ const useGetDataUser = () => {
     data: userData,
     isLoading,
     refetch,
-    isFetching,
   } = useQuery<UserResponse>({
     queryFn: getDataUser,
     queryKey: [GET_DATA_USER_QUERY_KEY],
@@ -27,7 +26,7 @@ const useGetDataUser = () => {
     enabled: !!accessTokenState,
   });
 
-  return { userData, isLoading, refetch, isFetching };
+  return { userData, isLoading, refetch };
 };
 
 export default useGetDataUser;
