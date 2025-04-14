@@ -33,7 +33,7 @@ jobs:
       - run: npm test
 
   deploy:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Vercel CLI
