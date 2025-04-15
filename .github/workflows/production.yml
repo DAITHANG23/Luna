@@ -13,7 +13,7 @@ on:
     branches: ["main"]
 
 jobs:
-  building:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,6 +33,7 @@ jobs:
       - run: npm test
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
