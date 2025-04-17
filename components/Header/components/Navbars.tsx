@@ -23,7 +23,12 @@ import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
 import { useRouter } from "next/router";
 import { RootState } from "@/lib/redux/store";
-import { accessToken, authentication, logout } from "@/lib/redux/authSlice";
+import {
+  accessToken,
+  authentication,
+  logout,
+  userInfo,
+} from "@/lib/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useTranslation } from "react-i18next";
@@ -65,6 +70,7 @@ const Navbars = () => {
 
   const handleSignOut = async () => {
     dispatch(accessToken({ accessToken: "" }));
+    dispatch(userInfo({ accountInfo: null }));
     dispatch(logout());
     dispatch(authentication({ isAuthenticated: false }));
     queryClient.removeQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
