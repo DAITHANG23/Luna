@@ -74,6 +74,12 @@ const authSlice = createSlice({
     accessToken: (state, action: PayloadAction<{ accessToken: string }>) => {
       state.accessToken = action.payload.accessToken;
     },
+    userInfo: (
+      state,
+      action: PayloadAction<{ accountInfo: UserResponse | null }>
+    ) => {
+      state.accountInfo = action.payload.accountInfo;
+    },
     authentication: (
       state,
       action: PayloadAction<{ isAuthenticated: boolean }>
@@ -98,5 +104,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { accessToken, authentication } = authSlice.actions;
+export const { accessToken, authentication, userInfo } = authSlice.actions;
 export default authSlice.reducer;
