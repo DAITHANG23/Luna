@@ -157,7 +157,7 @@ const Navbars = () => {
             <LanguageSelect />
 
             {/* Profile dropdown */}
-            {accessTokenState ? (
+            {accessTokenState || userData?.data.data.avatarUrl ? (
               <Menu as="div" className="relative ml-3 ">
                 <div>
                   <MenuButton className="relative flex rounded-full hover:ring-offset-primary/80 dark:bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-hidden">
