@@ -40,13 +40,19 @@ const Navbars = () => {
   const pathname = usePathname();
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { userData, isLoading } = useGetDataUser();
+  const { userData, isLoading, refetch } = useGetDataUser();
   const dispatch = useAppDispatch();
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
   const { setIsOpenDialog } = useAppContext();
   const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
   );
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  const isLogged = userData?.data.data.avatarUrl || accessTokenState;
 
   const { t } = useTranslation("translation");
   const [itemNavbar, setItemNavbar] = useState(pathname);
@@ -157,7 +163,7 @@ const Navbars = () => {
             <LanguageSelect />
 
             {/* Profile dropdown */}
-            {accessTokenState || userData?.data.data.avatarUrl ? (
+            {isLogged ? (
               <Menu as="div" className="relative ml-3 ">
                 <div>
                   <MenuButton className="relative flex rounded-full hover:ring-offset-primary/80 dark:bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-hidden">
