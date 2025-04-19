@@ -14,7 +14,7 @@ const BusinessHighlights = dynamic(
 export default function Home() {
   const { t } = useTranslation("translation");
   return (
-    <div>
+    <div className="mt-20">
       <Head>
         <title>{t("headTitle.home")}</title>
       </Head>
