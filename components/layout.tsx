@@ -27,10 +27,7 @@ export default function Layout({
 
   useEffect(() => {
     if (accessTokenLoginWithGmail) {
-      sessionStorage.setItem(
-        "accessToken",
-        accessTokenLoginWithGmail as string
-      );
+      localStorage.setItem("accessToken", accessTokenLoginWithGmail as string);
       dispatch(
         accessToken({ accessToken: accessTokenLoginWithGmail as string })
       );

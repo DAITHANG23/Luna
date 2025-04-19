@@ -27,7 +27,7 @@ const useVerifyOtp = () => {
       localStorage.removeItem("resendOtp");
       const accessToken = res?.accessToken;
       if (accessToken) {
-        sessionStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("accessToken", accessToken);
       }
       queryClient.invalidateQueries({ queryKey: [ACCOUNT_REGISTER_QUERY_KEY] });
       router.push("/login");

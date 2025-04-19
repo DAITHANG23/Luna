@@ -24,7 +24,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   } catch (error) {
     console.error("Error logging out:", error);
   } finally {
-    sessionStorage.removeItem("accessToken");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     delete axios.defaults.headers.common.Authorization;
     Router.push("/login");
