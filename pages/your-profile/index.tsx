@@ -19,10 +19,10 @@ const YourProfile = () => {
   const isAuth = useAppSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
-  const userInfoState = useAppSelector((state: RootState) => state.auth.user);
+  const userInfoState = useAppSelector((state) => state.auth.accountInfo);
 
   const updateTablist = useMemo(() => {
-    if (userInfoState.googleId) {
+    if (userInfoState?.data.data.googleId) {
       return tabList.filter((i) => i.name !== "tabSecurity");
     }
     return tabList;
@@ -45,7 +45,7 @@ const YourProfile = () => {
       <Head>
         <title>{t("translation:headTitle.yourProfile")}</title>
       </Head>
-      <div className="xl:w-[70%] w-[85%] flex flex-col justify-start m-auto my-5 sm:my-20">
+      <div className="xl:w-[70%] w-[85%] flex flex-col justify-start m-auto my-5 sm:my-20 mt-20">
         <h1 className="text-primary-text">{t("title")}</h1>
         <TabsComponent
           tabList={updateTablist}

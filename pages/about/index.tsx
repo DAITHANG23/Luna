@@ -50,7 +50,7 @@ const About = () => {
       <Head>
         <title>{t("translation:headTitle.about")}</title>
       </Head>
-      <div className="max-w-full pt-0 p-4 sm:p-0 sm:max-w-[70%] mx-auto mt-12">
+      <div className="max-w-full pt-0 p-4 sm:p-0 sm:max-w-[70%] mx-auto mt-20">
         <div className="mb-10 text-center bg-gradient-to-r from-primary/10 via-secondary/20 to-primary/10 py-8 rounded-xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
             {t("about.title")}

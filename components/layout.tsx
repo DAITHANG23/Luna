@@ -9,8 +9,8 @@ import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 import { useRouter } from "next/router";
 import { getAllConcepts } from "@/lib/redux/masterDataSlice";
-import { useAppDispatch } from "@/lib/redux/hooks";
-
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { getAccountInfo } from "@/lib/redux/authSlice";
 export default function Layout({
   children,
 }: Readonly<{
@@ -23,6 +23,7 @@ export default function Layout({
     refreshToken: refreshTokenLoginWithGmail,
   } = router.query;
   const dispatch = useAppDispatch();
+  const accessTokenState = useAppSelector((state) => state.auth.accessToken);
 
   useEffect(() => {
     if (accessTokenLoginWithGmail) {
@@ -46,13 +47,16 @@ export default function Layout({
 
   useEffect(() => {
     dispatch(getAllConcepts());
-  }, [dispatch]);
+    if (accessTokenState) {
+      dispatch(getAccountInfo());
+    }
+  }, [dispatch, accessTokenState]);
 
   return (
     <AppContextProvider>
       <TransSnackbarProvider>
         <Header />
-        <main>
+        <main className="lg:mt-[3rem]">
           <DialogSetting />
           <ScrollToTop />
           {children}

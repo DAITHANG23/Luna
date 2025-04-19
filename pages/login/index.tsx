@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Domique Fusion | Login</title>
+        <title>{t("headTitle.login")}</title>
       </Head>
       <Formik
         onSubmit={handleSubmit}
