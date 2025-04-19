@@ -30,7 +30,7 @@ const YourProfile = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const token = sessionStorage.getItem("accessToken");
+      const token = localStorage.getItem("accessToken");
       if (!token && !isAuth) {
         router.push("/401");
       }

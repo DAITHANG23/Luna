@@ -30,7 +30,7 @@ const useLogin = () => {
       const refreshToken = res?.refreshToken;
 
       if (accessTokenRes) {
-        sessionStorage.setItem("accessToken", accessTokenRes);
+        localStorage.setItem("accessToken", accessTokenRes);
       }
 
       if (refreshToken) {

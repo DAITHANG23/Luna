@@ -20,7 +20,7 @@ axiosWrapper.interceptors.request.use(
   async (
     config: CustomAxiosRequestConfig
   ): Promise<CustomAxiosRequestConfig> => {
-    const token = sessionStorage.getItem("accessToken");
+    const token = localStorage.getItem("accessToken");
 
     config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
@@ -45,12 +45,12 @@ axiosWrapper.interceptors.response.use(
 
         try {
           const data = await apiService.account.refreshToken();
-          sessionStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("accessToken", data.accessToken);
           originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
           return axiosWrapper(originalRequest);
         } catch (err) {
           console.error("Refresh token expired. Logging out.", err);
-          sessionStorage.removeItem("accessToken");
+          localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
           await apiService.account.logout();
         }
