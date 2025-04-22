@@ -22,8 +22,9 @@ const RestaurantConcept = () => {
       <Head>
         <title>{t("headTitle.restaurantConcept")}</title>
       </Head>
-      <div className="flex flex-col p-8">
+      <div className="flex flex-col p-4 sm:p-8 mt-[4rem]">
         <h3 className="text-primary-text">{`Domique Fusion: ${allConceptsResponse?.results || 0} concepts`}</h3>
+
         <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
           {conceptsData &&
             conceptsData.map((concept: ConceptModel) => {

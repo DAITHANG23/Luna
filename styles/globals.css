@@ -192,6 +192,10 @@ html::-webkit-scrollbar-track {
   margin: 0;
 }
 
+.prose :where(button):not(:where([class~="not-prose"] *)) {
+  min-width: none;
+}
+
 .notistack-MuiContent {
   border-radius: 8px !important;
 }
