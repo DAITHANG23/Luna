@@ -19,7 +19,7 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
       <ModalCarousel
         setOpen={setIsOpenModalImageList}
         open={isOpenModalImageList}
-        imagesList={concept.images}
+        imagesList={concept?.images}
       />
       <div className="w-full h-[300px] relative ">
         <Image
