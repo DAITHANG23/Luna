@@ -5,7 +5,7 @@ import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import Toolbar from "@/share/components/Toolbar";
-import { defaultFilter } from "./contants";
+import { defaultFilter } from "@/contants";
 
 const RestaurantConcept = () => {
   const [filter, setFilter] = useState(defaultFilter);

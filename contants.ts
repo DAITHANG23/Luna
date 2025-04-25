@@ -1,3 +1,4 @@
+import { ConceptsFilter } from "@/@types/models/concept";
 export const REGEX_VALIDATE_EMAIL =
   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -33,3 +34,10 @@ export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   { img: "/assets/images/img-about-3.png", name: "img-about-3-img" },
   { img: "/assets/images/img-about-4.png", name: "img-about-4-img" },
 ];
+
+export const defaultFilter: ConceptsFilter = {
+  searchText: "",
+  concepts: "All",
+  price: "All",
+  star: "All",
+};
