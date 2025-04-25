@@ -87,7 +87,8 @@
     "cancel": "Hủy bỏ",
     "detail": "Chi tiết",
     "verify": "Xác nhận",
-    "getStarted": "Bắt đầu"
+    "getStarted": "Bắt đầu",
+    "confirm": "Xác nhận"
   },
   "navbar": {
     "home": "Trang Chủ",

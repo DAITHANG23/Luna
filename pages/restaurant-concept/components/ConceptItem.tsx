@@ -39,7 +39,7 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
         <h3 className="text-primary-text">{concept?.name}</h3>
         <p className="text-primary-text">{concept?.type}</p>
         <p className="text-primary-text">{`${concept?.address}`}</p>
-        <p className="text-primary">{`${concept?.totalRatings}`}</p>
+        <p className="text-primary">{`${concept?.avgRatings}`}</p>
       </div>
       <div className="absolute top-[10px] right-[10px] flex gap-3">
         <button
