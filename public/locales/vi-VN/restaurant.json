@@ -1,0 +1,21 @@
+{
+  "concepts": {
+    "label": {
+      "allConcepts": "All concepts",
+      "hotpot": "Hotpot",
+      "other": "Other",
+      "japanese": "Japanese",
+      "steakHouse": "Steak House",
+      "bbq": "BBQ"
+    },
+    "placeholder": {
+      "search": "Tìm kiếm"
+    }
+  },
+  "under": "Dưới",
+  "over": "Trên",
+  "from": "Từ",
+  "to": "đến",
+  "allPrices": "All prices",
+  "allStar": "All star"
+}

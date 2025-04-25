@@ -25,11 +25,30 @@ export interface ConceptModel {
   timeSlot: TimeSlotType;
   dishes: Array<Dish>;
   type: string;
-  totalRatings: number;
+  avgRatings: number;
 }
 
 export interface AllConceptsResponse {
   data: { data: Array<ConceptModel> };
   status: string;
   results: number;
+}
+
+export interface IOptions {
+  label: string;
+  value: string;
+}
+
+export type ConceptsType =
+  | "hotpot"
+  | "other"
+  | "japanese"
+  | "bbq"
+  | "steakHouse";
+export type IConcepts = ConceptsType | "All";
+export interface ConceptsFilter {
+  searchText: string;
+  concepts: IConcepts;
+  price: string;
+  star: string;
 }

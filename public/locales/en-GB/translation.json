@@ -87,7 +87,8 @@
     "cancel": "Cancel",
     "detail": "Detail",
     "verify": "Verify",
-    "getStarted": "Get started"
+    "getStarted": "Get started",
+    "confirm": "Confirm"
   },
   "navbar": {
     "home": "Home",
