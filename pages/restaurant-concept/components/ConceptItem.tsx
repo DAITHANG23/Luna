@@ -17,8 +17,8 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
   const [isOpenModalImageList, setIsOpenModalImageList] = useState(false);
 
   const typeConcept = useMemo(() => {
-    if (!concept.type) return "OTHER";
-    return DEFAULT_CONCEPTS_LIST.find((i) => i.value === concept.type)?.label;
+    if (!concept?.type) return "OTHER";
+    return DEFAULT_CONCEPTS_LIST.find((i) => i.value === concept?.type)?.label;
   }, [concept]);
   return (
     <div className="relative h-[450px] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
