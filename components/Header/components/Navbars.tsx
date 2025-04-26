@@ -35,6 +35,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/share/components/LanguageSelect";
 import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
+import Skeleton from "./Skeleton";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -83,7 +84,7 @@ const Navbars = () => {
     queryClient.removeQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
   };
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Skeleton />;
 
   return (
     <Disclosure
