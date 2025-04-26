@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import Toolbar from "@/pages/restaurant-concept/components/Toolbar";
 import { defaultFilter } from "@/contants";
 import useGetAllConcepts from "@/hooks/ConceptsHooks/useGetAllConcepts";
+import Skeleton from "./components/Skeleton";
 
 const RestaurantConcept = () => {
   const [filter, setFilter] = useState(defaultFilter);
@@ -46,7 +47,7 @@ const RestaurantConcept = () => {
     };
   }, [conceptsParams, priceParams, searchText, starParams]);
 
-  const { conceptsData } = useGetAllConcepts(params);
+  const { conceptsData, isLoading } = useGetAllConcepts(params);
 
   return (
     <>
@@ -55,18 +56,23 @@ const RestaurantConcept = () => {
       </Head>
       <div className="flex flex-col p-4 sm:p-8 mt-[4rem]">
         <Toolbar onFilterChange={handleFilterChange} filter={filter} />
+        <></>
         <h3 className="text-primary-text">{`Domique Fusion: ${conceptsData?.results || 0} concepts`}</h3>
 
-        <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
-          {conceptsData &&
-            conceptsData.data.data.map((concept: ConceptModel) => {
-              return (
-                <div key={concept.name}>
-                  <ConceptItem concept={concept} />
-                </div>
-              );
-            })}
-        </div>
+        {isLoading ? (
+          <Skeleton />
+        ) : (
+          <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
+            {conceptsData &&
+              conceptsData.data.data.map((concept: ConceptModel) => {
+                return (
+                  <div key={concept.name}>
+                    <ConceptItem concept={concept} />
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
     </>
   );
