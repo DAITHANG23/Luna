@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { isEmpty } from "lodash";
+import { stringify } from "qs";
+import { useMemo } from "react";
 export const numberWithCommas = (
   number = "",
   digits = 2,
@@ -36,3 +40,42 @@ export const formatCurrency = (
 export const roundAmount = (amount: number, step = 0.5) => {
   return Math.ceil(amount - step);
 };
+
+export function buildQueryString(params: any) {
+  if (isEmpty(params)) {
+    return "";
+  }
+
+  const query = stringify(params, { arrayFormat: "repeat" });
+  return `?${query}`;
+}
+
+export function cleanEmptyFields(obj: Record<string, any>) {
+  const newObj: Record<string, any> = {};
+
+  for (const key in obj) {
+    const value = obj[key];
+
+    const isEmptyObject =
+      typeof value === "object" &&
+      !Array.isArray(value) &&
+      Object.keys(value).length === 0;
+    const isEmptyArray = Array.isArray(value) && value.length === 0;
+    const isEmptyString = typeof value === "string" && value.trim() === "";
+
+    if (!isEmptyObject && !isEmptyArray && !isEmptyString) {
+      newObj[key] = value;
+    }
+  }
+
+  return newObj;
+}
+
+export function useCapitalize(text?: string) {
+  const capitalized = useMemo(() => {
+    if (!text) return "";
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }, [text]);
+
+  return capitalized;
+}

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useMemo } from "react";
-import SearchField from "./SearchField";
-import WrapperFilter from "./WrapperFilter";
-import SelectField from "./SelectField";
+import SearchField from "@/share/components/SearchField";
+import WrapperFilter from "@/share/components/WrapperFilter";
+import SelectField from "@/share/components/SelectField";
 import { useTranslation } from "react-i18next";
 import { sortBy } from "lodash";
 import { ConceptsFilter, IConcepts, IOptions } from "@/@types/models/concept";
@@ -17,11 +17,11 @@ const Toolbar = ({ onFilterChange, filter }: ToolbarProps) => {
   const conceptsOptions = useMemo(() => {
     const concepts = [
       { label: t("concepts.label.allConcepts"), value: "All" },
-      { label: t("concepts.label.hotpot"), value: "Hotpot" },
-      { label: t("concepts.label.japanese"), value: "Japanese" },
-      { label: t("concepts.label.bbq"), value: "BBQ" },
-      { label: t("concepts.label.other"), value: "Other" },
-      { label: t("concepts.label.steakHouse"), value: "steakHouse" },
+      { label: t("concepts.label.hotpot"), value: "hotpot" },
+      { label: t("concepts.label.japanese"), value: "japanese" },
+      { label: t("concepts.label.bbq"), value: "bbq" },
+      { label: t("concepts.label.other"), value: "other" },
+      { label: t("concepts.label.steakHouse"), value: "steakhouse" },
     ] as Array<IOptions>;
     return sortBy(concepts, "label");
   }, [t]);
@@ -60,15 +60,15 @@ const Toolbar = ({ onFilterChange, filter }: ToolbarProps) => {
       },
       {
         label: "3 star",
-        value: 3,
+        value: "3",
       },
       {
         label: "4 star",
-        value: 4,
+        value: "4",
       },
       {
         label: "5 star",
-        value: 5,
+        value: "5",
       },
     ] as Array<IOptions>;
     return starList;
