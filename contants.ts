@@ -18,6 +18,7 @@ export const GET_DATA_USER_QUERY_KEY = "get-data-user";
 export const FORGOT_PASSWORD_QUERY_KEY = "forgot-password";
 export const CREATE_NEW_PASSWORD_QUERY_KEY = "create-new-password";
 export const RESEND_OTP_CODE = "resend-otp-code";
+export const GET_ALL_CONCEPTS_QUERY_KEY = "get-all-concepts";
 
 export const COVER_IMAGES: Array<{ img: string; name: string }> = [
   { img: "/assets/images/cover-img-1.jpg", name: "cover-1-img" },
@@ -41,3 +42,11 @@ export const defaultFilter: ConceptsFilter = {
   price: "All",
   star: "All",
 };
+
+export const DEFAULT_CONCEPTS_LIST: Array<{ label: string; value: string }> = [
+  { label: "OTHER", value: "other" },
+  { label: "JAPANESE", value: "japanese" },
+  { label: "BBQ", value: "bbq" },
+  { label: "STEAK HOUSE", value: "steakhouse" },
+  { label: "HOT POT", value: "hotpot" },
+];

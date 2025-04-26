@@ -31,11 +31,11 @@ const YourProfile = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("accessToken");
-      if (!token && !isAuth) {
+      if (!token && !isAuth && !userInfoState?.data.data.avatarUrl) {
         router.push("/401");
       }
     }
-  }, [isAuth, router]);
+  }, [isAuth, router, userInfoState]);
 
   const [activeTab, setActiveTab] = useState(tabList[0].name);
   const { t, ready } = useTranslation(["profile", "translation"]);
