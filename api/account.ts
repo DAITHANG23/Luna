@@ -8,6 +8,7 @@ import {
   UserResponse,
 } from "@/@types/models/account";
 import apiRequest from "@/hooks/useApiRequest";
+import getJWTCookies from "@/utils/getJWTCookies";
 
 const baseURL = `${API_VERSION_V1}/users`;
 const account = {
@@ -29,9 +30,16 @@ const account = {
     });
   },
 
-  refreshToken: (): Promise<RefreshTokenResponse> => {
+  refreshToken: async (): Promise<RefreshTokenResponse> => {
+    let refreshToken;
+    if (process.env.NODE_ENV === "development") {
+      refreshToken = localStorage.getItem("refreshToken");
+    } else if (process.env.NODE_ENV === "production") {
+      refreshToken = await getJWTCookies();
+    }
+
     return apiRequest(`${baseURL}/refreshToken`, "POST", {
-      refreshToken: localStorage.getItem("refreshToken"),
+      refreshToken: refreshToken,
     });
   },
 
