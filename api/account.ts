@@ -8,7 +8,7 @@ import {
   UserResponse,
 } from "@/@types/models/account";
 import apiRequest from "@/hooks/useApiRequest";
-import getJWTCookies from "@/utils/getJWTCookies";
+import { getRefreshToken } from "@/utils/cookies";
 
 const baseURL = `${API_VERSION_V1}/users`;
 const account = {
@@ -25,21 +25,17 @@ const account = {
   },
 
   logout: () => {
+    const refreshToken = getRefreshToken();
     return apiRequest(`${baseURL}/logout`, "POST", {
-      refreshToken: localStorage.getItem("refreshToken"),
+      refreshToken,
     });
   },
 
-  refreshToken: async (): Promise<RefreshTokenResponse> => {
-    let refreshToken;
-    if (process.env.NODE_ENV === "development") {
-      refreshToken = localStorage.getItem("refreshToken");
-    } else if (process.env.NODE_ENV === "production") {
-      refreshToken = await getJWTCookies();
-    }
+  refreshToken: (): Promise<RefreshTokenResponse> => {
+    const refreshToken = getRefreshToken();
 
     return apiRequest(`${baseURL}/refreshToken`, "POST", {
-      refreshToken: refreshToken,
+      refreshToken,
     });
   },
 

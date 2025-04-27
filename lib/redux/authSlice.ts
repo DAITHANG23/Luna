@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserLogin, UserResponse } from "@/@types/models/account";
 import apiService from "@/api/index";
-import getJWTCookies from "@/utils/getJWTCookies";
+import { clearJWTCookies, getRefreshToken } from "@/utils/cookies";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import Router from "next/router";
@@ -17,12 +17,7 @@ interface AuthState {
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
-    let refreshToken;
-    if (process.env.NODE_ENV === "development") {
-      refreshToken = localStorage.getItem("refreshToken");
-    } else if (process.env.NODE_ENV === "production") {
-      refreshToken = await getJWTCookies();
-    }
+    const refreshToken = await getRefreshToken();
 
     if (refreshToken) {
       await apiService.account.logout();
@@ -32,6 +27,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   } finally {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    clearJWTCookies();
     delete axios.defaults.headers.common.Authorization;
     Router.push("/login");
   }
