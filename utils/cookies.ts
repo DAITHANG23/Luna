@@ -14,9 +14,8 @@ export const getJWTCookies = (name: string): string | null => {
   return null;
 };
 
-export const clearJWTCookies = () => {
-  document.cookie =
-    "jwt=; path=/; domain=.yourdomain.com; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+export const clearJWTCookies = (name: string): void => {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
 
 export const getRefreshToken = () => {
