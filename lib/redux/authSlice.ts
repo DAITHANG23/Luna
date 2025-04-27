@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserLogin, UserResponse } from "@/@types/models/account";
 import apiService from "@/api/index";
+import getJWTCookies from "@/utils/getJWTCookies";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import Router from "next/router";
@@ -16,7 +17,12 @@ interface AuthState {
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
-    const refreshToken = localStorage.getItem("refreshToken");
+    let refreshToken;
+    if (process.env.NODE_ENV === "development") {
+      refreshToken = localStorage.getItem("refreshToken");
+    } else if (process.env.NODE_ENV === "production") {
+      refreshToken = await getJWTCookies();
+    }
 
     if (refreshToken) {
       await apiService.account.logout();
