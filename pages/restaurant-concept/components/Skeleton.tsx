@@ -2,7 +2,7 @@ import React from "react";
 const LoadingCard = () => (
   <div
     role="status"
-    className="max-w-sm p-4 border border-gray-200 mb-4 rounded-sm shadow-sm animate-pulse md:p-6 dark:border-gray-700"
+    className="max-w-sm p-4 border border-gray-200 mb-4 rounded-lg shadow-sm animate-pulse md:p-6 dark:border-gray-700"
   >
     <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-sm dark:bg-gray-700">
       <svg
@@ -20,7 +20,6 @@ const LoadingCard = () => (
     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-    <span className="sr-only">Loading...</span>
   </div>
 );
 const Skeleton = () => {
