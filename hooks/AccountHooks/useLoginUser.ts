@@ -33,7 +33,11 @@ const useLogin = () => {
         localStorage.setItem("accessToken", accessTokenRes);
       }
 
-      if (refreshToken && process.env.NODE_ENV === "development") {
+      // if (refreshToken && process.env.NODE_ENV === "development") {
+      //   localStorage.setItem("refreshToken", refreshToken);
+      // }
+
+      if (refreshToken) {
         localStorage.setItem("refreshToken", refreshToken);
       }
 
