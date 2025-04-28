@@ -9,6 +9,7 @@ import { useAppSelector } from "@/lib/redux/hooks";
 import { RootState } from "@/lib/redux/store";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
 const tabList: Array<{ name: string; icon: JSX.Element }> = [
   { name: "tabProfile", icon: <GeneralProfile /> },
   { name: "tabSecurity", icon: <SecurityIcon /> },
@@ -19,23 +20,24 @@ const YourProfile = () => {
   const isAuth = useAppSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
-  const userInfoState = useAppSelector((state) => state.auth.accountInfo);
+
+  const { userData, isLoading } = useGetDataUser();
 
   const updateTablist = useMemo(() => {
-    if (userInfoState?.data.data.googleId) {
+    if (userData?.data.data.googleId) {
       return tabList.filter((i) => i.name !== "tabSecurity");
     }
     return tabList;
-  }, [userInfoState]);
+  }, [userData]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("accessToken");
-      if (!token && !isAuth && !userInfoState?.data.data.avatarUrl) {
+      if (!token && !isAuth && !userData?.data.data.avatarUrl) {
         router.push("/401");
       }
     }
-  }, [isAuth, router, userInfoState]);
+  }, [isAuth, router, userData]);
 
   const [activeTab, setActiveTab] = useState(tabList[0].name);
   const { t, ready } = useTranslation(["profile", "translation"]);
@@ -54,7 +56,7 @@ const YourProfile = () => {
         />
         <div className="mt-10">
           {activeTab === "tabProfile" ? (
-            <ProfileComponent />
+            <ProfileComponent userData={userData} isLoading={isLoading} />
           ) : (
             <SecurityComponent />
           )}
