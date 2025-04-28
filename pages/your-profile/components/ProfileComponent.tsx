@@ -6,9 +6,8 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL } from "@/contants";
 import { differenceInYears, parseISO } from "date-fns";
-import { UserLogin, UserModel } from "@/@types/models/account";
+import { UserLogin, UserModel, UserResponse } from "@/@types/models/account";
 import useUpdateProfile from "@/hooks/AccountHooks/useUpdateProfile";
-import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
 import Router from "next/router";
 import apiService from "@/api/index";
 import useNotification from "@/hooks/useNotification";
@@ -32,10 +31,14 @@ const GENDER_LIST = [
   },
 ];
 
-const ProfileComponent = () => {
+interface ProfileComponentProps {
+  userData: UserResponse | undefined;
+  isLoading: boolean;
+}
+
+const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
   const { showSuccess } = useNotification();
   const { t, ready } = useTranslation("profile");
-  const { userData, isLoading } = useGetDataUser();
 
   const {
     mutate: updateAccount,
@@ -62,8 +65,8 @@ const ProfileComponent = () => {
   const initialValues: UserLogin = {
     email: userData?.data.data.email || "",
     avatarUrl: userData?.data.data.avatarUrl || "",
-    firstName: userData?.data.data.fullName?.split(" ")[0] || "",
-    lastName: userData?.data.data.fullName?.split(" ").slice(1).join(" ") || "",
+    firstName: userData?.data.data.firstName || "",
+    lastName: userData?.data.data.lastName || "",
     numberPhone: userData?.data.data.numberPhone || "",
     address: userData?.data.data.address || "",
     dateOfBirth: userData?.data.data.dateOfBirth || "",
