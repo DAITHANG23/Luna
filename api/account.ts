@@ -8,7 +8,6 @@ import {
   UserResponse,
 } from "@/@types/models/account";
 import apiRequest from "@/hooks/useApiRequest";
-import { getRefreshToken } from "@/utils/cookies";
 
 const baseURL = `${API_VERSION_V1}/users`;
 const account = {
@@ -25,14 +24,14 @@ const account = {
   },
 
   logout: () => {
-    const refreshToken = getRefreshToken();
+    const refreshToken = localStorage.getItem("refreshToken");
     return apiRequest(`${baseURL}/logout`, "POST", {
       refreshToken,
     });
   },
 
   refreshToken: (): Promise<RefreshTokenResponse> => {
-    const refreshToken = getRefreshToken();
+    const refreshToken = localStorage.getItem("refreshToken");
 
     return apiRequest(`${baseURL}/refreshToken`, "POST", {
       refreshToken,

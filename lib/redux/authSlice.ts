@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserLogin, UserResponse } from "@/@types/models/account";
 import apiService from "@/api/index";
-import { clearJWTCookies, getRefreshToken } from "@/utils/cookies";
+import { clearJWTCookies } from "@/utils/cookies";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import Router from "next/router";
@@ -17,7 +17,7 @@ interface AuthState {
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
-    const refreshToken = await getRefreshToken();
+    const refreshToken = localStorage.getItem("refreshToken");
 
     if (refreshToken) {
       await apiService.account.logout();
