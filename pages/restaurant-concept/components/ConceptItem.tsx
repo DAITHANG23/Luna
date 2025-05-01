@@ -1,25 +1,64 @@
 import { ConceptModel } from "@/@types/models/concept";
 import Image from "next/image";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { Square2StackIcon } from "@heroicons/react/24/solid";
 import ModalCarousel from "@/share/components/ModalCarousel";
-import { DEFAULT_CONCEPTS_LIST } from "@/contants";
+import { DEFAULT_CONCEPTS_LIST, GET_CONCEPTS_FAVORITE_KEY } from "@/contants";
+import useFavoriteConcepts from "@/hooks/ConceptsHooks/useFavoriteConcepts";
+import apiService from "@/api";
+import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
+import { useQueryClient } from "@tanstack/react-query";
 interface ConceptItemProps {
   concept: ConceptModel;
 }
 const ConceptItem = ({ concept }: ConceptItemProps) => {
   const [isCheckedInConcept, setIsCheckedInConcept] = useState(false);
-  const [isFavoriteConcept, setIsFavoriteConcept] = useState(false);
+  const { userData, refetch } = useGetDataUser();
+  const queryClient = useQueryClient();
+  const isFavoriteConceptSelected = userData?.data.data.favorites.includes(
+    concept._id
+  );
+
+  const [isFavoriteConcept, setIsFavoriteConcept] = useState(
+    isFavoriteConceptSelected
+  );
+
+  useEffect(() => {
+    if (isFavoriteConceptSelected) {
+      setIsFavoriteConcept(isFavoriteConceptSelected);
+    }
+  }, [isFavoriteConceptSelected]);
+
   const [isOpenModalImageList, setIsOpenModalImageList] = useState(false);
+
+  const { mutate: favoriteConcepts } = useFavoriteConcepts();
 
   const typeConcept = useMemo(() => {
     if (!concept?.type) return "OTHER";
-    return DEFAULT_CONCEPTS_LIST.find((i) => i.value === concept?.type)?.label;
+    return (
+      DEFAULT_CONCEPTS_LIST.find((i) => i.value === concept?.type)?.label || ""
+    );
   }, [concept]);
+
+  const handleClickFavorite = async (idConcept: string) => {
+    const formData = {
+      idConcept: idConcept,
+      userId: userData?.data.data._id || "",
+    };
+    if (isFavoriteConceptSelected) {
+      await apiService.user.deleteFavoriteConcept({ formData });
+      queryClient.invalidateQueries({ queryKey: [GET_CONCEPTS_FAVORITE_KEY] });
+      refetch();
+    } else {
+      favoriteConcepts(formData);
+    }
+
+    setIsFavoriteConcept((prev) => !prev);
+  };
   return (
     <div className="relative h-[450px] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
       <ModalCarousel
@@ -42,10 +81,10 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
         </button>
       </div>
       <div className="p-4 flex flex-col justify-start items-start gap-2">
-        <h3 className="text-primary-text">{concept?.name}</h3>
+        <h3 className="text-primary-text">{concept?.name || ""}</h3>
         <p className="text-primary-text">{typeConcept}</p>
-        <p className="text-primary-text">{`${concept?.address}`}</p>
-        <p className="text-primary">{`${concept?.avgRatings || 0}`}</p>
+        <p className="text-primary-text">{concept?.address || ""}</p>
+        <p className="text-primary">{concept?.avgRatings || 0}</p>
       </div>
       <div className="absolute top-[10px] right-[10px] flex gap-3">
         <button
@@ -62,9 +101,7 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
         </button>
         <button
           className="border-none bg-white rounded-full p-1 cursor-pointer"
-          onClick={() => {
-            setIsFavoriteConcept((prev) => !prev);
-          }}
+          onClick={() => handleClickFavorite(concept?._id)}
         >
           <div className="w-5 h-5">
             {isFavoriteConcept ? (

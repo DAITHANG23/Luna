@@ -15,6 +15,7 @@ export interface TimeSlotType {
 }
 
 export interface ConceptModel {
+  _id: string;
   name: string;
   description: string;
   address: string;
@@ -52,3 +53,15 @@ export interface ConceptsFilter {
   price: string;
   star: string;
 }
+
+export interface FavoriteConcepts {
+  idConcept: string;
+  userId: string;
+}
+
+export interface GetFavoriteConcepts {
+  userId: string;
+}
+
+export interface ConceptsFavoriteResponse
+  extends Partial<AllConceptsResponse> {}

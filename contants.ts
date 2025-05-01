@@ -19,6 +19,8 @@ export const FORGOT_PASSWORD_QUERY_KEY = "forgot-password";
 export const CREATE_NEW_PASSWORD_QUERY_KEY = "create-new-password";
 export const RESEND_OTP_CODE = "resend-otp-code";
 export const GET_ALL_CONCEPTS_QUERY_KEY = "get-all-concepts";
+export const CONCEPTS_FAVORITE_KEY = "concepts-favorite";
+export const GET_CONCEPTS_FAVORITE_KEY = "get-concepts-favorite";
 
 export const COVER_IMAGES: Array<{ img: string; name: string }> = [
   { img: "/assets/images/cover-img-1.jpg", name: "cover-1-img" },

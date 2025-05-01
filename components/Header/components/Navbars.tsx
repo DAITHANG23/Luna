@@ -13,6 +13,7 @@ import {
   ArchiveBoxIcon,
   ArrowLeftStartOnRectangleIcon,
   Cog6ToothIcon,
+  HeartIcon,
 } from "@heroicons/react/24/solid";
 import { dropdownList, navigation } from "@/components/Header/contants";
 import clsx from "clsx";
@@ -212,6 +213,8 @@ const Navbars = () => {
                             >
                               {item.name === "yourProfile" ? (
                                 <UserIcon className="w-5 h-5" />
+                              ) : item.name === "favorites" ? (
+                                <HeartIcon className="w-5 h-5" />
                               ) : (
                                 <ArchiveBoxIcon className="w-5 h-5" />
                               )}
