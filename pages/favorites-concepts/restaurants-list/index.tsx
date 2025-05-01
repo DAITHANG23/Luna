@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 const Favorites = () => {
   const { conceptsData, isLoading } = useGetFavoriteConcepts();
-  const concepts = conceptsData?.data?.data;
+  const concepts = conceptsData?.data?.data || [];
 
   const router = useRouter();
   if (isLoading) return <Skeleton />;
@@ -24,7 +24,7 @@ const Favorites = () => {
         <h4 className="pt-8">My Favorite List</h4>
         {concepts && concepts.length > 0 ? (
           <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
-            {concepts.map((concept: ConceptModel) => {
+            {concepts?.map((concept: ConceptModel) => {
               return (
                 <div key={concept.name}>
                   <ConceptItem concept={concept} />
