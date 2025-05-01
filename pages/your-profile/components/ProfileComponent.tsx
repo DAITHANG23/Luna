@@ -123,7 +123,8 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
       const value = values[key];
 
       if (typeof value === "string" || typeof value === "number") {
-        data[key] = value;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (data as any)[key] = value;
       }
     });
 

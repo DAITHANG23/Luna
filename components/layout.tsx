@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { getAllConcepts } from "@/lib/redux/masterDataSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { getAccountInfo } from "@/lib/redux/authSlice";
+import AuthInitializer from "./AuthInitializer";
 export default function Layout({
   children,
 }: Readonly<{
@@ -52,6 +53,7 @@ export default function Layout({
   return (
     <AppContextProvider>
       <TransSnackbarProvider>
+        <AuthInitializer />
         <Header />
         <main className="lg:mt-[3rem]">
           <DialogSetting />
