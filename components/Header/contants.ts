@@ -17,6 +17,7 @@ export const navigation = [
 export const dropdownList: Array<DropdownListType> = [
   { name: "yourProfile", href: "/your-profile" },
   { name: "bookingHistory", href: "/order-history" },
+  { name: "favorites", href: "/favorites-concepts" },
   { name: "Settings", href: "" },
 ];
 

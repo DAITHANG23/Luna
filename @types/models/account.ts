@@ -1,4 +1,5 @@
 export interface UserModel {
+  _id: string;
   firstName: string;
   lastName: string;
   dateOfBirth: string;
@@ -13,6 +14,7 @@ export interface UserModel {
   avatarUrl?: string;
   fullName: string;
   googleId?: string;
+  favorites: Array<string>;
 }
 
 export interface UserLogin extends Partial<UserModel> {}
