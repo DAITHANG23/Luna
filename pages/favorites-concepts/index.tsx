@@ -18,7 +18,7 @@ const Favorites = () => {
             router.push("favorites-concepts/restaurants-list");
           }}
         >
-          {dataConcepts.length > 0 ? (
+          {dataConcepts && dataConcepts.length > 0 ? (
             <FavoriteConceptsView data={dataConcepts} />
           ) : (
             <EmptyFavoriteRestaurant />

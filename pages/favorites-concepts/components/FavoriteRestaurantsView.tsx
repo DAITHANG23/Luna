@@ -7,7 +7,7 @@ interface FavoriteConceptsViewProps {
   data: Array<ConceptModel>;
 }
 const FavoriteConceptsView = ({ data }: FavoriteConceptsViewProps) => {
-  const favoriteImages = data.map((i) => i.imageCover);
+  const favoriteImages = data?.map((i) => i.imageCover);
 
   return (
     <div className="flex flex-col w-[21.75rem] !h-[19.7rem] shadow-glass border-none rounded-xl cursor-pointer transition duration-300 ease-in-out hover:scale-105">
@@ -18,7 +18,7 @@ const FavoriteConceptsView = ({ data }: FavoriteConceptsViewProps) => {
         <p className="font-base font-normal">Restaurants I Love</p>
       </div>
       <div className="w-full h-[17rem] relative rounded-xl">
-        {favoriteImages.length >= 3 ? (
+        {favoriteImages && favoriteImages.length >= 3 ? (
           <div className="w-full h-full flex">
             <div className="w-[70%] h-full relative">
               <Image
