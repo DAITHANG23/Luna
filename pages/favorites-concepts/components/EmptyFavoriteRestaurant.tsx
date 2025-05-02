@@ -8,7 +8,7 @@ const EmptyFavoriteRestaurant = () => {
     <div className="flex flex-col w-full sm:w-[21.75rem] !h-[19.7rem] shadow-glass border-none rounded-xl cursor-pointer transition duration-300 ease-in-out hover:scale-105">
       <div className="flex text-center  w-full h-[3.3rem] p-4 gap-4 bg-white rounded-xl">
         <p>
-          <HeartIconSolid className="text-primary w-full h-full" />
+          <HeartIconSolid className="text-primary w-5 h-5" />
         </p>
         <p className="font-base font-normal">{t("titleRestaurantFavorite")}</p>
       </div>
