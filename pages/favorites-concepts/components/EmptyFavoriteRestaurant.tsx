@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const EmptyFavoriteRestaurant = () => {
   const { t } = useTranslation("concept");
   return (
-    <div className="flex flex-col w-[21.75rem] !h-[19.7rem] shadow-glass border-none rounded-xl cursor-pointer transition duration-300 ease-in-out hover:scale-105">
+    <div className="flex flex-col w-full sm:w-[21.75rem] !h-[19.7rem] shadow-glass border-none rounded-xl cursor-pointer transition duration-300 ease-in-out hover:scale-105">
       <div className="flex text-center  w-full h-[3.3rem] p-4 gap-4 bg-white rounded-xl">
         <p>
           <HeartIconSolid className="text-primary w-full h-full" />
