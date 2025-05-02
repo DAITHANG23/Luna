@@ -35,11 +35,8 @@ axiosWrapper.interceptors.response.use(
       retryCount?: number;
     };
     const status = error.response?.status;
-    const message = error.response?.data.message;
+
     if (error.response) {
-      if (message === "Your token has expired! Please log in again") {
-        await apiService.account.logout();
-      }
       if (
         (status === 401 || status === 403 || status === 500) &&
         (error.response?.data?.error?.name === "TokenExpiredError" ||
