@@ -1,0 +1,12 @@
+{
+  "title": "Danh sách yêu thích của tôi",
+  "titleRestaurantFavorite": "Nhà hàng tôi yêu thích",
+  "emptyListTitle": "Danh sách của bạn trống",
+  "emptyContent": "Ban chưa có nhà hàng nào yêu thích",
+  "touchTheHeartIcon": "Chạm vào biểu tượng trái tim",
+  "andItWill": "nào và nó sẽ lưu chúng ở đây như một mục yêu thích.",
+  "restaurant": "bất kì nhà hàng",
+  "button": {
+    "back": "Danh sách của tôi"
+  }
+}
