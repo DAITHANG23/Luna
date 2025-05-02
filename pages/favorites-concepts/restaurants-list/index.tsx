@@ -6,10 +6,11 @@ import Link from "next/link";
 import ArrowLeft from "@/public/icons/ArrowLeft";
 import { useRouter } from "next/router";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
+import { useTranslation } from "react-i18next";
 const Favorites = () => {
   const { conceptsData, isLoading } = useGetFavoriteConcepts();
   const concepts = conceptsData?.data?.data || [];
-
+  const { t } = useTranslation("concept");
   const router = useRouter();
   if (isLoading) return <Skeleton />;
   return (
@@ -17,13 +18,13 @@ const Favorites = () => {
       <div className="w-full lg:w-[60%] mx-auto mb-10">
         <button
           onClick={() => router.push("/favorites-concepts")}
-          className="flex gap-2 items-center border border-solid rounded-lg border-black px-3 hover:bg-gray-200"
+          className="flex gap-2 items-center border border-solid rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
         >
-          <ArrowLeft /> <span className="font-base">My lists</span>
+          <ArrowLeft /> <span className="font-base">{t("button.back")}</span>
         </button>
-        <h4 className="pt-8">My Favorite List</h4>
+        {concepts?.length > 0 && <h4 className="pt-8">{t("title")}</h4>}
         {concepts && concepts.length > 0 ? (
-          <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
+          <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center">
             {concepts?.map((concept: ConceptModel) => {
               return (
                 <div key={concept.name}>
@@ -35,7 +36,7 @@ const Favorites = () => {
         ) : (
           <div className="w-full lg:w-[60%] mx-auto text-center">
             <h1>
-              You have no favorites yet
+              {t("emptyContent")}
               <br /> {`:(`}
             </h1>
             <div className="w-full h-[8.75rem] relative rounded-xl">
@@ -47,12 +48,12 @@ const Favorites = () => {
               />
             </div>
             <div>
-              Touch the heart icon on any
+              {t("touchTheHeartIcon")}
               <Link href={"/restaurant-concept"} className="px-1">
-                restaurant
+                {t("restaurant")}
               </Link>
               <br />
-              and it will save them here as a favorite
+              {t("andItWill")}
             </div>
           </div>
         )}

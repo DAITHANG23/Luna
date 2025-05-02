@@ -1,0 +1,12 @@
+{
+  "title": "My Favorite List",
+  "titleRestaurantFavorite": "Restaurants I Love",
+  "emptyListTitle": "Your list is empty",
+  "emptyContent": "You have no favorites yet",
+  "touchTheHeartIcon": "Touch the heart icon on any",
+  "andItWill": "and it will save them here as a favorite.",
+  "restaurant": "restaurant",
+  "button": {
+    "back": "My lists"
+  }
+}

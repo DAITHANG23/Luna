@@ -10,9 +10,9 @@ const Favorites = () => {
 
   const router = useRouter();
   return (
-    <div className="flex flex-col gap-8 mt-[5rem] px-4 w-full lg:w-[60%] h-[100vh] text-center mx-auto">
+    <div className="flex flex-col gap-4 mt-[5rem] mb-10 px-4 w-full lg:h-[100vh] sm:w-[60%] text-center mx-auto">
       <hr className="w-full bg-gray-300 h-[2px]" />
-      <div className="flex flex-col lg:flex-row gap-8 mx-auto lg:mx-0">
+      <div className="flex flex-col lg:flex-row w-full gap-8 mx-auto lg:mx-0">
         <div
           onClick={() => {
             router.push("favorites-concepts/restaurants-list");
