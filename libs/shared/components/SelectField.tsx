@@ -47,7 +47,7 @@ const SelectField = ({
           </span>
           <ChevronDownIcon
             aria-hidden="true"
-            className="col-start-1 row-start-1 size-5 self-center justify-self-end text-stone-600 dark:text-stone-200 sm:size-4"
+            className="col-start-1 row-start-1 size-5 self-center justify-self-end text-stone-600 dark:text-stone-200 w-4 h-4"
           />
         </ListboxButton>
 

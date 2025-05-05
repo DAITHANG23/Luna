@@ -1,6 +1,6 @@
 import { UserResponse } from "@/@types/models/account";
-import { useAppSelector } from "@/lib/redux/hooks";
-import { RootState } from "@/lib/redux/store";
+import { useAppSelector } from "@/libs/redux/hooks";
+import { RootState } from "@/libs/redux/store";
 import apiService from "@/api/index";
 import { GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useQuery } from "@tanstack/react-query";

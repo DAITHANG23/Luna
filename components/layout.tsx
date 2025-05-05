@@ -4,13 +4,13 @@ import Header from "./Header/Header";
 import DialogSetting from "./Header/components/DialogSetting";
 import { AppContextProvider } from "./contexts/AppContext";
 import { useEffect } from "react";
-import { accessToken } from "@/lib/redux/authSlice";
+import { accessToken } from "@/libs/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 import { useRouter } from "next/router";
-import { getAllConcepts } from "@/lib/redux/masterDataSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { getAccountInfo } from "@/lib/redux/authSlice";
+import { getAllConcepts } from "@/libs/redux/masterDataSlice";
+import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
+import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
 export default function Layout({
   children,
@@ -55,7 +55,7 @@ export default function Layout({
       <TransSnackbarProvider>
         <AuthInitializer />
         <Header />
-        <main className="lg:mt-[3rem]">
+        <main>
           <DialogSetting />
           <ScrollToTop />
           {children}

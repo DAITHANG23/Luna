@@ -1,4 +1,4 @@
-import ContactComponent from "@/share/components/ContactComponent";
+import ContactComponent from "@/libs/shared/components/ContactComponent";
 import React from "react";
 import { useTranslation } from "react-i18next";
 

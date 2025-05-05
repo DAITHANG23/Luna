@@ -1,10 +1,10 @@
 import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
-import ButtonLoading from "@/share/components/ButtonLoading";
-import FieldInput from "@/share/components/FieldInput";
+import ButtonLoading from "@/libs/shared/components/ButtonLoading";
+import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
-import useUpdatePassword from "@/hooks/AccountHooks/useUpdatePassword";
+import useUpdatePassword from "@/features/hooks/AccountHooks/useUpdatePassword";
 import { UpdatePasswordType } from "@/@types/models/account";
 import Popover from "./PopoverComponent";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";

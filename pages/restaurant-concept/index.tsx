@@ -5,7 +5,7 @@ import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import Toolbar from "@/pages/restaurant-concept/components/Toolbar";
 import { defaultFilter } from "@/contants";
-import useGetAllConcepts from "@/hooks/ConceptsHooks/useGetAllConcepts";
+import useGetAllConcepts from "@/features/hooks/ConceptsHooks/useGetAllConcepts";
 import Skeleton from "./components/Skeleton";
 
 const RestaurantConcept = () => {
@@ -54,9 +54,9 @@ const RestaurantConcept = () => {
       <Head>
         <title>{t("headTitle.restaurantConcept")}</title>
       </Head>
-      <div className="flex flex-col p-4 sm:p-8 mt-[4rem]">
+      <div className="flex flex-col p-4 sm:p-8 mt-[5rem] sm:mt-[7.5rem]">
         <Toolbar onFilterChange={handleFilterChange} filter={filter} />
-        <></>
+
         <h3 className="text-primary-text">{`Domique Fusion: ${conceptsData?.results || 0} concepts`}</h3>
 
         {isLoading ? (

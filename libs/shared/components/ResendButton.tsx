@@ -1,5 +1,5 @@
 "use client";
-import useResendOtp from "@/hooks/AccountHooks/useResendOtp";
+import useResendOtp from "@/features/hooks/AccountHooks/useResendOtp";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

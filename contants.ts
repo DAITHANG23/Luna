@@ -22,15 +22,6 @@ export const GET_ALL_CONCEPTS_QUERY_KEY = "get-all-concepts";
 export const CONCEPTS_FAVORITE_KEY = "concepts-favorite";
 export const GET_CONCEPTS_FAVORITE_KEY = "get-concepts-favorite";
 
-export const COVER_IMAGES: Array<{ img: string; name: string }> = [
-  { img: "/assets/images/cover-img-1.jpg", name: "cover-1-img" },
-  { img: "/assets/images/cover-img-2.jpg", name: "cover-2-img" },
-  { img: "/assets/images/cover-img-3.png", name: "cover-3-img" },
-  { img: "/assets/images/cover-img-4.png", name: "cover-4-img" },
-  { img: "/assets/images/cover-img-5.png", name: "cover-5-img" },
-  { img: "/assets/images/cover-img-6.jpg", name: "cover-6-img" },
-];
-
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   { img: "/assets/images/img-about-1.png", name: "img-about-1-img" },
   { img: "/assets/images/img-about-2.png", name: "img-about-2-img" },
@@ -51,4 +42,31 @@ export const DEFAULT_CONCEPTS_LIST: Array<{ label: string; value: string }> = [
   { label: "BBQ", value: "bbq" },
   { label: "STEAK HOUSE", value: "steakhouse" },
   { label: "HOT POT", value: "hotpot" },
+];
+
+export const BANNER_IMAGES: Array<{ img: string; name: string }> = [
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746351190/banners/cover-img-4_eepkyd.png",
+    name: "Manwah",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746351190/banners/cover-img-5_l6u3h3.png",
+    name: "isushi",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746351190/banners/cover-img-3_jzid5f.png",
+    name: "Gogi",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746351190/banners/cover-img-2_u1s4as.jpg",
+    name: "Bluebay",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746351189/banners/cover-img-1_fq9ytv.jpg",
+    name: "Yakiniku",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746351189/banners/cover-img-6_asfq1l.jpg",
+    name: "Kichi-kichi",
+  },
 ];

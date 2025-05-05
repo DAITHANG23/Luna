@@ -1,11 +1,11 @@
 import { ForgotPasswordType } from "@/@types/models/account";
 import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
-import useResetPassword from "@/hooks/AccountHooks/useResetPassword";
-import ButtonLoading from "@/share/components/ButtonLoading";
-import FieldInput from "@/share/components/FieldInput";
-import FormLayout from "@/share/components/FormLayout";
-import OTPInput from "@/share/components/OTPInput";
-import ResendButton from "@/share/components/ResendButton";
+import useResetPassword from "@/features/hooks/AccountHooks/useResetPassword";
+import ButtonLoading from "@/libs/shared/components/ButtonLoading";
+import FieldInput from "@/libs/shared/components/FieldInput";
+import FormLayout from "@/libs/shared/components/FormLayout";
+import OTPInput from "@/libs/shared/components/OTPInput";
+import ResendButton from "@/libs/shared/components/ResendButton";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
 import Image from "next/image";

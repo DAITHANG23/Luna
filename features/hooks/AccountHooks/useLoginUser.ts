@@ -6,11 +6,11 @@ import {
 import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/lib/redux/store";
+import { AppDispatch } from "@/libs/redux/store";
 import { ACCOUNT_LOGIN_QUERY_KEY, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
-import { accessToken, authentication } from "@/lib/redux/authSlice";
-import useNotification from "@/hooks/useNotification";
+import { accessToken, authentication } from "@/libs/redux/authSlice";
+import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 
 const loginAccount = async (formData: UserLogin): Promise<LoginResponse> => {

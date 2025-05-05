@@ -1,6 +1,6 @@
 import { languageList } from "@/components/Header/contants";
 import { UK_FLAG, VN_FLAG } from "@/contants";
-import i18n from "@/lib/i18n/i18n";
+import i18n from "@/libs/i18n/i18n";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";

@@ -6,11 +6,11 @@ import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { Square2StackIcon } from "@heroicons/react/24/solid";
-import ModalCarousel from "@/share/components/ModalCarousel";
+import ModalCarousel from "@/libs/shared/components/ModalCarousel";
 import { DEFAULT_CONCEPTS_LIST, GET_CONCEPTS_FAVORITE_KEY } from "@/contants";
-import useFavoriteConcepts from "@/hooks/ConceptsHooks/useFavoriteConcepts";
+import useFavoriteConcepts from "@/features/hooks/ConceptsHooks/useFavoriteConcepts";
 import apiService from "@/api";
-import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
+import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 interface ConceptItemProps {
   concept: ConceptModel;
@@ -60,7 +60,7 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
     setIsFavoriteConcept((prev) => !prev);
   };
   return (
-    <div className="relative h-[450px] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
+    <div className="relative h-[28.125rem] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
       <ModalCarousel
         setOpen={setIsOpenModalImageList}
         open={isOpenModalImageList}

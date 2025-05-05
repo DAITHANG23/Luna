@@ -7,7 +7,7 @@ import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ACCOUNT_REGISTER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
-import useNotification from "@/hooks/useNotification";
+import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 
 const verifyOtpRegister = async (

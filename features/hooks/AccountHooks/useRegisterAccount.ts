@@ -2,7 +2,7 @@ import { ErrorResponse, UserLogin } from "@/@types/models/account";
 import apiService from "@/api/index";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import useNotification from "@/hooks/useNotification";
+import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 
 const registerAccount = async (formData: UserLogin) => {

@@ -1,14 +1,14 @@
-import FormLayout from "@/share/components/FormLayout";
+import FormLayout from "@/libs/shared/components/FormLayout";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL, REGEX_VALIDTATE_PASSWORD } from "../../contants";
 import { Form, Formik } from "formik";
-import FieldInput from "@/share/components/FieldInput";
+import FieldInput from "@/libs/shared/components/FieldInput";
 import { UserLogin } from "@/@types/models/account";
-import useRegister from "@/hooks/AccountHooks/useRegisterAccount";
+import useRegister from "@/features/hooks/AccountHooks/useRegisterAccount";
 import { differenceInYears, parseISO } from "date-fns";
 import { useAppContext } from "@/components/contexts/AppContext";
-import ButtonLoading from "@/share/components/ButtonLoading";
+import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
 const Register = () => {

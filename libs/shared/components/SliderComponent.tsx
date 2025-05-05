@@ -29,7 +29,7 @@ const SliderComponent = ({
       <Slider
         {...settings}
         className={clsx(
-          isSmallSize ? "w-[90%] xl:!w-[80%] " : "w-full",
+          isSmallSize ? "w-[90%] !xl:w-[80%] " : "w-full",
           " text-center items-center m-auto"
         )}
       >

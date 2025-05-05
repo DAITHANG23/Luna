@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         hostname: "purecatamphetamine.github.io",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -3,9 +3,9 @@ import {
   LoginResponse,
   UpdatePasswordType,
 } from "@/@types/models/account";
-import useNotification from "@/hooks/useNotification";
-import { logout } from "@/lib/redux/authSlice";
-import { useAppDispatch } from "@/lib/redux/hooks";
+import useNotification from "@/features/hooks/useNotification";
+import { logout } from "@/libs/redux/authSlice";
+import { useAppDispatch } from "@/libs/redux/hooks";
 import apiService from "@/api/index";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";

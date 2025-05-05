@@ -1,4 +1,4 @@
-import useGetFavoriteConcepts from "@/hooks/ConceptsHooks/useGetFavoriteConcepts";
+import useGetFavoriteConcepts from "@/features/hooks/ConceptsHooks/useGetFavoriteConcepts";
 import { ConceptModel } from "@/@types/models/concept";
 import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Image from "next/image";
@@ -14,7 +14,7 @@ const Favorites = () => {
   const router = useRouter();
   if (isLoading) return <Skeleton />;
   return (
-    <div className="my-20 p-8">
+    <div className="my-20 sm:my-[6.5rem] p-8">
       <div className="w-full lg:w-[60%] mx-auto mb-10">
         <button
           onClick={() => router.push("/favorites-concepts")}
@@ -24,7 +24,7 @@ const Favorites = () => {
         </button>
         {concepts?.length > 0 && <h4 className="pt-8">{t("title")}</h4>}
         {concepts && concepts.length > 0 ? (
-          <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center">
+          <div className="py-8 grid grid 2xl:grid-cols-4 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center">
             {concepts?.map((concept: ConceptModel) => {
               return (
                 <div key={concept.name}>

@@ -1,4 +1,4 @@
-import useBreakPoints from "@/hooks/useBreakPoints";
+import useBreakPoints from "@/features/hooks/useBreakPoints";
 import { FilterIcon, FilterOpenIcon } from "@/public/assets";
 import { cn } from "@/utils/css";
 

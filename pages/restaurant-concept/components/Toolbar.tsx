@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useMemo } from "react";
-import SearchField from "@/share/components/SearchField";
-import WrapperFilter from "@/share/components/WrapperFilter";
-import SelectField from "@/share/components/SelectField";
+import SearchField from "@/libs/shared/components/SearchField";
+import WrapperFilter from "@/libs/shared/components/WrapperFilter";
+import SelectField from "@/libs/shared/components/SelectField";
 import { useTranslation } from "react-i18next";
 import { sortBy } from "lodash";
 import { ConceptsFilter, IConcepts, IOptions } from "@/@types/models/concept";
-import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
+import { useDebouncedCallback } from "@/features/hooks/useDebouncedCallback";
 import { formatCurrency } from "@/utils";
 
 interface ToolbarProps {
@@ -95,7 +95,7 @@ const Toolbar = ({ onFilterChange, filter }: ToolbarProps) => {
 
   return (
     <WrapperFilter>
-      <div className="flex flex-col lg:flex-row justify-between items-center lg:justify-start  gap-5">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:justify-start gap-5">
         <SearchField onChange={handleTextChange} />
         <SelectField
           key={"concepts"}
