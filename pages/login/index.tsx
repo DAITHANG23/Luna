@@ -1,13 +1,13 @@
-import FormLayout from "@/share/components/FormLayout";
+import FormLayout from "@/libs/shared/components/FormLayout";
 import React, { useMemo } from "react";
 import Link from "next/link";
-import FieldInput from "@/share/components/FieldInput";
+import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL } from "../../contants";
-import useLogin from "@/hooks/AccountHooks/useLoginUser";
+import useLogin from "@/features/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models/account";
-import ButtonLoading from "@/share/components/ButtonLoading";
+import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import SocialLogin from "./components/SocialLogin";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";

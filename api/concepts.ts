@@ -1,6 +1,6 @@
 import { ConceptsFavoriteResponse } from "@/@types/models/concept";
 import { API_VERSION_V1 } from "@/contants";
-import apiRequest from "@/hooks/useApiRequest";
+import apiRequest from "@/features/hooks/useApiRequest";
 
 const baseURL = `${API_VERSION_V1}/concepts`;
 const concepts = {

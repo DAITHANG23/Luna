@@ -1,10 +1,10 @@
-import SliderComponent from "@/share/components/SliderComponent";
+import SliderComponent from "@/libs/shared/components/SliderComponent";
 import InformationRestaurants from "@/components/Home/InformationRestaurants";
 import ConceptsList from "@/components/Home/ConceptsList";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import { COVER_IMAGES } from "@/contants";
+import { BANNER_IMAGES } from "@/contants";
 const BusinessHighlights = dynamic(
   () => import("@/components/Home/BusinessHighlights"),
   {
@@ -14,11 +14,11 @@ const BusinessHighlights = dynamic(
 export default function Home() {
   const { t } = useTranslation("translation");
   return (
-    <div className="mt-20">
+    <div className="mt-[4rem] sm:mt-[6rem]">
       <Head>
         <title>{t("headTitle.home")}</title>
       </Head>
-      <SliderComponent coverImages={COVER_IMAGES} />
+      <SliderComponent coverImages={BANNER_IMAGES} />
       <BusinessHighlights />
       <InformationRestaurants />
       <ConceptsList />

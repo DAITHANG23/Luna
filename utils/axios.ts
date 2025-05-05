@@ -2,6 +2,7 @@
 import { ErrorResponse } from "@/@types/models/account";
 import apiService from "@/api/index";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
+import Router from "next/router";
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;
 }
@@ -37,6 +38,13 @@ axiosWrapper.interceptors.response.use(
     const status = error.response?.status;
 
     if (error.response) {
+      if (
+        status === 403 &&
+        error.response.data.message === "Invalid refresh token!"
+      ) {
+        await apiService.account.logout();
+        Router.push("/login");
+      }
       if (
         (status === 401 || status === 403 || status === 500) &&
         (error.response?.data?.error?.name === "TokenExpiredError" ||

@@ -3,9 +3,9 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { inter, red_hat_display } from "@/styles/fonts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReduxProvider } from "@/lib/redux/provider";
+import { ReduxProvider } from "@/libs/redux/provider";
 import { I18nextProvider } from "react-i18next";
-import i18n from "@/lib/i18n/i18n";
+import i18n from "@/libs/i18n/i18n";
 import "leaflet/dist/leaflet.css";
 
 export default function App({ Component, pageProps }: AppProps) {
