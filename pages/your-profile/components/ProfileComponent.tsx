@@ -4,7 +4,7 @@ import { CameraIcon } from "@heroicons/react/24/solid";
 import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { REGEX_VALIDATE_EMAIL } from "@/contants";
+import { DEFAULT_AVATAR, REGEX_VALIDATE_EMAIL } from "@/contants";
 import { differenceInYears, parseISO } from "date-fns";
 import { UserLogin, UserModel, UserResponse } from "@/@types/models/account";
 import useUpdateProfile from "@/features/hooks/AccountHooks/useUpdateProfile";
@@ -48,7 +48,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>(
-    userData?.data.data.avatarUrl || "/assets/images/defaultAvatar.jpg"
+    userData?.data.data.avatarUrl || DEFAULT_AVATAR
   );
 
   useEffect(() => {

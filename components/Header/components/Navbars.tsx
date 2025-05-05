@@ -37,6 +37,7 @@ import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 import Skeleton from "./Skeleton";
+import useBreakPoints from "@/features/hooks/useBreakPoints";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -50,6 +51,8 @@ const Navbars = () => {
     (state: RootState) => state.auth.accessToken
   );
   const [open, setOpen] = useState(false);
+
+  const { isMobileSize } = useBreakPoints();
 
   useEffect(() => {
     refetch();
@@ -107,13 +110,23 @@ const Navbars = () => {
           <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
             <div className="flex shrink-0 items-center">
               <Link href={"/"}>
-                <Image
-                  alt="Your Company"
-                  src="/assets/images/logo.png"
-                  height={40}
-                  width={130}
-                  className="rounded-sm"
-                />
+                {isMobileSize ? (
+                  <Image
+                    alt="Your Company"
+                    src="/favicon.ico"
+                    height={40}
+                    width={40}
+                    className="rounded-sm"
+                  />
+                ) : (
+                  <Image
+                    alt="Your Company"
+                    src="/assets/images/logo.png"
+                    height={40}
+                    width={130}
+                    className="rounded-sm"
+                  />
+                )}
               </Link>
             </div>
             <div className="hidden lg:ml-20 lg:block content-center">

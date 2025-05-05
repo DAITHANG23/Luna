@@ -1,5 +1,5 @@
+import RestaurantLogin from "@/libs/assets/RestaurantLogin";
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -20,13 +20,7 @@ const FormLayout = ({ children }: FormLayoutProps) => {
       <div className="flex sm:col-span-1 lg:col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">
         <h2 className="text-primary max-w-[450px]">{t("title")}</h2>
         <p className="text-primary-text pb-6 max-w-[450px]">{t("content")}</p>
-        <Image
-          src={"/assets/images/restaurantLogin.png"}
-          alt="restaurant"
-          width={432}
-          height={324}
-          className="rounded-lg shadow-xl"
-        />
+        <RestaurantLogin />
       </div>
 
       <div className="flex-1 sm:col-span-1 lg:col-span-2 flex flex-col justify-start items-center">

@@ -3,7 +3,7 @@ import { ConceptModel } from "@/@types/models/concept";
 import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Image from "next/image";
 import Link from "next/link";
-import ArrowLeft from "@/public/icons/ArrowLeft";
+import ArrowLeftIcon from "@/libs/assets/ArrowLeftIcon";
 import { useRouter } from "next/router";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,8 @@ const Favorites = () => {
           onClick={() => router.push("/favorites-concepts")}
           className="flex gap-2 items-center border border-solid rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
         >
-          <ArrowLeft /> <span className="font-base">{t("button.back")}</span>
+          <ArrowLeftIcon />{" "}
+          <span className="font-base">{t("button.back")}</span>
         </button>
         {concepts?.length > 0 && <h4 className="pt-8">{t("title")}</h4>}
         {concepts && concepts.length > 0 ? (

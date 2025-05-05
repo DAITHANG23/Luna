@@ -14,8 +14,8 @@ export const useMediaQuery = (query: string) => {
 };
 const useBreakPoints = () => {
   const isDesktopSize = useMediaQuery("(min-width: 1024px)");
-  const isTableSize = useMediaQuery("(min-width: 768px)");
-  const isMobileSize = useMediaQuery("(max-width: 768px)");
+  const isTableSize = useMediaQuery("(min-width: 719px)");
+  const isMobileSize = useMediaQuery("(max-width: 719px)");
 
   return { isDesktopSize, isTableSize, isMobileSize };
 };

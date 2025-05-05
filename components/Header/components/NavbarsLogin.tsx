@@ -12,9 +12,9 @@ const NavbarsLogin = () => {
     <div className="flex justify-between items-center p-4">
       <Link href={"/"}>
         <Image
-          src={"/favicon.ico"}
+          src={"/assets/images/logo.png"}
           alt="logo"
-          width={60}
+          width={130}
           height={60}
           className="rounded-lg"
         />

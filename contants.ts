@@ -23,10 +23,22 @@ export const CONCEPTS_FAVORITE_KEY = "concepts-favorite";
 export const GET_CONCEPTS_FAVORITE_KEY = "get-concepts-favorite";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
-  { img: "/assets/images/img-about-1.png", name: "img-about-1-img" },
-  { img: "/assets/images/img-about-2.png", name: "img-about-2-img" },
-  { img: "/assets/images/img-about-3.png", name: "img-about-3-img" },
-  { img: "/assets/images/img-about-4.png", name: "img-about-4-img" },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746421646/img-about-2_juc80m.png",
+    name: "img-about-1-img",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746421646/img-about-4_swbpzr.png",
+    name: "img-about-2-img",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746421645/img-about-1_cscjnx.png",
+    name: "img-about-3-img",
+  },
+  {
+    img: "https://res.cloudinary.com/dn797d3j3/image/upload/v1746421645/img-about-3_rxl9tl.png",
+    name: "img-about-4-img",
+  },
 ];
 
 export const defaultFilter: ConceptsFilter = {

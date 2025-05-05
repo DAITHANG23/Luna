@@ -29,7 +29,7 @@ const SliderComponent = ({
       <Slider
         {...settings}
         className={clsx(
-          isSmallSize ? "w-[90%] !xl:w-[80%] " : "w-full",
+          isSmallSize ? "w-[90%] xl:!w-[80%] " : "w-full",
           " text-center items-center m-auto"
         )}
       >
@@ -39,8 +39,8 @@ const SliderComponent = ({
               key={i.name}
               className={clsx(
                 isSmallSize
-                  ? "h-[300px] sm:h-[300px] lg:h-[500px] border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md mb-10"
-                  : "h-[219px] xl:h-[1000px] sm:h-[600px]",
+                  ? "h-[300px] sm:h-[300px] lg:h-[550px] border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md mb-10"
+                  : "h-[219px] sm:h-[300px] lg:h-screen",
                 "w-full flex items-center justify-center overflow-hidden relative"
               )}
             >

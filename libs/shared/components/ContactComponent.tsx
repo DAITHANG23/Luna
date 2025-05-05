@@ -1,4 +1,6 @@
-import { Facebook, Github, Linkedin } from "lucide-react";
+import FacebookIcon from "@/libs/assets/FacebookIcon";
+import GithubIcon from "@/libs/assets/GithubIcon";
+import LinkedinIcon from "@/libs/assets/LinkedinIcon";
 import React from "react";
 
 const ContactComponent = () => {
@@ -9,21 +11,21 @@ const ContactComponent = () => {
         className="bg-primary/10 p-2 rounded-full hover:bg-primary/20 transition-colors"
         aria-label="Facebook"
       >
-        <Facebook size={18} className="text-primary" />
+        <FacebookIcon />
       </a>
       <a
         href="https://www.linkedin.com/in/domnguyen236/"
         className="bg-primary/10 p-2 rounded-full hover:bg-primary/20 transition-colors"
         aria-label="Linkedin"
       >
-        <Linkedin size={18} className="text-primary" />
+        <LinkedinIcon />
       </a>
       <a
         href="https://github.com/DAITHANG23"
         className="bg-primary/10 p-2 rounded-full hover:bg-primary/20 transition-colors"
         aria-label="Github"
       >
-        <Github size={18} className="text-primary" />
+        <GithubIcon />
       </a>
     </div>
   );
