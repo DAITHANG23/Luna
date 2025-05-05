@@ -3,20 +3,31 @@ import React from "react";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { ConceptModel } from "@/@types/models/concept";
 import { useTranslation } from "react-i18next";
-
+import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 interface FavoriteConceptsViewProps {
   data: Array<ConceptModel>;
+  isVisitedConcept?: boolean;
 }
-const FavoriteConceptsView = ({ data }: FavoriteConceptsViewProps) => {
-  const favoriteImages = data?.map((i) => i.imageCover);
+const FavoriteConceptsView = ({
+  data,
+  isVisitedConcept = false,
+}: FavoriteConceptsViewProps) => {
+  const favoriteImages =
+    data && data.length > 0 ? data?.map((i) => i.imageCover) : [];
   const { t } = useTranslation("concept");
   return (
     <div className="flex flex-col w-full sm:w-[21.75rem] !h-[19.7rem] shadow-glass border-none rounded-xl cursor-pointer transition duration-300 ease-in-out hover:scale-105">
       <div className="flex text-center  w-full h-[3.3rem] p-4 gap-4 bg-white rounded-xl">
         <p>
-          <HeartIconSolid className="text-primary w-5 h-5" />
+          {isVisitedConcept ? (
+            <CheckCircleIconSolid className="text-black w-7 h-7" />
+          ) : (
+            <HeartIconSolid className="text-primary w-7 h-7" />
+          )}
         </p>
-        <p className="font-base font-normal">{t("titleRestaurantFavorite")}</p>
+        <p className="font-base font-bold">
+          {isVisitedConcept ? t("visited") : t("titleRestaurantFavorite")}
+        </p>
       </div>
       <div className="w-full h-[17rem] relative rounded-xl">
         {favoriteImages && favoriteImages.length >= 3 ? (
@@ -52,7 +63,7 @@ const FavoriteConceptsView = ({ data }: FavoriteConceptsViewProps) => {
           </div>
         ) : (
           <Image
-            src={"/assets/images/gogi-dish1.jpg"}
+            src={`/assets/images/${favoriteImages[0]}.jpg`}
             alt="gogi"
             layout="fill"
             className="rounded-br-xl rounded-bl-xl"

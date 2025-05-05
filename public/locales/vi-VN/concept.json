@@ -2,10 +2,14 @@
   "title": "Danh sách yêu thích của tôi",
   "titleRestaurantFavorite": "Nhà hàng tôi yêu thích",
   "emptyListTitle": "Danh sách của bạn trống",
-  "emptyContent": "Ban chưa có nhà hàng nào yêu thích",
+  "emptyContent": "Bạn chưa có nhà hàng nào yêu thích",
+  "checkinEmptyContent": "Bạn chưa có ghé thăm nhà hàng nào",
   "touchTheHeartIcon": "Chạm vào biểu tượng trái tim",
+  "touchTheVisitIcon": "Chạm vào biểu tượng đã ghé thăm",
   "andItWill": "nào và nó sẽ lưu chúng ở đây như một mục yêu thích.",
+  "andItWillVisited": "nào và nó sẽ lưu chúng ở đây như một mục đã ghé thăm.",
   "restaurant": "bất kì nhà hàng",
+  "visited": "Đã ghé thăm",
   "button": {
     "back": "Danh sách của tôi"
   }
