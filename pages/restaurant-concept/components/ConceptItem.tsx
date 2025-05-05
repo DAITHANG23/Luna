@@ -23,13 +23,12 @@ interface ConceptItemProps {
 const ConceptItem = ({ concept }: ConceptItemProps) => {
   const { userData, refetch } = useGetDataUser();
   const queryClient = useQueryClient();
-  const isFavoriteConceptSelected = userData?.data.data.favorites.includes(
+  const isFavoriteConceptSelected = userData?.data.data.favorites?.includes(
     concept._id
   );
 
-  const isCheckInConceptSelected = userData?.data.data.checkInConcepts.includes(
-    concept._id
-  );
+  const isCheckInConceptSelected =
+    userData?.data.data.checkInConcepts?.includes(concept._id);
 
   const [isFavoriteConcept, setIsFavoriteConcept] = useState(
     isFavoriteConceptSelected
