@@ -1,23 +1,23 @@
 import Image from "next/image";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { CameraIcon } from "@heroicons/react/24/solid";
-import FieldInput from "@/share/components/FieldInput";
+import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { REGEX_VALIDATE_EMAIL } from "@/contants";
+import { DEFAULT_AVATAR, REGEX_VALIDATE_EMAIL } from "@/contants";
 import { differenceInYears, parseISO } from "date-fns";
 import { UserLogin, UserModel, UserResponse } from "@/@types/models/account";
-import useUpdateProfile from "@/hooks/AccountHooks/useUpdateProfile";
+import useUpdateProfile from "@/features/hooks/AccountHooks/useUpdateProfile";
 import Router from "next/router";
 import apiService from "@/api/index";
-import useNotification from "@/hooks/useNotification";
-import ButtonLoading from "@/share/components/ButtonLoading";
-import RadioGroupComponent from "@/share/components/RadioGroupComponent";
+import useNotification from "@/features/hooks/useNotification";
+import ButtonLoading from "@/libs/shared/components/ButtonLoading";
+import RadioGroupComponent from "@/libs/shared/components/RadioGroupComponent";
 import {
   ArrowPathIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
-import ModalNotification from "@/share/components/ModalNotification";
+import ModalNotification from "@/libs/shared/components/ModalNotification";
 import Skeleton from "./Skeleton";
 import { useTranslation } from "react-i18next";
 
@@ -48,7 +48,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>(
-    userData?.data.data.avatarUrl || "/assets/images/defaultAvatar.jpg"
+    userData?.data.data.avatarUrl || DEFAULT_AVATAR
   );
 
   useEffect(() => {

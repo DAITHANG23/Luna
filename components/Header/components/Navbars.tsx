@@ -23,20 +23,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppContext } from "@/components/contexts/AppContext";
 import { useRouter } from "next/router";
-import { RootState } from "@/lib/redux/store";
+import { RootState } from "@/libs/redux/store";
 import {
   accessToken,
   authentication,
   logout,
   userInfo,
-} from "@/lib/redux/authSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+} from "@/libs/redux/authSlice";
+import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useTranslation } from "react-i18next";
-import LanguageSelect from "@/share/components/LanguageSelect";
-import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
+import LanguageSelect from "@/libs/shared/components/LanguageSelect";
+import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 import Skeleton from "./Skeleton";
+import useBreakPoints from "@/features/hooks/useBreakPoints";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -51,6 +52,8 @@ const Navbars = () => {
   );
   const [open, setOpen] = useState(false);
 
+  const { isMobileSize } = useBreakPoints();
+
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -59,19 +62,6 @@ const Navbars = () => {
 
   const { t } = useTranslation("translation");
   const [itemNavbar, setItemNavbar] = useState(pathname);
-  const [fixedHeaderBackground, setFixedHeaderBackground] = useState(false);
-
-  useEffect(() => {
-    const handleSroll = () => {
-      if (window.scrollY && window.scrollY > 64) setFixedHeaderBackground(true);
-      else setFixedHeaderBackground(false);
-    };
-    window.addEventListener("scroll", handleSroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleSroll);
-    };
-  }, []);
 
   useEffect(() => {
     setItemNavbar(pathname);
@@ -91,10 +81,7 @@ const Navbars = () => {
     <Disclosure
       as="nav"
       className={clsx(
-        "fixed top-0 left-0 p-0 sm:p-4 lg:p-5 w-full",
-        fixedHeaderBackground
-          ? "bg-white/80 dark:bg-gray-800/80"
-          : " bg-white dark:bg-gray-800"
+        "fixed top-0 left-0 p-0 sm:p-4 lg:p-5 w-full bg-white dark:bg-gray-800"
       )}
     >
       <div className="sm:w-[90%] mx-auto max-w-7xl lg:px-8 content-center text-center">
@@ -123,13 +110,23 @@ const Navbars = () => {
           <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
             <div className="flex shrink-0 items-center">
               <Link href={"/"}>
-                <Image
-                  alt="Your Company"
-                  src="/favicon.ico"
-                  height={80}
-                  width={80}
-                  className="rounded-lg sm:w-20 sm:h-20 w-12 h-12"
-                />
+                {isMobileSize ? (
+                  <Image
+                    alt="Your Company"
+                    src="/favicon.ico"
+                    height={40}
+                    width={40}
+                    className="rounded-sm"
+                  />
+                ) : (
+                  <Image
+                    alt="Your Company"
+                    src="/assets/images/logo.png"
+                    height={40}
+                    width={130}
+                    className="rounded-sm"
+                  />
+                )}
               </Link>
             </div>
             <div className="hidden lg:ml-20 lg:block content-center">
@@ -166,7 +163,7 @@ const Navbars = () => {
               className="cursor-pointer hover:bg-gray-200 rounded-full p-2"
               onClick={() => setIsOpenDialog((prev) => !prev)}
             >
-              <Cog6ToothIcon className="w-7 h-7 animate-[spin_5s_linear_infinite] dark:text-primary" />
+              <Cog6ToothIcon className="w-7 h-7 animate-[spin_8s_linear_infinite] dark:text-primary" />
             </button>
 
             <LanguageSelect />

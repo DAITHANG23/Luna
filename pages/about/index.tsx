@@ -1,6 +1,6 @@
 import { ABOUT_IMAGES } from "@/contants";
-import ContactComponent from "@/share/components/ContactComponent";
-import SliderComponent from "@/share/components/SliderComponent";
+import ContactComponent from "@/libs/shared/components/ContactComponent";
+import SliderComponent from "@/libs/shared/components/SliderComponent";
 import {
   Utensils,
   Clock,
@@ -38,9 +38,12 @@ const WE_OFFER_LIST: Array<{
   },
 ];
 
-const MapComponent = dynamic(() => import("@/share/components/MapComponent"), {
-  ssr: false, // Tắt SSR
-});
+const MapComponent = dynamic(
+  () => import("@/libs/shared/components/MapComponent"),
+  {
+    ssr: false,
+  }
+);
 
 const About = () => {
   const { t, ready } = useTranslation(["home", "translation"]);
@@ -50,7 +53,7 @@ const About = () => {
       <Head>
         <title>{t("translation:headTitle.about")}</title>
       </Head>
-      <div className="max-w-full pt-0 p-4 sm:p-0 sm:max-w-[70%] mx-auto mt-20">
+      <div className="max-w-full pt-0 p-4 sm:p-0 sm:max-w-[70%] mx-auto mt-[8.5rem]">
         <div className="mb-10 text-center bg-gradient-to-r from-primary/10 via-secondary/20 to-primary/10 py-8 rounded-xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
             {t("about.title")}

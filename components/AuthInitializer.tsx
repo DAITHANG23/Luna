@@ -1,5 +1,5 @@
-import { accessToken, logout } from "@/lib/redux/authSlice";
-import { useAppDispatch } from "@/lib/redux/hooks";
+import { accessToken, logout } from "@/libs/redux/authSlice";
+import { useAppDispatch } from "@/libs/redux/hooks";
 import { useEffect } from "react";
 
 const AuthInitializer = () => {

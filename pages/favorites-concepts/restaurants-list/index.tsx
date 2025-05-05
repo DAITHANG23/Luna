@@ -1,9 +1,9 @@
-import useGetFavoriteConcepts from "@/hooks/ConceptsHooks/useGetFavoriteConcepts";
+import useGetFavoriteConcepts from "@/features/hooks/ConceptsHooks/useGetFavoriteConcepts";
 import { ConceptModel } from "@/@types/models/concept";
 import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Image from "next/image";
 import Link from "next/link";
-import ArrowLeft from "@/public/icons/ArrowLeft";
+import ArrowLeftIcon from "@/libs/assets/ArrowLeftIcon";
 import { useRouter } from "next/router";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import { useTranslation } from "react-i18next";
@@ -14,17 +14,18 @@ const Favorites = () => {
   const router = useRouter();
   if (isLoading) return <Skeleton />;
   return (
-    <div className="my-20 p-8">
+    <div className="my-20 sm:my-[6.5rem] p-8">
       <div className="w-full lg:w-[60%] mx-auto mb-10">
         <button
           onClick={() => router.push("/favorites-concepts")}
           className="flex gap-2 items-center border border-solid rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
         >
-          <ArrowLeft /> <span className="font-base">{t("button.back")}</span>
+          <ArrowLeftIcon />{" "}
+          <span className="font-base">{t("button.back")}</span>
         </button>
         {concepts?.length > 0 && <h4 className="pt-8">{t("title")}</h4>}
         {concepts && concepts.length > 0 ? (
-          <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center">
+          <div className="py-8 grid grid 2xl:grid-cols-4 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center">
             {concepts?.map((concept: ConceptModel) => {
               return (
                 <div key={concept.name}>

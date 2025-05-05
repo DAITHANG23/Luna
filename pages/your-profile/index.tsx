@@ -1,15 +1,15 @@
-import GeneralProfile from "@/public/icons/GeneralProfile";
-import SecurityIcon from "@/public/icons/SecurityIcon";
-import TabsComponent from "@/share/components/TabsComponent";
+import GeneralProfile from "@/libs/assets/GeneralProfile";
+import SecurityIcon from "@/libs/assets/SecurityIcon";
+import TabsComponent from "@/libs/shared/components/TabsComponent";
 import React, { JSX, useEffect, useMemo, useState } from "react";
 import ProfileComponent from "./components/ProfileComponent";
 import SecurityComponent from "./components/SecurityComponent";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "@/lib/redux/hooks";
-import { RootState } from "@/lib/redux/store";
+import { useAppSelector } from "@/libs/redux/hooks";
+import { RootState } from "@/libs/redux/store";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import useGetDataUser from "@/hooks/AccountHooks/useGetDataUser";
+import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 const tabList: Array<{ name: string; icon: JSX.Element }> = [
   { name: "tabProfile", icon: <GeneralProfile /> },
   { name: "tabSecurity", icon: <SecurityIcon /> },
@@ -47,7 +47,7 @@ const YourProfile = () => {
       <Head>
         <title>{t("translation:headTitle.yourProfile")}</title>
       </Head>
-      <div className="xl:w-[70%] w-[85%] flex flex-col justify-start m-auto my-5 sm:my-20 mt-20">
+      <div className="xl:w-[70%] w-[85%] flex flex-col justify-start mx-auto mb-[5rem] mt-[5rem] sm:mt-[7.5rem]">
         <h1 className="text-primary-text">{t("title")}</h1>
         <TabsComponent
           tabList={updateTablist}

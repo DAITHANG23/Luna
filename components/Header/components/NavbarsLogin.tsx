@@ -3,7 +3,7 @@ import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import LanguageSelect from "@/share/components/LanguageSelect";
+import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 
 const NavbarsLogin = () => {
   const { setIsOpenDialog } = useAppContext();
@@ -12,9 +12,9 @@ const NavbarsLogin = () => {
     <div className="flex justify-between items-center p-4">
       <Link href={"/"}>
         <Image
-          src={"/favicon.ico"}
+          src={"/assets/images/logo.png"}
           alt="logo"
-          width={60}
+          width={130}
           height={60}
           className="rounded-lg"
         />
