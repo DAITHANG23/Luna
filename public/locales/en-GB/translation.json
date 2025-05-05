@@ -129,6 +129,9 @@
     "forgotPassword": "Domique Fusion | Forgot Password",
     "verifyOtp": "Domique Fusion | Verify OTP",
     "yourProfile": "Domique Fusion | Your Profile",
-    "restaurantConcept": "Domique Fusion | Concepts"
+    "restaurantConcept": "Domique Fusion | Concepts",
+    "favoriteConcepts": "Domique Fusion | Favorite Concepts",
+    "favoriteRestaurants": "Domique Fusion | Favorite Restaurants",
+    "checkInRestaurants": "Domique Fusion | Check In Restaurants"
   }
 }

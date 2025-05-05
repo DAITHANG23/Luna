@@ -7,5 +7,9 @@ const concepts = {
   getFavoriteConcepts: async (): Promise<ConceptsFavoriteResponse> => {
     return await apiRequest(`${baseURL}/favoriteConcepts`, "GET");
   },
+
+  getCheckInConcepts: async (): Promise<ConceptsFavoriteResponse> => {
+    return await apiRequest(`${baseURL}/getCheckInConcepts`, "GET");
+  },
 };
 export default concepts;

@@ -15,6 +15,7 @@ export interface UserModel {
   fullName: string;
   googleId?: string;
   favorites: Array<string>;
+  checkInConcepts: Array<string>;
 }
 
 export interface UserLogin extends Partial<UserModel> {}

@@ -24,5 +24,21 @@ const user = {
       formData
     );
   },
+
+  checkInConcept: async ({ formData }: { formData: FavoriteConcepts }) => {
+    return await apiRequest(`${baseURL}/checkInConcept`, "POST", formData);
+  },
+
+  deleteCheckInConcept: async ({
+    formData,
+  }: {
+    formData: FavoriteConcepts;
+  }) => {
+    return await apiRequest(
+      `${baseURL}/deleteCheckInConcept`,
+      "DELETE",
+      formData
+    );
+  },
 };
 export default user;
