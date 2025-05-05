@@ -1,25 +1,33 @@
 import { ConceptModel } from "@/@types/models/concept";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { Square2StackIcon } from "@heroicons/react/24/solid";
 import ModalCarousel from "@/libs/shared/components/ModalCarousel";
-import { DEFAULT_CONCEPTS_LIST, GET_CONCEPTS_FAVORITE_KEY } from "@/contants";
+import {
+  DEFAULT_CONCEPTS_LIST,
+  GET_CHECK_IN_CONCEPTS_KEY,
+  GET_CONCEPTS_FAVORITE_KEY,
+} from "@/contants";
 import useFavoriteConcepts from "@/features/hooks/ConceptsHooks/useFavoriteConcepts";
 import apiService from "@/api";
 import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
+import useCheckInConcept from "@/features/hooks/ConceptsHooks/useCheckInConcept";
 interface ConceptItemProps {
   concept: ConceptModel;
 }
 const ConceptItem = ({ concept }: ConceptItemProps) => {
-  const [isCheckedInConcept, setIsCheckedInConcept] = useState(false);
   const { userData, refetch } = useGetDataUser();
   const queryClient = useQueryClient();
   const isFavoriteConceptSelected = userData?.data.data.favorites.includes(
+    concept._id
+  );
+
+  const isCheckInConceptSelected = userData?.data.data.checkInConcepts.includes(
     concept._id
   );
 
@@ -27,15 +35,25 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
     isFavoriteConceptSelected
   );
 
+  const [isCheckedInConcept, setIsCheckedInConcept] = useState(
+    isCheckInConceptSelected
+  );
+
   useEffect(() => {
     if (isFavoriteConceptSelected) {
       setIsFavoriteConcept(isFavoriteConceptSelected);
     }
-  }, [isFavoriteConceptSelected]);
+
+    if (isCheckInConceptSelected) {
+      setIsCheckedInConcept(isCheckInConceptSelected);
+    }
+  }, [isFavoriteConceptSelected, isCheckInConceptSelected]);
 
   const [isOpenModalImageList, setIsOpenModalImageList] = useState(false);
 
   const { mutate: favoriteConcepts } = useFavoriteConcepts();
+
+  const { mutate: checkInConcept } = useCheckInConcept();
 
   const typeConcept = useMemo(() => {
     if (!concept?.type) return "OTHER";
@@ -44,21 +62,54 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
     );
   }, [concept]);
 
-  const handleClickFavorite = async (idConcept: string) => {
-    const formData = {
-      idConcept: idConcept,
-      userId: userData?.data.data._id || "",
-    };
-    if (isFavoriteConceptSelected) {
-      await apiService.user.deleteFavoriteConcept({ formData });
-      queryClient.invalidateQueries({ queryKey: [GET_CONCEPTS_FAVORITE_KEY] });
-      refetch();
-    } else {
-      favoriteConcepts(formData);
-    }
+  const handleClickFavorite = useCallback(
+    async (idConcept: string) => {
+      const formData = {
+        idConcept: idConcept,
+        userId: userData?.data.data._id || "",
+      };
+      if (isFavoriteConceptSelected) {
+        await apiService.user.deleteFavoriteConcept({ formData });
+        queryClient.invalidateQueries({
+          queryKey: [GET_CONCEPTS_FAVORITE_KEY],
+        });
+        refetch();
+      } else {
+        favoriteConcepts(formData);
+      }
 
-    setIsFavoriteConcept((prev) => !prev);
-  };
+      setIsFavoriteConcept((prev) => !prev);
+    },
+    [
+      isFavoriteConceptSelected,
+      userData,
+      refetch,
+      favoriteConcepts,
+      queryClient,
+    ]
+  );
+
+  const handleClickCheckIn = useCallback(
+    async (idConcept: string) => {
+      const formData = {
+        idConcept: idConcept,
+        userId: userData?.data.data._id || "",
+      };
+      if (isCheckedInConcept) {
+        await apiService.user.deleteCheckInConcept({ formData });
+        queryClient.invalidateQueries({
+          queryKey: [GET_CHECK_IN_CONCEPTS_KEY],
+        });
+        refetch();
+      } else {
+        checkInConcept(formData);
+      }
+
+      setIsCheckedInConcept((prev) => !prev);
+    },
+    [isCheckedInConcept, userData, refetch, checkInConcept, queryClient]
+  );
+
   return (
     <div className="relative h-[28.125rem] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
       <ModalCarousel
@@ -90,7 +141,7 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
         <button
           className="border-none bg-white rounded-full p-1 cursor-pointer"
           onClick={() => {
-            setIsCheckedInConcept((prev) => !prev);
+            handleClickCheckIn(concept?._id);
           }}
         >
           {isCheckedInConcept ? (

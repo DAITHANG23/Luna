@@ -129,6 +129,9 @@
     "forgotPassword": "Domique Fusion | Quên mật khẩu",
     "verifyOtp": "Domique Fusion | Xác nhận OTP",
     "yourProfile": "Domique Fusion | Hồ sơ của bạn",
-    "restaurantConcept": "Domique Fusion | Thương hiệu nhà hàng"
+    "restaurantConcept": "Domique Fusion | Thương hiệu nhà hàng",
+    "favoriteConcepts": "Domique Fusion | Thương hiệu yêu thích",
+    "favoriteRestaurants": "Domique Fusion | Nhà hàng yêu thích",
+    "checkInRestaurants": "Domique Fusion | Nhà hàng đã ghé thăm"
   }
 }
