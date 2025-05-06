@@ -14,6 +14,7 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-empty-object-type": "off",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
     },
   },
 ];
