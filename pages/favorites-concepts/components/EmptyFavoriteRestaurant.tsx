@@ -20,12 +20,12 @@ const EmptyFavoriteRestaurant = ({
           <HeartIconSolid className="text-primary w-7 h-7" />
         )}
         <p className="font-base font-bold">
-          {isVisitedConcept ? "Visited" : t("titleRestaurantFavorite")}
+          {isVisitedConcept ? t("visited") : t("titleRestaurantFavorite")}
         </p>
       </div>
       <div className="w-full h-[8.75rem] flex justify-center items-center rounded-xl mt-4">
         {isVisitedConcept ? (
-          <CheckCircleIcon className="text-gray-400 w-20 h-20" />
+          <CheckCircleIcon className="text-gray-400 w-10 h-10" />
         ) : (
           <Image
             src={"/assets/images/favoriteRestaurant.gif"}

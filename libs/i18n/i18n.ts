@@ -13,7 +13,7 @@ i18n
       queryStringParams: { v: `${Date.now()}` },
     },
     ns: [
-      "translate",
+      "translation",
       "home",
       "restaurant",
       "booking",
