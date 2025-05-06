@@ -12,6 +12,7 @@ import { getAllConcepts } from "@/libs/redux/masterDataSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
+import { isEmpty } from "lodash";
 export default function Layout({
   children,
 }: Readonly<{
@@ -25,6 +26,7 @@ export default function Layout({
   } = router.query;
   const dispatch = useAppDispatch();
   const accessTokenState = useAppSelector((state) => state.auth.accessToken);
+  const accountInfo = useAppSelector((state) => state.auth.accountInfo);
 
   useEffect(() => {
     if (accessTokenLoginWithGmail) {
@@ -45,10 +47,10 @@ export default function Layout({
 
   useEffect(() => {
     dispatch(getAllConcepts());
-    if (accessTokenState) {
+    if (accessTokenState && isEmpty(accountInfo)) {
       dispatch(getAccountInfo());
     }
-  }, [dispatch, accessTokenState]);
+  }, [dispatch, accessTokenState, accountInfo]);
 
   return (
     <AppContextProvider>

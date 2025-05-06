@@ -102,6 +102,11 @@ const authSlice = createSlice({
       .addCase(getAccountInfo.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Đã xảy ra lỗi";
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.accountInfo = null;
+        state.isAuthenticated = false;
+        state.accessToken = "";
       });
   },
 });
