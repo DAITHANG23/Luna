@@ -3,7 +3,7 @@ import FilterIcon from "@/libs/assets/FilterIcon";
 import FilterOpenIcon from "@/libs/assets/FilterOpenIcon";
 import { cn } from "@/utils/css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface WrapperFilterProps {
@@ -12,8 +12,13 @@ interface WrapperFilterProps {
 const WrapperFilter = ({ children }: WrapperFilterProps) => {
   const { isDesktopSize } = useBreakPoints();
   const [open, setOpen] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const { t, ready } = useTranslation();
-  if (!ready) return null;
+  if (!ready || !hasMounted) return null;
   return isDesktopSize ? (
     <div className="py-5">{children}</div>
   ) : (

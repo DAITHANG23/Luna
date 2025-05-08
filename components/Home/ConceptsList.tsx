@@ -190,6 +190,7 @@ const ConceptsList = () => {
                         alt={restaurant.name}
                         width={restaurant.width}
                         height={restaurant.height}
+                        loading="lazy"
                         className="absolute h-[55px] inset-0 transition-opacity duration-300 hover:opacity-0"
                       />
                       <Image
@@ -197,6 +198,7 @@ const ConceptsList = () => {
                         alt={restaurant.name}
                         width={restaurant.width}
                         height={restaurant.height}
+                        loading="lazy"
                         className="absolute h-[55px] inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100"
                       />
                     </Link>
