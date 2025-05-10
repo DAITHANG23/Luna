@@ -64,7 +64,7 @@ const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
             )}
           >
             <Image
-              src={`/assets/images/${i}.jpg`}
+              src={i}
               alt="test"
               fill
               className="object-fit"
