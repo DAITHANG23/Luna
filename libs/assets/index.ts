@@ -10,3 +10,4 @@ export * from "./GeneralProfile";
 export * from "./SecurityIcon";
 export * from "./AuthorizationImage";
 export * from "./NotFound";
+export * from "./StarIcon";

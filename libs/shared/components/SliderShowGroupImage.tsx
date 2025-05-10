@@ -68,24 +68,23 @@ const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
         )}
         lazyLoad="progressive"
       >
-        {imagesList.map((i) => {
-          return (
-            <div
-              key={i}
-              className={cn(
-                "!w-[300px] !h-[300px] 2xl:!w-[500px] 2xl:!h-[500px] relative px-2 overflow-hidden"
-              )}
-            >
-              <Image
-                src={`/assets/images/${i}.jpg`}
-                alt="sharp"
-                fill
-                className={cn("object-cover transition-opacity duration-500")}
-                loading="lazy"
-              />
-            </div>
-          );
-        })}
+        {imagesList.map((i) => (
+          <div
+            key={i}
+            className={cn(
+              "!w-[300px] !h-[300px]  2xl:!w-[500px] 2xl:!h-[500px] relative px-2"
+            )}
+          >
+            <Image
+              src={i}
+              alt="test"
+              fill
+              className="object-fit"
+              loading="lazy"
+              priority={false}
+            />
+          </div>
+        ))}
       </Slider>
     </div>
   );
