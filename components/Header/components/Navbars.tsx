@@ -31,7 +31,7 @@ import {
   userInfo,
 } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
-import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY } from "@/contants";
+import { GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import { useQueryClient } from "@tanstack/react-query";
@@ -48,10 +48,14 @@ const Navbars = () => {
     (state: RootState) => state.auth.accessToken
   );
   const [open, setOpen] = useState(false);
-
+  const [hasMounted, setHasMounted] = useState(false);
   const { isMobileSize } = useBreakPoints();
 
-  const { t } = useTranslation("translation");
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const { t, ready } = useTranslation("translation");
   const [itemNavbar, setItemNavbar] = useState(pathname);
 
   useEffect(() => {
@@ -65,6 +69,8 @@ const Navbars = () => {
     dispatch(authentication({ isAuthenticated: false }));
     queryClient.removeQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
   };
+
+  if (!ready || !hasMounted) return null;
 
   return (
     <Disclosure
@@ -166,7 +172,7 @@ const Navbars = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       alt="avatar"
-                      src={accountInfo?.data?.data.avatarUrl || DEFAULT_AVATAR}
+                      src={accountInfo?.data?.data.avatarUrl || ""}
                       className="size-8 rounded-full"
                       width={32}
                       height={32}

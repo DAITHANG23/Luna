@@ -32,6 +32,7 @@ const EmptyFavoriteRestaurant = ({
             alt="favorite-restaurant"
             fill
             objectFit="contain"
+            loading="lazy"
           />
         )}
       </div>

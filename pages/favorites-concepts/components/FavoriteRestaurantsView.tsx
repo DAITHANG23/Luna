@@ -34,39 +34,43 @@ const FavoriteConceptsView = ({
           <div className="w-full h-full flex">
             <div className="w-[70%] h-full relative">
               <Image
-                src={`/assets/images/${favoriteImages[0]}.jpg`}
-                alt="gogi"
+                src={`${favoriteImages[0]}`}
+                alt="favoriteDish"
                 layout="fill"
                 className="rounded-bl-xl"
                 objectFit="cover"
+                loading="lazy"
               />
             </div>
             <div className="w-[30%] h-full">
               <div className="w-[full h-[50%] relative">
                 <Image
-                  src={`/assets/images/${favoriteImages[1]}.jpg`}
-                  alt="gogi"
+                  src={`${favoriteImages[1]}`}
+                  alt="favoriteDish"
                   layout="fill"
                   objectFit="cover"
+                  loading="lazy"
                 />
               </div>
               <div className="w-full h-[50%] relative">
                 <Image
-                  src={`/assets/images/${favoriteImages[2]}.jpg`}
-                  alt="gogi"
+                  src={`${favoriteImages[2]}`}
+                  alt="favoriteDish"
                   layout="fill"
                   className="rounded-br-xl"
                   objectFit="cover"
+                  loading="lazy"
                 />
               </div>
             </div>
           </div>
         ) : (
           <Image
-            src={`/assets/images/${favoriteImages[0]}.jpg`}
-            alt="gogi"
+            src={`${favoriteImages[0]}`}
+            alt="favoriteDish"
             layout="fill"
             className="rounded-br-xl rounded-bl-xl"
+            loading="lazy"
           />
         )}
       </div>

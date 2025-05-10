@@ -17,6 +17,7 @@ import apiService from "@/api";
 import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 import useCheckInConcept from "@/features/hooks/ConceptsHooks/useCheckInConcept";
+import StarIcon from "@/libs/assets/StarIcon";
 interface ConceptItemProps {
   concept: ConceptModel;
 }
@@ -118,10 +119,11 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
       />
       <div className="w-full h-[300px] relative ">
         <Image
-          src={`/assets/images/${concept?.imageCover}.jpg`}
+          src={concept?.imageCover}
           alt={concept?.name}
           fill
           className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-none"
+          loading="lazy"
         />
         <button
           className="absolute bottom-4 right-4 text-white w-6 h-6"
@@ -132,9 +134,19 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
       </div>
       <div className="p-4 flex flex-col justify-start items-start gap-2">
         <h3 className="text-primary-text">{concept?.name || ""}</h3>
-        <p className="text-primary-text">{typeConcept}</p>
-        <p className="text-primary-text">{concept?.address || ""}</p>
-        <p className="text-primary">{concept?.avgRatings || 0}</p>
+        <p className="text-primary-text text-sm">{typeConcept}</p>
+        <p className="text-primary-text text-sm">{concept?.address || ""}</p>
+        <div className="text-primary text-sm flex gap-1 justify-center items-center font-bold">
+          <StarIcon />
+          {concept?.avgRatings || 0}
+          <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+          <a
+            href="#"
+            className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
+          >
+            0 reviews
+          </a>
+        </div>
       </div>
       <div className="absolute top-[10px] right-[10px] flex gap-3">
         <button
