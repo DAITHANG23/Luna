@@ -39,6 +39,7 @@ const FavoriteConceptsView = ({
                 layout="fill"
                 className="rounded-bl-xl"
                 objectFit="cover"
+                loading="lazy"
               />
             </div>
             <div className="w-[30%] h-full">
@@ -48,6 +49,7 @@ const FavoriteConceptsView = ({
                   alt="favoriteDish"
                   layout="fill"
                   objectFit="cover"
+                  loading="lazy"
                 />
               </div>
               <div className="w-full h-[50%] relative">
@@ -57,6 +59,7 @@ const FavoriteConceptsView = ({
                   layout="fill"
                   className="rounded-br-xl"
                   objectFit="cover"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -67,6 +70,7 @@ const FavoriteConceptsView = ({
             alt="favoriteDish"
             layout="fill"
             className="rounded-br-xl rounded-bl-xl"
+            loading="lazy"
           />
         )}
       </div>

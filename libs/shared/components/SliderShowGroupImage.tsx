@@ -1,4 +1,3 @@
-import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +7,19 @@ import Image from "next/image";
 interface SliderShowGroupImageProps {
   imagesList: Array<string>;
 }
+
+// type CloudinaryLoaderProps = {
+//   src: string; // Đường dẫn đến ảnh (không bao gồm domain cloudinary)
+//   width: number; // Chiều rộng mong muốn do Next.js cung cấp để tạo ảnh responsive
+//   quality?: number; // Chất lượng ảnh (0 - 100), mặc định là 75 nếu không truyền
+// };
+// const cloudinaryLoader = ({ src, width, quality }: CloudinaryLoaderProps) => {
+//   const path = src.replace(
+//     "https://res.cloudinary.com/dn797d3j3/image/upload/",
+//     ""
+//   );
+//   return `https://res.cloudinary.com/dn797d3j3/image/upload/w_${width},q_${quality || 75}/${path}`;
+// };
 const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
   const settings = {
     className: "center",

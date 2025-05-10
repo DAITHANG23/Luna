@@ -123,6 +123,7 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
           alt={concept?.name}
           fill
           className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-none"
+          loading="lazy"
         />
         <button
           className="absolute bottom-4 right-4 text-white w-6 h-6"
