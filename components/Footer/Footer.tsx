@@ -1,12 +1,17 @@
 import ContactComponent from "@/libs/shared/components/ContactComponent";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = moment().year();
   const { t, ready } = useTranslation("translation");
+  const [hasMounted, setHasMounted] = useState(false);
 
-  if (!ready) return null;
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  if (!ready || !hasMounted) return null;
   return (
     <div className="text-white grid grid-cols-1 text-center sm:grid-cols-3 w-full p-[50px] gap-[50px] bg-[#1C252E]">
       <div className="w-full sm:w-[200px] lg:w-[350px]">

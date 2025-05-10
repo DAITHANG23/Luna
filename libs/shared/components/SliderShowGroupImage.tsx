@@ -1,4 +1,3 @@
-import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +7,19 @@ import Image from "next/image";
 interface SliderShowGroupImageProps {
   imagesList: Array<string>;
 }
+
+// type CloudinaryLoaderProps = {
+//   src: string; // Đường dẫn đến ảnh (không bao gồm domain cloudinary)
+//   width: number; // Chiều rộng mong muốn do Next.js cung cấp để tạo ảnh responsive
+//   quality?: number; // Chất lượng ảnh (0 - 100), mặc định là 75 nếu không truyền
+// };
+// const cloudinaryLoader = ({ src, width, quality }: CloudinaryLoaderProps) => {
+//   const path = src.replace(
+//     "https://res.cloudinary.com/dn797d3j3/image/upload/",
+//     ""
+//   );
+//   return `https://res.cloudinary.com/dn797d3j3/image/upload/w_${width},q_${quality || 75}/${path}`;
+// };
 const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
   const settings = {
     className: "center",
@@ -56,23 +68,24 @@ const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
         )}
         lazyLoad="progressive"
       >
-        {imagesList.map((i) => (
-          <div
-            key={i}
-            className={cn(
-              "!w-[300px] !h-[300px]  2xl:!w-[500px] 2xl:!h-[500px] relative px-2"
-            )}
-          >
-            <Image
-              src={`/assets/images/${i}.jpg`}
-              alt="test"
-              fill
-              className="object-fit"
-              loading="lazy"
-              priority={false}
-            />
-          </div>
-        ))}
+        {imagesList.map((i) => {
+          return (
+            <div
+              key={i}
+              className={cn(
+                "!w-[300px] !h-[300px] 2xl:!w-[500px] 2xl:!h-[500px] relative px-2 overflow-hidden"
+              )}
+            >
+              <Image
+                src={`/assets/images/${i}.jpg`}
+                alt="sharp"
+                fill
+                className={cn("object-cover transition-opacity duration-500")}
+                loading="lazy"
+              />
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );

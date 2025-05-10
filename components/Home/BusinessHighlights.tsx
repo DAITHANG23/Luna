@@ -52,6 +52,7 @@ const BusinessHighlights = () => {
                 alt={i.title}
                 width={57}
                 height={57}
+                loading="lazy"
                 className="w-[57px] h-[57px] hover:bg-primary text-center leading-[54px] p-2 rounded-full bg-secondary-text"
               />
             </div>
