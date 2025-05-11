@@ -25,6 +25,7 @@ export const GET_CHECK_IN_CONCEPTS_KEY = "get-checkin-concepts";
 export const CHECK_IN_FAVORITE_CONCEPTS_KEY = "checkin-favorite-concepts";
 export const DELETE_CHECK_IN_FAVORITE_CONCEPTS_KEY =
   "checkin-concepts-favorite";
+export const REVIEW_CONCEPT_KEY = "review-concept";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   {

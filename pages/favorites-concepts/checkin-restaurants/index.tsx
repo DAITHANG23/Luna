@@ -25,7 +25,7 @@ const Visited = () => {
         <title>{t("translation:headTitle.checkInRestaurants")}</title>
       </Head>
       <div className="my-20 sm:my-[6.5rem] p-8">
-        <div className="w-full lg:w-[60%] mx-auto mb-10">
+        <div className="w-full lg:w-[80%] mx-auto mb-10">
           <button
             onClick={() => router.push("/favorites-concepts")}
             className="flex gap-2 items-center border border-solid rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
@@ -41,7 +41,7 @@ const Visited = () => {
               {checkInConcepts?.map((concept: ConceptModel) => {
                 return (
                   <div key={concept.name}>
-                    <ConceptItem concept={concept} />
+                    <ConceptItem concept={concept} isReviewBtn/>
                   </div>
                 );
               })}

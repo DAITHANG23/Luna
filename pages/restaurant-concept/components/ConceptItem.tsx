@@ -1,4 +1,4 @@
-import { ConceptModel } from "@/@types/models/concept";
+import { ConceptModel, ReviewPost } from "@/@types/models/concept";
 import Image from "next/image";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
@@ -18,10 +18,16 @@ import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 import useCheckInConcept from "@/features/hooks/ConceptsHooks/useCheckInConcept";
 import StarIcon from "@/libs/assets/StarIcon";
+import ModalComponent from "@/libs/shared/components/ModalComponent";
+import useReviewConcept from "@/features/hooks/ConceptsHooks/useReviewConcept";
+import { cn } from "@/utils/css";
+import { useTranslation } from "react-i18next";
 interface ConceptItemProps {
   concept: ConceptModel;
+  isReviewBtn?: boolean;
 }
-const ConceptItem = ({ concept }: ConceptItemProps) => {
+const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
+  const { t } = useTranslation("concept");
   const { userData, refetch } = useGetDataUser();
   const queryClient = useQueryClient();
   const isFavoriteConceptSelected = userData?.data.data.favorites?.includes(
@@ -51,9 +57,23 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
 
   const [isOpenModalImageList, setIsOpenModalImageList] = useState(false);
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const [scoreReviewConcept, setScoreReviewConcept] = useState<number>(0);
+
+  const [valueContentReview, setValueContentReview] = useState("");
+
+  const [isDoneReview, setIsDoneReview] = useState(false);
+
   const { mutate: favoriteConcepts } = useFavoriteConcepts();
 
   const { mutate: checkInConcept } = useCheckInConcept();
+
+  const { mutate: reviewPost } = useReviewConcept();
+
+  useEffect(() => {
+    if (!isOpenModal) setIsDoneReview(false);
+  }, [isOpenModal]);
 
   const typeConcept = useMemo(() => {
     if (!concept?.type) return "OTHER";
@@ -110,6 +130,27 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
     [isCheckedInConcept, userData, refetch, checkInConcept, queryClient]
   );
 
+  const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = e.target;
+    setValueContentReview(value);
+  };
+
+  const handleSubmitReviewConcept = () => {
+    const formData: ReviewPost = {
+      conceptId: concept._id,
+      score: scoreReviewConcept,
+      content: valueContentReview,
+    };
+
+    reviewPost(formData);
+    setIsDoneReview(true);
+
+    setScoreReviewConcept(0);
+    setValueContentReview("");
+  };
+
+  const isInvalid = scoreReviewConcept <= 0 || valueContentReview.trim() === "";
+
   return (
     <div className="relative h-[28.125rem] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
       <ModalCarousel
@@ -117,6 +158,84 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
         open={isOpenModalImageList}
         imagesList={concept?.images}
       />
+      <ModalComponent open={isOpenModal} setOpen={setIsOpenModal}>
+        <div
+          className={cn(
+            isDoneReview
+              ? "h-[18.75rem] sm:h-[15rem]"
+              : "h-[18.75rem] sm:h-[31.25rem]",
+            "w-full sm:w-[42.5rem] mt-10 mx-auto"
+          )}
+        >
+          {isDoneReview ? (
+            <div className="w-[80%] mx-auto">
+              <h1 className="text-3xl">{t("allDone")} 🎉</h1>
+              <p className="pt-10">{t("thankForSharing")}</p>
+              <div className="flex justify-end mt-10">
+                <button
+                  className="bg-black text-white rounded-lg text-sm py-[10px] px-[13px] hover:scale-105 transition duration-200"
+                  onClick={() => {
+                    setIsOpenModal(false);
+                  }}
+                >
+                  {t("concept.close")}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <h1 className="text-3xl text-center">{t("pleaseShare")}</h1>
+              <div className="mt-11">
+                <p>{t("howWasTheRestaurant")}</p>
+                <div className="flex gap-2 mt-4 justify-center items-center text-center">
+                  {Array.from({ length: 5 }, (v, i) => {
+                    return (
+                      <div key={i}>
+                        <button
+                          className={cn(
+                            scoreReviewConcept - 1 === i && "bg-gray-300",
+                            "border rounded-md w-8 h-8 pt-1 text-center hover:bg-gray-300"
+                          )}
+                          onClick={() => setScoreReviewConcept(i + 1)}
+                        >
+                          {i + 1}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex justify-around mt-2 w-[25rem] mx-auto text-gray-500">
+                  <p> {t("terrible")}</p> <p> {t("amazing")}</p>
+                </div>
+              </div>
+              <div className="mt-16">
+                <label>{t("pleaseShareAnyAdditional")}</label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  className="block p-2.5 w-full mt-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Write your thoughts here..."
+                  onChange={(e) => handleChangeText(e)}
+                />
+              </div>
+              <div className="flex justify-end mt-10">
+                <button
+                  className={cn(
+                    isInvalid
+                      ? "bg-gray-400/50 hover:scale-1010"
+                      : "bg-black hover:scale-105",
+                    "text-white rounded-lg text-sm py-[10px] px-[13px]  transition duration-200"
+                  )}
+                  onClick={handleSubmitReviewConcept}
+                  disabled={isInvalid}
+                >
+                  {t("concept.submit")}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </ModalComponent>
       <div className="w-full h-[300px] relative ">
         <Image
           src={concept?.imageCover}
@@ -144,10 +263,26 @@ const ConceptItem = ({ concept }: ConceptItemProps) => {
             href="#"
             className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
           >
-            0 reviews
+            {concept?.reviews?.length} reviews
           </a>
         </div>
       </div>
+      {isReviewBtn && (
+        <div>
+          <hr className="w-full bg-gray-300 h-[2px] !mt-0" />
+          <div className="mb-4 flex mx-4">
+            <button
+              className="border border-black rounded-full py-[2px] px-3 text-xs font-normal hover:bg-gray-200"
+              onClick={() => {
+                setIsOpenModal(true);
+              }}
+            >
+              Review
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="absolute top-[10px] right-[10px] flex gap-3">
         <button
           className="border-none bg-white rounded-full p-1 cursor-pointer"
