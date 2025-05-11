@@ -21,11 +21,13 @@ import StarIcon from "@/libs/assets/StarIcon";
 import ModalComponent from "@/libs/shared/components/ModalComponent";
 import useReviewConcept from "@/features/hooks/ConceptsHooks/useReviewConcept";
 import { cn } from "@/utils/css";
+import { useTranslation } from "react-i18next";
 interface ConceptItemProps {
   concept: ConceptModel;
   isReviewBtn?: boolean;
 }
 const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
+  const { t } = useTranslation("concept");
   const { userData, refetch } = useGetDataUser();
   const queryClient = useQueryClient();
   const isFavoriteConceptSelected = userData?.data.data.favorites?.includes(
@@ -167,8 +169,8 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
         >
           {isDoneReview ? (
             <div className="w-[80%] mx-auto">
-              <h1 className="text-3xl">All done! 🎉</h1>
-              <p className="pt-10">Thanks for sharing your feedback with us.</p>
+              <h1 className="text-3xl">{t("allDone")} 🎉</h1>
+              <p className="pt-10">{t("thankForSharing")}</p>
               <div className="flex justify-end mt-10">
                 <button
                   className="bg-black text-white rounded-lg text-sm py-[10px] px-[13px] hover:scale-105 transition duration-200"
@@ -176,17 +178,15 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                     setIsOpenModal(false);
                   }}
                 >
-                  Close
+                  {t("concept.close")}
                 </button>
               </div>
             </div>
           ) : (
             <div>
-              <h1 className="text-3xl text-center">
-                Please share your experience.
-              </h1>
+              <h1 className="text-3xl text-center">{t("pleaseShare")}</h1>
               <div className="mt-11">
-                <p>How was the restaurant&apos;s service & cooking?</p>
+                <p>{t("howWasTheRestaurant")}</p>
                 <div className="flex gap-2 mt-4 justify-center items-center text-center">
                   {Array.from({ length: 5 }, (v, i) => {
                     return (
@@ -205,13 +205,11 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                   })}
                 </div>
                 <div className="flex justify-around mt-2 w-[25rem] mx-auto text-gray-500">
-                  <p>1 - Terrible</p> <p>5 - Amazing</p>
+                  <p> {t("terrible")}</p> <p> {t("amazing")}</p>
                 </div>
               </div>
               <div className="mt-16">
-                <label>
-                  Please share any additional comments about this concept:
-                </label>
+                <label>{t("pleaseShareAnyAdditional")}</label>
                 <textarea
                   id="message"
                   rows={4}
@@ -231,7 +229,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                   onClick={handleSubmitReviewConcept}
                   disabled={isInvalid}
                 >
-                  Submit
+                  {t("concept.submit")}
                 </button>
               </div>
             </div>
@@ -265,7 +263,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
             href="#"
             className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
           >
-            {concept.reviews.length} reviews
+            {concept?.reviews?.length} reviews
           </a>
         </div>
       </div>
