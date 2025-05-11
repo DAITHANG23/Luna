@@ -1,4 +1,4 @@
-import { ConceptsFavoriteResponse } from "@/@types/models/concept";
+import { ConceptsFavoriteResponse, ReviewPost } from "@/@types/models/concept";
 import { API_VERSION_V1 } from "@/contants";
 import apiRequest from "@/features/hooks/useApiRequest";
 
@@ -10,6 +10,14 @@ const concepts = {
 
   getCheckInConcepts: async (): Promise<ConceptsFavoriteResponse> => {
     return await apiRequest(`${baseURL}/getCheckInConcepts`, "GET");
+  },
+
+  postReviewConcept: async ({
+    formData,
+  }: {
+    formData: ReviewPost;
+  }): Promise<ConceptsFavoriteResponse> => {
+    return await apiRequest(`${baseURL}/review`, "POST", formData);
   },
 };
 export default concepts;
