@@ -27,6 +27,13 @@ export interface ConceptModel {
   dishes: Array<Dish>;
   type: string;
   avgRatings: number;
+  reviews: Array<string>;
+}
+
+export interface ReviewPost {
+  conceptId: string;
+  score: number;
+  content: string;
 }
 
 export interface AllConceptsResponse {

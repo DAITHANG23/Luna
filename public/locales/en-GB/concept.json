@@ -10,7 +10,16 @@
   "andItWillVisited": "and it will save them here as a visited.",
   "restaurant": "restaurant",
   "visited": "Visited",
+  "allDone": "All done!",
+  "thankForSharing": "Thanks for sharing your feedback with us.",
+  "pleaseShare": "Please share your experience.",
+  "howWasTheRestaurant": "How was the restaurant&apos;s service & cooking?",
+  "terrible": "1 - Terrible",
+  "amazing": "5 - Amazing",
+  "pleaseShareAnyAdditional": "Please share any additional comments about this concept:",
   "button": {
-    "back": "My lists"
+    "back": "My lists",
+    "submit": "Submit",
+    "close": "Close"
   }
 }

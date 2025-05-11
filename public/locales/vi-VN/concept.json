@@ -10,7 +10,16 @@
   "andItWillVisited": "nào và nó sẽ lưu chúng ở đây như một mục đã ghé thăm.",
   "restaurant": "bất kì nhà hàng",
   "visited": "Đã ghé thăm",
+  "allDone": "Hoàn tất!",
+  "thankForSharing": "Cảm ơn bạn đã chia sẻ phản hồi với chúng tôi.",
+  "pleaseShare": "Hãy chia sẻ kinh nghiệm của bạn.",
+  "howWasTheRestaurant": "Dịch vụ và món ăn của nhà hàng thế nào?",
+  "terrible": "1 - Tệ",
+  "amazing": "5 - Tuyệt vời",
+  "pleaseShareAnyAdditional": "Vui lòng chia sẻ bất kỳ bình luận bổ sung nào về khái niệm này:",
   "button": {
-    "back": "Danh sách của tôi"
+    "back": "Danh sách của tôi",
+    "submit": "Submit",
+    "close": "Đóng"
   }
 }

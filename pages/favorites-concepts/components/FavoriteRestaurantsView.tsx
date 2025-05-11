@@ -43,7 +43,7 @@ const FavoriteConceptsView = ({
               />
             </div>
             <div className="w-[30%] h-full">
-              <div className="w-[full h-[50%] relative">
+              <div className="w-full h-[50%] relative">
                 <Image
                   src={`${favoriteImages[1]}`}
                   alt="favoriteDish"
