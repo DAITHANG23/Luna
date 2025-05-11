@@ -3,7 +3,7 @@ import React from "react";
 
 const NotFound = () => {
   return (
-    <div className="w-[90%]">
+    <div>
       <Image
         src={"/assets/images/not-found.png"}
         alt="not-found"
