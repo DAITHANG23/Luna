@@ -163,7 +163,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
           className={cn(
             isDoneReview
               ? "h-[18.75rem] sm:h-[15rem]"
-              : "h-[18.75rem] sm:h-[31.25rem]",
+              : "h-auto sm:h-[31.25rem]",
             "w-full sm:w-[42.5rem] mt-10 mx-auto"
           )}
         >
@@ -178,7 +178,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                     setIsOpenModal(false);
                   }}
                 >
-                  {t("concept.close")}
+                  {t("button.close")}
                 </button>
               </div>
             </div>
@@ -204,7 +204,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                     );
                   })}
                 </div>
-                <div className="flex justify-around mt-2 w-[25rem] mx-auto text-gray-500">
+                <div className="flex justify-around mt-2 max-w-full sm:max-w-[25rem] mx-auto text-gray-500">
                   <p> {t("terrible")}</p> <p> {t("amazing")}</p>
                 </div>
               </div>
@@ -214,7 +214,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                   id="message"
                   rows={4}
                   className="block p-2.5 w-full mt-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Write your thoughts here..."
+                  placeholder={t("placehoderTextarea")}
                   onChange={(e) => handleChangeText(e)}
                 />
               </div>
@@ -229,7 +229,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
                   onClick={handleSubmitReviewConcept}
                   disabled={isInvalid}
                 >
-                  {t("concept.submit")}
+                  {t("button.submit")}
                 </button>
               </div>
             </div>

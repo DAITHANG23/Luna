@@ -8,7 +8,7 @@ const NotFoundPage = () => {
   const { t } = useTranslation("translation");
 
   return (
-    <div className="flex flex-col gap-[16px] justify-center items-center text-center my-[30px] sm:my-[8.5rem]">
+    <div className="flex flex-col gap-4 justify-center items-center text-center my-[5rem] sm:my-[8.5rem]">
       <NotFound />
       <h2 className="text-primary mt-[16px]">{t("notFound")}</h2>
 
