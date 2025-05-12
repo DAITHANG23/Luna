@@ -149,7 +149,8 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
     setValueContentReview("");
   };
 
-  const isInvalid = scoreReviewConcept <= 0 || valueContentReview.trim() === "";
+  const isInvalid =
+    scoreReviewConcept <= 0 || valueContentReview.trim().length < 5;
 
   return (
     <div className="relative h-[28.125rem] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
@@ -183,7 +184,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="text-primary-text">
               <h1 className="text-3xl text-center">{t("pleaseShare")}</h1>
               <div className="mt-11">
                 <p>{t("howWasTheRestaurant")}</p>
@@ -272,7 +273,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
           <hr className="w-full bg-gray-300 h-[2px] !mt-0" />
           <div className="mb-4 flex mx-4">
             <button
-              className="border border-black rounded-full py-[2px] px-3 text-xs font-normal hover:bg-gray-200"
+              className="border border-black rounded-full py-[2px] px-3 text-xs font-normal hover:bg-gray-200 dark:border-white dark:text-white dark:hover:bg-black"
               onClick={() => {
                 setIsOpenModal(true);
               }}
