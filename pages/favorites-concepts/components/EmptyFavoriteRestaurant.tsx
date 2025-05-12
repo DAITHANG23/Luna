@@ -25,14 +25,14 @@ const EmptyFavoriteRestaurant = ({
       </div>
       <div className="w-full h-[8.75rem] flex justify-center items-center rounded-xl mt-4">
         {isVisitedConcept ? (
-          <CheckCircleIcon className="text-gray-400 w-10 h-10" />
+          <CheckCircleIcon className="text-gray-400 w-12 h-12" />
         ) : (
           <Image
             src={"/assets/images/favoriteRestaurant.gif"}
             alt="favorite-restaurant"
-            fill
+            width={200}
+            height={200}
             objectFit="contain"
-            loading="lazy"
           />
         )}
       </div>
