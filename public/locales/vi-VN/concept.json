@@ -1,6 +1,7 @@
 {
   "title": "Danh sách yêu thích của tôi",
   "titleRestaurantFavorite": "Nhà hàng tôi yêu thích",
+  "titleCheckIn": "Danh sách nhà hàng tôi đã đến",
   "emptyListTitle": "Danh sách của bạn trống",
   "emptyContent": "Bạn chưa có nhà hàng nào yêu thích",
   "checkinEmptyContent": "Bạn chưa có ghé thăm nhà hàng nào",

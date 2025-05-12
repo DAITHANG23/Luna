@@ -20,7 +20,7 @@ const ModalComponent = ({ open, setOpen, children }: ModalComponentProps) => {
         <div className="flex min-h-full items-center justify-center text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-lg p-4 bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 w-[90%] lg:max-w-3xl data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+            className="relative transform overflow-hidden rounded-lg p-4 bg-white dark:bg-background text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 w-[90%] lg:max-w-3xl data-closed:sm:translate-y-0 data-closed:sm:scale-95"
           >
             {children}
             <div className="absolute top-2 right-3">

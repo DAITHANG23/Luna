@@ -1,5 +1,6 @@
 {
   "title": "My Favorite List",
+  "titleCheckIn": "My Check in List",
   "titleRestaurantFavorite": "Restaurants I Love",
   "emptyListTitle": "Your list is empty",
   "emptyContent": "You have no favorites yet",

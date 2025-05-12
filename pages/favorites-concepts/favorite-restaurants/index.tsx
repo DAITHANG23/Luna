@@ -27,13 +27,15 @@ const Favorites = () => {
         <div className="w-full lg:w-[80%] mx-auto mb-10">
           <button
             onClick={() => router.push("/favorites-concepts")}
-            className="flex gap-2 items-center border border-solid rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
+            className="flex gap-2 items-center border border-solid dark:border-white rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
           >
             <ArrowLeftIcon />
-            <span className="font-base">{t("button.back")}</span>
+            <span className="font-base text-primary-text dark:hover:text-black">
+              {t("button.back")}
+            </span>
           </button>
           {favoriteconcepts?.length > 0 && (
-            <h4 className="pt-8">{t("title")}</h4>
+            <h4 className="pt-8 text-primary-text">{t("title")}</h4>
           )}
           {favoriteconcepts && favoriteconcepts.length > 0 ? (
             <div className="py-8 grid grid 2xl:grid-cols-4 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center">
@@ -47,7 +49,7 @@ const Favorites = () => {
             </div>
           ) : (
             <div className="w-full lg:w-[60%] mx-auto text-center">
-              <h1>
+              <h1 className="text-primary-text">
                 {t("emptyContent")}
                 <br /> {`:(`}
               </h1>
@@ -59,9 +61,12 @@ const Favorites = () => {
                   objectFit="contain"
                 />
               </div>
-              <div>
+              <div className="dark:text-white">
                 {t("touchTheHeartIcon")}
-                <Link href={"/restaurant-concept"} className="px-1">
+                <Link
+                  href={"/restaurant-concept"}
+                  className="px-1 dark:text-primary"
+                >
                   {t("restaurant")}
                 </Link>
                 <br />
