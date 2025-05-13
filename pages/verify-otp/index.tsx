@@ -1,7 +1,7 @@
-import { ForgotPasswordType } from "@/@types/models/account";
+import { ForgotPasswordType } from "@/@types/models";
 import { useAppContext } from "@/components/contexts/AppContext";
 import useVerifyOtp from "@/features/hooks/AccountHooks/useVerifyOtp";
-import IllustrationDashboardImage from "@/libs/assets/IllustrationDashboardImage";
+import { IllustrationDashboardImage } from "@/libs/assets";
 import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import FieldInput from "@/libs/shared/components/FieldInput";
 import FormLayout from "@/libs/shared/components/FormLayout";

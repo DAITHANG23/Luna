@@ -4,7 +4,7 @@ import WrapperFilter from "@/libs/shared/components/WrapperFilter";
 import SelectField from "@/libs/shared/components/SelectField";
 import { useTranslation } from "react-i18next";
 import { sortBy } from "lodash";
-import { ConceptsFilter, IConcepts, IOptions } from "@/@types/models/concept";
+import { ConceptsFilter, IConcepts, IOptions } from "@/@types/models";
 import { useDebouncedCallback } from "@/features/hooks/useDebouncedCallback";
 import { formatCurrency } from "@/utils";
 

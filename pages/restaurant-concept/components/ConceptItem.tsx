@@ -1,4 +1,4 @@
-import { ConceptModel, ReviewPost } from "@/@types/models/concept";
+import { ConceptModel, ReviewPost } from "@/@types/models";
 import Image from "next/image";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
@@ -8,6 +8,7 @@ import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/sol
 import { Square2StackIcon } from "@heroicons/react/24/solid";
 import ModalCarousel from "@/libs/shared/components/ModalCarousel";
 import {
+  CONCEPTS_ROUTES,
   DEFAULT_CONCEPTS_LIST,
   GET_CHECK_IN_CONCEPTS_KEY,
   GET_CONCEPTS_FAVORITE_KEY,
@@ -17,11 +18,12 @@ import apiService from "@/api";
 import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 import useCheckInConcept from "@/features/hooks/ConceptsHooks/useCheckInConcept";
-import StarIcon from "@/libs/assets/StarIcon";
+import { StarIcon } from "@/libs/assets";
 import ModalComponent from "@/libs/shared/components/ModalComponent";
 import useReviewConcept from "@/features/hooks/ConceptsHooks/useReviewConcept";
 import { cn } from "@/utils/css";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 interface ConceptItemProps {
   concept: ConceptModel;
   isReviewBtn?: boolean;
@@ -55,6 +57,8 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
     }
   }, [isFavoriteConceptSelected, isCheckInConceptSelected]);
 
+  const router = useRouter();
+
   const [isOpenModalImageList, setIsOpenModalImageList] = useState(false);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -70,6 +74,13 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
   const { mutate: checkInConcept } = useCheckInConcept();
 
   const { mutate: reviewPost } = useReviewConcept();
+
+  const handleClickConcept = () => {
+    const route =
+      CONCEPTS_ROUTES.find((c) => c.name === concept.name)?.route || "";
+    localStorage.setItem("routeConcept", route);
+    router.push(`/${route}`);
+  };
 
   useEffect(() => {
     if (!isOpenModal) setIsDoneReview(false);
@@ -170,8 +181,8 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
         >
           {isDoneReview ? (
             <div className="w-[80%] mx-auto">
-              <h1 className="text-3xl">{t("allDone")} 🎉</h1>
-              <p className="pt-10">{t("thankForSharing")}</p>
+              <h1 className="text-3xl text-primary-text">{t("allDone")} 🎉</h1>
+              <p className="pt-10 text-primary-text">{t("thankForSharing")}</p>
               <div className="flex justify-end mt-10">
                 <button
                   className="bg-black text-white rounded-lg text-sm py-[10px] px-[13px] hover:scale-105 transition duration-200"
@@ -244,6 +255,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
           fill
           className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-none"
           loading="lazy"
+          onClick={handleClickConcept}
         />
         <button
           className="absolute bottom-4 right-4 text-white w-6 h-6"
@@ -252,7 +264,10 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
           <Square2StackIcon className="text-white w-8 h-8" />
         </button>
       </div>
-      <div className="p-4 flex flex-col justify-start items-start gap-2">
+      <div
+        className="p-4 flex flex-col justify-start items-start gap-2"
+        onClick={handleClickConcept}
+      >
         <h3 className="text-primary-text">{concept?.name || ""}</h3>
         <p className="text-primary-text text-sm">{typeConcept}</p>
         <p className="text-primary-text text-sm">{concept?.address || ""}</p>
@@ -284,7 +299,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
         </div>
       )}
 
-      <div className="absolute top-[10px] right-[10px] flex gap-3">
+      <div className="absolute top-[10px] right-[10px] flex gap-3 z-10">
         <button
           className="border-none bg-white rounded-full p-1 cursor-pointer"
           onClick={() => {

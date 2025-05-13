@@ -1,6 +1,6 @@
-import FacebookIcon from "@/libs/assets/FacebookIcon";
-import GithubIcon from "@/libs/assets/GithubIcon";
-import LinkedinIcon from "@/libs/assets/LinkedinIcon";
+import { FacebookIcon } from "@/libs/assets";
+import { GithubIcon } from "@/libs/assets";
+import { LinkedinIcon } from "@/libs/assets";
 import React from "react";
 
 const ContactComponent = () => {

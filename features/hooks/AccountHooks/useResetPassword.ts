@@ -5,7 +5,7 @@ import {
   ErrorResponse,
   ForgotPasswordType,
   LoginResponse,
-} from "@/@types/models/account";
+} from "@/@types/models";
 import { CREATE_NEW_PASSWORD_QUERY_KEY } from "@/contants";
 import { AxiosError } from "axios";
 import Router from "next/router";

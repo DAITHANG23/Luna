@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const IllustrationDashboardImage = () => {
+export const IllustrationDashboardImage = () => {
   return (
     <div>
       <Image
@@ -13,5 +13,3 @@ const IllustrationDashboardImage = () => {
     </div>
   );
 };
-
-export default IllustrationDashboardImage;

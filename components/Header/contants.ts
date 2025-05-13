@@ -14,6 +14,11 @@ export const navigation = [
   { name: "blog", href: "/blog" },
 ];
 
+export const conceptNavigation = [
+  { name: "menu", href: "menu" },
+  { name: "booking", href: "booking" },
+];
+
 export const dropdownList: Array<DropdownListType> = [
   { name: "yourProfile", href: "/your-profile" },
   { name: "bookingHistory", href: "/order-history" },

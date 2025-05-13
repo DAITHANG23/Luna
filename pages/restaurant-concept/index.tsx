@@ -1,4 +1,4 @@
-import { ConceptModel, ConceptsFilter } from "@/@types/models/concept";
+import { ConceptModel, ConceptsFilter } from "@/@types/models";
 import React, { useMemo, useState } from "react";
 import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Head from "next/head";
@@ -7,6 +7,7 @@ import Toolbar from "@/pages/restaurant-concept/components/Toolbar";
 import { defaultFilter } from "@/contants";
 import useGetAllConcepts from "@/features/hooks/ConceptsHooks/useGetAllConcepts";
 import Skeleton from "./components/Skeleton";
+import { sortBy } from "lodash";
 
 const RestaurantConcept = () => {
   const [filter, setFilter] = useState(defaultFilter);
@@ -49,6 +50,8 @@ const RestaurantConcept = () => {
 
   const { conceptsData, isLoading } = useGetAllConcepts(params);
 
+  const conceptsDataSort = sortBy(conceptsData?.data.data, "name");
+
   return (
     <>
       <Head>
@@ -63,8 +66,8 @@ const RestaurantConcept = () => {
           <Skeleton />
         ) : (
           <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
-            {conceptsData &&
-              conceptsData.data.data.map((concept: ConceptModel) => {
+            {conceptsDataSort &&
+              conceptsDataSort?.map((concept: ConceptModel) => {
                 return (
                   <div key={concept.name}>
                     <ConceptItem concept={concept} />

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ErrorResponse } from "@/@types/models/account";
+import { ErrorResponse } from "@/@types/models";
 import apiService from "@/api/index";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import Router from "next/router";
@@ -7,7 +7,7 @@ interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;
 }
 
-const axiosWrapper = axios.create({
+export const axiosWrapper = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   withCredentials: true,
   headers: {
@@ -89,5 +89,3 @@ axiosWrapper.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export default axiosWrapper;

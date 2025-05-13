@@ -11,3 +11,8 @@ export * from "./SecurityIcon";
 export * from "./AuthorizationImage";
 export * from "./NotFound";
 export * from "./StarIcon";
+export * from "./IllustrationDashboardImage";
+export * from "./RestaurantLogin";
+export * from "./ArrowRightIcon";
+export * from "./MailIcon";
+export * from "./PhoneIcon";

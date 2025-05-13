@@ -19,6 +19,10 @@
   "amazing": "5 - Tuyệt vời",
   "pleaseShareAnyAdditional": "Vui lòng chia sẻ bất kỳ bình luận bổ sung nào về khái niệm này:",
   "placehoderTextarea": "Viết suy nghĩ của bạn ở đây...",
+  "navbar": {
+    "menu": "Thực đơn",
+    "booking": "Đặt bàn"
+  },
   "button": {
     "back": "Danh sách của tôi",
     "submit": "Submit",

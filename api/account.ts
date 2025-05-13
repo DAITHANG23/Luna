@@ -6,7 +6,7 @@ import {
   UpdatePasswordType,
   UserLogin,
   UserResponse,
-} from "@/@types/models/account";
+} from "@/@types/models";
 import apiRequest from "@/features/hooks/useApiRequest";
 
 const baseURL = `${API_VERSION_V1}/users`;

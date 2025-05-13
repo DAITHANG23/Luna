@@ -1,5 +1,5 @@
-import { UserResponse } from "@/@types/models/account";
-import { FavoriteConcepts } from "@/@types/models/concept";
+import { UserResponse } from "@/@types/models";
+import { FavoriteConcepts } from "@/@types/models";
 import { API_VERSION_V1 } from "@/contants";
 import apiRequest from "@/features/hooks/useApiRequest";
 

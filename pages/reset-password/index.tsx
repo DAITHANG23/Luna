@@ -7,11 +7,11 @@ import * as Yup from "yup";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import useForgotPassword from "@/features/hooks/AccountHooks/useForgotPassword";
-import { ForgotPasswordType } from "@/@types/models/account";
+import { ForgotPasswordType } from "@/@types/models";
 import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import IllustrationDashboardImage from "@/libs/assets/IllustrationDashboardImage";
+import { IllustrationDashboardImage } from "@/libs/assets";
 const ResetPassword = () => {
   const router = useRouter();
   const { t } = useTranslation("translation");

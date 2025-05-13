@@ -1,5 +1,8 @@
-import { ErrorResponse } from "@/@types/models/account";
-import { ConceptsFavoriteResponse, ReviewPost } from "@/@types/models/concept";
+import {
+  ErrorResponse,
+  ConceptsFavoriteResponse,
+  ReviewPost,
+} from "@/@types/models";
 import {
   GET_ALL_CONCEPTS_QUERY_KEY,
   GET_CHECK_IN_CONCEPTS_KEY,

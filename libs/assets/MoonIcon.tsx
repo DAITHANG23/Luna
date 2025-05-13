@@ -1,6 +1,6 @@
 import React from "react";
 
-const MoonIcon = () => {
+export const MoonIcon = () => {
   return (
     <svg
       stroke="currentColor"
@@ -18,5 +18,3 @@ const MoonIcon = () => {
     </svg>
   );
 };
-
-export default MoonIcon;

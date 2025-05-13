@@ -1,6 +1,6 @@
 import React from "react";
 
-const SunIcon = () => {
+export const SunIcon = () => {
   return (
     <svg
       stroke="currentColor"
@@ -26,5 +26,3 @@ const SunIcon = () => {
     </svg>
   );
 };
-
-export default SunIcon;

@@ -6,7 +6,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { DEFAULT_AVATAR, REGEX_VALIDATE_EMAIL } from "@/contants";
 import { differenceInYears, parseISO } from "date-fns";
-import { UserLogin, UserModel, UserResponse } from "@/@types/models/account";
+import { UserLogin, UserModel, UserResponse } from "@/@types/models";
 import useUpdateProfile from "@/features/hooks/AccountHooks/useUpdateProfile";
 import Router from "next/router";
 import apiService from "@/api/index";
