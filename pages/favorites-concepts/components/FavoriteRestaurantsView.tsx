@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
-import { ConceptModel } from "@/@types/models/concept";
+import { ConceptModel } from "@/@types/models";
 import { useTranslation } from "react-i18next";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 interface FavoriteConceptsViewProps {

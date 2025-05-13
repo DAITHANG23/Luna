@@ -1,8 +1,4 @@
-import {
-  ErrorResponse,
-  LoginResponse,
-  UserLogin,
-} from "@/@types/models/account";
+import { ErrorResponse, LoginResponse, UserLogin } from "@/@types/models";
 import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";

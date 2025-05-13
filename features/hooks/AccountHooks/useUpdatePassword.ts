@@ -2,7 +2,7 @@ import {
   ErrorResponse,
   LoginResponse,
   UpdatePasswordType,
-} from "@/@types/models/account";
+} from "@/@types/models";
 import useNotification from "@/features/hooks/useNotification";
 import { logout } from "@/libs/redux/authSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const NotFound = () => {
+export const NotFound = () => {
   return (
     <div>
       <Image
@@ -15,5 +15,3 @@ const NotFound = () => {
     </div>
   );
 };
-
-export default NotFound;

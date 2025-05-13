@@ -1,4 +1,4 @@
-import { ConceptsFavoriteResponse } from "@/@types/models/concept";
+import { ConceptsFavoriteResponse } from "@/@types/models";
 import apiService from "@/api";
 import { GET_CONCEPTS_FAVORITE_KEY } from "@/contants";
 import { useQuery } from "@tanstack/react-query";

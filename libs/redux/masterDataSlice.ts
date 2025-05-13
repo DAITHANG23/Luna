@@ -1,4 +1,4 @@
-import { AllConceptsResponse } from "@/@types/models/concept";
+import { AllConceptsResponse } from "@/@types/models";
 import apiService from "@/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 

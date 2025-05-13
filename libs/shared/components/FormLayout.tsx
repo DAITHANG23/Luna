@@ -1,4 +1,4 @@
-import RestaurantLogin from "@/libs/assets/RestaurantLogin";
+import { RestaurantLogin } from "@/libs/assets";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,7 +15,7 @@ const FormLayout = ({ children }: FormLayoutProps) => {
   const isLoginPage = pathname === "/login";
   const isResetPasswordPage =
     !(pathname === "/login") && !(pathname === "/register");
-    if(!ready) return null;
+  if (!ready) return null;
   return (
     <div className="grid p-4 sm:px-10 sm:p-0 sm:grid-cols-2 lg:grid-cols-3 mb-12 sm:gap-4">
       <div className="flex sm:col-span-1 lg:col-span-1 justify-center items-center text-center flex-col p-4 hidden sm:inline-flex">

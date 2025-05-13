@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import useNotification from "../useNotification";
 import apiService from "@/api";
-import { ErrorResponse, ForgotPasswordType } from "@/@types/models/account";
+import { ErrorResponse, ForgotPasswordType } from "@/@types/models";
 import { FORGOT_PASSWORD_QUERY_KEY } from "@/contants";
 import { AxiosError } from "axios";
 

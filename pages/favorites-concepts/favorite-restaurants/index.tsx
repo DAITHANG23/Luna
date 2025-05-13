@@ -1,9 +1,9 @@
 import useGetFavoriteConcepts from "@/features/hooks/ConceptsHooks/useGetFavoriteConcepts";
-import { ConceptModel } from "@/@types/models/concept";
+import { ConceptModel } from "@/@types/models";
 import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Image from "next/image";
 import Link from "next/link";
-import ArrowLeftIcon from "@/libs/assets/ArrowLeftIcon";
+import { ArrowLeftIcon } from "@/libs/assets";
 import { useRouter } from "next/router";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import { useTranslation } from "react-i18next";

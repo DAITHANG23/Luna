@@ -1,4 +1,4 @@
-import { AllConceptsResponse } from "@/@types/models/concept";
+import { AllConceptsResponse } from "@/@types/models";
 import { API_VERSION_V1 } from "@/contants";
 import apiRequest from "@/features/hooks/useApiRequest";
 import { buildQueryString } from "@/utils";

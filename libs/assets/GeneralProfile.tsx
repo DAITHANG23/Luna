@@ -1,6 +1,6 @@
 import React from "react";
 
-const GeneralProfile = () => {
+export const GeneralProfile = () => {
   return (
     <svg
       aria-hidden="true"
@@ -19,5 +19,3 @@ const GeneralProfile = () => {
     </svg>
   );
 };
-
-export default GeneralProfile;

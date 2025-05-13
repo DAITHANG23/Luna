@@ -1,4 +1,4 @@
-import { UserResponse } from "@/@types/models/account";
+import { UserResponse } from "@/@types/models";
 import { useAppSelector } from "@/libs/redux/hooks";
 import { RootState } from "@/libs/redux/store";
 import apiService from "@/api/index";

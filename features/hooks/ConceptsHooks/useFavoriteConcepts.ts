@@ -1,5 +1,4 @@
-import { ErrorResponse } from "@/@types/models/account";
-import { FavoriteConcepts } from "@/@types/models/concept";
+import { ErrorResponse, FavoriteConcepts } from "@/@types/models";
 import apiService from "@/api";
 import { CONCEPTS_FAVORITE_KEY, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

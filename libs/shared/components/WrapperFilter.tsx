@@ -1,6 +1,6 @@
 import useBreakPoints from "@/features/hooks/useBreakPoints";
-import FilterIcon from "@/libs/assets/FilterIcon";
-import FilterOpenIcon from "@/libs/assets/FilterOpenIcon";
+import { FilterIcon } from "@/libs/assets";
+import { FilterOpenIcon } from "@/libs/assets";
 import { cn } from "@/utils/css";
 
 import React, { useEffect, useState } from "react";

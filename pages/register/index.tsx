@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL, REGEX_VALIDTATE_PASSWORD } from "../../contants";
 import { Form, Formik } from "formik";
 import FieldInput from "@/libs/shared/components/FieldInput";
-import { UserLogin } from "@/@types/models/account";
+import { UserLogin } from "@/@types/models";
 import useRegister from "@/features/hooks/AccountHooks/useRegisterAccount";
 import { differenceInYears, parseISO } from "date-fns";
 import { useAppContext } from "@/components/contexts/AppContext";
