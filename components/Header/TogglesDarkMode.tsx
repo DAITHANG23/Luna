@@ -1,5 +1,5 @@
-import MoonIcon from "@/libs/assets/MoonIcon";
-import SunIcon from "@/libs/assets/SunIcon";
+import { MoonIcon } from "@/libs/assets";
+import { SunIcon } from "@/libs/assets";
 import { motion } from "framer-motion";
 import { useAppContext } from "../contexts/AppContext";
 import { useTranslation } from "react-i18next";

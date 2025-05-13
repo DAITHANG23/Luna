@@ -1,5 +1,5 @@
-import { ErrorResponse } from "@/@types/models/account";
-import axiosWrapper from "@/utils/axios";
+import { ErrorResponse } from "@/@types/models";
+import { axiosWrapper } from "@/utils/axios";
 import { AxiosError, AxiosRequestConfig } from "axios";
 
 const apiRequest = async <T>(

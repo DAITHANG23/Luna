@@ -1,8 +1,4 @@
-import {
-  ErrorResponse,
-  UserLogin,
-  UserResponse,
-} from "@/@types/models/account";
+import { ErrorResponse, UserLogin, UserResponse } from "@/@types/models";
 import useNotification from "@/features/hooks/useNotification";
 import apiService from "@/api/index";
 import { GET_DATA_USER_QUERY_KEY } from "@/contants";

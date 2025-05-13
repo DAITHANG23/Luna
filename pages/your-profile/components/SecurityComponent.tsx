@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
 import useUpdatePassword from "@/features/hooks/AccountHooks/useUpdatePassword";
-import { UpdatePasswordType } from "@/@types/models/account";
+import { UpdatePasswordType } from "@/@types/models";
 import Popover from "./PopoverComponent";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from "react-i18next";

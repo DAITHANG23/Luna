@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { UserLogin, UserResponse } from "@/@types/models/account";
+import { UserLogin, UserResponse } from "@/@types/models";
 import apiService from "@/api/index";
 import { clearJWTCookies } from "@/utils/cookies";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";

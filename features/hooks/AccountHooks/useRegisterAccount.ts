@@ -1,4 +1,4 @@
-import { ErrorResponse, UserLogin } from "@/@types/models/account";
+import { ErrorResponse, UserLogin } from "@/@types/models";
 import apiService from "@/api/index";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";

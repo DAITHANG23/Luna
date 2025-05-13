@@ -1,4 +1,4 @@
-import { UserLogin } from "@/@types/models/account";
+import { UserLogin } from "@/@types/models";
 import React, {
   useState,
   useContext,

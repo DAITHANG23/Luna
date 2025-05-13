@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const AuthorizationImage = () => {
+export const AuthorizationImage = () => {
   return (
     <div>
       <Image
@@ -14,5 +14,3 @@ const AuthorizationImage = () => {
     </div>
   );
 };
-
-export default AuthorizationImage;

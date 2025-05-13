@@ -1,4 +1,4 @@
-import { IOptions } from "@/@types/models/concept";
+import { IOptions } from "@/@types/models";
 import {
   Label,
   Listbox,

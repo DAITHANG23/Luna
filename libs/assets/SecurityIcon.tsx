@@ -1,6 +1,6 @@
 import React from "react";
 
-const SecurityIcon = () => {
+export const SecurityIcon = () => {
   return (
     <svg
       aria-hidden="true"
@@ -16,5 +16,3 @@ const SecurityIcon = () => {
     </svg>
   );
 };
-
-export default SecurityIcon;

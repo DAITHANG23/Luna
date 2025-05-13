@@ -5,8 +5,7 @@ import {
   GET_DATA_USER_QUERY_KEY,
 } from "@/contants";
 import { AxiosError } from "axios";
-import { ErrorResponse } from "@/@types/models/account";
-import { FavoriteConcepts } from "@/@types/models/concept";
+import { ErrorResponse, FavoriteConcepts } from "@/@types/models";
 import apiService from "@/api";
 
 const checkInConcept = (formData: FavoriteConcepts) => {

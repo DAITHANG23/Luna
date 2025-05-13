@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const RestaurantLogin = () => {
+export const RestaurantLogin = () => {
   return (
     <div>
       <Image
@@ -14,5 +14,3 @@ const RestaurantLogin = () => {
     </div>
   );
 };
-
-export default RestaurantLogin;

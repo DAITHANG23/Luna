@@ -1,5 +1,4 @@
-import GeneralProfile from "@/libs/assets/GeneralProfile";
-import SecurityIcon from "@/libs/assets/SecurityIcon";
+import { SecurityIcon, GeneralProfile } from "@/libs/assets";
 import TabsComponent from "@/libs/shared/components/TabsComponent";
 import React, { JSX, useEffect, useMemo, useState } from "react";
 import ProfileComponent from "./components/ProfileComponent";

@@ -6,7 +6,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL } from "../../contants";
 import useLogin from "@/features/hooks/AccountHooks/useLoginUser";
-import { UserLogin } from "@/@types/models/account";
+import { UserLogin } from "@/@types/models";
 import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import SocialLogin from "./components/SocialLogin";
 import { useTranslation } from "react-i18next";

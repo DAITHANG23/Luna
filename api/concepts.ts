@@ -1,4 +1,4 @@
-import { ConceptsFavoriteResponse, ReviewPost } from "@/@types/models/concept";
+import { ConceptsFavoriteResponse, ReviewPost } from "@/@types/models";
 import { API_VERSION_V1 } from "@/contants";
 import apiRequest from "@/features/hooks/useApiRequest";
 

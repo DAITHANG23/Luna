@@ -8,6 +8,19 @@ export interface Dish {
   price: number;
 }
 
+export interface Restaurant {
+  name: string;
+  img1: string;
+  img2: string;
+  url: string;
+  width: number;
+  height: number;
+}
+export interface RestaurantsConceptType {
+  type: string;
+  items: Array<Restaurant>;
+}
+
 export interface TimeSlotType {
   startTime: string;
   endTime: string;
@@ -28,6 +41,8 @@ export interface ConceptModel {
   type: string;
   avgRatings: number;
   reviews: Array<string>;
+  banners: Array<string>;
+  title: string;
 }
 
 export interface ReviewPost {

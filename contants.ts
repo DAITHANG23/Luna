@@ -1,4 +1,5 @@
-import { ConceptsFilter } from "@/@types/models/concept";
+import { ConceptsFilter, RestaurantsConceptType } from "@/@types/models";
+import { IRoute } from "./@types/models";
 export const REGEX_VALIDATE_EMAIL =
   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -87,3 +88,244 @@ export const BANNER_IMAGES: Array<{ img: string; name: string }> = [
     name: "Kichi-kichi",
   },
 ];
+
+export const CONCEPTS_ROUTES: Array<IRoute> = [
+  {
+    name: "Manwah",
+    route: "manwah",
+    logo: "/assets/images/manwah-02.png",
+    width: 55,
+    height: 55,
+  },
+  {
+    name: "Cloudpot",
+    route: "cloudpot",
+    logo: "/assets/images/cloudpot-1.png",
+    width: 80,
+    height: 55,
+  },
+  {
+    name: "ISuShi",
+    route: "isushi",
+    logo: "/assets/images/isushi-2.png",
+    width: 65,
+    height: 55,
+  },
+  {
+    name: "Daruma",
+    route: "daruma",
+    logo: "/assets/images/daruma-2.png",
+    width: 55,
+    height: 55,
+  },
+  {
+    name: "Phongon37",
+    route: "phongon37",
+    logo: "/assets/images/phongon_37_2.png",
+    width: 55,
+    height: 55,
+  },
+  {
+    name: "Woomaster",
+    route: "woomaster",
+    logo: "/assets/images/woomaster1.png",
+    width: 72,
+    height: 55,
+  },
+  {
+    name: "Gogi",
+    route: "gogi",
+    logo: "/assets/images/gogi1.png",
+    width: 55,
+    height: 55,
+  },
+  {
+    name: "Crystal Jade",
+    route: "crystal-jade",
+    logo: "/assets/images/crystal-2.png",
+    width: 80,
+    height: 55,
+  },
+  {
+    name: "Kpub",
+    route: "kpub",
+    logo: "/assets/images/kpub-02.jpg",
+    width: 55,
+    height: 55,
+  },
+  {
+    name: "Kichi-Kichi",
+    route: "kichi-kichi",
+    logo: "/assets/images/kichi-02.png",
+    width: 134,
+    height: 55,
+  },
+  {
+    name: "Sumo Yakiniku",
+    route: "sumo-yakiniku",
+    logo: "/assets/images/sumo1.png",
+    width: 55,
+    height: 55,
+  },
+  {
+    name: "Shogun",
+    route: "shogun",
+    logo: "/assets/images/shogun-2.png",
+    width: 65,
+    height: 55,
+  },
+  {
+    name: "Hutong",
+    route: "hutong",
+    logo: "/assets/images/hutong-02.png",
+    width: 134,
+    height: 55,
+  },
+  {
+    name: "Hàng cuốn",
+    route: "hang-cuon",
+    logo: "/assets/images/hangcuon1.png",
+    width: 134,
+    height: 55,
+  },
+];
+
+export const RESTAURANTS_CONCEPT = [
+  {
+    type: "HOTPOT",
+    items: [
+      {
+        name: "Kichi-Kichi",
+        img1: "/assets/images/kichi-01.png",
+        img2: "/assets/images/kichi-02.png",
+        url: "/kichi-kichi",
+        width: 134,
+        height: 55,
+      },
+      {
+        name: "Hutong",
+        img1: "/assets/images/hutong-01.png",
+        img2: "/assets/images/hutong-02.png",
+        url: "/hutong",
+        width: 134,
+        height: 55,
+      },
+      {
+        name: "Manwah",
+        img1: "/assets/images/manwah-01.png",
+        img2: "/assets/images/manwah-02.png",
+        url: "/manwah",
+        width: 55,
+        height: 55,
+      },
+    ],
+  },
+  {
+    type: "BBQ",
+    items: [
+      {
+        name: "Kpub",
+        img1: "/assets/images/kpub-01.jpg",
+        img2: "/assets/images/kpub-02.jpg",
+        url: "/kpub",
+        width: 55,
+        height: 55,
+      },
+      {
+        name: "Gogi",
+        img1: "/assets/images/gogi2.png",
+        img2: "/assets/images/gogi1.png",
+        url: "/gogi",
+        width: 55,
+        height: 55,
+      },
+      {
+        name: "Sumo Yakiniku",
+        img1: "/assets/images/sumo2.png",
+        img2: "/assets/images/sumo1.png",
+        url: "/sumo-yakiniku",
+        width: 55,
+        height: 55,
+      },
+    ],
+  },
+  {
+    type: "JAPANESE",
+    items: [
+      {
+        name: "ISuShi",
+        img1: "/assets/images/isushi-1.png",
+        img2: "/assets/images/isushi-2.png",
+        url: "/isushi",
+        width: 65,
+        height: 55,
+      },
+      {
+        name: "Daruma",
+        img1: "/assets/images/daruma-1.png",
+        img2: "/assets/images/daruma-2.png",
+        url: "/daruma",
+        width: 55,
+        height: 55,
+      },
+      {
+        name: "Shogun",
+        img1: "/assets/images/shogun-1.png",
+        img2: "/assets/images/shogun-2.png",
+        url: "/shogun",
+        width: 65,
+        height: 55,
+      },
+    ],
+  },
+  {
+    type: "STEAK HOUSE",
+    items: [
+      {
+        name: "Woomaster",
+        img1: "/assets/images/woomaster2.png",
+        img2: "/assets/images/woomaster1.png",
+        url: "/woomaster",
+        width: 72,
+        height: 55,
+      },
+    ],
+  },
+  {
+    type: "OTHER",
+    items: [
+      {
+        name: "Phongon37",
+        img1: "/assets/images/phongon_37_1.png",
+        img2: "/assets/images/phongon_37_2.png",
+        url: "/phongon37",
+        width: 55,
+        height: 55,
+      },
+      {
+        name: "Cloudpot",
+        img1: "/assets/images/cloudpot-2.png",
+        img2: "/assets/images/cloudpot-1.png",
+        url: "/cloudpot",
+        width: 80,
+        height: 55,
+      },
+      {
+        name: "Crystal Jade",
+        img1: "/assets/images/crystal-1.png",
+        img2: "/assets/images/crystal-2.png",
+        url: "/crystal-jade",
+        width: 80,
+        height: 55,
+      },
+      {
+        name: "Hang cuon",
+        img1: "/assets/images/hangcuon2.png",
+        img2: "/assets/images/hangcuon1.png",
+        url: "/hang-cuon",
+        width: 200,
+        height: 55,
+      },
+    ],
+  },
+] as Array<RestaurantsConceptType>;

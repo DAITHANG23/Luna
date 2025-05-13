@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AllConceptsResponse } from "@/@types/models/concept";
+import { AllConceptsResponse } from "@/@types/models";
 import apiService from "@/api";
 import { GET_ALL_CONCEPTS_QUERY_KEY } from "@/contants";
 import { cleanEmptyFields } from "@/utils";

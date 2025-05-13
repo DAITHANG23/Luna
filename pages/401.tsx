@@ -1,4 +1,4 @@
-import AuthorizationImage from "@/libs/assets/AuthorizationImage";
+import { AuthorizationImage } from "@/libs/assets";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";

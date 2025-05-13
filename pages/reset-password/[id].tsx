@@ -1,4 +1,4 @@
-import { ForgotPasswordType } from "@/@types/models/account";
+import { ForgotPasswordType } from "@/@types/models";
 import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
 import useResetPassword from "@/features/hooks/AccountHooks/useResetPassword";
 import ButtonLoading from "@/libs/shared/components/ButtonLoading";
@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
-import IllustrationDashboardImage from "@/libs/assets/IllustrationDashboardImage";
+import { IllustrationDashboardImage } from "@/libs/assets";
 
 const CreateNewPassword = () => {
   const router = useRouter();
