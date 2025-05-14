@@ -72,17 +72,20 @@ const ConceptsList = ({ isBannerWidth }: ConceptsListProps) => {
       </div>
       {isBannerWidth && (
         <div className="p-4">
-          <h4 className="pb-[20px]">Contact us</h4>
+          <h4 className="pb-[20px] text-primary-text">Contact us</h4>
           <div className="text-center flex justify-center">
             <ContactComponent />
           </div>
 
           <div className="flex flex-col gap-4 pt-[50px]">
             <div className="flex gap-2">
-              <MailIcon /> <p>Nguyendaithang23061997@gmail.com</p>
+              <MailIcon />
+              <p className="text-primary-text">
+                Nguyendaithang23061997@gmail.com
+              </p>
             </div>
             <div className="flex gap-2">
-              <PhoneIcon /> <p>0772757220</p>
+              <PhoneIcon /> <p className="text-primary-text">0772757220</p>
             </div>
           </div>
         </div>

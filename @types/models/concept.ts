@@ -1,11 +1,22 @@
 import { UserModel } from "./account";
 
+export type DishType = "alacarte" | "Buffet" | "Combo";
+
+export interface ItemsDish {
+  _id: string;
+  name: string;
+  image?: string;
+  images?: Array<string>;
+  price: number;
+}
 export interface Dish {
   name: string;
-  description: string;
-  type: string;
-  image: string;
+  type: DishType;
+  images?: Array<string>;
+  image?: string;
   price: number;
+  category?: string;
+  items?: Array<ItemsDish>;
 }
 
 export interface Restaurant {
@@ -43,6 +54,9 @@ export interface ConceptModel {
   reviews: Array<string>;
   banners: Array<string>;
   title: string;
+  active: boolean;
+  voucher: string;
+  price: Array<number>;
 }
 
 export interface ReviewPost {
@@ -57,6 +71,10 @@ export interface AllConceptsResponse {
   results: number;
 }
 
+export interface ConceptResponse {
+  data: { data: ConceptModel };
+  status: string;
+}
 export interface IOptions {
   label: string;
   value: string;
