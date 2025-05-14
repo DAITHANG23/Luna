@@ -52,8 +52,8 @@ const Index = () => {
         <SliderComponent banners={concept?.banners || []} />
         <div className="pt-10 lg:pt-[100px] lg:pb-8 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-10 justify-start items-start">
-            <h3>{concept?.title}</h3>
-            <div>
+            <h3 className="text-primary-text">{concept?.title}</h3>
+            <div className="text-primary-text">
               {concept?.description}
               <div className="pt-4">
                 <Link

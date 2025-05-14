@@ -25,7 +25,7 @@ const NavbarConcept = ({ pathname }: NavbarConceptProps) => {
     return CONCEPTS_ROUTES.find((c) => `/${c.route}` === mainPathname);
   }, [mainPathname]);
   return (
-    <div className="flex text-center gap-[50px] sm:gap-[8.25rem] p-2">
+    <div className="flex text-center gap-[10px] sm:gap-[8.25rem] p-2">
       <Image
         src={route?.logo || "/favico.ico"}
         width={route?.width || 200}
@@ -49,7 +49,7 @@ const NavbarConcept = ({ pathname }: NavbarConceptProps) => {
               }}
               className={cn(
                 itemNavbar === item.href
-                  ? "bg-primary dark:bg-gray-900 text-white"
+                  ? "text-primary !underline"
                   : "text-primary-text dark:text-gray-300 hover:bg-primary dark:hover:bg-gray-700 hover:text-white",
                 "rounded-md px-3 py-2 text-sm font-medium flex items-center justify-center"
               )}
