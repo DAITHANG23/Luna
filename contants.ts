@@ -27,6 +27,7 @@ export const CHECK_IN_FAVORITE_CONCEPTS_KEY = "checkin-favorite-concepts";
 export const DELETE_CHECK_IN_FAVORITE_CONCEPTS_KEY =
   "checkin-concepts-favorite";
 export const REVIEW_CONCEPT_KEY = "review-concept";
+export const GET_CONCEPT_KEY = "get-concept";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   {
@@ -105,7 +106,7 @@ export const CONCEPTS_ROUTES: Array<IRoute> = [
     height: 55,
   },
   {
-    name: "ISuShi",
+    name: "Isushi",
     route: "isushi",
     logo: "/assets/images/isushi-2.png",
     width: 65,
