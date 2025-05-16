@@ -16,3 +16,5 @@ export * from "./RestaurantLogin";
 export * from "./ArrowRightIcon";
 export * from "./MailIcon";
 export * from "./PhoneIcon";
+export * from "./CircleChevronRightIcon";
+export * from "./CircleChevronLeftIcon";
