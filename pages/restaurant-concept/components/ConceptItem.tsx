@@ -299,7 +299,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
         </div>
       )}
 
-      <div className="absolute top-[10px] right-[10px] flex gap-3 z-10">
+      <div className="absolute top-[10px] right-[10px] flex gap-3">
         <button
           className="border-none bg-white rounded-full p-1 cursor-pointer"
           onClick={() => {

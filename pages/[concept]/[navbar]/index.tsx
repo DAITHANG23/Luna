@@ -39,7 +39,10 @@ const Index = () => {
     <div className="mt-[7.25rem] w-[90%] xl:w-[70%] mx-auto bg-white dark:bg-gray-900 rounded-lg p-4 my-4 shadow-lg">
       <NavbarConcept pathname={pathname} />
       {subPathname === "menu" ? (
-        <Menu dishes={conceptData?.data.data?.dishes || []} />
+        <Menu
+          dishes={conceptData?.data.data?.dishes || []}
+          conceptName={pathnameMain}
+        />
       ) : (
         <div>asdsads</div>
       )}
