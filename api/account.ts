@@ -31,11 +31,13 @@ const account = {
   },
 
   refreshToken: (): Promise<RefreshTokenResponse> => {
-    const refreshToken = localStorage.getItem("refreshToken");
+    const isProd = process.env.NODE_ENV === "production";
 
-    return apiRequest(`${baseURL}/refreshToken`, "POST", {
-      refreshToken,
-    });
+    const data = isProd
+      ? {}
+      : { refreshToken: localStorage.getItem("refreshToken") };
+
+    return apiRequest(`${baseURL}/refreshToken`, "POST", data);
   },
 
   getDataUser: (): Promise<UserResponse> => {
