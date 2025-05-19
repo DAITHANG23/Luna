@@ -6,7 +6,12 @@ const AuthInitializer = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken") || "";
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessTokenLoginWithGmail = urlParams.get("accessToken");
+    const token =
+      localStorage.getItem("accessToken") ||
+      (accessTokenLoginWithGmail as string);
+
     if (!token) {
       dispatch(logout());
     }
