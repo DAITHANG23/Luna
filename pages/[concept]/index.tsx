@@ -10,10 +10,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/libs/assets";
 import ConceptsList from "@/components/Home/ConceptsList";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const router = useRouter();
   const { isReady, asPath } = router;
+  const { t, ready } = useTranslation("concept");
 
   useEffect(() => {
     if (!isReady) return;
@@ -42,6 +44,8 @@ const Index = () => {
 
   const concept = allConcepts?.find((item) => item.name === route?.name);
 
+  if (!ready) return null;
+
   return (
     <>
       <Head>
@@ -66,7 +70,7 @@ const Index = () => {
                   }}
                   className="flex gap-4 items-center hover:underline font-normal text-primary"
                 >
-                  Xem thực đơn
+                  {t("seeMenu")}
                   <div>
                     <ArrowRightIcon />
                   </div>
