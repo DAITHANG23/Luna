@@ -19,6 +19,7 @@
   "amazing": "5 - Amazing",
   "pleaseShareAnyAdditional": "Please share any additional comments about this concept:",
   "placehoderTextarea": "Write your thoughts here...",
+  "seeMenu": "See menu",
   "navbar": {
     "menu": "Menu",
     "booking": "Booking"
@@ -26,6 +27,7 @@
   "button": {
     "back": "My lists",
     "submit": "Submit",
-    "close": "Close"
+    "close": "Close",
+    "goBack": "Back"
   }
 }
