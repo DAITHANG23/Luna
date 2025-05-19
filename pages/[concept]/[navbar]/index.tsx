@@ -6,6 +6,7 @@ import { useAppSelector } from "@/libs/redux/hooks";
 import _ from "lodash";
 import useGetConceptItem from "@/features/hooks/ConceptsHooks/useGetConceptItem";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
+import Booking from "../components/Booking/Booking";
 
 const Index = () => {
   const pathname = usePathname();
@@ -44,7 +45,7 @@ const Index = () => {
           conceptName={pathnameMain}
         />
       ) : (
-        <div>asdsads</div>
+        <Booking />
       )}
     </div>
   );

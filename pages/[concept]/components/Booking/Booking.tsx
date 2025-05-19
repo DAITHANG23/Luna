@@ -1,7 +1,18 @@
+import Head from "next/head";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Booking = () => {
-  return <div></div>;
+  const { t, ready } = useTranslation("translation");
+
+  if (!ready) return null;
+  return (
+    <div>
+      <Head>
+        <title>{t("headTitle.bookingRestaurant")}</title>
+      </Head>
+    </div>
+  );
 };
 
 export default Booking;
