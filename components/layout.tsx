@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { accessToken } from "@/libs/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
-import { useRouter } from "next/router";
 import { getAllConcepts } from "@/libs/redux/masterDataSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAccountInfo } from "@/libs/redux/authSlice";
@@ -19,16 +18,16 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const router = useRouter();
-  const {
-    accessToken: accessTokenLoginWithGmail,
-    refreshToken: refreshTokenLoginWithGmail,
-  } = router.query;
+
   const dispatch = useAppDispatch();
   const accessTokenState = useAppSelector((state) => state.auth.accessToken);
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessTokenLoginWithGmail = urlParams.get("accessToken");
+
+    const refreshTokenLoginWithGmail = urlParams.get("refreshToken");
     if (accessTokenLoginWithGmail) {
       localStorage.setItem("accessToken", accessTokenLoginWithGmail as string);
       dispatch(
@@ -41,7 +40,7 @@ export default function Layout({
         refreshTokenLoginWithGmail as string
       );
     }
-  }, [accessTokenLoginWithGmail, refreshTokenLoginWithGmail, dispatch]);
+  }, [dispatch]);
 
   const isLoginPage = pathname === "/login" || pathname === "/register";
 
