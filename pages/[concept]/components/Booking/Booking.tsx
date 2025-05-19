@@ -9,7 +9,7 @@ const Booking = () => {
   return (
     <div>
       <Head>
-        <title>{t("headTitle.bookingRestaurant")}dsadasdsa</title>
+        <title>{t("headTitle.bookingRestaurant")}</title>
       </Head>
     </div>
   );
