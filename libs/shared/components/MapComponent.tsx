@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/components/MapComponent.jsx
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { cn } from "@/utils";
 
 // Fix lỗi icon không hiện
 const customMarker = new L.Icon({
@@ -14,33 +16,17 @@ const customMarker = new L.Icon({
   shadowSize: [41, 41], // Kích thước bóng của icon
 });
 
-const locations = [
-  {
-    id: 1,
-    name: "Gogi 1",
-    lat: 10.834674530216235,
-    lng: 106.66214388804457,
-  },
-  {
-    id: 2,
-    name: "Gogi 2",
-    lat: 10.838012896765624,
-    lng: 106.67126317878606,
-  },
-  {
-    id: 3,
-    name: "Gogi 3",
-    lat: 10.841889960490747,
-    lng: 106.63714429045586,
-  },
-];
+interface MapComponentProps {
+  className?: string;
+  locationsList?: any;
+}
 
-const MapComponent = () => {
+const MapComponent = ({ className, locationsList }: MapComponentProps) => {
   return (
     <MapContainer
       center={[10.8443298, 106.6328165]} // Tọa độ trung tâm bản đồ
       zoom={13}
-      style={{ height: "400px", width: "100%" }}
+      className={cn(className, "h-[37.5rem] w-full")}
     >
       {/* Layer bản đồ từ OpenStreetMap */}
       <TileLayer
@@ -49,11 +35,16 @@ const MapComponent = () => {
       />
 
       {/* Hiển thị marker cho các vị trí */}
-      {locations.map((loc) => (
-        <Marker key={loc.id} position={[loc.lat, loc.lng]} icon={customMarker}>
-          <Popup>{loc.name}</Popup>
-        </Marker>
-      ))}
+      {locationsList &&
+        locationsList.map((loc: any) => (
+          <Marker
+            key={loc.id}
+            position={[loc.lat, loc.lng]}
+            icon={customMarker}
+          >
+            <Popup>{loc.name}</Popup>
+          </Marker>
+        ))}
     </MapContainer>
   );
 };

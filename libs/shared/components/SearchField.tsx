@@ -6,16 +6,18 @@ interface SearchFieldProps {
   className?: string;
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  classNameContainer?: string;
 }
 const SearchField = ({
   className,
+  classNameContainer,
   placeholder,
   ...props
 }: SearchFieldProps) => {
   const { t, ready } = useTranslation("restaurant");
   if (!ready) return null;
   return (
-    <div className="relative w-full lg:w-[15.75rem]">
+    <div className={cn(classNameContainer, "relative w-full lg:w-[15.75rem]")}>
       <input
         type="text"
         id="default-search"

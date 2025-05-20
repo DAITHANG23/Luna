@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format": "prettier --write ./components/**/*.{ts,tsx} ./pages/**/*.{ts,tsx}",
     "test": "echo \"No tests yet\" && exit 0",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@commitlint/cli": "^19.8.0",

@@ -1,5 +1,9 @@
 import { accessToken, logout } from "@/libs/redux/authSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";
+import {
+  getAllConcepts,
+  getAllRestaurants,
+} from "@/libs/redux/masterDataSlice";
 import { useEffect } from "react";
 
 const AuthInitializer = () => {
@@ -17,6 +21,8 @@ const AuthInitializer = () => {
     }
 
     dispatch(accessToken({ accessToken: token }));
+    dispatch(getAllConcepts());
+    dispatch(getAllRestaurants());
   }, [dispatch]);
 
   return null;

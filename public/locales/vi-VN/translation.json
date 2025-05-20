@@ -132,6 +132,8 @@
     "restaurantConcept": "Domique Fusion | Thương hiệu nhà hàng",
     "favoriteConcepts": "Domique Fusion | Thương hiệu yêu thích",
     "favoriteRestaurants": "Domique Fusion | Nhà hàng yêu thích",
-    "checkInRestaurants": "Domique Fusion | Nhà hàng đã ghé thăm"
+    "checkInRestaurants": "Domique Fusion | Nhà hàng đã ghé thăm",
+    "menuRestaurant": "Domique Fusion | Thực đơn",
+    "bookingRestaurant": "Domique Fusion | Đặt bàn"
   }
 }
