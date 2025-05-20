@@ -258,8 +258,12 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                   )}
                 </div>
                 <div className="w-full lg:w-[40%]">
-                  <h3>{(dishesList as Dish)?.name}</h3>
-                  <p>{(dishesList as Dish)?.price.toLocaleString()}đ</p>
+                  <h3 className="font-medium text-primary-text ">
+                    {(dishesList as Dish)?.name}
+                  </h3>
+                  <p className="text-gray-500">
+                    {(dishesList as Dish)?.price.toLocaleString()}đ
+                  </p>
                 </div>
               </div>
             )}

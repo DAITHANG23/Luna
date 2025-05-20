@@ -85,7 +85,8 @@ const ConceptsList = ({ isBannerWidth }: ConceptsListProps) => {
               </p>
             </div>
             <div className="flex gap-2">
-              <PhoneIcon /> <p className="text-primary-text">0772757220</p>
+              <PhoneIcon />
+              <p className="text-primary-text">+(84) 0772757220</p>
             </div>
           </div>
         </div>

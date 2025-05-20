@@ -28,6 +28,7 @@ export const DELETE_CHECK_IN_FAVORITE_CONCEPTS_KEY =
   "checkin-concepts-favorite";
 export const REVIEW_CONCEPT_KEY = "review-concept";
 export const GET_CONCEPT_KEY = "get-concept";
+export const GET_RESTAURANTS_OF_CONCEPT_KEY = "get-restaurant-of-concept";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   {

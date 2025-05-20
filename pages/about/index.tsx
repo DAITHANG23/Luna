@@ -1,4 +1,5 @@
 import { ABOUT_IMAGES } from "@/contants";
+import { useAppSelector } from "@/libs/redux/hooks";
 import ContactComponent from "@/libs/shared/components/ContactComponent";
 import SliderComponent from "@/libs/shared/components/SliderComponent";
 import {
@@ -13,7 +14,7 @@ import {
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 const WE_OFFER_LIST: Array<{
@@ -47,6 +48,18 @@ const MapComponent = dynamic(
 
 const About = () => {
   const { t, ready } = useTranslation(["home", "translation"]);
+  const restaurantsData = useAppSelector(
+    (state) => state.masterData.allRestaurants
+  );
+
+  const locationsRestaurantsList = useMemo(() => {
+    return restaurantsData?.data.data.map((item) => ({
+      lat: item.location?.lat,
+      lng: item.location?.lng,
+      address: item.location?.address,
+      name: item?.name,
+    }));
+  }, [restaurantsData]);
   if (!ready) return null;
   return (
     <div>
@@ -85,8 +98,7 @@ const About = () => {
                   className="bg-gradient-to-br rounded-lg from-card bg-card to-secondary/30 border border-primary/20 hover:shadow-lg transition-shadow duration-300 hover:-translate-y-1 shadow-sm duration-300 transition-shadow"
                 >
                   <div className="flex items-center gap-2 p-6">
-                    {" "}
-                    {item.icon}{" "}
+                    {item.icon}
                     <h3 className="text-primary ">
                       {t(`about.${item.title}`)}
                     </h3>
@@ -101,11 +113,11 @@ const About = () => {
         </div>
         <div className="my-12 bg-primary/30 shrink-0 h-[1px]"></div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
           <div className="bg-gradient-to-br from-card rounded-lg to-primary/5 border-2 border-primary/10 hover:border-primary/30 transition-colors shadow-md">
             <div className="bg-primary/5 rounded-t-lg p-6">
               <h3 className="text-primary flex items-center gap-2">
-                <Utensils className="h-5 w-5 text-primary" />{" "}
+                <Utensils className="h-5 w-5 text-primary" />
                 {t("about.ourCuisine")}
               </h3>
             </div>
@@ -146,13 +158,16 @@ const About = () => {
           <div className="bg-gradient-to-br from-card rounded-lg to-primary/5 border-2 border-primary/10 hover:border-primary/30 transition-colors shadow-md">
             <div className="bg-primary/5 rounded-t-lg p-6">
               <h3 className="text-primary flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-primary" />{" "}
+                <MapPin className="h-5 w-5 text-primary" />
                 {t("about.location")}
               </h3>
             </div>
 
             <div className="p-6 flex flex-col gap-4">
-              <MapComponent />
+              <MapComponent
+                className="!h-[25rem]"
+                locationsList={locationsRestaurantsList}
+              />
             </div>
           </div>
 
@@ -167,13 +182,13 @@ const About = () => {
               <p className="flex gap-2">
                 <span className="font-bold">
                   <Mail />
-                </span>{" "}
+                </span>
                 Nguyendaithang23061997@gmail.com
               </p>
               <p className="flex gap-2">
                 <span className="font-bold">
                   <Phone />
-                </span>{" "}
+                </span>
                 +(84) 0772757220
               </p>
             </div>

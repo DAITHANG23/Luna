@@ -1,14 +1,18 @@
-import { AllConceptsResponse } from "@/@types/models";
+import { AllConceptsResponse, AllRestaurantResponse } from "@/@types/models";
 import { API_VERSION_V1 } from "@/contants";
 import apiRequest from "@/features/hooks/useApiRequest";
 import { buildQueryString } from "@/utils";
 
-const baseURL = `${API_VERSION_V1}/concepts`;
+const baseURLConcepts = `${API_VERSION_V1}/concepts`;
+const baseURLRestaurants = `${API_VERSION_V1}/restaurants`;
 const masterData = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getAllConcepts: async (params?: any): Promise<AllConceptsResponse> => {
     const query = buildQueryString(params);
-    return await apiRequest(`${baseURL}${query}`, "GET");
+    return await apiRequest(`${baseURLConcepts}${query}`, "GET");
+  },
+  getAllRestaurants: async (): Promise<AllRestaurantResponse> => {
+    return await apiRequest(`${baseURLRestaurants}`, "GET");
   },
 };
 
