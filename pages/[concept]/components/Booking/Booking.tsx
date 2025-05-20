@@ -15,7 +15,7 @@ const MapComponent = dynamic(
   { ssr: false }
 );
 const Booking = ({ restaurantsData }: BookingProps) => {
-  const { t, ready } = useTranslation("translation");
+  const { t, ready } = useTranslation(["translation", "restaurant"]);
 
   const locationsRestaurantsList = useMemo(() => {
     return restaurantsData?.data.restaurants.map((item) => ({
@@ -34,8 +34,8 @@ const Booking = ({ restaurantsData }: BookingProps) => {
       <Head>
         <title>{t("headTitle.bookingRestaurant")}</title>
       </Head>
-      <div className="flex gap-4">
-        <div className="w-[30%]">
+      <div className="flex lg:flex-row flex-col gap-4">
+        <div className="w-full lg:w-[30%]">
           <SearchField
             classNameContainer="!w-full"
             placeholder="Tìm kiếm nhà hàng"
@@ -47,7 +47,7 @@ const Booking = ({ restaurantsData }: BookingProps) => {
                 <div>
                   <p>{item.address}</p>
                   <p>
-                    Open - Close:
+                    {t("restaurant:openClose")}:
                     {`${item.timeSlot[0].startTime} - ${item.timeSlot[0].endTime}`}
                   </p>
                 </div>
@@ -57,7 +57,7 @@ const Booking = ({ restaurantsData }: BookingProps) => {
                     <span className="text-primary">{item.numberPhone}</span>
                   </button>
                   <button className="bg-primary rounded-[4px] text-center text-white text-sm px-3 py-2 hover:scale-105">
-                    Đặt bàn
+                    {t("restaurant:button.booking")}
                   </button>
                 </div>
                 <hr />
@@ -65,8 +65,11 @@ const Booking = ({ restaurantsData }: BookingProps) => {
             ))}
           </div>
         </div>
-        <div className="w-[70%]">
-          <MapComponent locationsList={locationsRestaurantsList} />
+        <div className="w-full lg:w-[70%]">
+          <MapComponent
+            locationsList={locationsRestaurantsList}
+            className="!h-[400px] lg:!h-[37.5rem]"
+          />
         </div>
       </div>
     </div>
