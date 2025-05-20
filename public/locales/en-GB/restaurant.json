@@ -17,5 +17,9 @@
   "from": "From",
   "to": "To",
   "allPrices": "All prices",
-  "allStar": "All star"
+  "allStar": "All star",
+  "openClose": "Open - Close",
+  "button": {
+    "booking": "Booking"
+  }
 }
