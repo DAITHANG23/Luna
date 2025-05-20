@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { accessToken } from "@/libs/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
-import { getAllConcepts } from "@/libs/redux/masterDataSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
@@ -45,7 +44,6 @@ export default function Layout({
   const isLoginPage = pathname === "/login" || pathname === "/register";
 
   useEffect(() => {
-    dispatch(getAllConcepts());
     if (accessTokenState && isEmpty(accountInfo)) {
       dispatch(getAccountInfo());
     }

@@ -132,6 +132,8 @@
     "restaurantConcept": "Domique Fusion | Concepts",
     "favoriteConcepts": "Domique Fusion | Favorite Concepts",
     "favoriteRestaurants": "Domique Fusion | Favorite Restaurants",
-    "checkInRestaurants": "Domique Fusion | Check In Restaurants"
+    "checkInRestaurants": "Domique Fusion | Check In Restaurants",
+    "menuRestaurant": "Domique Fusion | Menu",
+    "bookingRestaurant": "Domique Fusion | Booking"
   }
 }

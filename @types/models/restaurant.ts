@@ -1,0 +1,32 @@
+export interface ILocation {
+  lng: number;
+  lat: number;
+  address: string;
+}
+
+export interface RestaurantModel {
+  name: string;
+  address: string;
+  numberPhone: string;
+  concept: string;
+  bookingManager: string;
+  staffs: string;
+  active: boolean;
+  location: ILocation;
+  profit: number;
+  totalSale: number;
+  totalExpense: number;
+  timeSlot: Array<{ startTime: string; endTime: string; available: boolean }>;
+}
+
+export interface AllRestaurantResponse {
+  status: string;
+  results: number;
+  data: { data: Array<RestaurantModel> };
+}
+
+export interface AllRestaurantResponseOfConcept {
+  status: string;
+  results: number;
+  data: { restaurants: Array<RestaurantModel> };
+}
