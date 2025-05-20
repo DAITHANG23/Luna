@@ -17,5 +17,9 @@
   "from": "Từ",
   "to": "đến",
   "allPrices": "All prices",
-  "allStar": "All star"
+  "allStar": "All star",
+  "openClose": "Giờ mở - đóng",
+  "button": {
+    "booking": "Đặt bàn"
+  }
 }
