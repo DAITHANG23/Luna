@@ -80,7 +80,7 @@ const ResetPassword = () => {
                     className="flex items-center gap-2 hover:underline text-primary-text"
                     onClick={() => router.back()}
                   >
-                    <ChevronLeftIcon width={16} height={16} />{" "}
+                    <ChevronLeftIcon width={16} height={16} />
                     <span>{t("forgotPassword.return")}</span>
                   </button>
                 </div>

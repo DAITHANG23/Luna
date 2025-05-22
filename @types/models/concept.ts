@@ -77,7 +77,7 @@ export interface ConceptResponse {
 }
 export interface IOptions {
   label: string;
-  value: string;
+  value: string | number;
 }
 
 export type ConceptsType =

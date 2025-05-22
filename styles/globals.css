@@ -240,3 +240,6 @@ html::-webkit-scrollbar-track {
   left: 15px !important;
   z-index: 10;
 }
+.leaflet-container {
+  z-index: 0 !important;
+}

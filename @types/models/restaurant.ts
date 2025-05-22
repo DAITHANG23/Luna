@@ -30,3 +30,13 @@ export interface AllRestaurantResponseOfConcept {
   results: number;
   data: { restaurants: Array<RestaurantModel> };
 }
+
+export interface RestaurantBooking {
+  timeOfBooking: string;
+  timeSlot: string;
+  fullName: string | undefined;
+  numberPhone: string | undefined;
+  email: string | undefined;
+  peopleQuantity: string | undefined;
+  notes: string;
+}

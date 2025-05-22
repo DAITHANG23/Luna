@@ -19,12 +19,19 @@ const customMarker = new L.Icon({
 interface MapComponentProps {
   className?: string;
   locationsList?: any;
+  lat?: number;
+  lng?: number;
 }
 
-const MapComponent = ({ className, locationsList }: MapComponentProps) => {
+const MapComponent = ({
+  className,
+  locationsList,
+  lat = 10.8443298,
+  lng = 106.6328165,
+}: MapComponentProps) => {
   return (
     <MapContainer
-      center={[10.8443298, 106.6328165]} // Tọa độ trung tâm bản đồ
+      center={[lat, lng]} // Tọa độ trung tâm bản đồ
       zoom={13}
       className={cn(className, "h-[37.5rem] w-full")}
     >

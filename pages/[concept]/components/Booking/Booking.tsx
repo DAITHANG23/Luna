@@ -1,11 +1,12 @@
 import { AllRestaurantResponseOfConcept } from "@/@types/models";
+import ModalComponent from "@/libs/shared/components/ModalComponent";
 import SearchField from "@/libs/shared/components/SearchField";
-import { Phone } from "lucide-react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import BookingForm from "../BookingForm/BookingForm";
+import { Phone } from "lucide-react";
 interface BookingProps {
   restaurantsData: AllRestaurantResponseOfConcept | undefined;
 }
@@ -14,8 +15,11 @@ const MapComponent = dynamic(
   () => import("@/libs/shared/components/MapComponent"),
   { ssr: false }
 );
+
 const Booking = ({ restaurantsData }: BookingProps) => {
   const { t, ready } = useTranslation(["translation", "restaurant"]);
+  const [chooseRestaurant, setChooseRestaurant] = useState<string | null>(null);
+  const [isOpenModalBooking, setIsOpenModalBooking] = useState(false);
 
   const locationsRestaurantsList = useMemo(() => {
     return restaurantsData?.data.restaurants.map((item) => ({
@@ -34,6 +38,17 @@ const Booking = ({ restaurantsData }: BookingProps) => {
       <Head>
         <title>{t("headTitle.bookingRestaurant")}</title>
       </Head>
+      <ModalComponent
+        open={isOpenModalBooking}
+        setOpen={setIsOpenModalBooking}
+        classNameContainer="!max-w-[31.1125rem]"
+      >
+        <BookingForm
+          chooseRestaurant={chooseRestaurant}
+          restaurantsData={restaurantsData}
+          setIsOpenModalBooking={setIsOpenModalBooking}
+        />
+      </ModalComponent>
       <div className="flex lg:flex-row flex-col gap-4">
         <div className="w-full lg:w-[30%]">
           <SearchField
@@ -56,7 +71,13 @@ const Booking = ({ restaurantsData }: BookingProps) => {
                     <Phone className="w-5 h-5 text-primary" />
                     <span className="text-primary">{item.numberPhone}</span>
                   </button>
-                  <button className="bg-primary rounded-[4px] text-center text-white text-sm px-3 py-2 hover:scale-105">
+                  <button
+                    onClick={() => {
+                      setIsOpenModalBooking(true);
+                      setChooseRestaurant(item.name);
+                    }}
+                    className="bg-primary rounded-[4px] text-center text-white text-sm px-3 py-2 hover:scale-105"
+                  >
                     {t("restaurant:button.booking")}
                   </button>
                 </div>
@@ -67,8 +88,11 @@ const Booking = ({ restaurantsData }: BookingProps) => {
         </div>
         <div className="w-full lg:w-[70%]">
           <MapComponent
+            key={"map"}
             locationsList={locationsRestaurantsList}
             className="!h-[400px] lg:!h-[37.5rem]"
+            lat={locationsRestaurantsList?.[0].lat}
+            lng={locationsRestaurantsList?.[0].lng}
           />
         </div>
       </div>

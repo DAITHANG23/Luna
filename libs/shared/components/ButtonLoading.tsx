@@ -36,7 +36,7 @@ const ButtonLoading = ({
       className={clsx(
         sizeButton === "large" ? "w-full" : "sm:w-auto",
         className,
-        "relative w-full inline-flex justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90 sm:ml-3 sm:w-auto"
+        "relative inline-flex justify-center rounded-md bg-primary/80 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/90"
       )}
     >
       <p
