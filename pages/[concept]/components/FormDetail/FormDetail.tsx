@@ -1,12 +1,12 @@
 import { timeSlotOptions } from "@/contants";
 import FieldInput from "@/libs/shared/components/FieldInput";
 import SelectField from "@/libs/shared/components/SelectField";
-import { TFunction } from "i18next";
 import { Clock, Users } from "lucide-react";
 import React, { useEffect, useMemo } from "react";
 import { useFormikContext } from "formik";
 import { RestaurantBooking } from "@/@types/models";
 import { cn } from "@/utils";
+import { useTranslation } from "react-i18next";
 const NOTES_LIST = [
   { label: "Có trẻ em", value: "Có trẻ em" },
   { label: "Tiệc sinh nhật", value: "Tiệc sinh nhật" },
@@ -15,7 +15,6 @@ const NOTES_LIST = [
 ];
 
 interface FormDetailProps {
-  t: TFunction<"translation" | "restaurant">;
   handleTimeSlotChange: (value: string) => void;
   handlePeopleQuantityChange: (value: string) => void;
   onClickNotes: (value: string) => void;
@@ -26,7 +25,6 @@ interface FormDetailProps {
   notesContent: string;
 }
 const FormDetail = ({
-  t,
   handlePeopleQuantityChange,
   handleTimeSlotChange,
   handleChangeText,
@@ -36,6 +34,7 @@ const FormDetail = ({
   notesContent,
   chooseNotes,
 }: FormDetailProps) => {
+  const { t, ready } = useTranslation(["translation", "restaurant"]);
   const formik = useFormikContext<RestaurantBooking>();
 
   useEffect(() => {
@@ -58,7 +57,7 @@ const FormDetail = ({
       value: `${(i + 2).toString()}`,
     }));
   }, []);
-
+  if (!ready) return null;
   return (
     <div>
       <div className="grid grid-cols-2 gap-4">
@@ -127,13 +126,13 @@ const FormDetail = ({
         <textarea
           id="message"
           name="notes"
-          value={notesContent}
+          onChange={({ currentTarget }) =>
+            handleChangeText(currentTarget.value)
+          }
+          value={notesContent ?? ""}
           rows={4}
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={t("restaurant:concepts.placeholder.notes")}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            handleChangeText(e.target.value)
-          }
         />
         <div className="flex flex-wrap gap-3 mt-2">
           {NOTES_LIST.map((item) => (

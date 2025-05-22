@@ -10,18 +10,15 @@ import {
   AllRestaurantResponseOfConcept,
   RestaurantBooking,
 } from "@/@types/models";
-// import FormDetail from "./FormDetail";
+import FormDetail from "../FormDetail/FormDetail";
 import useBookingRestaurant from "@/features/hooks/RestaurantsHooks/useBookingRestaurant";
-import dynamic from "next/dynamic";
 
 interface BookingFormProps {
   chooseRestaurant: string | null;
   restaurantsData: AllRestaurantResponseOfConcept | undefined;
   setIsOpenModalBooking: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const FormDetail = dynamic(() => import("./FormDetail"), {
-  ssr: false,
-});
+
 const BookingForm = ({
   chooseRestaurant,
   restaurantsData,
@@ -86,7 +83,6 @@ const BookingForm = ({
   }, [t]);
 
   const handleSubmit = (formData: RestaurantBooking) => {
-    console.log("formData:", formData);
     bookingRestaurant(formData);
   };
   if (!ready) return null;
@@ -113,7 +109,6 @@ const BookingForm = ({
             <hr className="my-4" />
 
             <FormDetail
-              t={t}
               onClickNotes={onClickNotes}
               handlePeopleQuantityChange={handlePeopleQuantityChange}
               handleChangeText={handleChangeText}
