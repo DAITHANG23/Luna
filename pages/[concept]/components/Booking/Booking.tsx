@@ -1,4 +1,3 @@
-import { AllRestaurantResponseOfConcept } from "@/@types/models";
 import ModalComponent from "@/libs/shared/components/ModalComponent";
 import SearchField from "@/libs/shared/components/SearchField";
 import dynamic from "next/dynamic";
@@ -7,8 +6,9 @@ import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import BookingForm from "../BookingForm/BookingForm";
 import { Phone } from "lucide-react";
+import useGetRestaurantsOfConcept from "@/features/hooks/RestaurantsHooks/useGetRestaurantsOfConcept";
 interface BookingProps {
-  restaurantsData: AllRestaurantResponseOfConcept | undefined;
+  conceptDataId: string | undefined;
 }
 
 const MapComponent = dynamic(
@@ -16,11 +16,11 @@ const MapComponent = dynamic(
   { ssr: false }
 );
 
-const Booking = ({ restaurantsData }: BookingProps) => {
+const Booking = ({ conceptDataId }: BookingProps) => {
   const { t, ready } = useTranslation(["translation", "restaurant"]);
   const [chooseRestaurant, setChooseRestaurant] = useState<string | null>(null);
   const [isOpenModalBooking, setIsOpenModalBooking] = useState(false);
-
+  const { restaurantsData } = useGetRestaurantsOfConcept(conceptDataId || "");
   const locationsRestaurantsList = useMemo(() => {
     return restaurantsData?.data.restaurants.map((item) => ({
       lat: item.location?.lat,

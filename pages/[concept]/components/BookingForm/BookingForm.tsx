@@ -76,14 +76,25 @@ const BookingForm = ({
 
   const validationSchema = useMemo(() => {
     return Yup.object({
-      email: Yup.string().trim().required(t("validate.fieldIsRequired")),
-      fullName: Yup.string().trim().required(t("validate.fieldIsRequired")),
-      numberPhone: Yup.string().trim().required(t("validate.fieldIsRequired")),
+      email: Yup.string()
+        .trim()
+        .required(t("restaurant:validate.fieldIsRequired")),
+      fullName: Yup.string()
+        .trim()
+        .required(t("restaurant:validate.fieldIsRequired")),
+      numberPhone: Yup.string()
+        .trim()
+        .required(t("restaurant:validate.fieldIsRequired")),
     });
   }, [t]);
 
   const handleSubmit = (formData: RestaurantBooking) => {
-    bookingRestaurant(formData);
+    const customFormData = {
+      ...formData,
+      customer: accountInfo?._id,
+      restaurant: restaurant?.id,
+    };
+    bookingRestaurant(customFormData);
   };
   if (!ready) return null;
   return (

@@ -1,12 +1,18 @@
-import { ErrorResponse, RestaurantBooking } from "@/@types/models";
+import {
+  ErrorResponse,
+  RestaurantBooking,
+  RestaurantBookingResponse,
+} from "@/@types/models";
 import apiService from "@/api/index";
 import { useMutation } from "@tanstack/react-query";
 import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 import { TFunction } from "i18next";
 
-const bookingRestaurant = async (formData: RestaurantBooking) => {
-  return await apiService.restaurants.bookingRestaurant({ formData });
+const bookingRestaurant = async (
+  formData: RestaurantBooking
+): Promise<RestaurantBookingResponse> => {
+  return await apiService.bookings.bookingRestaurant({ formData });
 };
 
 const useBookingRestaurant = (
@@ -15,7 +21,11 @@ const useBookingRestaurant = (
 ) => {
   const { showError, showSuccess } = useNotification();
 
-  return useMutation<unknown, AxiosError<ErrorResponse>, RestaurantBooking>({
+  return useMutation<
+    RestaurantBookingResponse,
+    AxiosError<ErrorResponse>,
+    RestaurantBooking
+  >({
     mutationFn: bookingRestaurant,
     onSuccess: () => {
       showSuccess(t("restaurant:bookingSuccessfully"));
