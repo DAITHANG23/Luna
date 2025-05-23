@@ -5,6 +5,7 @@ export interface ILocation {
 }
 
 export interface RestaurantModel {
+  id: string;
   name: string;
   address: string;
   numberPhone: string;
@@ -29,4 +30,28 @@ export interface AllRestaurantResponseOfConcept {
   status: string;
   results: number;
   data: { restaurants: Array<RestaurantModel> };
+}
+
+export interface RestaurantBooking {
+  timeOfBooking: string;
+  timeSlot: string;
+  fullName: string | undefined;
+  numberPhone: string | undefined;
+  email: string | undefined;
+  peopleQuantity: string | undefined;
+  notes: string;
+  restaurant?: string;
+}
+
+export type BookingStatus =
+  | "PENDING"
+  | "CONFIRMED"
+  | "IN_PROGRESS"
+  | "COMPLETED"
+  | "CANCELLED_BY_USER"
+  | "CANCELLED_BY_ADMIN"
+  | "NO_SHOW";
+
+export interface RestaurantBookingResponse extends Partial<RestaurantBooking> {
+  status: BookingStatus;
 }

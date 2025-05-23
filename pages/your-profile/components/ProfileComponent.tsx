@@ -215,6 +215,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
                     isLoading={isUpdateLoading}
                     onHandleSubmit={handleSubmit}
                     sizeButton="large"
+                    className="!sm:w-[100px]"
                   />
                 }
               />

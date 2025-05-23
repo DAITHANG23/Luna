@@ -7,7 +7,6 @@ import _ from "lodash";
 import useGetConceptItem from "@/features/hooks/ConceptsHooks/useGetConceptItem";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import Booking from "../components/Booking/Booking";
-import useGetRestaurantsOfConcept from "@/features/hooks/RestaurantsHooks/useGetRestaurantsOfConcept";
 
 const Index = () => {
   const pathname = usePathname();
@@ -37,9 +36,6 @@ const Index = () => {
 
   const { conceptData, isLoading } = useGetConceptItem(idConcept);
 
-  const { restaurantsData } = useGetRestaurantsOfConcept(
-    conceptData?.data.data._id || ""
-  );
   if (isLoading) return <Skeleton />;
   return (
     <div className="mt-[7.25rem] w-[90%] xl:w-[70%] mx-auto bg-white dark:bg-gray-900 rounded-lg p-4 my-4 shadow-lg">
@@ -50,7 +46,7 @@ const Index = () => {
           conceptName={pathnameMain}
         />
       ) : (
-        <Booking restaurantsData={restaurantsData} />
+        <Booking conceptDataId={conceptData?.data.data._id} />
       )}
     </div>
   );
