@@ -1,22 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AllRestaurantResponseOfConcept } from "@/@types/models";
 import apiService from "@/api";
 import { GET_RESTAURANTS_OF_CONCEPT_KEY } from "@/contants";
+import { cleanEmptyFields } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 
 const getRestaurantsOfConcept = async (
-  conceptId: string
+  conceptId: string,
+  params: any
 ): Promise<AllRestaurantResponseOfConcept> => {
-  return await apiService.restaurants.getRestaurantsOfConcept(conceptId);
+  const paramsConfig = cleanEmptyFields(params);
+  return await apiService.restaurants.getRestaurantsOfConcept(
+    conceptId,
+    paramsConfig
+  );
 };
 
-const useGetRestaurantsOfConcept = (conceptId: string) => {
+const useGetRestaurantsOfConcept = (conceptId: string, params: any) => {
   const {
     data: restaurantsData,
     isLoading,
     refetch,
   } = useQuery<AllRestaurantResponseOfConcept>({
-    queryFn: () => getRestaurantsOfConcept(conceptId),
-    queryKey: [GET_RESTAURANTS_OF_CONCEPT_KEY, conceptId],
+    queryFn: () => getRestaurantsOfConcept(conceptId, params),
+    queryKey: [GET_RESTAURANTS_OF_CONCEPT_KEY, conceptId, params],
   });
 
   return { restaurantsData, isLoading, refetch };
