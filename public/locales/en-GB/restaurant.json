@@ -9,9 +9,19 @@
       "bbq": "BBQ"
     },
     "placeholder": {
-      "search": "Search"
+      "search": "Search",
+      "notes": "Notes..."
     }
   },
+  "label": {
+    "date": "Meal day",
+    "time": "Meal time",
+    "peopleQuantity": "Quantity of people",
+    "fullName": "Full name",
+    "numberPhone": "Number phone",
+    "notes": "Notes"
+  },
+  "bookingSuccessfully": "Booking completed successfully!",
   "under": "Under",
   "over": "Over",
   "from": "From",
@@ -19,6 +29,9 @@
   "allPrices": "All prices",
   "allStar": "All star",
   "openClose": "Open - Close",
+  "validate": {
+    "fieldIsRequired": "This field is required!"
+  },
   "button": {
     "booking": "Booking"
   }
