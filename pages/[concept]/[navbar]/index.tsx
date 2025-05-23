@@ -46,7 +46,7 @@ const Index = () => {
           conceptName={pathnameMain}
         />
       ) : (
-        <Booking conceptDataId={conceptData?.data.data._id} />
+        <Booking conceptDataId={conceptData?.data.data._id || ""} />
       )}
     </div>
   );
