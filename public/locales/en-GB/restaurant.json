@@ -22,6 +22,7 @@
     "notes": "Notes"
   },
   "bookingSuccessfully": "Booking completed successfully!",
+  "notFound": "Oops! We couldn’t find any restaurants :(",
   "under": "Under",
   "over": "Over",
   "from": "From",
