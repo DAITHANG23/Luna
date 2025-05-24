@@ -66,6 +66,7 @@ const FormDetail = ({
           name="timeOfBooking"
           required
           type="date"
+          isBookingDate
           classNameInput="w-full !px-3 !py-[6px]"
         />
 
@@ -78,7 +79,7 @@ const FormDetail = ({
           label={t("restaurant:label.time")}
           classNameButton="w-full !px-3 !py-[6px]"
           required
-          startIcon={<Clock className="text-black w-4 h-4" />}
+          startIcon={<Clock className="text-primary-text w-4 h-4" />}
         />
 
         <SelectField
@@ -90,7 +91,7 @@ const FormDetail = ({
           classNameContainer="!w-full"
           required
           classNameButton="w-full !px-3 !py-[6px]"
-          startIcon={<Users className="text-black w-4 h-4" />}
+          startIcon={<Users className="text-primary-text w-4 h-4" />}
         />
 
         <FieldInput
@@ -122,7 +123,9 @@ const FormDetail = ({
       </div>
 
       <div>
-        <p className="font-medium text-sm">{t("restaurant:label.notes")}</p>
+        <p className="font-medium text-sm text-primary-text">
+          {t("restaurant:label.notes")}
+        </p>
         <textarea
           id="message"
           name="notes"

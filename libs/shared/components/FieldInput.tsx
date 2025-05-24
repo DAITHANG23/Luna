@@ -14,6 +14,7 @@ interface FromTextFieldProps {
   isPasswordFied?: boolean;
   isReadOnly?: boolean;
   classNameInput?: string;
+  isBookingDate?: boolean;
   startIcon?: React.ReactNode;
 }
 
@@ -25,6 +26,7 @@ const FieldInput = ({
   required = false,
   isPasswordFied = false,
   isReadOnly = false,
+  isBookingDate = false,
   classNameInput,
   startIcon,
   ...props
@@ -72,7 +74,7 @@ const FieldInput = ({
                 ? "text"
                 : "password"
           }
-          min={today}
+          min={isBookingDate ? today : ""}
           readOnly={isReadOnly}
           {...field}
           {...props}
@@ -81,7 +83,7 @@ const FieldInput = ({
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute min-w-0 right-3 top-[45px] cursor-pointer w-6 h-6"
+            className="absolute min-w-0 right-3 top-[15px] cursor-pointer w-6 h-6"
           >
             {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
           </button>
