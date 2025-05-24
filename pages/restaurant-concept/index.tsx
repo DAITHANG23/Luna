@@ -22,18 +22,18 @@ const RestaurantConcept = () => {
 
   const conceptsParams = useMemo(() => {
     if (concepts === "All") {
-      return "all";
+      return "";
     }
     return concepts;
   }, [concepts]);
 
   const priceParams = useMemo(() => {
-    if (price === "All") return { gte: 50000 };
+    if (price === "All") return "";
     return price;
   }, [price]);
 
   const starParams = useMemo(() => {
-    if (star === "All") return { gte: 3 };
+    if (star === "All") return "";
     if (star === "3") return { gte: 3, lt: 3.5 };
     if (star === "4") return { gte: 3.5, lt: 4 };
     if (star === "5") return { gte: 4.5, lt: 5 };
