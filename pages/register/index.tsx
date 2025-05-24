@@ -103,7 +103,7 @@ const Register = () => {
   return (
     <>
       <Head>
-        <title>Domique Fusion | Register</title>
+        <title>{t("headTitle.register")}</title>
       </Head>
       <Formik
         onSubmit={handleSubmit}
