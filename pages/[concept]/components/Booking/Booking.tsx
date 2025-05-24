@@ -70,41 +70,41 @@ const Booking = ({ conceptDataId }: BookingProps) => {
             onChange={handleTextChange}
           />
           <div className="mt-10">
-            {locationsRestaurantsList &&
-            locationsRestaurantsList?.length > 0 ? (
-              locationsRestaurantsList?.map((item) => (
-                <div key={item.name}>
-                  <h3 className="pb-5 text-primary-text">{item.name}</h3>
-                  <div className="text-primary-text">
-                    <p>{item.address}</p>
-                    <p>
-                      {t("restaurant:openClose")}:
-                      {`${item.timeSlot[0].startTime} - ${item.timeSlot[0].endTime}`}
-                    </p>
-                  </div>
-                  <div className="flex gap-4 pt-5 pb-3">
-                    <button className="flex bg-primary/30 border border-primary rounded-[4px] text-center text-white text-sm px-3 py-2 gap-2 hover:scale-105">
-                      <Phone className="w-5 h-5 text-primary" />
-                      <span className="text-primary">{item.numberPhone}</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        setIsOpenModalBooking(true);
-                        setChooseRestaurant(item.name);
-                      }}
-                      className="bg-primary rounded-[4px] text-center text-white text-sm px-3 py-2 hover:scale-105"
-                    >
-                      {t("restaurant:button.booking")}
-                    </button>
-                  </div>
-                  <hr />
+            {locationsRestaurantsList?.map((item) => (
+              <div key={item.name}>
+                <h3 className="pb-5 text-primary-text">{item.name}</h3>
+                <div className="text-primary-text">
+                  <p>{item.address}</p>
+                  <p>
+                    {t("restaurant:openClose")}:
+                    {`${item.timeSlot[0].startTime} - ${item.timeSlot[0].endTime}`}
+                  </p>
                 </div>
-              ))
-            ) : (
-              <div className="text-primary-text text-center">
-                {t("restaurant:notFound")}
+                <div className="flex gap-4 pt-5 pb-3">
+                  <button className="flex bg-primary/30 border border-primary rounded-[4px] text-center text-white text-sm px-3 py-2 gap-2 hover:scale-105">
+                    <Phone className="w-5 h-5 text-primary" />
+                    <span className="text-primary">{item.numberPhone}</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsOpenModalBooking(true);
+                      setChooseRestaurant(item.name);
+                    }}
+                    className="bg-primary rounded-[4px] text-center text-white text-sm px-3 py-2 hover:scale-105"
+                  >
+                    {t("restaurant:button.booking")}
+                  </button>
+                </div>
+                <hr />
               </div>
-            )}
+            ))}
+            {searchText.trim().length > 0 &&
+              locationsRestaurantsList &&
+              locationsRestaurantsList?.length <= 0 && (
+                <div className="text-primary-text text-center">
+                  {t("restaurant:notFound")}
+                </div>
+              )}
           </div>
         </div>
         <div className="w-full lg:w-[70%]">

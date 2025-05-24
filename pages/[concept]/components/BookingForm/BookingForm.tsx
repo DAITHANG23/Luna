@@ -107,14 +107,16 @@ const BookingForm = ({
         return (
           <Form className="w-full h-auto">
             <div className="flex flex-col w-[90%]">
-              <h1 className="font-bold text-lg pb-2 ">{restaurant?.name}</h1>
+              <h1 className="font-bold text-lg pb-2 text-primary-text">
+                {restaurant?.name}
+              </h1>
               <div className="flex gap-2 pb-2 items-start justify-start">
                 <MapPin className="text-primary flex-shrink-0 w-5 h-5" />
-                <p>{restaurant?.address}</p>
+                <p className="text-primary-text">{restaurant?.address}</p>
               </div>
               <div className="flex gap-2">
                 <Phone className="text-primary w-5 h-5" />
-                <p>{restaurant?.numberPhone}</p>
+                <p className="text-primary-text">{restaurant?.numberPhone}</p>
               </div>
             </div>
             <hr className="my-4" />
