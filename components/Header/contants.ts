@@ -1,3 +1,5 @@
+import { ROUTERS } from "@/contants";
+
 interface DropdownListType {
   name: string;
   href: string;
@@ -8,10 +10,10 @@ interface LanguageListType {
   img: string;
 }
 export const navigation = [
-  { name: "home", href: "/" },
-  { name: "about", href: "/about" },
-  { name: "restaurantConcept", href: "/restaurant-concept" },
-  { name: "blog", href: "/blog" },
+  { name: "home", href: `${ROUTERS.HOME.INDEX}` },
+  { name: "about", href: `${ROUTERS.ABOUT.INDEX}` },
+  { name: "restaurantConcept", href: `${ROUTERS.CONCEPTS.INDEX}` },
+  { name: "blog", href: `${ROUTERS.BLOG.INDEX}` },
 ];
 
 export const conceptNavigation = [
@@ -20,9 +22,9 @@ export const conceptNavigation = [
 ];
 
 export const dropdownList: Array<DropdownListType> = [
-  { name: "yourProfile", href: "/your-profile" },
-  { name: "bookingHistory", href: "/order-history" },
-  { name: "favorites", href: "/favorites-concepts" },
+  { name: "yourProfile", href: `${ROUTERS.PROFILE.INDEX}` },
+  { name: "bookingHistory", href: `${ROUTERS.BOOKING.INDEX}` },
+  { name: "favorites", href: `${ROUTERS.FAVORITE_CONCEPTS.INDEX}` },
   { name: "Settings", href: "" },
 ];
 

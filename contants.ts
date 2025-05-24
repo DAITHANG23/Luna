@@ -383,3 +383,17 @@ export const timeSlotOptions: Array<IOptions> = [
   { label: "21:45", value: "21:45" },
   { label: "22:00", value: "22:00" },
 ];
+
+export const ROUTERS = {
+  HOME: { INDEX: "/" },
+  ABOUT: { INDEX: "/about" },
+  CONCEPTS: { INDEX: "/restaurant-concept" },
+  BLOG: { INDEX: "/blog" },
+  PROFILE: { INDEX: "/your-profile" },
+  BOOKING: { INDEX: "/order-history" },
+  FAVORITE_CONCEPTS: { INDEX: "favorites-concepts" },
+  LOGIN: { INDEX: "/login" },
+  REGISTER: { INDEX: "/register" },
+  RESET_PASSWORD: { INDEX: "/reset-password" },
+  FORGOT_PASSWORD: { INDEX: "/forgot-password" },
+};

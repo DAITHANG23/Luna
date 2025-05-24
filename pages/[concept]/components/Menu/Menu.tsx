@@ -97,6 +97,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
   }, [comboDishes, buffetDishes, alacarteDishes]);
 
   if (!ready) return null;
+
   return (
     <>
       <Head>
