@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserLogin, UserResponse } from "@/@types/models";
 import apiService from "@/api/index";
+import { ROUTERS } from "@/contants";
 import { clearJWTCookies } from "@/utils/cookies";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -29,7 +30,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
     localStorage.removeItem("refreshToken");
     clearJWTCookies("jwt");
     delete axios.defaults.headers.common.Authorization;
-    Router.push("/login");
+    Router.push(`${ROUTERS.LOGIN.INDEX}`);
   }
 });
 

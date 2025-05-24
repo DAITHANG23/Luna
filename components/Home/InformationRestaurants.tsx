@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Router from "next/router";
+import { ROUTERS } from "@/contants";
 
 const InformationRestaurants = () => {
   return (
@@ -12,18 +13,23 @@ const InformationRestaurants = () => {
             alt="map-vn"
             fill
             className=" objectFit-cover"
-             loading="lazy"
+            loading="lazy"
           />
         </div>
         <div className="relative sm:w-[40%] h-[300px] px-[16px]">
-          <Image src={"/assets/images/img-curture.png"} alt="curture" fill  loading="lazy"/>
+          <Image
+            src={"/assets/images/img-curture.png"}
+            alt="curture"
+            fill
+            loading="lazy"
+          />
         </div>
       </div>
       <div className="flex justify-center py-10 sm:absolute sm:bottom-[50px] sm:right-[25%] lg:right-[30%]">
         <button
           className="boder-none rounded-lg px-6 py-1 text-primary-text bg-warning/80 hover:bg-warning/90"
           onClick={() => {
-            Router.push("/about");
+            Router.push(`${ROUTERS.ABOUT.INDEX}`);
           }}
         >
           DETAIL

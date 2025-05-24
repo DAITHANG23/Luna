@@ -6,6 +6,7 @@ import Skeleton from "../restaurant-concept/components/Skeleton";
 import useGetCheckInConcepts from "@/features/hooks/ConceptsHooks/useGetCheckInConcepts";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
+import { ROUTERS } from "@/contants";
 
 const Favorites = () => {
   const { t } = useTranslation("translation");
@@ -33,7 +34,9 @@ const Favorites = () => {
         <div className="flex flex-col lg:flex-row w-full gap-8 mx-auto lg:mx-0">
           <div
             onClick={() => {
-              router.push("favorites-concepts/favorite-restaurants");
+              router.push(
+                `${ROUTERS.FAVORITE_CONCEPTS.INDEX}/${ROUTERS.FAVORITE_CONCEPTS.FAVORITE_RESTAURANTS}`
+              );
             }}
           >
             {favoriteConceptsData && favoriteConceptsData.length > 0 ? (
@@ -44,7 +47,9 @@ const Favorites = () => {
           </div>
           <div
             onClick={() => {
-              router.push("favorites-concepts/checkin-restaurants");
+              router.push(
+                `${ROUTERS.FAVORITE_CONCEPTS.INDEX}/${ROUTERS.FAVORITE_CONCEPTS.CHECKIN_RESTAURANTS}`
+              );
             }}
           >
             {checkInConcepts && checkInConcepts.length > 0 ? (

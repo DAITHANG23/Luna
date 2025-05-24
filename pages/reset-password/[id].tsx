@@ -1,5 +1,5 @@
 import { ForgotPasswordType } from "@/@types/models";
-import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
+import { REGEX_VALIDTATE_PASSWORD, ROUTERS } from "@/contants";
 import useResetPassword from "@/features/hooks/AccountHooks/useResetPassword";
 import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import FieldInput from "@/libs/shared/components/FieldInput";
@@ -123,7 +123,7 @@ const CreateNewPassword = () => {
               <button
                 type="button"
                 className="flex items-center gap-1 hover:underline mr-2"
-                onClick={() => router.push("/login")}
+                onClick={() => router.push(`${ROUTERS.LOGIN.INDEX}`)}
               >
                 <ChevronLeftIcon width={16} height={16} />
                 <span>{t("resetPassword.return")}</span>

@@ -31,7 +31,7 @@ import {
   userInfo,
 } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
-import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY } from "@/contants";
+import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY, ROUTERS } from "@/contants";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import { useQueryClient } from "@tanstack/react-query";
@@ -235,7 +235,7 @@ const Navbars = () => {
               </Menu>
             ) : (
               <button
-                onClick={() => router.replace("/login")}
+                onClick={() => router.replace(`${ROUTERS.LOGIN.INDEX}`)}
                 className="ml-2 border-none px-4 py-1 bg-primary rounded-lg text-white font-bold transition duration-300 ease-in-out hover:scale-105"
               >
                 {t(`navbar.login`)}
