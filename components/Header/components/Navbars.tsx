@@ -125,7 +125,7 @@ const Navbars = () => {
               </Link>
             </div>
             <div className="hidden lg:ml-20 lg:block content-center">
-              <div className="flex space-x-4 ">
+              <div className="flex space-x-4">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}

@@ -55,3 +55,7 @@ export type BookingStatus =
 export interface RestaurantBookingResponse extends Partial<RestaurantBooking> {
   status: BookingStatus;
 }
+
+export interface RestaurantSearchParams {
+  searchText: string;
+}
