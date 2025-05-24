@@ -4,7 +4,7 @@ import Link from "next/link";
 import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { REGEX_VALIDATE_EMAIL } from "../../contants";
+import { REGEX_VALIDATE_EMAIL, ROUTERS } from "../../contants";
 import useLogin from "@/features/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models";
 import ButtonLoading from "@/libs/shared/components/ButtonLoading";
@@ -48,7 +48,7 @@ const Login = () => {
 
                 <h5 className="text-right mt-5">
                   <Link
-                    href={"/reset-password"}
+                    href={`${ROUTERS.RESET_PASSWORD.INDEX}`}
                     className="no-underline hover:underline text-primary-text"
                   >
                     {t(`login.forgotPassword`)}

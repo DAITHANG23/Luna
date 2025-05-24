@@ -18,3 +18,4 @@ export * from "./MailIcon";
 export * from "./PhoneIcon";
 export * from "./CircleChevronRightIcon";
 export * from "./CircleChevronLeftIcon";
+export * from "./Updating";

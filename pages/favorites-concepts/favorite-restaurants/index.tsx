@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
+import { ROUTERS } from "@/contants";
 
 const Favorites = () => {
   const { t } = useTranslation(["concept", "translation"]);
@@ -26,7 +27,7 @@ const Favorites = () => {
       <div className="my-20 sm:my-[6.5rem] p-8">
         <div className="w-full lg:w-[80%] mx-auto mb-10">
           <button
-            onClick={() => router.push("/favorites-concepts")}
+            onClick={() => router.push(`${ROUTERS.FAVORITE_CONCEPTS.INDEX}`)}
             className="flex gap-2 items-center border border-solid dark:border-white rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
           >
             <ArrowLeftIcon />

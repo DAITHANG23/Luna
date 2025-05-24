@@ -1,3 +1,4 @@
+import { ROUTERS } from "@/contants";
 import { RestaurantLogin } from "@/libs/assets";
 import clsx from "clsx";
 import Link from "next/link";
@@ -12,9 +13,10 @@ interface FormLayoutProps {
 const FormLayout = ({ children }: FormLayoutProps) => {
   const pathname = usePathname();
   const { t, ready } = useTranslation("translation");
-  const isLoginPage = pathname === "/login";
+  const isLoginPage = pathname === `${ROUTERS.LOGIN.INDEX}`;
   const isResetPasswordPage =
-    !(pathname === "/login") && !(pathname === "/register");
+    !(pathname === `${ROUTERS.LOGIN.INDEX}`) &&
+    !(pathname === `${ROUTERS.REGISTER.INDEX}`);
   if (!ready) return null;
   return (
     <div className="grid p-4 sm:px-10 sm:p-0 sm:grid-cols-2 lg:grid-cols-3 mb-12 sm:gap-4">
@@ -37,7 +39,11 @@ const FormLayout = ({ children }: FormLayoutProps) => {
               : t("register.alreadyHaveAnAccount")}
             <span className="ml-1">
               <Link
-                href={isLoginPage ? "/register" : "/login"}
+                href={
+                  isLoginPage
+                    ? `${ROUTERS.REGISTER.INDEX}`
+                    : `${ROUTERS.LOGIN.INDEX}`
+                }
                 className="no-underline text-success hover:underline"
               >
                 {t("button.getStarted")}

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
 import { isEmpty } from "lodash";
+import { ROUTERS } from "@/contants";
 export default function Layout({
   children,
 }: Readonly<{
@@ -41,7 +42,9 @@ export default function Layout({
     }
   }, [dispatch]);
 
-  const isLoginPage = pathname === "/login" || pathname === "/register";
+  const isLoginPage =
+    pathname === `${ROUTERS.LOGIN.INDEX}` ||
+    pathname === `${ROUTERS.REGISTER.INDEX}`;
 
   useEffect(() => {
     if (accessTokenState && isEmpty(accountInfo)) {
