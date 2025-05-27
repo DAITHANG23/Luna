@@ -1,3 +1,4 @@
+import { useNotification } from "@/features/notification/useNotification";
 import { accessToken, logout } from "@/libs/redux/authSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";
 import {
@@ -8,6 +9,10 @@ import { useEffect } from "react";
 
 const AuthInitializer = () => {
   const dispatch = useAppDispatch();
+
+  const notifications = useNotification();
+
+  console.log("notifications:", notifications);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);

@@ -12,6 +12,7 @@ import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
 import { isEmpty } from "lodash";
 import { ROUTERS } from "@/contants";
+import socket from "@/features/notification/socket";
 export default function Layout({
   children,
 }: Readonly<{
@@ -22,6 +23,15 @@ export default function Layout({
   const dispatch = useAppDispatch();
   const accessTokenState = useAppSelector((state) => state.auth.accessToken);
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
+  useEffect(() => {
+    socket.on("message", (msg) => {
+      console.log("New message:", msg);
+    });
+
+    return () => {
+      socket.off("message");
+    };
+  }, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
