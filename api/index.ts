@@ -4,6 +4,7 @@ import user from "./user";
 import concepts from "./concepts";
 import restaurants from "./restaurants";
 import bookings from "./bookings";
+import notifications from "./notifications";
 
 const apiService = {
   masterData,
@@ -12,6 +13,7 @@ const apiService = {
   concepts,
   restaurants,
   bookings,
+  notifications,
 };
 
 export default apiService;
