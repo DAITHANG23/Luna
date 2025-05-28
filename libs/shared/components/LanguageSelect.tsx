@@ -54,7 +54,7 @@ const LanguageSelect = () => {
                     width={30}
                     height={24}
                     className="!rounded-[5px]"
-                  />{" "}
+                  />
                   <span className="text-base">{t(`settings.${l.name}`)}</span>
                 </div>
               </button>
