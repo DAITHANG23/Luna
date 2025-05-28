@@ -1,6 +1,10 @@
-import { AllConceptsResponse, AllRestaurantResponse } from "@/@types/models";
+import {
+  AllConceptsResponse,
+  AllNotificationResponse,
+  AllRestaurantResponse,
+} from "@/@types/models";
 import apiService from "@/api";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface MasterDataState {
   allConcepts: AllConceptsResponse | null;
@@ -9,6 +13,10 @@ interface MasterDataState {
   loadingGetAllRestaurants: boolean;
   allRestaurants: AllRestaurantResponse | null;
   errorGetAllRestaurants: string | null;
+  allNotifications: AllNotificationResponse | null;
+  loadingGetAllNotifications: boolean;
+  errorGetAllNotifications: string | null;
+  unReadNotificationsQuantity: number;
 }
 
 const initialState: MasterDataState = {
@@ -18,6 +26,10 @@ const initialState: MasterDataState = {
   loadingGetAllRestaurants: false,
   allRestaurants: null,
   errorGetAllRestaurants: null,
+  allNotifications: null,
+  loadingGetAllNotifications: false,
+  errorGetAllNotifications: null,
+  unReadNotificationsQuantity: 0,
 };
 
 export const getAllConcepts = createAsyncThunk<
@@ -58,10 +70,37 @@ export const getAllRestaurants = createAsyncThunk<
   }
 });
 
+export const getAllNotifications = createAsyncThunk<
+  AllNotificationResponse,
+  void,
+  { rejectValue: string }
+>("masterData/getAllNotifications", async (_, thunkAPI) => {
+  try {
+    const data = await apiService.notifications.getAllNotifications();
+    if (!data) {
+      return thunkAPI.rejectWithValue("Không có dữ liệu từ API");
+    }
+
+    return data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.error("Error:", error);
+    return thunkAPI.rejectWithValue(error.message || "Lỗi không xác định");
+  }
+});
+
 const masterDatasSlice = createSlice({
   name: "concepts",
   initialState,
-  reducers: {},
+  reducers: {
+    unReadNotifications: (
+      state,
+      action: PayloadAction<{ unReadNotificationsQuantity: number }>
+    ) => {
+      state.unReadNotificationsQuantity =
+        action.payload.unReadNotificationsQuantity;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllConcepts.pending, (state) => {
@@ -87,8 +126,20 @@ const masterDatasSlice = createSlice({
       .addCase(getAllRestaurants.rejected, (state, action) => {
         state.loadingGetAllRestaurants = false;
         state.errorGetAllRestaurants = action.payload || "Đã xảy ra lỗi";
+      })
+      .addCase(getAllNotifications.pending, (state) => {
+        state.loadingGetAllNotifications = true;
+        state.error = null;
+      })
+      .addCase(getAllNotifications.fulfilled, (state, action) => {
+        state.allNotifications = action.payload;
+        state.loadingGetAllNotifications = false;
+      })
+      .addCase(getAllNotifications.rejected, (state, action) => {
+        state.loadingGetAllNotifications = false;
+        state.errorGetAllNotifications = action.payload || "Đã xảy ra lỗi";
       });
   },
 });
-
+export const { unReadNotifications } = masterDatasSlice.actions;
 export default masterDatasSlice.reducer;

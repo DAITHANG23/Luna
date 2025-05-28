@@ -36,6 +36,9 @@ import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import { useQueryClient } from "@tanstack/react-query";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
+import socket from "@/features/notification/socket";
+import { unReadNotifications } from "@/libs/redux/masterDataSlice";
+import { NotificationModel } from "@/@types/models";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -43,6 +46,11 @@ const Navbars = () => {
   const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
+
+  const unReadNotificationsQuantities = useAppSelector(
+    (state) => state.masterData.unReadNotificationsQuantity
+  );
+
   const { setIsOpenDialog } = useAppContext();
   const accessTokenState = useAppSelector(
     (state: RootState) => state.auth.accessToken
@@ -61,6 +69,22 @@ const Navbars = () => {
   useEffect(() => {
     setItemNavbar(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    socket.on("bookingCreated", (data: NotificationModel) => {
+      if (data) {
+        dispatch(
+          unReadNotifications({
+            unReadNotificationsQuantity: unReadNotificationsQuantities + 1,
+          })
+        );
+      }
+    });
+
+    return () => {
+      socket.off("bookingCreated");
+    };
+  }, [dispatch, unReadNotificationsQuantities]);
 
   const handleSignOut = async () => {
     dispatch(accessToken({ accessToken: "" }));
@@ -149,7 +173,9 @@ const Navbars = () => {
               type="button"
               className="relative rounded-full hover:bg-primary hover:text-white dark:bg-gray-800 p-1 text-primary-text dark:text-gray-400 dark:hover:text-primary-text  focus:ring-2 focus:ring-white focus:ring-offset-2  focus:outline-hidden"
             >
-              <span className="absolute -inset-1.5" />
+              <span className="absolute text-xs -top-1 left-[16px] py-[0.5] px-1 rounded-full bg-primary text-white">
+                {unReadNotificationsQuantities || 0}
+              </span>
               <span className="sr-only">View notifications</span>
               <BellIcon aria-hidden="true" className="size-6" />
             </button>
