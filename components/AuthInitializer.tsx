@@ -40,7 +40,8 @@ const AuthInitializer = () => {
       socket.off("connect", handleConnect);
       socket.off("disconnect", handleDisconnect);
     };
-  }, []);
+  }, [dispatch]);
+
   useEffect(() => {
     dispatch(
       unReadNotifications({

@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   UserIcon,
   ArchiveBoxIcon,
@@ -37,8 +37,13 @@ import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import { useQueryClient } from "@tanstack/react-query";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
 import socket from "@/features/notification/socket";
-import { unReadNotifications } from "@/libs/redux/masterDataSlice";
+import {
+  getAllNotifications,
+  resetNotifications,
+  unReadNotifications,
+} from "@/libs/redux/masterDataSlice";
 import { NotificationModel } from "@/@types/models";
+import NotificationNavbar from "./NotificationNavbar";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -78,6 +83,7 @@ const Navbars = () => {
             unReadNotificationsQuantity: unReadNotificationsQuantities + 1,
           })
         );
+        dispatch(getAllNotifications());
       }
     });
 
@@ -89,6 +95,8 @@ const Navbars = () => {
   const handleSignOut = async () => {
     dispatch(accessToken({ accessToken: "" }));
     dispatch(userInfo({ accountInfo: null }));
+    dispatch(unReadNotifications({ unReadNotificationsQuantity: 0 }));
+    dispatch(resetNotifications());
     dispatch(logout());
     dispatch(authentication({ isAuthenticated: false }));
     queryClient.removeQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
@@ -168,17 +176,12 @@ const Navbars = () => {
               </div>
             </div>
           </div>
-          <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full hover:bg-primary hover:text-white dark:bg-gray-800 p-1 text-primary-text dark:text-gray-400 dark:hover:text-primary-text  focus:ring-2 focus:ring-white focus:ring-offset-2  focus:outline-hidden"
-            >
-              <span className="absolute text-xs -top-1 left-[16px] py-[0.5] px-1 rounded-full bg-primary text-white">
-                {unReadNotificationsQuantities || 0}
-              </span>
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
-            </button>
+          <div className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="mt-2">
+              <NotificationNavbar
+                unReadNotificationsQuantities={unReadNotificationsQuantities}
+              />
+            </div>
 
             <button
               className="cursor-pointer hover:bg-gray-200 rounded-full p-2"

@@ -3,7 +3,6 @@ import React, { useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { CONCEPTS_ROUTES } from "@/contants";
 import Head from "next/head";
-// import { useTranslation } from "react-i18next";
 import NavbarConcept from "@/components/NavbarConcept/NavbarConcept";
 import SliderComponent from "@/libs/shared/components/SliderComponent";
 import Image from "next/image";
@@ -21,7 +20,6 @@ const Index = () => {
     if (!isReady) return;
     localStorage.setItem("routeConcept", asPath);
   }, [isReady, asPath]);
-  // const { t } = useTranslation("concept");
 
   const route = useMemo(() => {
     return CONCEPTS_ROUTES.find((c) => `/${c.route}` === asPath);
