@@ -27,6 +27,9 @@ const bookings = {
   }): Promise<CheckNotification> => {
     return await apiRequest(`${baseURL}/${id}`, "GET");
   },
+  deleteNotification: async ({ id }: { id: string }) => {
+    return await apiRequest(`${baseURL}/${id}`, "DELETE");
+  },
 };
 
 export default bookings;

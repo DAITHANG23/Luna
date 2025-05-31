@@ -1,11 +1,13 @@
-import { useAppSelector } from "@/libs/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { BellIcon } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
 import { useTranslation } from "react-i18next";
 import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
+import apiService from "@/api";
+import { getAllNotifications } from "@/libs/redux/masterDataSlice";
 
 interface NotificationNavbarProps {
   unReadNotificationsQuantities: number;
@@ -21,10 +23,19 @@ const NotificationNavbar = ({
 
   const [hasMounted, setHasMounted] = useState(false);
   const { isMobileSize } = useBreakPoints();
-
   useEffect(() => {
     setHasMounted(true);
   }, []);
+
+  const dispatch = useAppDispatch();
+  const handleDeleteNotification = useCallback(
+    async (id: string) => {
+      await apiService.notifications.deleteNotification({ id });
+
+      dispatch(getAllNotifications());
+    },
+    [dispatch]
+  );
 
   if (!ready || !hasMounted) return null;
 
@@ -57,6 +68,7 @@ const NotificationNavbar = ({
                     unReadNotificationsQuantities={
                       unReadNotificationsQuantities
                     }
+                    handleDeleteNotification={handleDeleteNotification}
                   />
                   <hr className="text-gray-500 my-1" />
                 </div>

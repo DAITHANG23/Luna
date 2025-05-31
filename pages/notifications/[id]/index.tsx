@@ -176,11 +176,11 @@ const Index = () => {
                   {dataNotification?.restaurant.name}
                 </p>
                 <p className="flex text-sm pt-3 gap-2 items-center">
-                  <MapPinHouseIcon className="text-primary w-5 h-5" />
+                  <MapPinHouseIcon className="text-primary w-5 h-5 flex-shrink-0" />
                   {dataNotification?.restaurant.address}
                 </p>
                 <p className="flex text-sm pt-3 gap-2 items-center">
-                  <PhoneIcon className="text-primary w-5 h-5" />
+                  <PhoneIcon className="text-primary w-5 h-5 flex-shrink-0" />
                   {dataNotification?.restaurant.numberPhone}
                 </p>
               </div>
