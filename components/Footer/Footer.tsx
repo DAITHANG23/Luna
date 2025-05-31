@@ -13,7 +13,7 @@ const Footer = () => {
   }, []);
   if (!ready || !hasMounted) return null;
   return (
-    <div className="text-white grid grid-cols-1 text-center sm:grid-cols-3 w-full p-[50px] gap-[50px] bg-[#1C252E]">
+    <div className="text-white grid grid-cols-1 text-center sm:grid-cols-3 w-full p-[50px] gap-[20px] lg:gap-[50px] bg-[#1C252E]">
       <div className="w-full sm:w-[200px] lg:w-[350px]">
         <h4 className="text-white">{t(`footer.title`)}</h4>
         <p className="text-gray-400">{t(`footer.address`)}</p>

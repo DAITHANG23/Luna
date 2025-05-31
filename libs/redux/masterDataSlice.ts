@@ -100,6 +100,9 @@ const masterDatasSlice = createSlice({
       state.unReadNotificationsQuantity =
         action.payload.unReadNotificationsQuantity;
     },
+    resetNotifications(state) {
+      state.allNotifications = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -141,5 +144,6 @@ const masterDatasSlice = createSlice({
       });
   },
 });
-export const { unReadNotifications } = masterDatasSlice.actions;
+export const { unReadNotifications, resetNotifications } =
+  masterDatasSlice.actions;
 export default masterDatasSlice.reducer;
