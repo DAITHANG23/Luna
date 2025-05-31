@@ -1,14 +1,11 @@
 import { useAppSelector } from "@/libs/redux/hooks";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { BellIcon, CheckCheckIcon } from "lucide-react";
-import { CheckBadgeIcon } from "@heroicons/react/24/outline";
+import { BellIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { cn } from "@/utils";
-import { format } from "date-fns";
 import { useRouter } from "next/router";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
 import { useTranslation } from "react-i18next";
-import useCheckReadNotification from "@/features/hooks/NotificationBooking/useCheckReadNotification";
+import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
 
 interface NotificationNavbarProps {
   unReadNotificationsQuantities: number;
@@ -18,7 +15,6 @@ const NotificationNavbar = ({
 }: NotificationNavbarProps) => {
   const router = useRouter();
   const { t, ready } = useTranslation("notification");
-  const { mutate: checkReadNotification } = useCheckReadNotification();
   const allNotifications = useAppSelector(
     (state) => state.masterData.allNotifications
   )?.data.data;
@@ -29,10 +25,6 @@ const NotificationNavbar = ({
   useEffect(() => {
     setHasMounted(true);
   }, []);
-
-  const handleCheckReadNotification = (id: string) => {
-    checkReadNotification(id);
-  };
 
   if (!ready || !hasMounted) return null;
 
@@ -53,50 +45,20 @@ const NotificationNavbar = ({
       <MenuItems
         anchor={isMobileSize ? "bottom" : undefined}
         transition
-        className="absolute right-0 z-10 mt-2 w-auto min-w-[300px] max-w-sm h-[31.25rem] overflow-auto origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in "
+        className="absolute right-0 z-10 mt-2 w-auto min-w-[300px] max-w-sm h-[31.25rem] overflow-auto origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
       >
         {allNotifications && allNotifications?.length > 0 ? (
-          allNotifications.slice(0, 5).map((l) => {
-            const date = new Date(l.createdAt);
-
-            const formatted = format(date, "dd/MM/yyyy HH:mm");
+          allNotifications.slice(0, 5).map((item) => {
             return (
-              <MenuItem key={l._id}>
-                <div key={l._id}>
-                  <div
-                    className={cn(
-                      l.read && "!bg-white",
-                      "relative flex gap-2 items-start p-2 bg-primary/30 cursor-pointer hover:!bg-primary/50"
-                    )}
-                  >
-                    <CheckBadgeIcon className="text-[#16a34a] w-6 h-6 flex-shrink-0" />
-                    <div
-                      className="flex flex-col gap-4 text-start"
-                      onClick={() => {
-                        router.push(`/notifications/${l._id}`);
-                      }}
-                    >
-                      <h2 className="text-base font-bold text-black">
-                        {l.title}
-                      </h2>
-                      <p className="text-gray-800 text-sm">{l.message}</p>
-                      <p className="text-xs">{formatted}</p>
-                    </div>
-                    {!l.read && (
-                      <div className="absolute top-2 right-2 hover:scale-110 transition duration-200 z-100">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleCheckReadNotification(l._id);
-                          }}
-                        >
-                          <CheckCheckIcon className="text-[#16a34a] w-4 h-4 flex-shrink-0" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                  <hr className="bg-gray-500" />
+              <MenuItem key={item._id}>
+                <div key={item._id}>
+                  <NotificationDetailNavbar
+                    item={item}
+                    unReadNotificationsQuantities={
+                      unReadNotificationsQuantities
+                    }
+                  />
+                  <hr className="text-gray-500 my-1" />
                 </div>
               </MenuItem>
             );

@@ -1,12 +1,17 @@
+import { UserModel } from "./account";
+import { RestaurantModel } from "./restaurant";
+
 export interface NotificationModel {
   _id: string;
   title: string;
   message: string;
-  recipient: string;
+  recipient: UserModel;
   read: boolean;
   createdAt: Date;
   type: string;
-  restaurant: string;
+  restaurant: RestaurantModel;
+  numberOfGuests: string;
+  bookingDate: string;
 }
 
 export interface AllNotificationResponse {
