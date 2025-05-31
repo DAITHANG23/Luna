@@ -94,7 +94,7 @@ const Toolbar = ({ onFilterChange, filter }: ToolbarProps) => {
   };
 
   return (
-    <WrapperFilter>
+    <WrapperFilter isConfirmButton>
       <div className="flex flex-col lg:flex-row justify-between items-center lg:justify-start gap-5">
         <SearchField onChange={handleTextChange} />
         <SelectField

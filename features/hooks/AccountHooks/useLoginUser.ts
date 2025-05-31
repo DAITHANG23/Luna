@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { accessToken, authentication } from "@/libs/redux/authSlice";
 import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
+import { getAllNotifications } from "@/libs/redux/masterDataSlice";
 
 const loginAccount = async (formData: UserLogin): Promise<LoginResponse> => {
   return await apiService.account.login({ formData });
@@ -39,7 +40,7 @@ const useLogin = () => {
 
       dispatch(authentication({ isAuthenticated: true }));
       dispatch(accessToken({ accessToken: res.accessToken }));
-
+      dispatch(getAllNotifications());
       queryClient.invalidateQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
       router.push("/");
     },
