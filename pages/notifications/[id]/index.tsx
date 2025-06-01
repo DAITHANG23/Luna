@@ -151,7 +151,7 @@ const Index = () => {
       <div className="mt-[50px] lg:mt-[100px]">
         <NotificationMain>
           {!isLoading ? (
-            <div className="lg:mt-[50px] p-4 flex flex-col gap-6">
+            <div className="lg:mt-[50px] p-4 flex flex-col gap-6 text-primary-text">
               {contentNotificaiton}
 
               <hr className="text-gray-500" />

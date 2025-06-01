@@ -10,12 +10,12 @@
       "button": "Xóa",
       "title": "Xóa tài khoản",
       "content": "Bạn có chắc chắn muốn xóa tài khoản của mình không? Tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn. Không thể hoàn tác hành động này.",
-      "labelButton": "Xóa"
+      "labelButton": "Thoát"
     },
     "update": {
       "title": "Cập nhật tài khoản",
       "button": "Cập nhật",
-      "labelButton": "Cập nhật",
+      "labelButton": "Thoát",
       "content": "Bạn có chắc chắn đã cập nhật hồ sơ của mình không?"
     }
   },

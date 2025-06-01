@@ -64,7 +64,7 @@ const NotificationDetailNavbar = ({
             : item.type === "bookingCanceled"
               ? "bg-primary/30 hover:bg-primary/50"
               : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50",
-        "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg"
+        "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg dark:!bg-gray-900"
       )}
     >
       {NotificationIcon}
@@ -75,9 +75,11 @@ const NotificationDetailNavbar = ({
           handleCheckReadNotification(item._id);
         }}
       >
-        <h2 className="text-base font-bold text-black">{item.title}</h2>
-        <p className="text-gray-800 text-sm">{item.message}</p>
-        <p className="text-xs">{formatted}</p>
+        <h2 className="text-base font-bold text-primary-text">{item.title}</h2>
+        <p className="text-gray-800 text-sm text-primary-text">
+          {item.message}
+        </p>
+        <p className="text-xs text-primary-text">{formatted}</p>
       </div>
       {!item.read ? (
         <div className="absolute top-2 right-2 hover:scale-110 transition duration-200 z-100">
