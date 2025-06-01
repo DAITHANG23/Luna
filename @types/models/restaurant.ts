@@ -4,12 +4,18 @@ export interface ILocation {
   address: string;
 }
 
+export interface ConceptBooking {
+  _id: string;
+  name: string;
+  imageCover: string;
+}
+
 export interface RestaurantModel {
   id: string;
   name: string;
   address: string;
   numberPhone: string;
-  concept: string;
+  concept: ConceptBooking;
   bookingManager: string;
   staffs: string;
   active: boolean;

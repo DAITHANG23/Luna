@@ -211,7 +211,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
                 action={
                   <ButtonLoading
                     type="submit"
-                    title={t("modal.update.labelButton")}
+                    title={t("modal.update.button")}
                     isLoading={isUpdateLoading}
                     onHandleSubmit={handleSubmit}
                     sizeButton="large"

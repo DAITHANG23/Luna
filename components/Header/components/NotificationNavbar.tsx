@@ -56,7 +56,7 @@ const NotificationNavbar = ({
       <MenuItems
         anchor={isMobileSize ? "bottom" : undefined}
         transition
-        className="absolute right-0 z-10 mt-2 w-auto min-w-[300px] max-w-sm h-[31.25rem] overflow-auto origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+        className="absolute right-0 z-10 mt-2 w-auto min-w-[300px] max-w-sm h-[31.25rem] overflow-auto origin-top-right rounded-md bg-white dark:bg-gray-800 py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
       >
         {allNotifications && allNotifications?.length > 0 ? (
           allNotifications.slice(0, 5).map((item) => {

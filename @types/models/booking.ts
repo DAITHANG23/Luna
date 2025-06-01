@@ -1,11 +1,15 @@
+import { RestaurantModel } from "./restaurant";
+
 export interface StatusHistory {
   status: string;
   updatedAt: Date;
   updateBy: string;
 }
+
 export interface BookingModel {
+  _id: string;
   customer: string;
-  restaurant: string;
+  restaurant: RestaurantModel;
   timeOfBooking: string;
   timeSlot: string;
   fullName: string;
@@ -18,4 +22,10 @@ export interface BookingModel {
   statusHistory?: Array<StatusHistory>;
   _updateBy?: string;
   isReaded: boolean;
+}
+
+export interface AllResevationResponse {
+  status: string;
+  results: number;
+  data: { data: Array<BookingModel> };
 }
