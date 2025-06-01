@@ -13,7 +13,7 @@ const Index = () => {
 
   const { id } = router.query;
 
-  const { t } = useTranslation("translation");
+  const { t } = useTranslation(["translation", "notification"]);
 
   const accountInfo = useAppSelector((state) => state.auth.accountInfo)?.data
     .data;
@@ -27,32 +27,29 @@ const Index = () => {
       return (
         <div className="flex flex-col gap-6">
           <p>
-            Hi
+            {t("notification:content.bookingCreated.detail.hi")}
             <span className="font-bold text-primary pl-1">
               {accountInfo?.firstName}
             </span>
             ,
           </p>
           <p>
-            Bạn đã đặt bàn thành công tại nhà hàng
+            {t("notification:content.bookingCreated.detail.content_1")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.restaurant.name}
             </span>
-            vào lúc
+            {t("notification:content.bookingCreated.detail.content_2")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.bookingDate}
             </span>
-            cho
+            {t("notification:content.bookingCreated.detail.content_3")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.numberOfGuests}
             </span>
-            người.
+            {t("notification:content.bookingCreated.detail.content_4")}
           </p>
-          <p>
-            Vui lòng chờ nhà hàng xác nhận. Bạn sẽ nhận được thông báo khi có
-            phản hồi từ nhà hàng.
-          </p>
-          <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!</p>
+          <p>{t("notification:content.bookingCreated.detail.content_5")}</p>
+          <p>{t("notification:content.bookingCreated.detail.content_6")}</p>
         </div>
       );
     }
@@ -61,32 +58,29 @@ const Index = () => {
       return (
         <div className="flex flex-col gap-6">
           <p>
-            Hi
+            {t("notification:content.bookingCreated.detail.hi")}
             <span className="font-bold text-primary pl-1">
               {accountInfo?.firstName}
             </span>
             ,
           </p>
           <p>
-            Nhà hàng
+            {t("notification:content.bookingConfirmed.detail.content_1")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.restaurant.name}
             </span>
-            đã xác nhận đặt bàn của bạn vào lúc
+            {t("notification:content.bookingConfirmed.detail.content_2")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.bookingDate}
             </span>
-            cho
+            {t("notification:content.bookingCreated.detail.content_3")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.numberOfGuests}
             </span>
-            người.
+            {t("notification:content.bookingCreated.detail.content_4")}
           </p>
-          <p>
-            Vui lòng đến đúng giờ và xuất trình mã xác nhận (nếu có) khi đến nhà
-            hàng.
-          </p>
-          <p>Chúc bạn có một bữa ăn ngon miệng!</p>
+          <p>{t("notification:content.bookingConfirmed.detail.content_3")}</p>
+          <p>{t("notification:content.bookingConfirmed.detail.content_4")}</p>
         </div>
       );
     }
@@ -95,30 +89,25 @@ const Index = () => {
       return (
         <div className="flex flex-col gap-6">
           <p>
-            Hi
+            {t("notification:content.bookingCreated.detail.hi")}
             <span className="font-bold text-primary pl-1">
               {accountInfo?.firstName}
             </span>
             ,
           </p>
           <p>
-            Rất tiếc, nhà hàng
+            {t("notification:content.bookingCanceled.detail.content_1")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.restaurant.name}
             </span>
-            đã từ chối đặt bàn của bạn vào lúc
+            {t("notification:content.bookingCanceled.detail.content_2")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.bookingDate}
             </span>
           </p>
-          <p>
-            Lý do có thể là nhà hàng đã kín chỗ hoặc không thể phục vụ vào thời
-            điểm đó.
-          </p>
-          <p>
-            Bạn có thể thử đặt lại với thời gian khác hoặc chọn nhà hàng khác.
-          </p>
-          <p>Chúng tôi xin lỗi vì sự bất tiện này.</p>
+          <p>{t("notification:content.bookingCanceled.detail.content_3")}</p>
+          <p>{t("notification:content.bookingCanceled.detail.content_4")}</p>
+          <p>{t("notification:content.bookingCanceled.detail.content_5")}</p>
         </div>
       );
     }
@@ -126,36 +115,33 @@ const Index = () => {
       return (
         <div className="flex flex-col gap-6">
           <p>
-            Hi
+            {t("notification:content.bookingCreated.detail.hi")}
             <span className="font-bold text-primary pl-1">
               {accountInfo?.firstName}
             </span>
             ,
           </p>
           <p>
-            Bạn có một lịch đặt bàn tại
+            {t("notification:content.bookingReminder.detail.content_1")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.restaurant.name}
             </span>
-            vào lúc
+            {t("notification:content.bookingCreated.detail.content_2")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.bookingDate}
             </span>
-            cho
+            {t("notification:content.bookingCreated.detail.content_3")}
             <span className="font-bold px-1 text-primary">
               {dataNotification?.numberOfGuests}
             </span>
-            người.
+            {t("notification:content.bookingCreated.detail.content_4")}
           </p>
-          <p>
-            Vui lòng đến đúng giờ để được phục vụ tốt nhất. Nếu bạn không thể
-            đến, hãy hủy đặt bàn sớm để tránh gây ảnh hưởng cho nhà hàng.
-          </p>
-          <p>Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của chúng tôi!</p>
+          <p>{t("notification:content.bookingReminder.detail.content_2")}</p>
+          <p>{t("notification:content.bookingReminder.detail.content_3")}</p>
         </div>
       );
     }
-  }, [dataNotification, accountInfo]);
+  }, [dataNotification, accountInfo, t]);
 
   return (
     <>
@@ -171,7 +157,9 @@ const Index = () => {
               <hr className="text-gray-500" />
 
               <div>
-                <p className="text-base font-bold">Thông tin nhà hàng:</p>
+                <p className="text-base font-bold">
+                  {t("notification:infoRestaurant")}
+                </p>
                 <p className="text-sm pt-3">
                   {dataNotification?.restaurant.name}
                 </p>
