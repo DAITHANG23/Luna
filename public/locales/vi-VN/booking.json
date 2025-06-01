@@ -1,0 +1,10 @@
+{
+  "modal": {
+    "delete": {
+      "button": "Hủy bỏ đặt bàn",
+      "title": "Hủy bỏ đặt bàn",
+      "content": "Bạn có chắc chắn muốn hủy đặt phòng của mình không?",
+      "labelButton": "Thoát"
+    }
+  }
+}

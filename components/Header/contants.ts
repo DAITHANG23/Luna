@@ -23,7 +23,7 @@ export const conceptNavigation = [
 
 export const dropdownList: Array<DropdownListType> = [
   { name: "yourProfile", href: `${ROUTERS.PROFILE.INDEX}` },
-  { name: "bookingHistory", href: `${ROUTERS.BOOKING.INDEX}` },
+  { name: "reservationHistory", href: `${ROUTERS.BOOKING.INDEX}` },
   { name: "favorites", href: `${ROUTERS.FAVORITE_CONCEPTS.INDEX}` },
   { name: "Settings", href: "" },
 ];

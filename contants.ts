@@ -35,6 +35,7 @@ export const GET_CONCEPT_KEY = "get-concept";
 export const GET_RESTAURANTS_OF_CONCEPT_KEY = "get-restaurant-of-concept";
 export const CHECK_READ_NOTIFICATION_KEY = "check-read-notification";
 export const GET_ALL_NOTIFICATIONS_KEY = "get-all-notifications";
+export const GET_ALL_RESEVATIONS_KEY = "get-all-resevations";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   {
@@ -392,7 +393,7 @@ export const ROUTERS = {
   CONCEPTS: { INDEX: "/restaurant-concept" },
   BLOG: { INDEX: "/blog" },
   PROFILE: { INDEX: "/your-profile" },
-  BOOKING: { INDEX: "/order-history" },
+  BOOKING: { INDEX: "/reservation-history" },
   FAVORITE_CONCEPTS: {
     INDEX: "/favorites-concepts",
     FAVORITE_RESTAURANTS: "favorite-restaurants",

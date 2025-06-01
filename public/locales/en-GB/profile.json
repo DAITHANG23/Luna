@@ -10,12 +10,12 @@
       "button": "Delete",
       "title": "Delete Account",
       "content": "Are you sure you want to delete your account? All of your data will be permanently removed. This action cannot be undone.",
-      "labelButton": "Delete"
+      "labelButton": "Cancel"
     },
     "update": {
       "title": "Update Account",
       "button": "Update",
-      "labelButton": "Update",
+      "labelButton": "Cancel",
       "content": "Are you sure update your profile?"
     }
   },
