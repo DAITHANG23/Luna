@@ -8,7 +8,7 @@ import {
   InfoIcon,
   TriangleAlertIcon,
   BellDotIcon,
-  TrashIcon,
+  Trash2Icon,
 } from "lucide-react";
 import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
@@ -94,13 +94,13 @@ const NotificationDetailNavbar = ({
       ) : (
         <div>
           <button
-            className="p-1 bg-error/20 rounded-[4px] hover:scale-105 transition duration-200"
+            className="p-1 hover:bg-error/20 hover:rounded-[4px] hover:scale-105 transition duration-200"
             onClick={(e) => {
               e.stopPropagation();
               handleDeleteNotification(item._id);
             }}
           >
-            <TrashIcon className="text-error w-5 h-5" />
+            <Trash2Icon className="text-error w-5 h-5" />
           </button>
         </div>
       )}
