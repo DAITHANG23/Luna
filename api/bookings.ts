@@ -31,6 +31,9 @@ const bookings = {
     const formDataToSend = { ...formData };
     return await apiRequest(`${baseURL}/${_id}`, "PATCH", formDataToSend);
   },
+  getBooking: async ({ id }: { id: string }): Promise<BookingResponse> => {
+    return await apiRequest(`${baseURL}/${id}`, "GET");
+  },
 };
 
 export default bookings;

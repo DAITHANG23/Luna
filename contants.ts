@@ -37,6 +37,7 @@ export const CHECK_READ_NOTIFICATION_KEY = "check-read-notification";
 export const GET_ALL_NOTIFICATIONS_KEY = "get-all-notifications";
 export const GET_ALL_RESEVATIONS_KEY = "get-all-resevations";
 export const UPDATE_RESERVATION_KEY = "update-reservation";
+export const GET_BOOKING_KEY = "get-booking";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   {
