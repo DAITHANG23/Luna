@@ -76,7 +76,7 @@ const Navbars = () => {
   }, [pathname]);
 
   useEffect(() => {
-    socket.on("bookingCreated", (data: NotificationModel) => {
+    const handleBookingEvent = (data: NotificationModel) => {
       if (data) {
         dispatch(
           unReadNotifications({
@@ -85,10 +85,23 @@ const Navbars = () => {
         );
         dispatch(getAllNotifications());
       }
+    };
+
+    const events = [
+      "bookingCreated",
+      "bookingCanceled",
+      "bookingConfirmed",
+      "bookingReminder",
+    ];
+
+    events.forEach((event) => {
+      socket.on(event, handleBookingEvent);
     });
 
     return () => {
-      socket.off("bookingCreated");
+      events.forEach((event) => {
+        socket.off(event, handleBookingEvent);
+      });
     };
   }, [dispatch, unReadNotificationsQuantities]);
 

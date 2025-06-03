@@ -94,7 +94,7 @@ const NotificationDetailNavbar = ({
           </button>
         </div>
       ) : (
-        <div>
+        <div className="flex justify-end items-end text-end">
           <button
             className="p-1 hover:bg-error/20 hover:rounded-[4px] hover:scale-105 transition duration-200"
             onClick={(e) => {

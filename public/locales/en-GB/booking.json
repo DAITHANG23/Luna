@@ -6,5 +6,16 @@
       "content": "Are you sure you want to canceled your reservation?",
       "labelButton": "Cancel"
     }
-  }
+  },
+  "notification": {
+    "canceled": "Your reservation has been canceled successfully."
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "completed": "Completed",
+    "inProgress": "In Progress"
+  },
+  "note": "Special requirements:"
 }
