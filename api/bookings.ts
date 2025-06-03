@@ -1,5 +1,9 @@
 import { RestaurantBooking, RestaurantBookingResponse } from "@/@types/models";
-import { AllResevationResponse } from "@/@types/models/booking";
+import {
+  AllResevationResponse,
+  BookingModel,
+  BookingResponse,
+} from "@/@types/models/booking";
 import { API_VERSION_V1 } from "@/contants";
 import apiRequest from "@/features/hooks/useApiRequest";
 
@@ -15,8 +19,17 @@ const bookings = {
   getAllResevation: async (): Promise<AllResevationResponse> => {
     return await apiRequest(`${baseURL}`, "GET");
   },
-  deleteResevation: async ({ id }: { id: string }) => {
+  deleteReservation: async ({ id }: { id: string }) => {
     return await apiRequest(`${baseURL}/${id}`, "DELETE");
+  },
+  updateReservation: async ({
+    formData,
+  }: {
+    formData: BookingModel;
+  }): Promise<BookingResponse> => {
+    const { _id } = formData;
+    const formDataToSend = { ...formData };
+    return await apiRequest(`${baseURL}/${_id}`, "PATCH", formDataToSend);
   },
 };
 

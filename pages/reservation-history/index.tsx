@@ -26,11 +26,7 @@ const OrderHistory = () => {
 
           <div className="my-10">
             {resevationsData?.data.data?.map((item) => (
-              <BookingDetail
-                key={item._id}
-                item={item}
-                // openCanceledModal={openCanceledModal}
-              />
+              <BookingDetail key={item._id} item={item} />
             ))}
           </div>
         </div>

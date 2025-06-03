@@ -18,7 +18,7 @@
     "bookingConfirmed": {
       "detail": {
         "content_1": "Nhà hàng",
-        "content_2": "đã xác nhận đặt chỗ của bạn tại",
+        "content_2": "đã xác nhận đặt chỗ của bạn lúc",
         "content_3": "Vui lòng đến đúng giờ và xuất trình mã xác nhận (nếu có) khi đến nhà hàng.",
         "content_4": "Chúc bạn ngon miệng!"
       }
@@ -26,7 +26,7 @@
     "bookingCanceled": {
       "detail": {
         "content_1": "Xin lỗi, nhà hàng",
-        "content_2": "từ chối đặt bàn của bạn tại",
+        "content_2": "từ chối đặt bàn của bạn lúc",
         "content_3": "Lý do có thể là nhà hàng đã kín chỗ hoặc không thể phục vụ vào thời điểm đó.",
         "content_4": "Bạn có thể thử đặt lại với thời gian khác hoặc chọn nhà hàng khác.",
         "content_5": "Chúng tôi xin lỗi vì sự bất tiện này."
