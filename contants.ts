@@ -36,6 +36,7 @@ export const GET_RESTAURANTS_OF_CONCEPT_KEY = "get-restaurant-of-concept";
 export const CHECK_READ_NOTIFICATION_KEY = "check-read-notification";
 export const GET_ALL_NOTIFICATIONS_KEY = "get-all-notifications";
 export const GET_ALL_RESEVATIONS_KEY = "get-all-resevations";
+export const UPDATE_RESERVATION_KEY = "update-reservation";
 
 export const ABOUT_IMAGES: Array<{ img: string; name: string }> = [
   {
@@ -404,3 +405,12 @@ export const ROUTERS = {
   RESET_PASSWORD: { INDEX: "/reset-password" },
   FORGOT_PASSWORD: { INDEX: "/forgot-password" },
 };
+
+export const STATUS_BOOKING = [
+  { status: "PENDING", label: "pending" },
+  { status: "CONFIRMED", label: "confirmed" },
+  { status: "IN_PROGRESS", label: "inProgress" },
+  { status: "COMPLETED", label: "completed" },
+  { status: "CANCELLED_BY_USER", label: "cancelled" },
+  { status: "CANCELLED_BY_ADMIN", label: "cancelled" },
+];

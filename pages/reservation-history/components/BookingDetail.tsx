@@ -8,7 +8,12 @@ import {
   PhoneIcon,
 } from "lucide-react";
 import { BookingModel } from "@/@types/models/booking";
-import { CONCEPTS_ROUTES, GET_ALL_RESEVATIONS_KEY, ROUTERS } from "@/contants";
+import {
+  CONCEPTS_ROUTES,
+  GET_ALL_RESEVATIONS_KEY,
+  ROUTERS,
+  STATUS_BOOKING,
+} from "@/contants";
 import { cn } from "@/utils";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
@@ -17,12 +22,13 @@ import apiService from "@/api";
 import ModalNotification from "@/libs/shared/components/ModalNotification";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useQueryClient } from "@tanstack/react-query";
+import useNotification from "@/features/hooks/useNotification";
+import useUpdateReservation from "@/features/hooks/BookingHooks/useUpdateReservation";
 interface BookingDetailProps {
   item: BookingModel;
 }
 
 const STATUS_CONFIRMED = [
-  "CONFIRMED",
   "IN_PROGRESS",
   "COMPLETED",
   "CANCELLED_BY_USER",
@@ -32,6 +38,9 @@ const STATUS_CONFIRMED = [
 const BookingDetail = ({ item }: BookingDetailProps) => {
   const { t, ready } = useTranslation("booking");
   const router = useRouter();
+  const { showSuccess } = useNotification();
+
+  const { mutateAsync: updateReservation } = useUpdateReservation();
   const concept = useMemo(() => {
     return CONCEPTS_ROUTES.find(
       (c) => c.name === item?.restaurant?.concept?.name
@@ -45,12 +54,26 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
   };
 
   const handleCanceledReservation = async () => {
-    await apiService.bookings.deleteResevation({ id: item?._id });
-    queryClient.invalidateQueries({ queryKey: [GET_ALL_RESEVATIONS_KEY] });
+    if (item?.status === "PENDING") {
+      await apiService.bookings.deleteReservation({ id: item?._id });
+      queryClient.invalidateQueries({ queryKey: [GET_ALL_RESEVATIONS_KEY] });
+    }
+
+    if (item?.status === "CONFIRMED") {
+      updateReservation({ status: "CANCELLED_BY_USER", _id: item?._id });
+    }
+
+    showSuccess(t("notification.canceled"));
     setIsOpenCanceledModal(false);
   };
 
   const formatted = dayjs(item?.timeOfBooking).format("DD/MM/YYYY");
+
+  const status = useMemo(() => {
+    if (item?.status) {
+      return STATUS_BOOKING.find((s) => s.status === item.status);
+    }
+  }, [item]);
   if (!ready) return null;
   return (
     <>
@@ -79,20 +102,23 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
           }
         />
       )}
-      <div className="flex flex-col gap-5 mb-5 justify-between p-5 text-center bg-white dark:bg-gray-800 shadow-xl rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-0.5">
-        <div
-          className="flex justify-between"
-          onClick={() => {
-            router.push(`${ROUTERS.BOOKING.INDEX}/${item?._id}`);
-          }}
-        >
-          <div className="flex gap-4 justify-center items-center ">
-            <Image
-              src={concept?.logo || "/favicon.ico"}
-              alt="logo"
-              width={concept?.width}
-              height={concept?.height}
-            />
+      <div className="flex flex-col gap-5 mb-5 justify-between p-5 text-center bg-white dark:bg-gray-800 shadow-xl rounded-lg transition-all duration-200 hover:-translate-y-0.5">
+        <div className="flex justify-between lg:flex-row flex-col gap-4">
+          <div className="flex gap-4 justify-start text-start items-center ">
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                router.push(`${concept?.route}`);
+              }}
+            >
+              <Image
+                src={concept?.logo || "/favicon.ico"}
+                alt="logo"
+                width={concept?.width}
+                height={concept?.height}
+              />
+            </div>
+
             <p className="text-primary-text font-bold">
               {item?.restaurant?.name}
             </p>
@@ -108,55 +134,58 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
                       item?.status === "CANCELLED_BY_USER"
                     ? "bg-primary/30 hover:bg-primary/50 text-primary"
                     : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50 text-[#CA8A04]",
-              "text-xs font-semibold py-1 px-2.5 text-center h-6 rounded-lg"
+              "text-xs font-semibold py-1 px-2.5 text-center h-6 rounded-lg max-w-28 xl:max-w-30"
             )}
           >
-            {item?.status}
+            {t(`status.${status?.label}`)}
           </p>
         </div>
         <div
-          className="flex gap-20 text-primary-text"
+          className="flex gap-4 text-black flex-col bg-gray-200 dark:bg-gray-400 p-4 rounded cursor-pointer"
           onClick={() => {
             router.push(`${ROUTERS.BOOKING.INDEX}/${item?._id}`);
           }}
         >
-          <div>
-            <div className="flex items-center gap-2">
-              <MailIcon className="w-4 h-4 text-primary" />
-              {item?.email}
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-20">
+            <div>
+              <div className="flex items-center gap-2">
+                <MailIcon className="w-4 h-4 text-primary" />
+                {item?.email}
+              </div>
+              <div className="flex items-center gap-2">
+                <PhoneIcon className="w-4 h-4 text-primary" />
+                {item?.numberPhone}
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <PhoneIcon className="w-4 h-4 text-primary" /> {item?.numberPhone}
+
+            <div>
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="w-4 h-4 text-primary" /> {formatted}
+              </div>
+              <div className="flex items-center gap-2">
+                <ClockIcon className="w-4 h-4 text-primary" /> {item?.timeSlot}
+              </div>
+              <div className="flex items-center gap-2">
+                <UsersIcon className="w-4 h-4 text-primary" />
+                {item?.peopleQuantity}
+              </div>
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="w-4 h-4 text-primary" /> {formatted}
+          {item?.notes && (
+            <div
+              className="text-start bg-gray-200 dark:bg-gray-400 text-black "
+              onClick={() => {
+                router.push(`${ROUTERS.BOOKING.INDEX}/${item?._id}`);
+              }}
+            >
+              <p className="text-sm font-bold">{t("note")}</p>
+              <p className="text-sm">{item?.notes}</p>
             </div>
-            <div className="flex items-center gap-2">
-              <ClockIcon className="w-4 h-4 text-primary" /> {item?.timeSlot}
-            </div>
-            <div className="flex items-center gap-2">
-              <UsersIcon className="w-4 h-4 text-primary" />
-              {item?.peopleQuantity}
-            </div>
-          </div>
+          )}
         </div>
 
-        {item?.notes && (
-          <div
-            className="text-start bg-gray-200 dark:bg-gray-400 text-black p-4 rounded"
-            onClick={() => {
-              router.push(`${ROUTERS.BOOKING.INDEX}/${item?._id}`);
-            }}
-          >
-            <p>Note:</p>
-            <p>{item?.notes}</p>
-          </div>
-        )}
-
-        {!STATUS_CONFIRMED.includes(item?.status) && (
+        {!STATUS_CONFIRMED.includes(item?.status as string) && (
           <div className="flex gap-4 justify-end z-100">
             {/* <button className="px-2 py-1 rounded text-center hover:bg-primary text-primary-text hover:text-white">
           Edit
@@ -165,7 +194,7 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
               onClick={openCanceledModal}
               className="px-2 py-1 rounded text-center bg-primary text-white text-sm hover:scale-105 transition duration-200"
             >
-              Canceled Reservation
+              {t("modal.delete.button")}
             </button>
           </div>
         )}
