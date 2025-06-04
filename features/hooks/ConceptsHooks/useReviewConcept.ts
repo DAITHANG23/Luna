@@ -27,7 +27,7 @@ const useReviewConcept = () => {
   >({
     mutationFn: reviewPost,
     mutationKey: [REVIEW_CONCEPT_KEY],
-    onSuccess: async () => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [GET_CHECK_IN_CONCEPTS_KEY] });
       queryClient.invalidateQueries({ queryKey: [GET_ALL_CONCEPTS_QUERY_KEY] });
     },

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import NotificationMain from "../components/NotificationMain";
 import { useRouter } from "next/router";
 import useGetNotificationItem from "@/features/hooks/NotificationBooking/useGetNotificationItem";
@@ -7,6 +7,9 @@ import Spinner from "@/libs/shared/components/Spinner";
 import { PhoneIcon, MapPinHouseIcon } from "lucide-react";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
+import ModalComponent from "@/libs/shared/components/ModalComponent";
+import Review from "@/pages/restaurant-concept/components/Review";
+import { ConceptModel } from "@/@types/models";
 
 const Index = () => {
   const router = useRouter();
@@ -15,12 +18,18 @@ const Index = () => {
 
   const { t } = useTranslation(["translation", "notification"]);
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const accountInfo = useAppSelector((state) => state.auth.accountInfo)?.data
     .data;
 
   const { notificationData, isLoading } = useGetNotificationItem(id as string);
 
   const dataNotification = notificationData?.data.data;
+
+  const concept = useMemo(() => {
+    return dataNotification?.restaurant.concept || [];
+  }, [dataNotification]);
 
   const contentNotificaiton = useMemo(() => {
     if (dataNotification?.type === "bookingCreated") {
@@ -141,6 +150,49 @@ const Index = () => {
         </div>
       );
     }
+
+    if (dataNotification?.type === "bookingCompleted") {
+      return (
+        <div className="flex flex-col gap-6">
+          <p>
+            {t("notification:content.bookingCreated.detail.hi")}
+            <span className="font-bold text-primary pl-1">
+              {accountInfo?.firstName}
+            </span>
+            ,
+          </p>
+          <p>
+            {t("notification:content.bookingCompleted.detail.content_1")}
+            <span className="font-bold px-1 text-primary">
+              {dataNotification?.restaurant.name}
+            </span>
+            .
+            <span className="pl-1">
+              {t("notification:content.bookingCompleted.detail.content_2")}
+            </span>
+            <span className="font-bold px-1 text-primary">
+              {dataNotification?.bookingDate}
+            </span>
+            {t("notification:content.bookingCreated.detail.content_3")}
+            <span className="font-bold px-1 text-primary">
+              {dataNotification?.numberOfGuests}
+            </span>
+            <span className="pr-1">
+              {t("notification:content.bookingCompleted.detail.content_7")}
+            </span>
+            {t("notification:content.bookingCompleted.detail.content_3")}
+          </p>
+          <p>{t("notification:content.bookingCompleted.detail.content_4")}</p>
+          <p
+            className="text-primary hover:underline cursor-pointer"
+            onClick={() => setIsOpenModal(true)}
+          >
+            👉 {t("notification:content.bookingCompleted.detail.content_6")}
+          </p>
+          <p>{t("notification:content.bookingCompleted.detail.content_5")}</p>
+        </div>
+      );
+    }
   }, [dataNotification, accountInfo, t]);
 
   return (
@@ -149,6 +201,13 @@ const Index = () => {
         <title>{t("headTitle.notifications")}</title>
       </Head>
       <div className="mt-[50px] lg:mt-[100px]">
+        <ModalComponent open={isOpenModal} setOpen={setIsOpenModal}>
+          <Review
+            concept={concept as ConceptModel}
+            setIsOpenModal={setIsOpenModal}
+            isOpenModal={isOpenModal}
+          />
+        </ModalComponent>
         <NotificationMain>
           {!isLoading ? (
             <div className="lg:mt-[50px] p-4 flex flex-col gap-6 text-primary-text">

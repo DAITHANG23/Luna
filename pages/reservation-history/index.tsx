@@ -4,14 +4,16 @@ import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import BookingDetail from "./components/BookingDetail";
 import Spinner from "@/libs/shared/components/Spinner";
+import { useRouter } from "next/router";
 
 const OrderHistory = () => {
   const { t, ready } = useTranslation("booking");
 
   const { resevationsData, isLoading } = useGetAllResevations();
 
-  if (isLoading) return <Spinner />;
+  const router = useRouter();
 
+  if (isLoading) return <Spinner />;
   if (!ready) return null;
   return (
     <div>
@@ -21,13 +23,28 @@ const OrderHistory = () => {
       <div className="mt-[8.5rem]">
         <div className="mt-[5rem] sm:mt-[7.5rem] w-[90%] xl:w-[60%] mx-auto p-4 ">
           <h3 className="flex text-center justify-start items-center gap-2 text-primary-text">
-            <CalendarIcon /> Reservation History
+            <CalendarIcon /> {t("title")}
           </h3>
 
           <div className="my-10">
-            {resevationsData?.data.data?.map((item) => (
-              <BookingDetail key={item._id} item={item} />
-            ))}
+            {resevationsData && resevationsData?.data.data.length > 0 ? (
+              resevationsData?.data.data?.map((item) => (
+                <BookingDetail key={item._id} item={item} />
+              ))
+            ) : (
+              <div className="flex flex-col gap-4 justify-center items-center text-center">
+                <p className="text-base">{t("noBooking")}</p>
+                <div className="flex gap-2">
+                  <button
+                    className="text-primary hover:underline text-base font-bold"
+                    onClick={() => router.push("/restaurant-concept")}
+                  >
+                    {t("button.bookingNow")}
+                  </button>
+                  {t("contentNoBooking")}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
