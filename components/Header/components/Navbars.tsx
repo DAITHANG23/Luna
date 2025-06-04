@@ -92,6 +92,7 @@ const Navbars = () => {
       "bookingCanceled",
       "bookingConfirmed",
       "bookingReminder",
+      "bookingCompleted",
     ];
 
     events.forEach((event) => {

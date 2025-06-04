@@ -7,6 +7,7 @@ import {
   ClipboardCheckIcon,
   UtensilsIcon,
   StarIcon,
+  BookXIcon,
 } from "lucide-react";
 
 interface StepperProps {
@@ -26,7 +27,8 @@ const Stepper = ({ statusHistory, allSteps, labelMap }: StepperProps) => {
         const isDone = index < statusHistory.length;
         const isCurrent = index === currentIndex;
         const history = historyMap[step];
-
+        const isCancelled =
+          step === "CANCELLED_BY_USER" || step === "CANCELLED_BY_ADMIN";
         return (
           <div
             key={step}
@@ -48,8 +50,9 @@ const Stepper = ({ statusHistory, allSteps, labelMap }: StepperProps) => {
                   "bg-green-500 text-white border-green-500":
                     step === "COMPLETED" || (isDone && !isCurrent),
                   "bg-yellow-400 text-white border-yellow-400":
-                    isCurrent && step !== "COMPLETED",
+                    isCurrent && step !== "COMPLETED" && !isCancelled,
                   "bg-gray-200 text-gray-500 border-gray-300": !isDone,
+                  "bg-red-500 text-white boder-red-500": isCancelled,
                 }
               )}
             >
@@ -59,6 +62,9 @@ const Stepper = ({ statusHistory, allSteps, labelMap }: StepperProps) => {
                 <ClipboardCheckIcon />
               ) : step === "IN_PROGRESS" ? (
                 <UtensilsIcon />
+              ) : step === "CANCELLED_BY_USER" ||
+                step === "CANCELLED_BY_ADMIN" ? (
+                <BookXIcon />
               ) : (
                 <StarIcon />
               )}

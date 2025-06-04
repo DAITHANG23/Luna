@@ -102,6 +102,7 @@ const BookingForm = ({
       onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={validationSchema}
+      validateOnMount={true}
     >
       {() => {
         return (
