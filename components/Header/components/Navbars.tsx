@@ -31,7 +31,12 @@ import {
   userInfo,
 } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
-import { DEFAULT_AVATAR, GET_DATA_USER_QUERY_KEY, ROUTERS } from "@/contants";
+import {
+  DEFAULT_AVATAR,
+  GET_BOOKING_KEY,
+  GET_DATA_USER_QUERY_KEY,
+  ROUTERS,
+} from "@/contants";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import { useQueryClient } from "@tanstack/react-query";
@@ -84,6 +89,7 @@ const Navbars = () => {
           })
         );
         dispatch(getAllNotifications());
+        queryClient.invalidateQueries({ queryKey: [GET_BOOKING_KEY] });
       }
     };
 
@@ -104,7 +110,7 @@ const Navbars = () => {
         socket.off(event, handleBookingEvent);
       });
     };
-  }, [dispatch, unReadNotificationsQuantities]);
+  }, [dispatch, unReadNotificationsQuantities, queryClient]);
 
   const handleSignOut = async () => {
     dispatch(accessToken({ accessToken: "" }));
