@@ -100,7 +100,6 @@ const FormDetail = ({
           required
           type="text"
           classNameInput="w-full !px-3 !py-[6px]"
-          isReadOnly
         />
 
         <FieldInput
@@ -109,7 +108,6 @@ const FormDetail = ({
           required
           type="text"
           classNameInput="w-full !px-3 !py-[6px]"
-          isReadOnly
         />
 
         <FieldInput
@@ -118,7 +116,6 @@ const FormDetail = ({
           required
           type="text"
           classNameInput="w-full !px-3 !py-[6px]"
-          isReadOnly
         />
       </div>
 
