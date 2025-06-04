@@ -9,6 +9,7 @@ import {
   TriangleAlertIcon,
   BellDotIcon,
   Trash2Icon,
+  StarIcon,
 } from "lucide-react";
 import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
@@ -48,6 +49,8 @@ const NotificationDetailNavbar = ({
         return (
           <TriangleAlertIcon className="text-primary w-6 h-6 flex-shrink-0" />
         );
+      case "bookingCompleted":
+        return <StarIcon className="text-purple-800 w-6 h-6 flex-shrink-0" />;
 
       default:
         return <InfoIcon className="text-[#2563EB] w-6 h-6 flex-shrink-0" />;
@@ -61,9 +64,11 @@ const NotificationDetailNavbar = ({
           ? "bg-[#BFDBFE]/30 hover:bg-[#BFDBFE]/50"
           : item.type === "bookingConfirmed"
             ? "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50"
-            : item.type === "bookingCanceled"
-              ? "bg-primary/30 hover:bg-primary/50"
-              : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50",
+            : item.type === "bookingCompleted"
+              ? "bg-purple-300 hover:bg-purple-500"
+              : item.type === "bookingCanceled"
+                ? "bg-primary/30 hover:bg-primary/50"
+                : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50",
         "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg dark:!bg-gray-900"
       )}
     >

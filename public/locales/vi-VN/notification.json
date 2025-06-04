@@ -38,6 +38,17 @@
         "content_2": "Vui lòng đến đúng giờ để được phục vụ tốt nhất. Nếu bạn không thể đến, hãy hủy đặt bàn sớm để tránh gây ảnh hưởng cho nhà hàng.",
         "content_3": "Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của chúng tôi!"
       }
+    },
+    "bookingCompleted": {
+      "detail": {
+        "content_1": "Chúng tôi hy vọng bạn đã có một trải nghiệm ăn uống tuyệt vời tại",
+        "content_2": "Đặt chỗ của bạn trên",
+        "content_3": "đã được đánh dấu là hoàn thành.",
+        "content_4": "Cảm ơn bạn đã chọn chúng tôi! Nếu bạn thích bữa ăn của mình, chúng tôi rất muốn nghe phản hồi của bạn.",
+        "content_5": "Chúng tôi mong sớm được chào đón bạn trở lại.",
+        "content_6": "Để lại đánh giá",
+        "content_7": "người"
+      }
     }
   },
   "infoRestaurant": "Thông tin nhà hàng:"

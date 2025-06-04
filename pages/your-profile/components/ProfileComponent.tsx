@@ -86,7 +86,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
         .required(t("profile.validate.firstName")),
       lastName: Yup.string()
         .trim()
-        .min(3, t("profile.validate.minLastName"))
+        .min(2, t("profile.validate.minLastName"))
         .max(50, t("profile.validate.maxLastName"))
         .required(t("profile.validate.lastName")),
       gender: Yup.string().trim().required("Please provide your gender!"),
@@ -157,6 +157,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
       onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={validationSchema}
+      validateOnMount={true}
     >
       {({ setFieldValue, isValid }) => {
         const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -320,7 +321,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
                 </div>
                 <div className="justify-end text-end">
                   <button
-                    type="button"
+                    type={isValid ? "button" : "submit"}
                     className="cursor-pointer text-white bg-primary/70 hover:bg-primary/80 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm text-center me-2 dark:focus:ring-primary inline-flex items-center"
                     onClick={() => {
                       if (isValid) {

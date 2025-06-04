@@ -1,4 +1,7 @@
 {
+  "title": "Reservation History",
+  "noBooking": "You have not booked any restaurant table yet. :(",
+  "contentNoBooking": "to experience the delicious cuisine at our restaurant!",
   "modal": {
     "delete": {
       "button": "Canceled Reservation",
@@ -17,5 +20,20 @@
     "completed": "Completed",
     "inProgress": "In Progress"
   },
-  "note": "Special requirements:"
+  "note": "Special requirements:",
+  "thankYou": "Thank you for visiting Domique Fusion!",
+  "reservationCode": "Reservation code:",
+  "button": {
+    "bookingAgain": "Booking Again",
+    "goBack": "Back",
+    "contact": "Contact Restaurant",
+    "bookingNow": "[ Booking Now ]"
+  },
+  "statusLabel": {
+    "pending": "Booking waiting for confirmation",
+    "confirmed": "Reservation confirmed",
+    "cancelled": "Reservation cancelled",
+    "completed": "The meal is completed",
+    "inProgress": "The meal is in progress"
+  }
 }

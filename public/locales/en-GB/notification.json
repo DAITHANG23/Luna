@@ -36,6 +36,17 @@
         "content_2": "Please arrive on time for the best service. If you cannot come, please cancel your reservation early to avoid affecting the restaurant.",
         "content_3": "Thank you for trusting and using our services!"
       }
+    },
+    "bookingCompleted": {
+      "detail": {
+        "content_1": "We hope you had a wonderful dining experience at",
+        "content_2": "Your reservation on",
+        "content_3": "has been marked as completed.",
+        "content_4": "Thank you for choosing us! If you enjoyed your meal, we’d love to hear your feedback.",
+        "content_5": "We look forward to welcoming you again soon.",
+        "content_6": "Leave a review",
+        "content_7": "people"
+      }
     }
   },
   "infoRestaurant": "Restaurant information:"
