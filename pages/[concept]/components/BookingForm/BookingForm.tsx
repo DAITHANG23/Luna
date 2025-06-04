@@ -12,6 +12,7 @@ import {
 } from "@/@types/models";
 import FormDetail from "../FormDetail/FormDetail";
 import useBookingRestaurant from "@/features/hooks/RestaurantsHooks/useBookingRestaurant";
+import { REGEX_VALIDATE_EMAIL } from "@/contants";
 
 interface BookingFormProps {
   chooseRestaurant: string | null;
@@ -78,7 +79,8 @@ const BookingForm = ({
     return Yup.object({
       email: Yup.string()
         .trim()
-        .required(t("restaurant:validate.fieldIsRequired")),
+        .required(t(`login.validate.email`))
+        .matches(REGEX_VALIDATE_EMAIL, t(`login.validate.invalidEmail`)),
       fullName: Yup.string()
         .trim()
         .required(t("restaurant:validate.fieldIsRequired")),

@@ -38,7 +38,7 @@ const Review = ({ concept, setIsOpenModal, isOpenModal }: ReviewProps) => {
   };
 
   const isInvalid =
-    scoreReviewConcept <= 0 || valueContentReview.trim().length < 5;
+    scoreReviewConcept <= 0 || valueContentReview.trim().length < 2;
 
   const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
@@ -101,6 +101,10 @@ const Review = ({ concept, setIsOpenModal, isOpenModal }: ReviewProps) => {
               placeholder={t("placehoderTextarea")}
               onChange={(e) => handleChangeText(e)}
             />
+            {valueContentReview.trim().length > 0 &&
+              valueContentReview.trim().length < 5 && (
+                <p className="text-primary text-sm">{t("validateReview")}</p>
+              )}
           </div>
           <div className="flex justify-end mt-10">
             <button
