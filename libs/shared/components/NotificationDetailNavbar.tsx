@@ -65,7 +65,7 @@ const NotificationDetailNavbar = ({
           : item.type === "bookingConfirmed"
             ? "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50"
             : item.type === "bookingCompleted"
-              ? "bg-purple-300 hover:bg-purple-500"
+              ? "bg-purple-300 hover:bg-purple-400"
               : item.type === "bookingCanceled"
                 ? "bg-primary/30 hover:bg-primary/50"
                 : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50",
