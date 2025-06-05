@@ -82,7 +82,7 @@ const NotificationNavbar = ({
           </div>
         )}
         {allNotifications && allNotifications?.length > 5 && (
-          <div className="w-full">
+          <MenuItem>
             <button
               className="w-full hover:underline text-primary font-bold text-sm"
               onClick={() => {
@@ -91,7 +91,7 @@ const NotificationNavbar = ({
             >
               {t("seeMore")}
             </button>
-          </div>
+          </MenuItem>
         )}
       </MenuItems>
     </Menu>

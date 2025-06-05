@@ -47,6 +47,14 @@
         "content_6": "Leave a review",
         "content_7": "people"
       }
+    },
+    "bookingInProgress": {
+      "detail": {
+        "content_1": "We hope you are enjoying your dining experience at",
+        "content_2": "is currently in progress.",
+        "content_3": "Thank you for choosing us! If you need any assistance, please don’t hesitate to ask.",
+        "content_4": "We look forward to serving you and welcoming you again soon."
+      }
     }
   },
   "infoRestaurant": "Restaurant information:"

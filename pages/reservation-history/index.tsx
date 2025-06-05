@@ -13,7 +13,12 @@ const OrderHistory = () => {
 
   const router = useRouter();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="mt-[8.5rem]">
+        <Spinner />
+      </div>
+    );
   if (!ready) return null;
   return (
     <div>
