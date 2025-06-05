@@ -15,6 +15,7 @@ import {
 import { CONCEPTS_ROUTES } from "@/contants";
 import Image from "next/image";
 import dayjs from "dayjs";
+import Spinner from "@/libs/shared/components/Spinner";
 
 const statusLabels: Record<string, string> = {
   PENDING: "Pending",
@@ -41,7 +42,7 @@ const Index = () => {
   const router = useRouter();
   const id = router.query.id as string | undefined;
 
-  const { bookingData } = useGetBooking(id as string);
+  const { bookingData, isLoading } = useGetBooking(id as string);
   const dataBooking = useMemo(() => {
     return bookingData?.data.data;
   }, [bookingData]);
@@ -84,6 +85,12 @@ const Index = () => {
     return dataBooking?.status === "CANCELLED_BY_USER";
   }, [dataBooking]);
 
+  if (isLoading)
+    return (
+      <div className="mt-[8.5rem]">
+        <Spinner />
+      </div>
+    );
   if (!ready) return null;
   return (
     <>
@@ -176,12 +183,14 @@ const Index = () => {
               </p>
             </div>
           </div>
-          <div className="flex gap-4 text-black flex-col p-4 rounded cursor-pointer">
+          <div className="flex gap-4 text-black flex-col py-4 lg:p-4">
             <div className="flex flex-col lg:flex-row gap-4 lg:gap-20">
               <div>
-                <div className="flex items-center gap-2">
-                  <MailIcon className="w-4 h-4 text-primary" />
-                  {dataBooking?.email}
+                <div className="flex items-center gap-2 justify-start">
+                  <MailIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="whitespace-normal break-words min-w-[150px]">
+                    {dataBooking?.email}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <PhoneIcon className="w-4 h-4 text-primary" />
@@ -194,7 +203,7 @@ const Index = () => {
                   <CalendarIcon className="w-4 h-4 text-primary" /> {formatted}
                 </div>
                 <div className="flex items-center gap-2">
-                  <ClockIcon className="w-4 h-4 text-primary" />{" "}
+                  <ClockIcon className="w-4 h-4 text-primary" />
                   {dataBooking?.timeSlot}
                 </div>
                 <div className="flex items-center gap-2">

@@ -31,7 +31,7 @@
     "notes": "Ghi chú"
   },
   "validate": {
-    "fieldIsRequired": "Vui lòng nhập thông tin cá nhân!"
+    "fieldIsRequired": "Vui lòng nhập thông tin này!"
   },
   "button": {
     "booking": "Đặt bàn"

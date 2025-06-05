@@ -7,7 +7,11 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  BarsArrowDownIcon,
+} from "@heroicons/react/24/outline";
 import {
   UserIcon,
   ArchiveBoxIcon,
@@ -99,6 +103,7 @@ const Navbars = () => {
       "bookingConfirmed",
       "bookingReminder",
       "bookingCompleted",
+      "bookingInProgress",
     ];
 
     events.forEach((event) => {
@@ -147,7 +152,7 @@ const Navbars = () => {
                   className="block size-6 group-data-open:hidden"
                 />
               ) : (
-                <XMarkIcon
+                <BarsArrowDownIcon
                   aria-hidden="true"
                   className="block size-6 group-data-open:block"
                 />
@@ -296,6 +301,17 @@ const Navbars = () => {
 
       <DisclosurePanel className="lg:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3 flex items-center justify-center flex-col">
+          <DisclosureButton
+            className="flex justify-end items-end w-full text-end pr-2 z-100"
+            onClick={() => setOpen(false)}
+          >
+            <button>
+              <XMarkIcon
+                aria-hidden="true"
+                className="block size-6 group-data-open:block"
+              />
+            </button>
+          </DisclosureButton>
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}

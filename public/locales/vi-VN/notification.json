@@ -49,6 +49,14 @@
         "content_6": "Để lại đánh giá",
         "content_7": "người"
       }
+    },
+    "bookingInProgress": {
+      "detail": {
+        "content_1": "Chúng tôi hy vọng bạn sẽ thích trải nghiệm ẩm thực của mình tại",
+        "content_2": "hiện đang trong quá trình tiến hành.",
+        "content_3": "Cảm ơn bạn đã chọn chúng tôi! Nếu bạn cần bất kỳ sự hỗ trợ nào, vui lòng đừng ngần ngại hỏi.",
+        "content_4": "Chúng tôi mong muốn được phục vụ và chào đón bạn sớm nhất."
+      }
     }
   },
   "infoRestaurant": "Thông tin nhà hàng:"

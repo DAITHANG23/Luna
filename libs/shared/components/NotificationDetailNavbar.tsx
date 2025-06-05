@@ -10,6 +10,7 @@ import {
   BellDotIcon,
   Trash2Icon,
   StarIcon,
+  CircleDashedIcon,
 } from "lucide-react";
 import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
@@ -51,7 +52,10 @@ const NotificationDetailNavbar = ({
         );
       case "bookingCompleted":
         return <StarIcon className="text-purple-800 w-6 h-6 flex-shrink-0" />;
-
+      case "bookingInProgress":
+        return (
+          <CircleDashedIcon className="text-[#2563EB] w-6 h-6 flex-shrink-0" />
+        );
       default:
         return <InfoIcon className="text-[#2563EB] w-6 h-6 flex-shrink-0" />;
     }
@@ -60,7 +64,7 @@ const NotificationDetailNavbar = ({
     <div
       className={cn(
         item.read && "!bg-white",
-        item.type === "bookingCreated"
+        item.type === "bookingCreated" || item.type === "bookingInProgress"
           ? "bg-[#BFDBFE]/30 hover:bg-[#BFDBFE]/50"
           : item.type === "bookingConfirmed"
             ? "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50"
