@@ -128,12 +128,14 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
             className={cn(
               item?.status === "PENDING" || item?.status === "IN_PROGRESS"
                 ? "bg-[#BFDBFE]/30 hover:bg-[#BFDBFE]/50 text-[#2563EB]"
-                : item?.status === "CONFIRMED" || item?.status === "COMPLETED"
+                : item?.status === "CONFIRMED"
                   ? "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50 text-[#16a34a]"
-                  : item?.status === "CANCELLED_BY_ADMIN" ||
-                      item?.status === "CANCELLED_BY_USER"
-                    ? "bg-primary/30 hover:bg-primary/50 text-primary"
-                    : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50 text-[#CA8A04]",
+                  : item?.status === "COMPLETED"
+                    ? "bg-purple-300 hover:bg-purple-400 text-purple-800"
+                    : item?.status === "CANCELLED_BY_ADMIN" ||
+                        item?.status === "CANCELLED_BY_USER"
+                      ? "bg-primary/30 hover:bg-primary/50 text-primary"
+                      : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50 text-[#CA8A04]",
               "text-xs font-semibold py-1 px-2.5 text-center h-6 rounded-lg max-w-28 xl:max-w-30"
             )}
           >
@@ -149,8 +151,10 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-20">
             <div>
               <div className="flex items-center gap-2">
-                <MailIcon className="w-4 h-4 text-primary" />
-                {item?.email}
+                <MailIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                <span className="whitespace-normal break-words min-w-[150px] text-start">
+                  {item?.email}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <PhoneIcon className="w-4 h-4 text-primary" />

@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 import { TFunction } from "i18next";
+import { useRouter } from "next/router";
 
 const bookingRestaurant = async (
   formData: RestaurantBooking
@@ -20,7 +21,7 @@ const useBookingRestaurant = (
   t: TFunction<"translation" | "restaurant">
 ) => {
   const { showError, showSuccess } = useNotification();
-
+  const router = useRouter();
   return useMutation<
     RestaurantBookingResponse,
     AxiosError<ErrorResponse>,
@@ -30,6 +31,7 @@ const useBookingRestaurant = (
     onSuccess: () => {
       showSuccess(t("restaurant:bookingSuccessfully"));
       onSuccess();
+      router.push("/reservation-history");
     },
     onError: (err: AxiosError<ErrorResponse>) => {
       showError(err.message);
