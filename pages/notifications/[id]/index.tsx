@@ -151,6 +151,45 @@ const Index = () => {
       );
     }
 
+    if (dataNotification?.type === "bookingInProgress") {
+      return (
+        <div className="flex flex-col gap-6">
+          <p>
+            {t("notification:content.bookingCreated.detail.hi")}
+            <span className="font-bold text-primary pl-1">
+              {accountInfo?.firstName}
+            </span>
+            ,
+          </p>
+          <p>
+            {t("notification:content.bookingInProgress.detail.content_1")}{" "}
+            <span className="font-bold px-1 text-primary">
+              {dataNotification?.restaurant.name}.
+            </span>
+          </p>
+          <p>
+            <span className="pl-1">
+              {t("notification:content.bookingCompleted.detail.content_2")}
+            </span>
+            <span className="font-bold px-1 text-primary">
+              {dataNotification?.bookingDate}
+            </span>
+            {t("notification:content.bookingCreated.detail.content_3")}
+            <span className="font-bold px-1 text-primary">
+              {dataNotification?.numberOfGuests}
+            </span>
+            <span className="pr-1">
+              {t("notification:content.bookingCompleted.detail.content_7")}
+            </span>
+            {t("notification:content.bookingInProgress.detail.content_2")}
+          </p>
+          <p>{t("notification:content.bookingInProgress.detail.content_3")}</p>
+
+          <p>{t("notification:content.bookingInProgress.detail.content_4")}</p>
+        </div>
+      );
+    }
+
     if (dataNotification?.type === "bookingCompleted") {
       return (
         <div className="flex flex-col gap-6">

@@ -149,7 +149,7 @@ const About = () => {
                 23:00
               </p>
               <p>
-                <span className="font-bold">{t("about.holidays")}:</span>{" "}
+                <span className="font-bold">{t("about.holidays")}:</span>
                 {t("about.specialHour")}
               </p>
             </div>
