@@ -12,7 +12,7 @@ import LazyConceptItem from "./components/LazyConceptItem";
 const RestaurantConcept = () => {
   const [filter, setFilter] = useState(defaultFilter);
 
-  const { t } = useTranslation("translation");
+  const { t } = useTranslation(["translation", "concept"]);
 
   const { concepts, price, searchText, star } = filter;
 
@@ -65,16 +65,23 @@ const RestaurantConcept = () => {
         {isLoading ? (
           <Skeleton />
         ) : (
-          <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
-            {conceptsDataSort &&
-              conceptsDataSort?.map((concept: ConceptModel, index) => {
-                return (
-                  <div key={concept.name}>
-                    <LazyConceptItem concept={concept} index={index} />
-                  </div>
-                );
-              })}
-          </div>
+          <>
+            {conceptsDataSort && conceptsDataSort.length > 0 ? (
+              <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
+                {conceptsDataSort?.map((concept: ConceptModel, index) => {
+                  return (
+                    <div key={concept.name}>
+                      <LazyConceptItem concept={concept} index={index} />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="w-full text-center my-20">
+                <p>{t("concept:notFound")}</p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </>

@@ -21,6 +21,7 @@
   "placehoderTextarea": "Write your thoughts here...",
   "seeMenu": "See menu",
   "validateReview": "Please enter least 5 characters !",
+  "notFound": "Oops! We couldn’t find any restaurants :(",
   "navbar": {
     "menu": "Menu",
     "booking": "Booking"

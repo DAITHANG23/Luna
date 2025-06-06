@@ -158,6 +158,9 @@ h4 {
 
 .ril-outer {
   background-color: rgba(0, 0, 0, 0.9);
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .ril__image {
@@ -165,6 +168,12 @@ h4 {
   max-height: 90vh;
   object-fit: contain;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+.ril-image-current {
+  max-width: 1000vw !important;
+  max-height: 1000vh !important;
+  object-fit: contain;
+  margin: auto !important;
 }
 
 /* Custom scrollbar */
