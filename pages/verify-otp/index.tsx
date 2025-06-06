@@ -33,6 +33,8 @@ const VerifyOTP = () => {
 
   const initialValues = {
     email: emailResetPassword || "",
+    firstName: registerData?.firstName || "",
+    lastName: registerData?.lastName || "",
     password: registerData?.password || "",
     fullName: registerData?.fullName || "",
     numberPhone: registerData?.numberPhone || "",

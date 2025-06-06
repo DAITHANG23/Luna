@@ -60,6 +60,12 @@ export interface UpdatePasswordType {
 
 export interface ForgotPasswordType {
   email?: string;
+  firstName?: string;
+  dateOfBirth?: string;
+  lastName?: string;
+  address?: string;
+  fullName?: string;
+  numberPhone?: string;
   password?: string;
   passwordConfirm?: string;
   token?: string;
