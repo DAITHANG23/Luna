@@ -42,7 +42,7 @@ const MapComponent = ({
       {locationsList &&
         locationsList.map((loc: any) => (
           <Marker
-            key={loc.lat}
+            key={loc.name}
             position={[loc.lat, loc.lng]}
             icon={customMarker}
           >
