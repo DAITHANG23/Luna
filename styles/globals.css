@@ -156,6 +156,17 @@ h4 {
   overscroll-behavior-x: none;
 }
 
+.ril-outer {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.ril__image {
+  border-radius: 16px;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
 /* Custom scrollbar */
 html::-webkit-scrollbar {
   width: 8px;

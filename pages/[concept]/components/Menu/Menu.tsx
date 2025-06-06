@@ -9,7 +9,8 @@ import { ArrowLeftIcon } from "@/libs/assets";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
-
+import "react-image-lightbox/style.css";
+import Lightbox from "react-image-lightbox";
 interface MenuProps {
   dishes: Array<Dish>;
   conceptName: string;
@@ -31,6 +32,9 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
 
   const [openSideBar, setOpenSideBar] = useState<number | null>(0);
   const [chooseItemDishes, setChooseItemDishes] = useState<string | null>(null);
+  const [isOpenImage, setIsOpenImage] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string>("");
+
   const router = useRouter();
 
   useEffect(() => {
@@ -104,6 +108,12 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
         <title>{t("translation:headTitle.menuRestaurant")}</title>
       </Head>
       <div>
+        {isOpenImage && (
+          <Lightbox
+            mainSrc={imageSrc}
+            onCloseRequest={() => setIsOpenImage(false)}
+          />
+        )}
         <div className="mt-4">
           <button
             onClick={() => router.push(`/${conceptName}`)}
@@ -214,13 +224,17 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                   return (
                     <div key={i._id ?? idx} className="mb-4 h-auto">
                       <div className="flex flex-col items-center">
-                        <div className="w-full h-40 sm:h-60 relative">
+                        <div className="w-full h-40 sm:h-60 relative cursor-pointer">
                           <Image
                             src={i?.image || "/favicon.ico"}
                             alt={i.name}
                             className="object-cover rounded"
                             fill
                             loading="lazy"
+                            onClick={() => {
+                              setIsOpenImage(true);
+                              setImageSrc(i?.image || "/favicon.ico");
+                            }}
                           />
                         </div>
 
