@@ -106,16 +106,16 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
 
   return (
     <>
+      {isOpenImage && (
+        <Lightbox
+          mainSrc={imageSrc}
+          onCloseRequest={() => setIsOpenImage(false)}
+        />
+      )}
       <Head>
         <title>{t("translation:headTitle.menuRestaurant")}</title>
       </Head>
       <div>
-        {isOpenImage && (
-          <Lightbox
-            mainSrc={imageSrc}
-            onCloseRequest={() => setIsOpenImage(false)}
-          />
-        )}
         <div className="mt-4">
           <button
             onClick={() => router.push(`/${conceptName}`)}
