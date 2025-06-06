@@ -1,6 +1,5 @@
 import { ConceptModel, ConceptsFilter } from "@/@types/models";
 import React, { useMemo, useState } from "react";
-import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import Toolbar from "@/pages/restaurant-concept/components/Toolbar";
@@ -8,6 +7,7 @@ import { defaultFilter } from "@/contants";
 import useGetAllConcepts from "@/features/hooks/ConceptsHooks/useGetAllConcepts";
 import Skeleton from "./components/Skeleton";
 import { sortBy } from "lodash";
+import LazyConceptItem from "./components/LazyConceptItem";
 
 const RestaurantConcept = () => {
   const [filter, setFilter] = useState(defaultFilter);
@@ -67,10 +67,10 @@ const RestaurantConcept = () => {
         ) : (
           <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
             {conceptsDataSort &&
-              conceptsDataSort?.map((concept: ConceptModel) => {
+              conceptsDataSort?.map((concept: ConceptModel, index) => {
                 return (
                   <div key={concept.name}>
-                    <ConceptItem concept={concept} />
+                    <LazyConceptItem concept={concept} index={index} />
                   </div>
                 );
               })}

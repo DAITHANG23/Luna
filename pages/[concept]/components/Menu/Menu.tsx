@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import Head from "next/head";
 import "react-image-lightbox/style.css";
 import Lightbox from "react-image-lightbox";
+
 interface MenuProps {
   dishes: Array<Dish>;
   conceptName: string;
@@ -18,6 +19,7 @@ interface MenuProps {
 
 const Menu = ({ dishes, conceptName }: MenuProps) => {
   const { t, ready } = useTranslation(["concept", "translate"]);
+
   const alacarteDishes = useMemo(() => {
     return dishes?.filter((d) => d.type === "alacarte");
   }, [dishes]);
@@ -208,7 +210,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                     return (
                       <div
                         key={i}
-                        className="mb-4 w-[100px] h-[200px] relative"
+                        className="mb-4 w-[100px] h-[200px] relative cursor-pointer"
                       >
                         <Image
                           src={i}
@@ -216,6 +218,10 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                           className="object-cover rounded"
                           fill
                           loading="lazy"
+                          onClick={() => {
+                            setIsOpenImage(true);
+                            setImageSrc(i);
+                          }}
                         />
                       </div>
                     );
@@ -261,13 +267,19 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                       banners={(dishesList as Dish)?.images}
                     />
                   ) : (
-                    <div className="w-full h-[300px] relative">
+                    <div className="w-full h-[300px] relative cursor-pointer">
                       <Image
                         src={(dishesList as Dish)?.image || "/favicon.ico"}
                         alt={"img"}
                         className="object-cover rounded"
                         fill
                         loading="lazy"
+                        onClick={() => {
+                          setIsOpenImage(true);
+                          setImageSrc(
+                            (dishesList as Dish)?.image || "/favicon.ico"
+                          );
+                        }}
                       />
                     </div>
                   )}
