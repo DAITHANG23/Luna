@@ -2,8 +2,8 @@ import Head from "next/head";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import NotificationMain from "./components/NotificationMain";
-import SliderComponent from "@/libs/shared/components/SliderComponent";
 import { ABOUT_IMAGES } from "@/contants";
+import { SliderComponent } from "@/libs/shared/components";
 
 const Index = () => {
   const { t } = useTranslation("translation");

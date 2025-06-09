@@ -1,11 +1,6 @@
 import { ForgotPasswordType } from "@/@types/models";
 import { REGEX_VALIDTATE_PASSWORD, ROUTERS } from "@/contants";
 import useResetPassword from "@/features/hooks/AccountHooks/useResetPassword";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
-import FieldInput from "@/libs/shared/components/FieldInput";
-import FormLayout from "@/libs/shared/components/FormLayout";
-import OTPInput from "@/libs/shared/components/OTPInput";
-import ResendButton from "@/libs/shared/components/ResendButton";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
@@ -13,6 +8,13 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 import { IllustrationDashboardImage } from "@/libs/assets";
+import {
+  ButtonLoading,
+  FieldInput,
+  FormLayout,
+  OTPInput,
+  ResendButton,
+} from "@/libs/shared/components";
 
 const CreateNewPassword = () => {
   const router = useRouter();

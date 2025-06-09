@@ -1,8 +1,10 @@
 import apiService from "@/api";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
-import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
-import WrapperFilter from "@/libs/shared/components/WrapperFilter";
+import {
+  NotificationDetailNavbar,
+  WrapperFilter,
+} from "@/libs/shared/components";
 import { BellIcon } from "lucide-react";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";

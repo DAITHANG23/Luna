@@ -19,11 +19,11 @@ import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import apiService from "@/api";
-import ModalNotification from "@/libs/shared/components/ModalNotification";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useQueryClient } from "@tanstack/react-query";
 import useNotification from "@/features/hooks/useNotification";
 import useUpdateReservation from "@/features/hooks/BookingHooks/useUpdateReservation";
+import { ModalNotification } from "@/libs/shared/components";
 interface BookingDetailProps {
   item: BookingModel;
 }

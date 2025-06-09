@@ -3,12 +3,12 @@ import ConceptItem from "@/pages/restaurant-concept/components/ConceptItem";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@/libs/assets";
 import { useRouter } from "next/router";
-import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import { useTranslation } from "react-i18next";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import useGetCheckInConcepts from "@/features/hooks/ConceptsHooks/useGetCheckInConcepts";
 import Head from "next/head";
 import { ROUTERS } from "@/contants";
+import { Spinner } from "@/libs/shared/components";
 
 const Visited = () => {
   const { t } = useTranslation(["concept", "translation"]);
@@ -19,7 +19,12 @@ const Visited = () => {
 
   const checkInConcepts = checkInConceptsData?.data?.data || [];
 
-  if (isLoadingCheckInConceptsData) return <Skeleton />;
+  if (isLoadingCheckInConceptsData)
+    return (
+      <div className="mt-[8.5rem]">
+        <Spinner />
+      </div>
+    );
   return (
     <>
       <Head>

@@ -5,7 +5,7 @@ interface OTPInputProps {
   length?: number;
   name?: string;
 }
-const OTPInput = ({ name, length = 6, onComplete }: OTPInputProps) => {
+export const OTPInput = ({ name, length = 6, onComplete }: OTPInputProps) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const inputsRef = useRef<HTMLInputElement[]>([]);
 
@@ -56,5 +56,3 @@ const OTPInput = ({ name, length = 6, onComplete }: OTPInputProps) => {
     </div>
   );
 };
-
-export default OTPInput;

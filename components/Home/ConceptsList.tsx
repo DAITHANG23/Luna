@@ -4,8 +4,8 @@ import Link from "next/link";
 import clsx from "clsx";
 import { RESTAURANTS_CONCEPT } from "@/contants";
 import { cn } from "@/utils";
-import ContactComponent from "@/libs/shared/components/ContactComponent";
 import { MailIcon, PhoneIcon } from "@/libs/assets";
+import { Contact } from "@/libs/shared/components";
 
 interface ConceptsListProps {
   isBannerWidth?: boolean;
@@ -74,7 +74,7 @@ const ConceptsList = ({ isBannerWidth }: ConceptsListProps) => {
         <div className="p-4">
           <h4 className="pb-[20px] text-primary-text">Contact us</h4>
           <div className="text-center flex justify-center">
-            <ContactComponent />
+            <Contact />
           </div>
 
           <div className="flex flex-col gap-4 pt-[50px]">

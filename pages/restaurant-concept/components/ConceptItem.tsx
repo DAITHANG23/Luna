@@ -6,7 +6,6 @@ import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { Square2StackIcon } from "@heroicons/react/24/solid";
-import ModalCarousel from "@/libs/shared/components/ModalCarousel";
 import {
   CONCEPTS_ROUTES,
   DEFAULT_CONCEPTS_LIST,
@@ -19,9 +18,9 @@ import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
 import { useQueryClient } from "@tanstack/react-query";
 import useCheckInConcept from "@/features/hooks/ConceptsHooks/useCheckInConcept";
 import { StarIcon } from "@/libs/assets";
-import ModalComponent from "@/libs/shared/components/ModalComponent";
 import { useRouter } from "next/router";
 import Review from "./Review";
+import { Modal, ModalCarousel } from "@/libs/shared/components";
 interface ConceptItemProps {
   concept: ConceptModel;
   isReviewBtn?: boolean;
@@ -133,13 +132,13 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
         open={isOpenModalImageList}
         imagesList={concept?.images}
       />
-      <ModalComponent open={isOpenModal} setOpen={setIsOpenModal}>
+      <Modal open={isOpenModal} setOpen={setIsOpenModal}>
         <Review
           concept={concept}
           setIsOpenModal={setIsOpenModal}
           isOpenModal={isOpenModal}
         />
-      </ModalComponent>
+      </Modal>
       <div className="w-full h-[300px] relative ">
         <Image
           src={concept?.imageCover}

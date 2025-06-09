@@ -12,7 +12,7 @@ interface WrapperFilterProps {
   isConfirmButton?: boolean;
   isHandleCloseMenu?: boolean;
 }
-const WrapperFilter = ({
+export const WrapperFilter = ({
   children,
   classNameMenu,
   isConfirmButton = false,
@@ -66,5 +66,3 @@ const WrapperFilter = ({
     </div>
   );
 };
-
-export default WrapperFilter;

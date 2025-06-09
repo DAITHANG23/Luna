@@ -12,7 +12,7 @@ interface SliderComponentProps {
   isDishesCarousel?: boolean;
 }
 
-const SliderComponent = ({
+export const SliderComponent = ({
   isSmallSize = false,
   coverImages,
   banners,
@@ -86,5 +86,3 @@ const SliderComponent = ({
     </div>
   );
 };
-
-export default SliderComponent;

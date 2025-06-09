@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import { CONCEPTS_ROUTES } from "@/contants";
 import Head from "next/head";
 import NavbarConcept from "@/components/NavbarConcept/NavbarConcept";
-import SliderComponent from "@/libs/shared/components/SliderComponent";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/libs/assets";
 import ConceptsList from "@/components/Home/ConceptsList";
 import { useTranslation } from "react-i18next";
+import { SliderComponent } from "@/libs/shared/components";
 
 const Index = () => {
   const router = useRouter();

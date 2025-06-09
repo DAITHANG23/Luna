@@ -1,7 +1,7 @@
-import ContactComponent from "@/libs/shared/components/ContactComponent";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
+import { Contact } from "@/libs/shared/components";
 
 const Footer = () => {
   const currentYear = moment().year();
@@ -19,7 +19,7 @@ const Footer = () => {
         <p className="text-gray-400">{t(`footer.address`)}</p>
         <p className="text-gray-400">{t(`footer.responsible`)}</p>
         <div className="pt-4 flex justify-center">
-          <ContactComponent />
+          <Contact />
         </div>
       </div>
 

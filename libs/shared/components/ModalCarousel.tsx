@@ -1,13 +1,17 @@
 import React from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-import SliderShowGroupImage from "./SliderShowGroupImage";
 import { XCircleIcon } from "@heroicons/react/24/outline";
+import { SliderShowGroupImage } from "./SliderShowGroupImage";
 interface ModalCarouselProps {
   open: boolean;
   setOpen: (value: boolean) => void;
   imagesList: Array<string>;
 }
-const ModalCarousel = ({ open, setOpen, imagesList }: ModalCarouselProps) => {
+export const ModalCarousel = ({
+  open,
+  setOpen,
+  imagesList,
+}: ModalCarouselProps) => {
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
       <DialogBackdrop
@@ -36,5 +40,3 @@ const ModalCarousel = ({ open, setOpen, imagesList }: ModalCarouselProps) => {
     </Dialog>
   );
 };
-
-export default ModalCarousel;

@@ -6,7 +6,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const LanguageSelect = () => {
+export const LanguageSelect = () => {
   const [langValue, setLangValue] = useState("en-GB");
   const { t } = useTranslation("translation");
   useEffect(() => {
@@ -65,5 +65,3 @@ const LanguageSelect = () => {
     </Menu>
   );
 };
-
-export default LanguageSelect;
