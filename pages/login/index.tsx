@@ -15,7 +15,10 @@ import {
 } from "@/libs/shared/components";
 
 const Login = () => {
-  const initialValues = { email: "", password: "" };
+  const initialValues = {
+    email: "test236@gmail.com",
+    password: "Daithang@230697",
+  };
   const { t } = useTranslation("translation");
   const { mutate: loginAccount, isPending: isLoadingLogin } = useLogin();
 
