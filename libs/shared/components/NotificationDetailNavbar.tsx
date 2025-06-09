@@ -20,7 +20,7 @@ interface NotificationDetailNavbarProps {
   unReadNotificationsQuantities: number;
   handleDeleteNotification: (id: string) => void;
 }
-const NotificationDetailNavbar = ({
+export const NotificationDetailNavbar = ({
   item,
   unReadNotificationsQuantities,
   handleDeleteNotification,
@@ -118,5 +118,3 @@ const NotificationDetailNavbar = ({
     </div>
   );
 };
-
-export default NotificationDetailNavbar;

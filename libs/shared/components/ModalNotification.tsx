@@ -18,7 +18,7 @@ interface ModalNotificationProps {
   type?: "delete" | "update" | "warning";
   action: JSX.Element;
 }
-const ModalNotification = ({
+export const ModalNotification = ({
   title,
   content,
   open,
@@ -87,5 +87,3 @@ const ModalNotification = ({
     </Dialog>
   );
 };
-
-export default ModalNotification;

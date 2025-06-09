@@ -5,7 +5,7 @@ interface LayoutMotionProps {
   className?: string;
 }
 
-const LayoutMotion = ({ children, className }: LayoutMotionProps) => {
+export const LayoutMotion = ({ children, className }: LayoutMotionProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -18,5 +18,3 @@ const LayoutMotion = ({ children, className }: LayoutMotionProps) => {
     </motion.div>
   );
 };
-
-export default LayoutMotion;

@@ -2,11 +2,11 @@ import useGetFavoriteConcepts from "@/features/hooks/ConceptsHooks/useGetFavorit
 import { useRouter } from "next/router";
 import FavoriteConceptsView from "./components/FavoriteRestaurantsView";
 import EmptyFavoriteRestaurant from "./components/EmptyFavoriteRestaurant";
-import Skeleton from "../restaurant-concept/components/Skeleton";
 import useGetCheckInConcepts from "@/features/hooks/ConceptsHooks/useGetCheckInConcepts";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import { ROUTERS } from "@/contants";
+import { Spinner } from "@/libs/shared/components";
 
 const Favorites = () => {
   const { t } = useTranslation("translation");
@@ -23,7 +23,11 @@ const Favorites = () => {
   const router = useRouter();
 
   if (isLoadingGetCheckInConcepts || isLoadingGetFavoriteConcepts)
-    return <Skeleton />;
+    return (
+      <div className="mt-[8.5rem]">
+        <Spinner />
+      </div>
+    );
   return (
     <>
       <Head>

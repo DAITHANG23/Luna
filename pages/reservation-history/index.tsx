@@ -2,9 +2,9 @@ import useGetAllResevations from "@/features/hooks/BookingHooks/useGetAllResevat
 import { CalendarIcon } from "lucide-react";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import Spinner from "@/libs/shared/components/Spinner";
 import { useRouter } from "next/router";
 import LazyBookingDetail from "./components/LazyBookingDetail";
+import { Spinner } from "@/libs/shared/components";
 
 const OrderHistory = () => {
   const { t, ready } = useTranslation("booking");

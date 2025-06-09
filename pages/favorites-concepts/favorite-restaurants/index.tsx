@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@/libs/assets";
 import { useRouter } from "next/router";
-import Skeleton from "@/pages/restaurant-concept/components/Skeleton";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
 import { ROUTERS } from "@/contants";
+import { Spinner } from "@/libs/shared/components";
 
 const Favorites = () => {
   const { t } = useTranslation(["concept", "translation"]);
@@ -18,7 +18,12 @@ const Favorites = () => {
 
   const favoriteconcepts = conceptsData?.data?.data || [];
 
-  if (isLoadingFavoriteConceptsData) return <Skeleton />;
+  if (isLoadingFavoriteConceptsData)
+    return (
+      <div className="mt-[8.5rem]">
+        <Spinner />
+      </div>
+    );
   return (
     <>
       <Head>

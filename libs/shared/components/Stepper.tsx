@@ -15,7 +15,11 @@ interface StepperProps {
   allSteps: Array<string>;
   labelMap: Record<string, string>;
 }
-const Stepper = ({ statusHistory, allSteps, labelMap }: StepperProps) => {
+export const Stepper = ({
+  statusHistory,
+  allSteps,
+  labelMap,
+}: StepperProps) => {
   const historyMap = Object.fromEntries(
     statusHistory.map((s) => [s.status, s])
   );
@@ -84,5 +88,3 @@ const Stepper = ({ statusHistory, allSteps, labelMap }: StepperProps) => {
     </div>
   );
 };
-
-export default Stepper;

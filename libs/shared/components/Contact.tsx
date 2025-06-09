@@ -3,7 +3,7 @@ import { GithubIcon } from "@/libs/assets";
 import { LinkedinIcon } from "@/libs/assets";
 import React from "react";
 
-const ContactComponent = () => {
+export const Contact = () => {
   return (
     <div className="flex items-center space-x-4 pt-0 p-6">
       <a
@@ -30,5 +30,3 @@ const ContactComponent = () => {
     </div>
   );
 };
-
-export default ContactComponent;

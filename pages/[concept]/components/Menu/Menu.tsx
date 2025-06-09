@@ -4,13 +4,13 @@ import { ChevronRight, ChevronDown } from "lucide-react";
 import _ from "lodash";
 import { cn } from "@/utils";
 import Image from "next/image";
-import SliderComponent from "@/libs/shared/components/SliderComponent";
 import { ArrowLeftIcon } from "@/libs/assets";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
 import "react-image-lightbox/style.css";
 import Lightbox from "react-image-lightbox";
+import { SliderComponent } from "@/libs/shared/components";
 
 interface MenuProps {
   dishes: Array<Dish>;

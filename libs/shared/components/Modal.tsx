@@ -3,19 +3,19 @@ import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import React, { ReactNode } from "react";
 
-interface ModalComponentProps {
+interface ModalProps {
   open: boolean;
   setOpen: (value: boolean) => void;
   children: ReactNode;
   classNameContainer?: string;
 }
 
-const ModalComponent = ({
+export const Modal = ({
   open,
   setOpen,
   children,
   classNameContainer,
-}: ModalComponentProps) => {
+}: ModalProps) => {
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-100">
       <DialogBackdrop
@@ -47,5 +47,3 @@ const ModalComponent = ({
     </Dialog>
   );
 };
-
-export default ModalComponent;

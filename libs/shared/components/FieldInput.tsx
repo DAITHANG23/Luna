@@ -18,7 +18,7 @@ interface FromTextFieldProps {
   startIcon?: React.ReactNode;
 }
 
-const FieldInput = ({
+export const FieldInput = ({
   title,
   className,
   name,
@@ -94,5 +94,3 @@ const FieldInput = ({
     </div>
   );
 };
-
-export default FieldInput;

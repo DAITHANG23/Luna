@@ -1,5 +1,4 @@
 import { useAppSelector } from "@/libs/redux/hooks";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import { format } from "date-fns";
 import { Form, Formik } from "formik";
 import { MapPin, Phone } from "lucide-react";
@@ -13,6 +12,7 @@ import {
 import FormDetail from "../FormDetail/FormDetail";
 import useBookingRestaurant from "@/features/hooks/RestaurantsHooks/useBookingRestaurant";
 import { REGEX_VALIDATE_EMAIL } from "@/contants";
+import { ButtonLoading } from "@/libs/shared/components";
 
 interface BookingFormProps {
   chooseRestaurant: string | null;

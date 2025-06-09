@@ -8,7 +8,7 @@ interface SearchFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   classNameContainer?: string;
 }
-const SearchField = ({
+export const SearchField = ({
   className,
   classNameContainer,
   placeholder,
@@ -38,5 +38,3 @@ const SearchField = ({
     </div>
   );
 };
-
-export default SearchField;

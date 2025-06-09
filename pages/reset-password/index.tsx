@@ -1,6 +1,4 @@
 import { REGEX_VALIDATE_EMAIL } from "@/contants";
-import FieldInput from "@/libs/shared/components/FieldInput";
-import FormLayout from "@/libs/shared/components/FormLayout";
 import { Form, Formik } from "formik";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
@@ -8,10 +6,14 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import useForgotPassword from "@/features/hooks/AccountHooks/useForgotPassword";
 import { ForgotPasswordType } from "@/@types/models";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import { IllustrationDashboardImage } from "@/libs/assets";
+import {
+  ButtonLoading,
+  FieldInput,
+  FormLayout,
+} from "@/libs/shared/components";
 const ResetPassword = () => {
   const router = useRouter();
   const { t } = useTranslation("translation");

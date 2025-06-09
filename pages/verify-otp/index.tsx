@@ -3,11 +3,13 @@ import { useAppContext } from "@/components/contexts/AppContext";
 import { ROUTERS } from "@/contants";
 import useVerifyOtp from "@/features/hooks/AccountHooks/useVerifyOtp";
 import { IllustrationDashboardImage } from "@/libs/assets";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
-import FieldInput from "@/libs/shared/components/FieldInput";
-import FormLayout from "@/libs/shared/components/FormLayout";
-import OTPInput from "@/libs/shared/components/OTPInput";
-import ResendButton from "@/libs/shared/components/ResendButton";
+import {
+  ButtonLoading,
+  FieldInput,
+  FormLayout,
+  OTPInput,
+  ResendButton,
+} from "@/libs/shared/components";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
 import Head from "next/head";
