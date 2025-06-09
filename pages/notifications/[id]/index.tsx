@@ -3,13 +3,12 @@ import NotificationMain from "../components/NotificationMain";
 import { useRouter } from "next/router";
 import useGetNotificationItem from "@/features/hooks/NotificationBooking/useGetNotificationItem";
 import { useAppSelector } from "@/libs/redux/hooks";
-import Spinner from "@/libs/shared/components/Spinner";
 import { PhoneIcon, MapPinHouseIcon } from "lucide-react";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import ModalComponent from "@/libs/shared/components/ModalComponent";
 import Review from "@/pages/restaurant-concept/components/Review";
 import { ConceptModel } from "@/@types/models";
+import { Modal, Spinner } from "@/libs/shared/components";
 
 const Index = () => {
   const router = useRouter();
@@ -240,13 +239,13 @@ const Index = () => {
         <title>{t("headTitle.notifications")}</title>
       </Head>
       <div className="mt-[50px] lg:mt-[100px]">
-        <ModalComponent open={isOpenModal} setOpen={setIsOpenModal}>
+        <Modal open={isOpenModal} setOpen={setIsOpenModal}>
           <Review
             concept={concept as ConceptModel}
             setIsOpenModal={setIsOpenModal}
             isOpenModal={isOpenModal}
           />
-        </ModalComponent>
+        </Modal>
         <NotificationMain>
           {!isLoading ? (
             <div className="lg:mt-[50px] p-4 flex flex-col gap-6 text-primary-text">

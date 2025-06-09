@@ -1,9 +1,9 @@
 import { useAppContext } from "@/components/contexts/AppContext";
+import { LanguageSelect } from "@/libs/shared/components";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 
 const NavbarsLogin = () => {
   const { setIsOpenDialog } = useAppContext();

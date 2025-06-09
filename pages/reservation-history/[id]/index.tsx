@@ -1,5 +1,4 @@
 import useGetBooking from "@/features/hooks/BookingHooks/useGetBooking";
-import Stepper from "@/libs/shared/components/Stepper";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useMemo } from "react";
@@ -15,7 +14,7 @@ import {
 import { CONCEPTS_ROUTES } from "@/contants";
 import Image from "next/image";
 import dayjs from "dayjs";
-import Spinner from "@/libs/shared/components/Spinner";
+import { Spinner, Stepper } from "@/libs/shared/components";
 
 const statusLabels: Record<string, string> = {
   PENDING: "Pending",

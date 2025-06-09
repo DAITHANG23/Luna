@@ -1,5 +1,3 @@
-import ModalComponent from "@/libs/shared/components/ModalComponent";
-import SearchField from "@/libs/shared/components/SearchField";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React, { ChangeEvent, useMemo, useState } from "react";
@@ -8,6 +6,7 @@ import BookingForm from "../BookingForm/BookingForm";
 import { Phone } from "lucide-react";
 import useGetRestaurantsOfConcept from "@/features/hooks/RestaurantsHooks/useGetRestaurantsOfConcept";
 import { useDebouncedCallback } from "@/features/hooks/useDebouncedCallback";
+import { Modal, SearchField } from "@/libs/shared/components";
 interface BookingProps {
   conceptDataId: string;
 }
@@ -51,7 +50,7 @@ const Booking = ({ conceptDataId }: BookingProps) => {
       <Head>
         <title>{t("headTitle.bookingRestaurant")}</title>
       </Head>
-      <ModalComponent
+      <Modal
         open={isOpenModalBooking}
         setOpen={setIsOpenModalBooking}
         classNameContainer="!max-w-[31.1125rem]"
@@ -61,7 +60,7 @@ const Booking = ({ conceptDataId }: BookingProps) => {
           restaurantsData={restaurantsData}
           setIsOpenModalBooking={setIsOpenModalBooking}
         />
-      </ModalComponent>
+      </Modal>
       <div className="flex lg:flex-row flex-col gap-4">
         <div className="w-full lg:w-[30%]">
           <SearchField

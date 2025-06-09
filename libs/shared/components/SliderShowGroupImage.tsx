@@ -20,7 +20,9 @@ interface SliderShowGroupImageProps {
 //   );
 //   return `https://res.cloudinary.com/dn797d3j3/image/upload/w_${width},q_${quality || 75}/${path}`;
 // };
-const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
+export const SliderShowGroupImage = ({
+  imagesList,
+}: SliderShowGroupImageProps) => {
   const settings = {
     className: "center",
     centerMode: true,
@@ -89,5 +91,3 @@ const SliderShowGroupImage = ({ imagesList }: SliderShowGroupImageProps) => {
     </div>
   );
 };
-
-export default SliderShowGroupImage;

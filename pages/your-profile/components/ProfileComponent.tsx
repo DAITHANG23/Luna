@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { CameraIcon } from "@heroicons/react/24/solid";
-import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { DEFAULT_AVATAR, REGEX_VALIDATE_EMAIL, ROUTERS } from "@/contants";
@@ -11,15 +10,18 @@ import useUpdateProfile from "@/features/hooks/AccountHooks/useUpdateProfile";
 import Router from "next/router";
 import apiService from "@/api/index";
 import useNotification from "@/features/hooks/useNotification";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
-import RadioGroupComponent from "@/libs/shared/components/RadioGroupComponent";
 import {
   ArrowPathIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
-import ModalNotification from "@/libs/shared/components/ModalNotification";
 import Skeleton from "./Skeleton";
 import { useTranslation } from "react-i18next";
+import {
+  ButtonLoading,
+  FieldInput,
+  ModalNotification,
+  RadioGroup,
+} from "@/libs/shared/components";
 
 const GENDER_LIST = [
   { id: "male-radio", name: "gender", value: "male", title: "profile.male" },
@@ -295,7 +297,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
                   />
 
                   <div>
-                    <RadioGroupComponent
+                    <RadioGroup
                       title={t("profile.gender")}
                       itemList={GENDER_LIST}
                     />

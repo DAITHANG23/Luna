@@ -4,7 +4,7 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const ResendButton = () => {
+export const ResendButton = () => {
   const resendOtp =
     typeof window !== "undefined" && localStorage.getItem("resendOtp");
 
@@ -60,5 +60,3 @@ const ResendButton = () => {
     </div>
   );
 };
-
-export default ResendButton;

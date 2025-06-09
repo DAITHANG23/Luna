@@ -1,12 +1,11 @@
 import { timeSlotOptions } from "@/contants";
-import FieldInput from "@/libs/shared/components/FieldInput";
-import SelectField from "@/libs/shared/components/SelectField";
 import { Clock, Users } from "lucide-react";
 import React, { useEffect, useMemo } from "react";
 import { useFormikContext } from "formik";
 import { RestaurantBooking } from "@/@types/models";
 import { cn } from "@/utils";
 import { useTranslation } from "react-i18next";
+import { FieldInput, SelectField } from "@/libs/shared/components";
 const NOTES_LIST = [
   { label: "Có trẻ em", value: "Có trẻ em" },
   { label: "Tiệc sinh nhật", value: "Tiệc sinh nhật" },

@@ -22,7 +22,7 @@ interface SelectFieldProps {
   startIcon?: React.ReactNode;
 }
 
-const SelectField = ({
+export const SelectField = ({
   label,
   onChange,
   value,
@@ -107,5 +107,3 @@ const SelectField = ({
     </div>
   );
 };
-
-export default SelectField;

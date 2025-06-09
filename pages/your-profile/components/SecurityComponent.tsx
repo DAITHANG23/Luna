@@ -1,6 +1,4 @@
 import { REGEX_VALIDTATE_PASSWORD } from "@/contants";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
-import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import React, { useMemo } from "react";
 import * as Yup from "yup";
@@ -9,6 +7,7 @@ import { UpdatePasswordType } from "@/@types/models";
 import Popover from "./PopoverComponent";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useTranslation } from "react-i18next";
+import { ButtonLoading, FieldInput } from "@/libs/shared/components";
 const SecurityComponent = () => {
   const { mutate: updatePasswordAccount, isPending: isLoadingUpdatePassword } =
     useUpdatePassword();

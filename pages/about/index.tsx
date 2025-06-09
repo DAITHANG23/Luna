@@ -1,14 +1,13 @@
 import { ABOUT_IMAGES } from "@/contants";
 import { useAppSelector } from "@/libs/redux/hooks";
-import ContactComponent from "@/libs/shared/components/ContactComponent";
-import SliderComponent from "@/libs/shared/components/SliderComponent";
 import { Utensils, Clock, MapPin, Phone, Mail } from "lucide-react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import WeOfferSection from "./components/WeOfferSection";
-import LayoutMotion from "@/libs/shared/components/LayoutMotion";
+import { Contact, SliderComponent } from "@/libs/shared/components";
+import { LayoutMotion } from "@/libs/shared/components";
 
 const MapComponent = dynamic(
   () => import("@/libs/shared/components/MapComponent"),
@@ -148,7 +147,7 @@ const About = () => {
               </p>
             </div>
 
-            <ContactComponent />
+            <Contact />
           </LayoutMotion>
         </div>
 

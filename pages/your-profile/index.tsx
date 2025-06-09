@@ -1,5 +1,4 @@
 import { SecurityIcon, GeneralProfile } from "@/libs/assets";
-import TabsComponent from "@/libs/shared/components/TabsComponent";
 import React, { JSX, useEffect, useMemo, useState } from "react";
 import ProfileComponent from "./components/ProfileComponent";
 import SecurityComponent from "./components/SecurityComponent";
@@ -9,6 +8,7 @@ import { RootState } from "@/libs/redux/store";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import useGetDataUser from "@/features/hooks/AccountHooks/useGetDataUser";
+import { Tabs } from "@/libs/shared/components";
 const tabList: Array<{ name: string; icon: JSX.Element }> = [
   { name: "tabProfile", icon: <GeneralProfile /> },
   { name: "tabSecurity", icon: <SecurityIcon /> },
@@ -48,7 +48,7 @@ const YourProfile = () => {
       </Head>
       <div className="xl:w-[70%] w-[85%] flex flex-col justify-start mx-auto mb-[5rem] mt-[5rem] sm:mt-[7.5rem]">
         <h1 className="text-primary-text">{t("title")}</h1>
-        <TabsComponent
+        <Tabs
           tabList={updateTablist}
           setActiveTab={setActiveTab}
           activeTab={activeTab}

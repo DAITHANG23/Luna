@@ -1,16 +1,18 @@
-import FormLayout from "@/libs/shared/components/FormLayout";
 import React, { useMemo } from "react";
 import Link from "next/link";
-import FieldInput from "@/libs/shared/components/FieldInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { REGEX_VALIDATE_EMAIL, ROUTERS } from "../../contants";
 import useLogin from "@/features/hooks/AccountHooks/useLoginUser";
 import { UserLogin } from "@/@types/models";
-import ButtonLoading from "@/libs/shared/components/ButtonLoading";
 import SocialLogin from "./components/SocialLogin";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
+import {
+  ButtonLoading,
+  FieldInput,
+  FormLayout,
+} from "@/libs/shared/components";
 
 const Login = () => {
   const initialValues = { email: "", password: "" };

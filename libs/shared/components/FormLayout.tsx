@@ -10,7 +10,7 @@ interface FormLayoutProps {
   children: React.ReactNode;
 }
 
-const FormLayout = ({ children }: FormLayoutProps) => {
+export const FormLayout = ({ children }: FormLayoutProps) => {
   const pathname = usePathname();
   const { t, ready } = useTranslation("translation");
   const isLoginPage = pathname === `${ROUTERS.LOGIN.INDEX}`;
@@ -63,5 +63,3 @@ const FormLayout = ({ children }: FormLayoutProps) => {
     </div>
   );
 };
-
-export default FormLayout;

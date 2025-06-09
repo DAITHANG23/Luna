@@ -42,7 +42,6 @@ import {
   ROUTERS,
 } from "@/contants";
 import { useTranslation } from "react-i18next";
-import LanguageSelect from "@/libs/shared/components/LanguageSelect";
 import { useQueryClient } from "@tanstack/react-query";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
 import socket from "@/features/notification/socket";
@@ -53,6 +52,7 @@ import {
 } from "@/libs/redux/masterDataSlice";
 import { NotificationModel } from "@/@types/models";
 import NotificationNavbar from "./NotificationNavbar";
+import { LanguageSelect } from "@/libs/shared/components";
 
 const Navbars = () => {
   const pathname = usePathname();

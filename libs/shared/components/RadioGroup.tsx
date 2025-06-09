@@ -2,11 +2,11 @@ import { Field } from "formik";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-interface RadioGroupComponentProps {
+interface RadioGroupProps {
   title: string;
   itemList: Array<{ id: string; name: string; value: string; title: string }>;
 }
-const RadioGroupComponent = ({ title, itemList }: RadioGroupComponentProps) => {
+export const RadioGroup = ({ title, itemList }: RadioGroupProps) => {
   const { t, ready } = useTranslation("profile");
   if (!ready) return null;
   return (
@@ -38,5 +38,3 @@ const RadioGroupComponent = ({ title, itemList }: RadioGroupComponentProps) => {
     </div>
   );
 };
-
-export default RadioGroupComponent;

@@ -8,7 +8,7 @@ interface TablistProps {
   setActiveTab: (tabName: string) => void;
 }
 
-const TabsComponent = ({ tabList, setActiveTab, activeTab }: TablistProps) => {
+export const Tabs = ({ tabList, setActiveTab, activeTab }: TablistProps) => {
   const { t, ready } = useTranslation("profile");
   if (!ready) return null;
   return (
@@ -39,5 +39,3 @@ const TabsComponent = ({ tabList, setActiveTab, activeTab }: TablistProps) => {
     </div>
   );
 };
-
-export default TabsComponent;

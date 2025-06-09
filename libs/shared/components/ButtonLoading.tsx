@@ -12,7 +12,7 @@ interface ButtonLoadingProps {
   sizeButton?: "large" | "small";
 }
 
-const ButtonLoading = ({
+export const ButtonLoading = ({
   title,
   isLoading,
   type,
@@ -75,5 +75,3 @@ const ButtonLoading = ({
     </button>
   );
 };
-
-export default ButtonLoading;

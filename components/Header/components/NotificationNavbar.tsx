@@ -5,9 +5,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
 import { useTranslation } from "react-i18next";
-import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
 import apiService from "@/api";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
+import { NotificationDetailNavbar } from "@/libs/shared/components";
 
 interface NotificationNavbarProps {
   unReadNotificationsQuantities: number;
