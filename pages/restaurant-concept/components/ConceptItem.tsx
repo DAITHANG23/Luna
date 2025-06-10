@@ -126,7 +126,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
   );
 
   return (
-    <div className="relative h-[28.125rem] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
+    <div className="relative h-[26rem] sm:h-[22rem] 2xl:h-[28.125rem] flex flex-col border-2 border-gray-300 rounded-lg shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all ease-in-out dark:shadow-md dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.15)] dark:transition-shadow dark:duration-300">
       <ModalCarousel
         setOpen={setIsOpenModalImageList}
         open={isOpenModalImageList}
@@ -139,11 +139,12 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
           isOpenModal={isOpenModal}
         />
       </Modal>
-      <div className="w-full h-[300px] relative ">
+      <div className="w-full h-[250px] sm:h-[200px] 2xl:h-[300px] relative ">
         <Image
           src={concept?.imageCover}
           alt={concept?.name}
           fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-none"
           loading="lazy"
           onClick={handleClickConcept}

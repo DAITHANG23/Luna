@@ -64,6 +64,7 @@ const Favorites = () => {
                   src={"/assets/images/favoriteRestaurant.gif"}
                   alt="favorite-restaurant"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   objectFit="contain"
                 />
               </div>

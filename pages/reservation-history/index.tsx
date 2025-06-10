@@ -24,6 +24,10 @@ const OrderHistory = () => {
     <div>
       <Head>
         <title>{t("translation:headTitle.historyBooking")}</title>
+        <meta
+          name="description"
+          content="Trang danh sách lịch sử đặt bàn nhà hàng."
+        />
       </Head>
       <div className="mt-[8.5rem]">
         <div className="mt-[5rem] sm:mt-[7.5rem] w-[90%] xl:w-[60%] mx-auto p-4 ">

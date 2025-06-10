@@ -45,6 +45,10 @@ const YourProfile = () => {
     <>
       <Head>
         <title>{t("translation:headTitle.yourProfile")}</title>
+        <meta
+          name="description"
+          content="Trang thông tin cá nhân khách hàng."
+        />
       </Head>
       <div className="xl:w-[70%] w-[85%] flex flex-col justify-start mx-auto mb-[5rem] mt-[5rem] sm:mt-[7.5rem]">
         <h1 className="text-primary-text">{t("title")}</h1>

@@ -106,6 +106,7 @@ const Register = () => {
     <>
       <Head>
         <title>{t("headTitle.register")}</title>
+        <meta name="description" content="Trang đăng kí" />
       </Head>
       <Formik
         onSubmit={handleSubmit}

@@ -56,6 +56,10 @@ const RestaurantConcept = () => {
     <>
       <Head>
         <title>{t("headTitle.restaurantConcept")}</title>
+        <meta
+          name="description"
+          content="Trang danh sách thương hiệu nhà hàng."
+        />
       </Head>
       <div className="flex flex-col p-4 sm:p-8 mt-[5rem] sm:mt-[7.5rem]">
         <Toolbar onFilterChange={handleFilterChange} filter={filter} />

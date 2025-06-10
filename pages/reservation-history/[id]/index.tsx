@@ -95,6 +95,10 @@ const Index = () => {
     <>
       <Head>
         <title>{t("translation:headTitle.historyBooking")}</title>
+        <meta
+          name="description"
+          content="Trang lịch sử đặt bàn nhà hàng chi tiết."
+        />
       </Head>
       <div className="mt-[7.25rem] w-[90%] xl:w-[70%] mx-auto bg-white dark:bg-gray-900 rounded-lg p-4 my-4 shadow-lg">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-4 gap-6">

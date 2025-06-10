@@ -32,6 +32,7 @@ const Favorites = () => {
     <>
       <Head>
         <title>{t("headTitle.favoriteConcepts")}</title>
+        <meta name="description" content="Trang danh sách nhà hàng yêu tích." />
       </Head>
       <div className="flex flex-col gap-4 mt-20 sm:mt-[10.5rem] mb-10 px-4 w-full lg:h-[100vh] sm:w-[60%] text-center mx-auto">
         <hr className="w-full bg-gray-300 h-[2px]" />

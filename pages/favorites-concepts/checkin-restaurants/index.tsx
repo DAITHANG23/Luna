@@ -29,6 +29,10 @@ const Visited = () => {
     <>
       <Head>
         <title>{t("translation:headTitle.checkInRestaurants")}</title>
+        <meta
+          name="description"
+          content="Trang nhà hàng khách hàng đã ghé thăm."
+        />
       </Head>
       <div className="my-20 sm:my-[6.5rem] p-8">
         <div className="w-full lg:w-[80%] mx-auto mb-10">
