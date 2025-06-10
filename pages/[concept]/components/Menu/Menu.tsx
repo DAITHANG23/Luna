@@ -114,6 +114,10 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
       )}
       <Head>
         <title>{t("translation:headTitle.menuRestaurant")}</title>
+        <meta
+          name="description"
+          content="Trang menu món ăn nhà hàng. Mỗi món ăn có hình ảnh, giá cả chi tiết."
+        />
       </Head>
       <div>
         <div className="mt-4">
@@ -237,6 +241,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                             className="object-cover rounded"
                             fill
                             loading="lazy"
+                            sizes="100vw"
                             onClick={() => {
                               setIsOpenImage(true);
                               setImageSrc(i?.image || "/favicon.ico");

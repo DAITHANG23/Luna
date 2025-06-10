@@ -49,6 +49,10 @@ const Booking = ({ conceptDataId }: BookingProps) => {
     <div className="mt-4">
       <Head>
         <title>{t("headTitle.bookingRestaurant")}</title>
+        <meta
+          name="description"
+          content="Trang restaurants reservation hiện thị danh sách nhà hàng của concept tương ứng để đặt bàn."
+        />
       </Head>
       <Modal
         open={isOpenModalBooking}

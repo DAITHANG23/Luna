@@ -39,6 +39,7 @@ const Login = () => {
     <>
       <Head>
         <title>{t("headTitle.login")}</title>
+        <meta name="description" content="Trang đăng nhập." />
       </Head>
       <Formik
         onSubmit={handleSubmit}

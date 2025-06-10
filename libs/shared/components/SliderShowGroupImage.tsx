@@ -83,6 +83,7 @@ export const SliderShowGroupImage = ({
               fill
               className="object-fit"
               loading="lazy"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               priority={false}
             />
           </div>

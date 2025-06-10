@@ -40,6 +40,10 @@ const ResetPassword = () => {
     <>
       <Head>
         <title>{t("headTitle.resetPassword")}</title>
+        <meta
+          name="description"
+          content="Trang reset mật khẩu khi khách hàng quên mật khẩu."
+        />
       </Head>
       <Formik
         onSubmit={handleSubmit}

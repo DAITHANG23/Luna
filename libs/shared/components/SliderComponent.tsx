@@ -54,6 +54,7 @@ export const SliderComponent = ({
                   src={i.img}
                   alt={i.name}
                   fill
+                  sizes="100vw"
                   loading="lazy"
                   className="object-cover sm:object-fill hover:scale-105 transition-transform duration-500"
                 />
@@ -68,8 +69,8 @@ export const SliderComponent = ({
                 className={cn(
                   isDishesCarousel
                     ? "!w-full !h-[500px]"
-                    : "w-full h-[300px] sm:h-[300px] lg:h-[550px]",
-                  " flex items-center justify-center overflow-hidden relative border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md mb-10"
+                    : "w-full h-[200px] sm:h-[300px] lg:h-[550px]",
+                  "flex items-center justify-center overflow-hidden relative border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md mb-10"
                 )}
               >
                 <Image
@@ -77,6 +78,7 @@ export const SliderComponent = ({
                   alt={`img-${index}`}
                   fill
                   loading="lazy"
+                  sizes="100vw"
                   className="object-cover sm:object-fill hover:scale-105 transition-transform duration-500"
                 />
               </div>

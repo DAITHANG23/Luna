@@ -237,6 +237,7 @@ const Index = () => {
     <>
       <Head>
         <title>{t("headTitle.notifications")}</title>
+        <meta name="description" content="Trang chi tiết thông báo nhà hàng." />
       </Head>
       <div className="mt-[50px] lg:mt-[100px]">
         <Modal open={isOpenModal} setOpen={setIsOpenModal}>

@@ -12,6 +12,7 @@ const InformationRestaurants = () => {
             src={"/assets/images/img-map-vn.png"}
             alt="map-vn"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className=" objectFit-cover"
             loading="lazy"
           />
@@ -21,6 +22,7 @@ const InformationRestaurants = () => {
             src={"/assets/images/img-curture.png"}
             alt="curture"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             loading="lazy"
           />
         </div>

@@ -48,6 +48,10 @@ const Index = () => {
     <>
       <Head>
         <title>Domique Fusion | {concept?.name}</title>
+        <meta
+          name="description"
+          content="Trang concept giới thiệu chi tiết thương hiệu"
+        />
       </Head>
       <div className="mt-[7.25rem] px-4 w-full w-[90%] xl:w-[70%] mx-auto">
         <NavbarConcept pathname={asPath} />
@@ -76,11 +80,12 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className="w-[100%] h-[300px] relative">
+          <div className="w-full h-[300px] relative">
             <Image
               src={concept?.imageCover || "/assets/images/not-found.png"}
               alt="img-cover"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
         </div>
