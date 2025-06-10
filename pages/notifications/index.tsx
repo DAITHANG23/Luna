@@ -11,6 +11,10 @@ const Index = () => {
     <>
       <Head>
         <title>{t("headTitle.notifications")}</title>
+        <meta
+          name="description"
+          content="Trang thông báo quá trình diễn ra đặt bàn nhà hàng."
+        />
       </Head>
       <NotificationMain>
         <SliderComponent isSmallSize coverImages={ABOUT_IMAGES} />

@@ -12,6 +12,10 @@ const Index = () => {
     <>
       <Head>
         <title>{t("translation:headTitle.blog")}</title>
+        <meta
+          name="description"
+          content="Trang các bài blog về chuỗi nhà hàng."
+        />
       </Head>
       <div className="mt-[8.5rem] flex flex-col justify-center items-center gap-10">
         <Updating />

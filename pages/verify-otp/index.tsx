@@ -63,6 +63,7 @@ const VerifyOTP = () => {
     <>
       <Head>
         <title>{t("headTitle.verifyOtp")}</title>
+        <meta name="description" content="Trang xác nhận OTP." />
       </Head>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         {() => {

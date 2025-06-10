@@ -17,6 +17,10 @@ export default function Home() {
     <div className="mt-[4rem] sm:mt-[6rem]">
       <Head>
         <title>{t("headTitle.home")}</title>
+        <meta
+          name="description"
+          content="Trang chủ của nhà hàng đặt bàn trực tuyến - Tìm kiếm và đặt bàn tại các nhà hàng yêu thích của bạn."
+        />
       </Head>
       <SliderComponent coverImages={BANNER_IMAGES} />
       <BusinessHighlights />

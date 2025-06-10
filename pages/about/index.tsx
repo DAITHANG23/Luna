@@ -36,6 +36,10 @@ const About = () => {
     <div>
       <Head>
         <title>{t("translation:headTitle.about")}</title>
+        <meta
+          name="description"
+          content="Trang giới thiệu chuỗi thương hiệu Domique Fusion."
+        />
       </Head>
       <div className="max-w-full pt-0 p-4 sm:p-0 sm:max-w-[70%] mx-auto mt-[8.5rem]">
         <div className="mb-10 text-center bg-gradient-to-r from-primary/10 via-secondary/20 to-primary/10 py-8 rounded-xl">

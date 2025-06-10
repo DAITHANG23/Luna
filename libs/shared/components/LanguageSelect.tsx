@@ -32,6 +32,7 @@ export const LanguageSelect = () => {
             alt={`${langValue}-img`}
             width={30}
             height={24}
+            layout="fixed"
             className="!rounded-[5px]"
           />
         </MenuButton>
@@ -53,6 +54,7 @@ export const LanguageSelect = () => {
                     alt={l.name}
                     width={30}
                     height={24}
+                    layout="fixed"
                     className="!rounded-[5px]"
                   />
                   <span className="text-base">{t(`settings.${l.name}`)}</span>
