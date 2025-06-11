@@ -144,7 +144,7 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
           src={concept?.imageCover}
           alt={concept?.name}
           fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes="(max-width: 2560px) 600px, (max-width: 1440px) 322px, (max-width: 1024px) 464px, (max-width: 768px) 336px, (max-width: 425px) 389px"
           className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-none"
           loading="lazy"
           onClick={handleClickConcept}
