@@ -19,11 +19,13 @@ interface NotificationDetailNavbarProps {
   item: NotificationModel;
   unReadNotificationsQuantities: number;
   handleDeleteNotification: (id: string) => void;
+  isSelected?: boolean;
 }
 const NotificationDetailNavbar = ({
   item,
   unReadNotificationsQuantities,
   handleDeleteNotification,
+  isSelected,
 }: NotificationDetailNavbarProps) => {
   const router = useRouter();
   const date = new Date(item.createdAt);
@@ -64,9 +66,10 @@ const NotificationDetailNavbar = ({
   return (
     <div
       className={cn(
-        item.read && "!bg-white",
-        getStatusClass(item.type),
-        "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg dark:!bg-gray-900"
+        "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg mr-4",
+        item.read ? "bg-white dark:bg-gray-900" : getStatusClass(item.type),
+        isSelected &&
+          "border border-primary before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[6px] before:rounded-tr-lg before:rounded-br-lg before:bg-primary after:content-[''] after:absolute after:right-[-8px] after:bottom-[calc(50%-8px)] after:border-t-[8px] after:border-b-[8px] after:border-l-[8px] after:border-transparent after:border-l-red-500"
       )}
     >
       {NotificationIcon}
