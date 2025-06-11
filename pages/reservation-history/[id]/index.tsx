@@ -42,9 +42,18 @@ const Index = () => {
   const id = router.query.id as string | undefined;
 
   const { bookingData, isLoading } = useGetBooking(id as string);
-  const dataBooking = useMemo(() => {
-    return bookingData?.data.data;
-  }, [bookingData]);
+  const dataBooking = bookingData?.data.data;
+
+  const {
+    status,
+    restaurant,
+    timeSlot,
+    notes,
+    numberPhone,
+    email,
+    peopleQuantity,
+    statusHistory,
+  } = dataBooking || {};
   const contentStatus = useMemo(() => {
     if (!dataBooking) return undefined;
 
@@ -64,25 +73,20 @@ const Index = () => {
     }
   }, [dataBooking, t]);
 
-  const conceptName = useMemo(() => {
-    const concept = dataBooking?.restaurant?.concept?.name;
-    return CONCEPTS_ROUTES.find((item) => item.name === concept);
+  const matchedConcept = useMemo(() => {
+    const conceptName = dataBooking?.restaurant?.concept?.name;
+    return CONCEPTS_ROUTES.find((item) => item.name === conceptName);
   }, [dataBooking]);
 
-  const isCancelledStatusByAdmin = useMemo(() => {
-    return dataBooking?.status === "CANCELLED_BY_ADMIN";
-  }, [dataBooking]);
+  const isCancelledStatusByAdmin = dataBooking?.status === "CANCELLED_BY_ADMIN";
 
-  const formatted = dayjs(dataBooking?.timeOfBooking).format("DD/MM/YYYY");
+  const formatted = useMemo(() => {
+    return dataBooking?.timeOfBooking
+      ? dayjs(dataBooking.timeOfBooking).format("DD/MM/YYYY")
+      : "";
+  }, [dataBooking?.timeOfBooking]);
 
-  const concept = useMemo(() => {
-    return CONCEPTS_ROUTES.find(
-      (c) => c.name === dataBooking?.restaurant?.concept?.name
-    );
-  }, [dataBooking]);
-  const isCancelledStatusByUser = useMemo(() => {
-    return dataBooking?.status === "CANCELLED_BY_USER";
-  }, [dataBooking]);
+  const isCancelledStatusByUser = dataBooking?.status === "CANCELLED_BY_USER";
 
   if (isLoading)
     return (
@@ -127,24 +131,28 @@ const Index = () => {
                 ? allStepsWithCancellationByUser
                 : allSteps
           }
-          statusHistory={bookingData?.data.data.statusHistory || []}
+          statusHistory={statusHistory || []}
           labelMap={statusLabels}
         />
         <hr className="!mt-14" />
 
         <div className="bg-primary/20 w-full h-auto flex lg:flex-row flex-col gap-4 items-center justify-end p-4">
-          {bookingData?.data.data.status === "COMPLETED" && (
+          {status === "COMPLETED" && (
             <div className="w-full h-auto flex lg:flex-row flex-col gap-4 lg:items-start lg:justify-between justify-center items-center">
               <p className="text-xs">{t("thankYou")}</p>
               <div className="flex flex-col gap-8">
                 <button
-                  onClick={() => router.push(`/${conceptName?.route}/booking`)}
+                  onClick={() =>
+                    router.push(`/${matchedConcept?.route}/booking`)
+                  }
                   className="px-5 py-3 bg-primary text-white hover:bg-primary/80 transition-colors text-sm text-center"
                 >
                   {t("button.bookingAgain")}
                 </button>
                 <button
-                  onClick={() => router.push(`/${conceptName?.route}/booking`)}
+                  onClick={() =>
+                    router.push(`/${matchedConcept?.route}/booking`)
+                  }
                   className="px-5 py-3 bg-primary text-white hover:bg-primary/80 transition-colors text-sm text-center"
                 >
                   {t("button.contact")}
@@ -152,10 +160,10 @@ const Index = () => {
               </div>
             </div>
           )}
-          {bookingData?.data.data.status !== "COMPLETED" && (
+          {status !== "COMPLETED" && (
             <div className="flex justify-end items-end">
               <button
-                onClick={() => router.push(`/${conceptName?.route}`)}
+                onClick={() => router.push(`/${matchedConcept?.route}`)}
                 className="px-5 py-3 bg-primary text-white hover:bg-primary/80 transition-colors text-sm text-center"
               >
                 {t("button.contact")}
@@ -170,20 +178,18 @@ const Index = () => {
               <div
                 className="cursor-pointer"
                 onClick={() => {
-                  router.push(`${concept?.route}`);
+                  router.push(`${matchedConcept?.route}`);
                 }}
               >
                 <Image
-                  src={concept?.logo || "/favicon.ico"}
+                  src={matchedConcept?.logo || "/favicon.ico"}
                   alt="logo"
-                  width={concept?.width || 50}
-                  height={concept?.height || 50}
+                  width={matchedConcept?.width || 50}
+                  height={matchedConcept?.height || 50}
                 />
               </div>
 
-              <p className="text-primary-text font-bold">
-                {dataBooking?.restaurant?.name}
-              </p>
+              <p className="text-primary-text font-bold">{restaurant?.name}</p>
             </div>
           </div>
           <div className="flex gap-4 text-black flex-col py-4 lg:p-4">
@@ -192,12 +198,12 @@ const Index = () => {
                 <div className="flex items-center gap-2 justify-start">
                   <MailIcon className="w-4 h-4 text-primary flex-shrink-0" />
                   <span className="whitespace-normal break-words min-w-[150px]">
-                    {dataBooking?.email}
+                    {email}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <PhoneIcon className="w-4 h-4 text-primary" />
-                  {dataBooking?.numberPhone}
+                  {numberPhone}
                 </div>
               </div>
 
@@ -207,19 +213,19 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <ClockIcon className="w-4 h-4 text-primary" />
-                  {dataBooking?.timeSlot}
+                  {timeSlot}
                 </div>
                 <div className="flex items-center gap-2">
                   <UsersIcon className="w-4 h-4 text-primary" />
-                  {dataBooking?.peopleQuantity}
+                  {peopleQuantity}
                 </div>
               </div>
             </div>
 
-            {dataBooking?.notes && (
+            {notes && (
               <div className="text-start text-black ">
                 <p className="text-sm font-bold">{t("note")}</p>
-                <p className="text-sm">{dataBooking?.notes}</p>
+                <p className="text-sm">{notes}</p>
               </div>
             )}
           </div>

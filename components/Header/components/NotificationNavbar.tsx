@@ -7,7 +7,7 @@ import useBreakPoints from "@/features/hooks/useBreakPoints";
 import { useTranslation } from "react-i18next";
 import apiService from "@/api";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
-import { NotificationDetailNavbar } from "@/libs/shared/components";
+import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
 
 interface NotificationNavbarProps {
   unReadNotificationsQuantities: number;

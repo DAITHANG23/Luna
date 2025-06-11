@@ -74,7 +74,7 @@ const RestaurantConcept = () => {
               <div className="py-8 grid grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 flex-wrap text-center justify-between items-center ">
                 {conceptsDataSort?.map((concept: ConceptModel, index) => {
                   return (
-                    <div key={concept.name}>
+                    <div key={concept._id}>
                       <LazyConceptItem concept={concept} index={index} />
                     </div>
                   );

@@ -9,6 +9,7 @@ import useGetCheckInConcepts from "@/features/hooks/ConceptsHooks/useGetCheckInC
 import Head from "next/head";
 import { ROUTERS } from "@/contants";
 import { Spinner } from "@/libs/shared/components";
+import { useMemo } from "react";
 
 const Visited = () => {
   const { t } = useTranslation(["concept", "translation"]);
@@ -17,7 +18,9 @@ const Visited = () => {
   const { checkInConceptsData, isLoading: isLoadingCheckInConceptsData } =
     useGetCheckInConcepts();
 
-  const checkInConcepts = checkInConceptsData?.data?.data || [];
+  const checkInConcepts = useMemo(() => {
+    return checkInConceptsData?.data?.data || [];
+  }, [checkInConceptsData]);
 
   if (isLoadingCheckInConceptsData)
     return (

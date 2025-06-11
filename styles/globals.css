@@ -265,6 +265,12 @@ html::-webkit-scrollbar-track {
   left: 15px !important;
   z-index: 10;
 }
+@media (max-width: 640px) {
+  .slick-next,
+  .slick-prev {
+    top: 40% !important;
+  }
+}
 .leaflet-container {
   z-index: 0 !important;
 }
