@@ -6,7 +6,7 @@ import { WrapperFilter } from "@/libs/shared/components";
 import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
 import { BellIcon } from "lucide-react";
 import { useRouter } from "next/router";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 interface NotificationMainProps {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ interface NotificationMainProps {
 
 const NotificationMain = ({ children }: NotificationMainProps) => {
   const router = useRouter();
+  const { id } = router.query;
   const { t, ready } = useTranslation("notification");
   const allNotifications = useAppSelector(
     (state) => state.masterData.allNotifications
@@ -21,6 +22,13 @@ const NotificationMain = ({ children }: NotificationMainProps) => {
   const unReadNotificationsQuantities = useAppSelector(
     (state) => state.masterData.unReadNotificationsQuantity
   );
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  useEffect(() => {
+    if (id) setSelectedId(id as string);
+  }, [id]);
+  const handleClick = (id: string) => {
+    setSelectedId(id);
+  };
   const dispatch = useAppDispatch();
   const handleDeleteNotification = useCallback(
     async (id: string) => {
@@ -41,11 +49,12 @@ const NotificationMain = ({ children }: NotificationMainProps) => {
         {allNotifications && allNotifications?.length > 0 ? (
           allNotifications?.map((item: NotificationModel) => {
             return (
-              <div key={item._id}>
+              <div key={item._id} onClick={() => handleClick(item._id)}>
                 <NotificationDetailNavbar
                   item={item}
                   unReadNotificationsQuantities={unReadNotificationsQuantities}
                   handleDeleteNotification={handleDeleteNotification}
+                  isSelected={selectedId === item._id}
                 />
                 <hr className="text-gray-500 !my-1" />
               </div>
@@ -63,6 +72,7 @@ const NotificationMain = ({ children }: NotificationMainProps) => {
     allNotifications,
     unReadNotificationsQuantities,
     handleDeleteNotification,
+    selectedId,
     t,
   ]);
   if (!ready) return null;
@@ -74,7 +84,7 @@ const NotificationMain = ({ children }: NotificationMainProps) => {
         </div>
         <div className="block lg:hidden">
           <WrapperFilter
-            classNameMenu={"!h-[38rem] overflow-auto"}
+            classNameMenu={"!h-[38rem] overflow-auto scrollbar-hide"}
             isHandleCloseMenu
           >
             {notificationsNavbar}

@@ -20,8 +20,8 @@ const NotificationNavbar = ({
   const allNotifications = useAppSelector(
     (state) => state.masterData.allNotifications
   )?.data.data;
-
   const [hasMounted, setHasMounted] = useState(false);
+
   const { isMobileSize } = useBreakPoints();
   useEffect(() => {
     setHasMounted(true);
