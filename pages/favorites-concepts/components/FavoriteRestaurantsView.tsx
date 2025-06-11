@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { ConceptModel } from "@/@types/models";
 import { useTranslation } from "react-i18next";
@@ -12,8 +12,11 @@ const FavoriteConceptsView = ({
   data,
   isVisitedConcept = false,
 }: FavoriteConceptsViewProps) => {
-  const favoriteImages =
-    data && data.length > 0 ? data?.map((i) => i.imageCover) : [];
+  const favoriteImages = useMemo(
+    () => data?.map((i) => i.imageCover) ?? [],
+    [data]
+  );
+
   const { t } = useTranslation("concept");
   return (
     <div className="flex flex-col w-full sm:w-[21.75rem] !h-[19.7rem] shadow-glass border-none rounded-xl cursor-pointer transition duration-300 ease-in-out hover:scale-105">

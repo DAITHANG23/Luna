@@ -39,7 +39,7 @@ const BusinessHighlights = () => {
   const { t, ready } = useTranslation("home");
   if (!ready) return null;
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] p-4 w-full sm:w-[85%] m-auto py-[80px]">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] p-4 w-full sm:w-[85%] m-auto py-[30px] sm:py-[80px]">
       {ITEMS_LIST.map((i) => {
         return (
           <div

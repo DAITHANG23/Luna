@@ -221,6 +221,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                           alt="Dish Image"
                           className="object-cover rounded"
                           fill
+                          sizes="100px"
                           loading="lazy"
                           onClick={() => {
                             setIsOpenImage(true);
@@ -241,7 +242,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                             className="object-cover rounded"
                             fill
                             loading="lazy"
-                            sizes="100vw"
+                            sizes="(max-width:640px) 50vw, 25vw"
                             onClick={() => {
                               setIsOpenImage(true);
                               setImageSrc(i?.image || "/favicon.ico");
@@ -278,6 +279,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                         alt={"img"}
                         className="object-cover rounded"
                         fill
+                        sizes="(max-width:640px) 100vw, 50vw"
                         loading="lazy"
                         onClick={() => {
                           setIsOpenImage(true);

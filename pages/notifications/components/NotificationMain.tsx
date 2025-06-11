@@ -1,10 +1,9 @@
+import { NotificationModel } from "@/@types/models";
 import apiService from "@/api";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
-import {
-  NotificationDetailNavbar,
-  WrapperFilter,
-} from "@/libs/shared/components";
+import { WrapperFilter } from "@/libs/shared/components";
+import NotificationDetailNavbar from "@/libs/shared/components/NotificationDetailNavbar";
 import { BellIcon } from "lucide-react";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
@@ -25,10 +24,13 @@ const NotificationMain = ({ children }: NotificationMainProps) => {
   const dispatch = useAppDispatch();
   const handleDeleteNotification = useCallback(
     async (id: string) => {
-      await apiService.notifications.deleteNotification({ id });
-
-      dispatch(getAllNotifications());
-      router.push("/notifications");
+      try {
+        await apiService.notifications.deleteNotification({ id });
+        dispatch(getAllNotifications());
+        router.push("/notifications");
+      } catch (error) {
+        console.error("Failed to delete notification:", error);
+      }
     },
     [dispatch, router]
   );
@@ -37,7 +39,7 @@ const NotificationMain = ({ children }: NotificationMainProps) => {
     return (
       <div>
         {allNotifications && allNotifications?.length > 0 ? (
-          allNotifications?.map((item) => {
+          allNotifications?.map((item: NotificationModel) => {
             return (
               <div key={item._id}>
                 <NotificationDetailNavbar
