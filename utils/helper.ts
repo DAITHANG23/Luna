@@ -79,3 +79,25 @@ export function useCapitalize(text?: string) {
 
   return capitalized;
 }
+
+export const getStatusClass = (status: string) => {
+  switch (status) {
+    case "PENDING":
+    case "bookingInProgress":
+    case "bookingCreated":
+    case "IN_PROGRESS":
+      return "bg-[#BFDBFE]/30 hover:bg-[#BFDBFE]/50 text-[#2563EB]";
+    case "CONFIRMED":
+    case "bookingConfirmed":
+      return "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50 text-[#16a34a]";
+    case "COMPLETED":
+    case "bookingCompleted":
+      return "bg-purple-300 hover:bg-purple-400 text-purple-800";
+    case "CANCELLED_BY_ADMIN":
+    case "CANCELLED_BY_USER":
+    case "bookingCanceled":
+      return "bg-primary/30 hover:bg-primary/50 text-primary";
+    default:
+      return "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50 text-[#CA8A04]";
+  }
+};

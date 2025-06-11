@@ -1,6 +1,6 @@
 import { ConceptModel } from "@/@types/models";
 import Image from "next/image";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState, memo } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
@@ -63,12 +63,12 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
 
   const { mutate: checkInConcept } = useCheckInConcept();
 
-  const handleClickConcept = () => {
+  const handleClickConcept = useCallback(() => {
     const route =
       CONCEPTS_ROUTES.find((c) => c.name === concept.name)?.route || "";
     localStorage.setItem("routeConcept", route);
     router.push(`/${route}`);
-  };
+  }, [concept, router]);
 
   const typeConcept = useMemo(() => {
     if (!concept?.type) return "OTHER";
@@ -221,4 +221,4 @@ const ConceptItem = ({ concept, isReviewBtn = false }: ConceptItemProps) => {
   );
 };
 
-export default ConceptItem;
+export default memo(ConceptItem);

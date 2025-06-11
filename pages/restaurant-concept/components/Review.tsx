@@ -20,7 +20,11 @@ const Review = ({ concept, setIsOpenModal, isOpenModal }: ReviewProps) => {
   const { mutate: reviewPost } = useReviewConcept();
 
   useEffect(() => {
-    if (!isOpenModal) setIsDoneReview(false);
+    if (!isOpenModal) {
+      setIsDoneReview(false);
+      setScoreReviewConcept(0);
+      setValueContentReview("");
+    }
   }, [isOpenModal]);
 
   const handleSubmitReviewConcept = () => {
@@ -72,7 +76,7 @@ const Review = ({ concept, setIsOpenModal, isOpenModal }: ReviewProps) => {
           <div className="mt-11">
             <p>{t("howWasTheRestaurant")}</p>
             <div className="flex gap-2 mt-4 justify-center items-center text-center">
-              {Array.from({ length: 5 }, (v, i) => {
+              {Array.from({ length: 5 }, (_, i) => {
                 return (
                   <div key={i}>
                     <button

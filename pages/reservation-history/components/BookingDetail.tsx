@@ -14,7 +14,7 @@ import {
   ROUTERS,
   STATUS_BOOKING,
 } from "@/contants";
-import { cn } from "@/utils";
+import { cn, getStatusClass } from "@/utils";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -60,7 +60,7 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
     }
 
     if (item?.status === "CONFIRMED") {
-      updateReservation({ status: "CANCELLED_BY_USER", _id: item?._id });
+      await updateReservation({ status: "CANCELLED_BY_USER", _id: item?._id });
     }
 
     showSuccess(t("notification.canceled"));
@@ -74,6 +74,7 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
       return STATUS_BOOKING.find((s) => s.status === item.status);
     }
   }, [item]);
+
   if (!ready) return null;
   return (
     <>
@@ -126,16 +127,7 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
 
           <p
             className={cn(
-              item?.status === "PENDING" || item?.status === "IN_PROGRESS"
-                ? "bg-[#BFDBFE]/30 hover:bg-[#BFDBFE]/50 text-[#2563EB]"
-                : item?.status === "CONFIRMED"
-                  ? "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50 text-[#16a34a]"
-                  : item?.status === "COMPLETED"
-                    ? "bg-purple-300 hover:bg-purple-400 text-purple-800"
-                    : item?.status === "CANCELLED_BY_ADMIN" ||
-                        item?.status === "CANCELLED_BY_USER"
-                      ? "bg-primary/30 hover:bg-primary/50 text-primary"
-                      : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50 text-[#CA8A04]",
+              getStatusClass(item?.status || ""),
               "text-xs font-semibold py-1 px-2.5 text-center h-6 rounded-lg max-w-28 xl:max-w-30"
             )}
           >
@@ -190,7 +182,7 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
         </div>
 
         {!STATUS_CONFIRMED.includes(item?.status as string) && (
-          <div className="flex gap-4 justify-end z-100">
+          <div className="flex gap-4 justify-end z-50">
             {/* <button className="px-2 py-1 rounded text-center hover:bg-primary text-primary-text hover:text-white">
           Edit
         </button> */}

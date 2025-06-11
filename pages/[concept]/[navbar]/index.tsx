@@ -32,18 +32,20 @@ const Index = () => {
   const subPathname = pathname?.split("/")[2];
   const allConcepts = useAppSelector((state) => state.masterData.allConcepts)
     ?.data.data;
-  const idConcept = allConcepts?.find((c) => c.name === nameConcept)?._id || "";
+  const idConcept = useMemo(() => {
+    return allConcepts?.find((c) => c.name === nameConcept)?._id || "";
+  }, [allConcepts, nameConcept]);
 
   const { conceptData, isLoading } = useGetConceptItem(idConcept);
 
   if (isLoading)
     return (
-      <div className="mt-[7.25rem]">
+      <div className="mt-[4.25rem] sm:mt-[7.25rem]">
         <Skeleton />
       </div>
     );
   return (
-    <div className="mt-[7.25rem] w-[90%] xl:w-[70%] mx-auto bg-white dark:bg-gray-900 rounded-lg p-4 my-4 shadow-lg">
+    <div className="mt-[4.25rem] sm:mt-[7.25rem] w-[90%] xl:w-[70%] mx-auto bg-white dark:bg-gray-900 rounded-lg p-4 my-4 shadow-lg">
       <NavbarConcept pathname={pathname} />
       {subPathname === "menu" ? (
         <Menu

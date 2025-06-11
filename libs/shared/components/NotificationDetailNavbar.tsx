@@ -1,6 +1,6 @@
 import { NotificationModel } from "@/@types/models";
 import useCheckReadNotification from "@/features/hooks/NotificationBooking/useCheckReadNotification";
-import { cn } from "@/utils";
+import { cn, getStatusClass } from "@/utils";
 import { CheckBadgeIcon } from "@heroicons/react/24/outline";
 import { format } from "date-fns";
 import {
@@ -20,7 +20,7 @@ interface NotificationDetailNavbarProps {
   unReadNotificationsQuantities: number;
   handleDeleteNotification: (id: string) => void;
 }
-export const NotificationDetailNavbar = ({
+const NotificationDetailNavbar = ({
   item,
   unReadNotificationsQuantities,
   handleDeleteNotification,
@@ -60,19 +60,12 @@ export const NotificationDetailNavbar = ({
         return <InfoIcon className="text-[#2563EB] w-6 h-6 flex-shrink-0" />;
     }
   }, [item]);
+
   return (
     <div
       className={cn(
         item.read && "!bg-white",
-        item.type === "bookingCreated" || item.type === "bookingInProgress"
-          ? "bg-[#BFDBFE]/30 hover:bg-[#BFDBFE]/50"
-          : item.type === "bookingConfirmed"
-            ? "bg-[#BBF7D0]/30 hover:bg-[#BBF7D0]/50"
-            : item.type === "bookingCompleted"
-              ? "bg-purple-300 hover:bg-purple-400"
-              : item.type === "bookingCanceled"
-                ? "bg-primary/30 hover:bg-primary/50"
-                : "bg-[#FEF08A]/30 hover:bg-[#FEF08A]/50",
+        getStatusClass(item.type),
         "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg dark:!bg-gray-900"
       )}
     >
@@ -118,3 +111,5 @@ export const NotificationDetailNavbar = ({
     </div>
   );
 };
+
+export default NotificationDetailNavbar;

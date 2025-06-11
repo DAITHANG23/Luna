@@ -21,6 +21,8 @@ const YourProfile = () => {
   );
 
   const { userData, isLoading } = useGetDataUser();
+  const [activeTab, setActiveTab] = useState(tabList[0].name);
+  const { t, ready } = useTranslation(["profile", "translation"]);
 
   const updateTablist = useMemo(() => {
     if (userData?.data.data.googleId) {
@@ -30,16 +32,14 @@ const YourProfile = () => {
   }, [userData]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("accessToken");
-      if (!token && !isAuth && !userData?.data.data.avatarUrl) {
-        router.push("/401");
-      }
+    const token =
+      typeof window !== "undefined" && localStorage.getItem("accessToken");
+
+    if (!token && !isAuth && !userData?.data.data.avatarUrl) {
+      router.push("/401");
     }
   }, [isAuth, router, userData]);
 
-  const [activeTab, setActiveTab] = useState(tabList[0].name);
-  const { t, ready } = useTranslation(["profile", "translation"]);
   if (!ready) return null;
   return (
     <>
