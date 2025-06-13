@@ -5,10 +5,16 @@ import { useTranslation } from "react-i18next";
 import Toolbar from "@/pages/restaurant-concept/components/Toolbar";
 import { defaultFilter } from "@/contants";
 import useGetAllConcepts from "@/features/hooks/ConceptsHooks/useGetAllConcepts";
-import Skeleton from "./components/Skeleton";
 import { sortBy } from "lodash";
-import LazyConceptItem from "./components/LazyConceptItem";
+import dynamic from "next/dynamic";
 
+const Skeleton = dynamic(() => import("./components/Skeleton"), {
+  ssr: false,
+});
+
+const ConceptItem = dynamic(() => import("./components/LazyConceptItem"), {
+  ssr: false,
+});
 const RestaurantConcept = () => {
   const [filter, setFilter] = useState(defaultFilter);
 
@@ -75,7 +81,7 @@ const RestaurantConcept = () => {
                 {conceptsDataSort?.map((concept: ConceptModel, index) => {
                   return (
                     <div key={concept._id}>
-                      <LazyConceptItem concept={concept} index={index} />
+                      <ConceptItem concept={concept} index={index} />
                     </div>
                   );
                 })}
