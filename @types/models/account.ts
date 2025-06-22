@@ -16,13 +16,14 @@ export interface UserModel {
   googleId?: string;
   favorites: Array<string>;
   checkInConcepts: Array<string>;
+  refreshToken?: string;
 }
 
 export interface UserLogin extends Partial<UserModel> {}
 
 export interface LoginResponse {
   accessToken: string;
-  refreshToken: string;
+  refreshToken?: string;
   data: {
     user: UserLogin;
   };
