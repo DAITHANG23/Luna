@@ -208,13 +208,13 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
 
           <div className="lg:w-[80%]">
             {Array.isArray(dishesList) && dishesList?.length > 0 ? (
-              <div className="w-full lg:w-[80%] lg:w-4/5 lg:pl-8 gap-5 lg:gap-x-5 lg:gap-y-4 xl:pl-20 lg:mb-20 grid grid-cols-2 lg:grid-cols-3">
+              <div className="w-full lg:w-[80%] lg:w-4/5 lg:pl-8 gap-5 lg:gap-x-5 lg:gap-y-4 xl:pl-20 lg:mb-20 grid grid-cols-2 xl:grid-cols-3">
                 {dishesList?.map((i, idx) => {
                   if (typeof i === "string") {
                     return (
                       <div
                         key={i}
-                        className="mb-4 w-[100px] h-[200px] relative cursor-pointer"
+                        className="mb-4 w-[13rem] h-[11.25rem] relative cursor-pointer"
                       >
                         <Image
                           src={i}
@@ -235,7 +235,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                   return (
                     <div key={i._id ?? idx} className="mb-4 h-auto">
                       <div className="flex flex-col items-center">
-                        <div className="w-full h-40 sm:h-60 relative cursor-pointer">
+                        <div className="w-full h-40 2xl:h-50 relative cursor-pointer">
                           <Image
                             src={i?.image || "/favicon.ico"}
                             alt={i.name}
@@ -273,7 +273,7 @@ const Menu = ({ dishes, conceptName }: MenuProps) => {
                       banners={(dishesList as Dish)?.images}
                     />
                   ) : (
-                    <div className="w-full h-[300px] relative cursor-pointer">
+                    <div className="w-full h-[18.75rem] relative cursor-pointer">
                       <Image
                         src={(dishesList as Dish)?.image || "/favicon.ico"}
                         alt={"img"}

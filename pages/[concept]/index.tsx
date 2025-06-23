@@ -53,7 +53,7 @@ const Index = () => {
           content="Trang concept giới thiệu chi tiết thương hiệu"
         />
       </Head>
-      <div className="mt-[4.25rem] sm:mt-[7.25rem] px-4 w-full w-[90%] xl:w-[70%] mx-auto">
+      <div className="mt-[4.25rem] sm:mt-[7.25rem] px-4 w-full xl:w-[70%] mx-auto">
         <NavbarConcept pathname={asPath} />
         <SliderComponent banners={concept?.banners || []} />
         <div className="lg:pt-10 lg:pt-[100px] lg:pb-8 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
