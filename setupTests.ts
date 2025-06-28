@@ -26,8 +26,8 @@ if (typeof window !== "undefined" && !window.matchMedia) {
     matches: false,
     media: query,
     onchange: null,
-    addListener: () => {}, // Deprecated
-    removeListener: () => {}, // Deprecated
+    addListener: () => {},
+    removeListener: () => {},
     addEventListener: () => {},
     removeEventListener: () => {},
     dispatchEvent: () => false,
@@ -35,7 +35,7 @@ if (typeof window !== "undefined" && !window.matchMedia) {
 }
 
 jest.mock("next/router", () => ({
-  __esModule: true, // quan trọng để Jest hiểu là ESM module
+  __esModule: true,
   useRouter: jest.fn(() => ({
     push: jest.fn(),
     replace: jest.fn(),
@@ -59,4 +59,53 @@ jest.mock("next/router", () => ({
     beforePopState: jest.fn(),
     ready: true,
   },
+}));
+
+jest.mock("i18next", () => ({
+  __esModule: true,
+  default: {
+    use: () => ({
+      use: () => ({
+        use: () => ({
+          init: () => {},
+        }),
+      }),
+    }),
+  },
+}));
+
+jest.mock("@/api", () => ({
+  __esModule: true,
+  default: {
+    account: {
+      login: jest.fn(),
+    },
+  },
+}));
+
+jest.mock("@/features/hooks/AccountHooks/useLoginUser", () => ({
+  __esModule: true,
+  default: () => ({
+    mutate: jest.fn(),
+    isPending: false,
+  }),
+}));
+
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
+
+jest.mock("@/libs/redux/hooks", () => ({
+  ...jest.requireActual("@/libs/redux/hooks"),
+  useAppDispatch: () => jest.fn(),
+}));
+
+jest.mock("@/features/hooks/useNotification", () => ({
+  __esModule: true,
+  default: () => ({
+    showSuccess: jest.fn(),
+    showError: jest.fn(),
+  }),
 }));

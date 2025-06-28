@@ -44,6 +44,7 @@ export const FieldInput = ({
           isError ? "text-error" : "text-primary-text",
           "text-sm font-medium"
         )}
+        htmlFor={name}
       >
         {title}
         {required && <span className="ml-1 text-error">*</span>}
@@ -56,6 +57,7 @@ export const FieldInput = ({
           </div>
         )}
         <input
+          id={name}
           className={clsx(
             "block w-full rounded-md py-[16.5px] px-[14px] text-sm dark:bg-[#1C252E] dark:border text-primary-text",
             isReadOnly

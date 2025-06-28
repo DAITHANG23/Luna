@@ -62,7 +62,7 @@ const Navbars = () => {
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
 
   const unReadNotificationsQuantities = useAppSelector(
-    (state) => state.masterData.unReadNotificationsQuantity
+    (state) => state.masterData?.unReadNotificationsQuantity
   );
 
   const { setIsOpenDialog } = useAppContext();

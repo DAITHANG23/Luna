@@ -13,7 +13,7 @@ interface ConceptsListProps {
 
 const ConceptsList = ({ isBannerWidth }: ConceptsListProps) => {
   return (
-    <div className="flex flex-col sm:flex-row">
+    <div className="flex flex-col md:flex-row">
       <div
         className={cn(
           isBannerWidth &&

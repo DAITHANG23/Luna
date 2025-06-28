@@ -8,6 +8,7 @@ const createJestConfig = nextJest({
 });
 const config: Config = {
   verbose: true,
+  coverageProvider: "v8",
   preset: "ts-jest/presets/default-esm",
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
