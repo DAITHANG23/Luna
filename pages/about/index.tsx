@@ -20,7 +20,7 @@ const About = () => {
   const { t, ready } = useTranslation(["home", "translation"]);
 
   const restaurantsData = useAppSelector(
-    (state) => state.masterData.allRestaurants
+    (state) => state.masterData?.allRestaurants
   );
 
   const locationsRestaurantsList = useMemo(() => {

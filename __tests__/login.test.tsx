@@ -1,22 +1,9 @@
-jest.mock("react-i18next", () => ({
-  __esModule: true,
-  useTranslation: () => ({
-    t: (key: string) => key,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-      language: "en-GB",
-      options: { react: {} },
-    },
-  }),
-  Trans: ({ children }: { children: React.ReactNode }) => children,
-  I18nextProvider: ({ children }: { children: React.ReactNode }) => (
-    <>{children}</>
-  ),
-  initReactI18next: {
-    type: "3rdParty",
-    init: jest.fn(),
-  },
-}));
+/* eslint-disable react/display-name */
+
+jest.mock("@/pages/login/components/SocialLogin", () => () => (
+  <div>Mock SocialLogin</div>
+));
+
 import apiService from "@/api";
 import loginResponse1 from "../__fixtures__/loginResponse1";
 import { render, screen } from "@testing-library/react";
@@ -40,7 +27,6 @@ describe("Login Page", () => {
 
   it("should call apiService.account.login", () => {
     renderWithProviders(<LoginForm />);
-    screen.debug();
   });
 
   test("should render without crashing", () => {
@@ -66,7 +52,6 @@ describe("Login Page", () => {
 describe("LoginForm", () => {
   it("should call apiService.account.login", async () => {
     render(<LoginForm />);
-
     screen.debug();
   });
 });
