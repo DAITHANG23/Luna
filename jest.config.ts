@@ -15,6 +15,7 @@ const config: Config = {
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
+    "^i18next$": "<rootDir>/__mocks__/i18next.ts",
   },
   transform: {
     "^.+\\.(ts|tsx|js|jsx)$": ["ts-jest", { useESM: true }],
