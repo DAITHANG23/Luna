@@ -4,15 +4,6 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
-// global.document.createRange = () => ({
-//     setStart: () => {},
-//     setEnd: () => {},
-//     commonAncestorContainer: {
-//         nodeName: 'BODY',
-//         ownerDocument: document
-//     }
-// })
-
 const noop = () => {};
 Object.defineProperty(window, "scrollTo", { value: noop, writable: true });
 
@@ -33,6 +24,32 @@ if (typeof window !== "undefined" && !window.matchMedia) {
     dispatchEvent: () => false,
   });
 }
+
+jest.mock("i18next", () => ({
+  __esModule: true,
+  default: {
+    use: () => ({
+      use: () => ({
+        use: () => ({
+          init: jest.fn(),
+        }),
+      }),
+    }),
+  },
+}));
+
+jest.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    ready: true,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+      language: "en",
+      supportedLngs: ["en", "vn"],
+    },
+  }),
+  I18nextProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -58,19 +75,6 @@ jest.mock("next/router", () => ({
     },
     beforePopState: jest.fn(),
     ready: true,
-  },
-}));
-
-jest.mock("i18next", () => ({
-  __esModule: true,
-  default: {
-    use: () => ({
-      use: () => ({
-        use: () => ({
-          init: () => {},
-        }),
-      }),
-    }),
   },
 }));
 

@@ -1,17 +1,16 @@
-import i18n from "@/libs/i18n/i18n";
-import { ReduxProvider } from "@/libs/redux/provider";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render } from "@testing-library/react";
 import React from "react";
-import { I18nextProvider } from "react-i18next";
 
 export const renderWithProviders = (ui: React.ReactElement) => {
+  const mockStore = configureStore([]);
+  const store = mockStore({ contacts: [] });
   const queryClient = new QueryClient();
   return render(
-    <ReduxProvider>
-      <I18nextProvider i18n={i18n}>
-        <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>
-      </I18nextProvider>
-    </ReduxProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>
+    </Provider>
   );
 };
