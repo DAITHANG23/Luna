@@ -182,7 +182,7 @@ const BookingDetail = ({ item }: BookingDetailProps) => {
         </div>
 
         {!STATUS_CONFIRMED.includes(item?.status as string) && (
-          <div className="flex gap-4 justify-end z-50">
+          <div className="flex gap-4 justify-end z-10">
             {/* <button className="px-2 py-1 rounded text-center hover:bg-primary text-primary-text hover:text-white">
           Edit
         </button> */}

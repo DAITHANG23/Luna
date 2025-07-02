@@ -66,10 +66,12 @@ const NotificationDetailNavbar = ({
   return (
     <div
       className={cn(
-        "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg mr-4",
-        item.read ? "bg-white dark:bg-gray-900" : getStatusClass(item.type),
+        "relative flex gap-2 items-start p-2 cursor-pointer rounded-lg",
+        isSelected || item.read
+          ? "bg-white dark:bg-gray-900"
+          : getStatusClass(item.type),
         isSelected &&
-          "border border-primary before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[6px] before:rounded-tr-lg before:rounded-br-lg before:bg-primary after:content-[''] after:absolute after:right-[-8px] after:bottom-[calc(50%-8px)] after:border-t-[8px] after:border-b-[8px] after:border-l-[8px] after:border-transparent after:border-l-red-500"
+          " mr-4 border border-primary before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[6px] before:rounded-tr-lg before:rounded-br-lg before:bg-primary after:content-[''] after:absolute after:right-[-8px] after:bottom-[calc(50%-8px)] after:border-t-[8px] after:border-b-[8px] after:border-l-[8px] after:border-transparent after:border-l-red-500"
       )}
     >
       {NotificationIcon}
@@ -87,13 +89,14 @@ const NotificationDetailNavbar = ({
         <p className="text-xs text-primary-text">{formatted}</p>
       </div>
       {!item.read ? (
-        <div className="absolute top-2 right-2 hover:scale-110 transition duration-200 z-100">
+        <div className="flex justify-end items-end text-end">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleCheckReadNotification(item._id);
             }}
+            className="p-1 hover:bg-[#BBF7D0]/90 rounded-full"
           >
             <CheckCheckIcon className="text-[#16a34a] w-4 h-4 flex-shrink-0" />
           </button>
