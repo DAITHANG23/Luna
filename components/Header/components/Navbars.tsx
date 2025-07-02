@@ -53,6 +53,7 @@ import {
 import { NotificationModel } from "@/@types/models";
 import NotificationNavbar from "./NotificationNavbar";
 import { LanguageSelect } from "@/libs/shared/components";
+import { ChevronDownIcon } from "lucide-react";
 
 const Navbars = () => {
   const pathname = usePathname();
@@ -231,6 +232,7 @@ const Navbars = () => {
                       width={32}
                       height={32}
                     />
+                    <ChevronDownIcon className="w-3 h-3 absolute bottom-[2px] right-0 bg-gray-300 rounded-full" />
                   </MenuButton>
                 </div>
                 <MenuItems
