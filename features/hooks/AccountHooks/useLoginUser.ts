@@ -3,11 +3,12 @@ import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ACCOUNT_LOGIN_QUERY_KEY, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
-import { accessToken, authentication, logout } from "@/libs/redux/authSlice";
+import { accessToken, authentication } from "@/libs/redux/authSlice";
 import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";
+import cookie from "@/utils/cookies";
 
 const loginAccount = async (formData: UserLogin): Promise<LoginResponse> => {
   return await apiService.account.login({ formData });
@@ -30,24 +31,8 @@ const useLogin = () => {
         accessTokenCookie = res.accessToken;
         refreshTokenCookie = res.refreshToken;
       } else {
-        try {
-          const res = await fetch("/api/token", {
-            method: "GET",
-            credentials: "include",
-          });
-
-          const data = await res.json();
-
-          if (data?.accessToken && data?.refreshToken) {
-            accessTokenCookie = data.accessToken;
-            refreshTokenCookie = data.refreshToken;
-          } else {
-            dispatch(logout());
-          }
-        } catch (error) {
-          console.error("Error fetching token:", error);
-          dispatch(logout());
-        }
+        accessTokenCookie = cookie.getAccessToken();
+        refreshTokenCookie = cookie.getRefreshToken();
       }
 
       localStorage.setItem("accessToken", accessTokenCookie as string);
