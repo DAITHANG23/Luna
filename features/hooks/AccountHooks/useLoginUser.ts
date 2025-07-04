@@ -8,7 +8,6 @@ import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";
-import cookie from "@/utils/cookies";
 
 const loginAccount = async (formData: UserLogin): Promise<LoginResponse> => {
   return await apiService.account.login({ formData });
@@ -24,14 +23,11 @@ const useLogin = () => {
     mutationKey: [ACCOUNT_LOGIN_QUERY_KEY],
     onSuccess: async (res: LoginResponse) => {
       showSuccess("Login successful!");
-      let accessTokenCookie;
+      const accessTokenCookie = res.accessToken;
 
       if (process.env.NODE_ENV === "development") {
-        accessTokenCookie = res.accessToken;
         const refreshTokenCookie = res.refreshToken;
         localStorage.setItem("refreshToken", refreshTokenCookie as string);
-      } else {
-        accessTokenCookie = cookie.getAccessToken();
       }
 
       localStorage.setItem("accessToken", accessTokenCookie as string);
