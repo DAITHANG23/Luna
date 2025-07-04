@@ -27,3 +27,14 @@ export const getRefreshToken = () => {
   }
   return refreshToken;
 };
+
+const cookie = {
+  getRefreshToken: () => {
+    return getJWTCookies(`refreshToken`) as string;
+  },
+  getAccessToken: () => {
+    return getJWTCookies(`accessToken`) as string;
+  },
+};
+
+export default cookie;
