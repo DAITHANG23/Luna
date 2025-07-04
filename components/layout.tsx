@@ -27,13 +27,17 @@ export default function Layout({
 
   useEffect(() => {
     const accessTokenCookie = cookie.getAccessToken();
-    const refreshTokenCookie = cookie.getRefreshToken();
 
-    if (!accessToken && !refreshTokenCookie) {
+    if (process.env.NODE_ENV === "development") {
+      const refreshTokenCookie = cookie.getRefreshToken();
+      localStorage.setItem("refreshToken", refreshTokenCookie);
+    }
+
+    if (!accessToken) {
       dispatch(logout());
     }
     localStorage.setItem("accessToken", accessTokenCookie);
-    localStorage.setItem("refreshToken", refreshTokenCookie);
+
     dispatch(accessToken({ accessToken: accessTokenCookie as string }));
     dispatch(getAllNotifications());
   }, [dispatch]);
