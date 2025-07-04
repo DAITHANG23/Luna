@@ -25,18 +25,17 @@ const useLogin = () => {
     onSuccess: async (res: LoginResponse) => {
       showSuccess("Login successful!");
       let accessTokenCookie;
-      let refreshTokenCookie;
 
       if (process.env.NODE_ENV === "development") {
         accessTokenCookie = res.accessToken;
-        refreshTokenCookie = res.refreshToken;
+        const refreshTokenCookie = res.refreshToken;
+        localStorage.setItem("refreshToken", refreshTokenCookie as string);
       } else {
         accessTokenCookie = cookie.getAccessToken();
-        refreshTokenCookie = cookie.getRefreshToken();
       }
 
       localStorage.setItem("accessToken", accessTokenCookie as string);
-      localStorage.setItem("refreshToken", refreshTokenCookie as string);
+
       dispatch(accessToken({ accessToken: accessTokenCookie as string }));
       dispatch(getAllNotifications());
       dispatch(authentication({ isAuthenticated: true }));
