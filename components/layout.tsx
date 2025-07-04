@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import DialogSetting from "./Header/components/DialogSetting";
 import { AppContextProvider } from "./contexts/AppContext";
 import { useEffect } from "react";
-import { accessToken } from "@/libs/redux/authSlice";
+import { accessToken, logout } from "@/libs/redux/authSlice";
 import TransSnackbarProvider from "./contexts/SnackbarContext";
 import ScrollToTop from "./ScrollToTopButton/ScrollToTopButton";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
@@ -12,6 +12,7 @@ import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
 import { isEmpty } from "lodash";
 import { ROUTERS } from "@/contants";
+import { getAllNotifications } from "@/libs/redux/masterDataSlice";
 
 export default function Layout({
   children,
@@ -19,28 +20,35 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-
   const dispatch = useAppDispatch();
   const accessTokenState = useAppSelector((state) => state.auth.accessToken);
   const accountInfo = useAppSelector((state) => state.auth.accountInfo);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const accessTokenLoginWithGmail = urlParams.get("accessToken");
+    const initAuth = async () => {
+      try {
+        const res = await fetch("/api/token", {
+          method: "GET",
+          credentials: "include",
+        });
 
-    const refreshTokenLoginWithGmail = urlParams.get("refreshToken");
-    if (accessTokenLoginWithGmail) {
-      localStorage.setItem("accessToken", accessTokenLoginWithGmail as string);
-      dispatch(
-        accessToken({ accessToken: accessTokenLoginWithGmail as string })
-      );
-    }
-    if (refreshTokenLoginWithGmail) {
-      localStorage.setItem(
-        "refreshToken",
-        refreshTokenLoginWithGmail as string
-      );
-    }
+        const data = await res.json();
+
+        if (data?.accessToken && data?.refreshToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("refreshToken", data.refreshToken);
+          dispatch(accessToken({ accessToken: data.accessToken }));
+          dispatch(getAllNotifications());
+        } else {
+          dispatch(logout());
+        }
+      } catch (error) {
+        console.error("Error fetching token:", error);
+        dispatch(logout());
+      }
+    };
+
+    initAuth();
   }, [dispatch]);
 
   const isLoginPage =

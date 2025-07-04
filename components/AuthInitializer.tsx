@@ -1,9 +1,7 @@
 import socket from "@/features/notification/socket";
-import { accessToken, logout } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import {
   getAllConcepts,
-  getAllNotifications,
   getAllRestaurants,
   unReadNotifications,
 } from "@/libs/redux/masterDataSlice";
@@ -51,20 +49,8 @@ const AuthInitializer = () => {
   }, [dispatch, allNotificationsUnRead]);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const accessTokenLoginWithGmail = urlParams.get("accessToken");
-    const token =
-      localStorage.getItem("accessToken") ||
-      (accessTokenLoginWithGmail as string);
-
-    if (!token) {
-      dispatch(logout());
-    }
-
-    dispatch(accessToken({ accessToken: token }));
     dispatch(getAllConcepts());
     dispatch(getAllRestaurants());
-    dispatch(getAllNotifications());
   }, [dispatch]);
 
   return null;

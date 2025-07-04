@@ -3,7 +3,7 @@ import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ACCOUNT_LOGIN_QUERY_KEY, GET_DATA_USER_QUERY_KEY } from "@/contants";
 import { useRouter } from "next/router";
-import { accessToken, authentication } from "@/libs/redux/authSlice";
+import { accessToken, authentication, logout } from "@/libs/redux/authSlice";
 import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
@@ -23,24 +23,38 @@ const useLogin = () => {
     mutationKey: [ACCOUNT_LOGIN_QUERY_KEY],
     onSuccess: async (res: LoginResponse) => {
       showSuccess("Login successful!");
-      const accessTokenRes = res?.accessToken;
-      const refreshToken = res?.refreshToken;
+      let accessTokenCookie;
+      let refreshTokenCookie;
 
-      if (accessTokenRes) {
-        localStorage.setItem("accessToken", accessTokenRes);
+      if (process.env.NODE_ENV === "development") {
+        accessTokenCookie = res.accessToken;
+        refreshTokenCookie = res.refreshToken;
+      } else {
+        try {
+          const res = await fetch("/api/token", {
+            method: "GET",
+            credentials: "include",
+          });
+
+          const data = await res.json();
+
+          if (data?.accessToken && data?.refreshToken) {
+            accessTokenCookie = data.accessToken;
+            refreshTokenCookie = data.refreshToken;
+          } else {
+            dispatch(logout());
+          }
+        } catch (error) {
+          console.error("Error fetching token:", error);
+          dispatch(logout());
+        }
       }
 
-      // if (refreshToken && process.env.NODE_ENV === "development") {
-      //   localStorage.setItem("refreshToken", refreshToken);
-      // }
-
-      if (refreshToken) {
-        localStorage.setItem("refreshToken", refreshToken);
-      }
-
-      dispatch(authentication({ isAuthenticated: true }));
-      dispatch(accessToken({ accessToken: res.accessToken }));
+      localStorage.setItem("accessToken", accessTokenCookie as string);
+      localStorage.setItem("refreshToken", refreshTokenCookie as string);
+      dispatch(accessToken({ accessToken: accessTokenCookie as string }));
       dispatch(getAllNotifications());
+      dispatch(authentication({ isAuthenticated: true }));
       queryClient.invalidateQueries({ queryKey: [GET_DATA_USER_QUERY_KEY] });
       router.push("/");
     },
