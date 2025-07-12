@@ -389,7 +389,7 @@ export const timeSlotOptions: Array<IOptions> = [
   { label: "22:00", value: "22:00" },
 ];
 
-export const ROUTERS = {
+export const ROUTES = {
   HOME: { INDEX: "/" },
   ABOUT: { INDEX: "/about" },
   CONCEPTS: { INDEX: "/restaurant-concept" },

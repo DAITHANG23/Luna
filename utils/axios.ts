@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ErrorResponse } from "@/@types/models";
 import apiService from "@/api/index";
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import Router from "next/router";
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -44,7 +44,7 @@ axiosWrapper.interceptors.response.use(
         error.response.data.message === "Invalid refresh token!"
       ) {
         await apiService.account.logout();
-        Router.push(`${ROUTERS.LOGIN.INDEX}`);
+        Router.push(`${ROUTES.LOGIN.INDEX}`);
       }
       if (
         (status === 401 || status === 403 || status === 500) &&

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import useGetCheckInConcepts from "@/features/hooks/ConceptsHooks/useGetCheckInConcepts";
 import Head from "next/head";
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import { Spinner } from "@/libs/shared/components";
 import { useMemo } from "react";
 
@@ -40,7 +40,7 @@ const Visited = () => {
       <div className="my-20 sm:my-[6.5rem] p-8">
         <div className="w-full lg:w-[80%] mx-auto mb-10">
           <button
-            onClick={() => router.push(`${ROUTERS.FAVORITE_CONCEPTS.INDEX}`)}
+            onClick={() => router.push(`${ROUTES.FAVORITE_CONCEPTS.INDEX}`)}
             className="flex gap-2 items-center border border-solid dark:border-white rounded-lg border-black px-3 hover:bg-gray-200 mb-4"
           >
             <ArrowLeftIcon />

@@ -39,7 +39,7 @@ import {
   DEFAULT_AVATAR,
   GET_BOOKING_KEY,
   GET_DATA_USER_QUERY_KEY,
-  ROUTERS,
+  ROUTES,
 } from "@/contants";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
@@ -291,7 +291,7 @@ const Navbars = () => {
               </Menu>
             ) : (
               <button
-                onClick={() => router.replace(`${ROUTERS.LOGIN.INDEX}`)}
+                onClick={() => router.replace(`${ROUTES.LOGIN.INDEX}`)}
                 className="ml-2 border-none px-4 py-1 bg-primary rounded-lg text-white font-bold transition duration-300 ease-in-out hover:scale-105"
               >
                 {t(`navbar.login`)}

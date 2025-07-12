@@ -1,4 +1,4 @@
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import { AuthorizationImage } from "@/libs/assets";
 import { useRouter } from "next/router";
 import React from "react";
@@ -16,7 +16,7 @@ const AuthorizePage = () => {
 
       <button
         className="text-white bg-gray-800 hover:bg-gray-600 rounded-lg shadow-lg px-4 py-[6px]"
-        onClick={() => router.push(`${ROUTERS.LOGIN.INDEX}`)}
+        onClick={() => router.push(`${ROUTES.LOGIN.INDEX}`)}
       >
         {t("returnLogin")}
       </button>
