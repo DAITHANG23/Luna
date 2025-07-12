@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Router from "next/router";
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 
 const InformationRestaurants = () => {
   return (
@@ -31,7 +31,7 @@ const InformationRestaurants = () => {
         <button
           className="boder-none rounded-lg px-6 py-1 text-primary-text bg-warning/80 hover:bg-warning/90"
           onClick={() => {
-            Router.push(`${ROUTERS.ABOUT.INDEX}`);
+            Router.push(`${ROUTES.ABOUT.INDEX}`);
           }}
         >
           DETAIL

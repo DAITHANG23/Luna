@@ -6,7 +6,7 @@ import {
   ForgotPasswordType,
   LoginResponse,
 } from "@/@types/models";
-import { CREATE_NEW_PASSWORD_QUERY_KEY, ROUTERS } from "@/contants";
+import { CREATE_NEW_PASSWORD_QUERY_KEY, ROUTES } from "@/contants";
 import { AxiosError } from "axios";
 import Router from "next/router";
 
@@ -31,7 +31,7 @@ const useResetPassword = () => {
         "Change password successful! Please login your account again!"
       );
       localStorage.removeItem("emailResetPassword");
-      Router.push(`${ROUTERS.LOGIN.INDEX}`);
+      Router.push(`${ROUTES.LOGIN.INDEX}`);
     },
     onError: (err: AxiosError<ErrorResponse>) => {
       showError(err.message);

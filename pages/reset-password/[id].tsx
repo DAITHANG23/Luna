@@ -1,5 +1,5 @@
 import { ForgotPasswordType } from "@/@types/models";
-import { REGEX_VALIDTATE_PASSWORD, ROUTERS } from "@/contants";
+import { REGEX_VALIDTATE_PASSWORD, ROUTES } from "@/contants";
 import useResetPassword from "@/features/hooks/AccountHooks/useResetPassword";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { Form, Formik } from "formik";
@@ -125,7 +125,7 @@ const CreateNewPassword = () => {
               <button
                 type="button"
                 className="flex items-center gap-1 hover:underline mr-2"
-                onClick={() => router.push(`${ROUTERS.LOGIN.INDEX}`)}
+                onClick={() => router.push(`${ROUTES.LOGIN.INDEX}`)}
               >
                 <ChevronLeftIcon width={16} height={16} />
                 <span>{t("resetPassword.return")}</span>

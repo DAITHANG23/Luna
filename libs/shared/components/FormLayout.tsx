@@ -1,4 +1,4 @@
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import { RestaurantLogin } from "@/libs/assets";
 import clsx from "clsx";
 import Link from "next/link";
@@ -13,10 +13,10 @@ interface FormLayoutProps {
 export const FormLayout = ({ children }: FormLayoutProps) => {
   const pathname = usePathname();
   const { t, ready } = useTranslation("translation");
-  const isLoginPage = pathname === `${ROUTERS.LOGIN.INDEX}`;
+  const isLoginPage = pathname === `${ROUTES.LOGIN.INDEX}`;
   const isResetPasswordPage =
-    !(pathname === `${ROUTERS.LOGIN.INDEX}`) &&
-    !(pathname === `${ROUTERS.REGISTER.INDEX}`);
+    !(pathname === `${ROUTES.LOGIN.INDEX}`) &&
+    !(pathname === `${ROUTES.REGISTER.INDEX}`);
   if (!ready) return null;
   return (
     <div className="grid p-4 sm:px-10 sm:p-0 sm:grid-cols-2 lg:grid-cols-3 mb-12 sm:gap-4">
@@ -41,8 +41,8 @@ export const FormLayout = ({ children }: FormLayoutProps) => {
               <Link
                 href={
                   isLoginPage
-                    ? `${ROUTERS.REGISTER.INDEX}`
-                    : `${ROUTERS.LOGIN.INDEX}`
+                    ? `${ROUTES.REGISTER.INDEX}`
+                    : `${ROUTES.LOGIN.INDEX}`
                 }
                 className="no-underline text-success hover:underline"
               >

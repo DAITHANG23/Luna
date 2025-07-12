@@ -1,6 +1,6 @@
 import { ForgotPasswordType } from "@/@types/models";
 import { useAppContext } from "@/components/contexts/AppContext";
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import useVerifyOtp from "@/features/hooks/AccountHooks/useVerifyOtp";
 import { IllustrationDashboardImage } from "@/libs/assets";
 import {
@@ -104,7 +104,7 @@ const VerifyOTP = () => {
                 <button
                   type="button"
                   className="flex items-center gap-2 hover:underline"
-                  onClick={() => router.push(`${ROUTERS.LOGIN.INDEX}`)}
+                  onClick={() => router.push(`${ROUTES.LOGIN.INDEX}`)}
                 >
                   <ChevronLeftIcon width={16} height={16} />
                   <span>{t("resetPassword.return")}</span>

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { CameraIcon } from "@heroicons/react/24/solid";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { DEFAULT_AVATAR, REGEX_VALIDATE_EMAIL, ROUTERS } from "@/contants";
+import { DEFAULT_AVATAR, REGEX_VALIDATE_EMAIL, ROUTES } from "@/contants";
 import { differenceInYears, parseISO } from "date-fns";
 import { UserLogin, UserModel, UserResponse } from "@/@types/models";
 import useUpdateProfile from "@/features/hooks/AccountHooks/useUpdateProfile";
@@ -147,7 +147,7 @@ const ProfileComponent = ({ userData, isLoading }: ProfileComponentProps) => {
     try {
       await apiService.account.deleteAccount();
       showSuccess("Account deleted successful!");
-      Router.push(`${ROUTERS.LOGIN.INDEX}`);
+      Router.push(`${ROUTES.LOGIN.INDEX}`);
     } catch (error) {
       console.error("Error deleting account:", error);
     }
