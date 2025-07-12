@@ -12,7 +12,7 @@ import {
   FormLayout,
 } from "@/libs/shared/components";
 import SocialLogin from "./SocialLogin";
-import { REGEX_VALIDATE_EMAIL, ROUTERS } from "@/contants";
+import { REGEX_VALIDATE_EMAIL, ROUTES } from "@/contants";
 
 const LoginForm = () => {
   const initialValues = {
@@ -54,7 +54,7 @@ const LoginForm = () => {
 
                 <h5 className="text-right mt-5">
                   <Link
-                    href={`${ROUTERS.RESET_PASSWORD.INDEX}`}
+                    href={`${ROUTES.RESET_PASSWORD.INDEX}`}
                     className="no-underline hover:underline text-primary-text"
                   >
                     {t(`login.forgotPassword`)}

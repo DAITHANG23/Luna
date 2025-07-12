@@ -5,7 +5,7 @@ import {
 } from "@/@types/models/account";
 import apiService from "@/api/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ACCOUNT_REGISTER_QUERY_KEY, ROUTERS } from "@/contants";
+import { ACCOUNT_REGISTER_QUERY_KEY, ROUTES } from "@/contants";
 import { useRouter } from "next/router";
 import useNotification from "@/features/hooks/useNotification";
 import { AxiosError } from "axios";
@@ -30,7 +30,7 @@ const useVerifyOtp = () => {
         localStorage.setItem("accessToken", accessToken);
       }
       queryClient.invalidateQueries({ queryKey: [ACCOUNT_REGISTER_QUERY_KEY] });
-      router.push(`${ROUTERS.LOGIN.INDEX}`);
+      router.push(`${ROUTES.LOGIN.INDEX}`);
     },
     onError: (err: AxiosError<ErrorResponse>) => {
       showError(err.message);

@@ -5,7 +5,7 @@ import EmptyFavoriteRestaurant from "./components/EmptyFavoriteRestaurant";
 import useGetCheckInConcepts from "@/features/hooks/ConceptsHooks/useGetCheckInConcepts";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import { Spinner } from "@/libs/shared/components";
 
 const Favorites = () => {
@@ -40,7 +40,7 @@ const Favorites = () => {
           <div
             onClick={() => {
               router.push(
-                `${ROUTERS.FAVORITE_CONCEPTS.INDEX}/${ROUTERS.FAVORITE_CONCEPTS.FAVORITE_RESTAURANTS}`
+                `${ROUTES.FAVORITE_CONCEPTS.INDEX}/${ROUTES.FAVORITE_CONCEPTS.FAVORITE_RESTAURANTS}`
               );
             }}
           >
@@ -53,7 +53,7 @@ const Favorites = () => {
           <div
             onClick={() => {
               router.push(
-                `${ROUTERS.FAVORITE_CONCEPTS.INDEX}/${ROUTERS.FAVORITE_CONCEPTS.CHECKIN_RESTAURANTS}`
+                `${ROUTES.FAVORITE_CONCEPTS.INDEX}/${ROUTES.FAVORITE_CONCEPTS.CHECKIN_RESTAURANTS}`
               );
             }}
           >

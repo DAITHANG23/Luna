@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { getAccountInfo } from "@/libs/redux/authSlice";
 import AuthInitializer from "./AuthInitializer";
 import { isEmpty } from "lodash";
-import { ROUTERS } from "@/contants";
+import { ROUTES } from "@/contants";
 import { getAllNotifications } from "@/libs/redux/masterDataSlice";
 import cookie from "@/utils/cookies";
 
@@ -43,8 +43,8 @@ export default function Layout({
   }, [dispatch]);
 
   const isLoginPage =
-    pathname === `${ROUTERS.LOGIN.INDEX}` ||
-    pathname === `${ROUTERS.REGISTER.INDEX}`;
+    pathname === `${ROUTES.LOGIN.INDEX}` ||
+    pathname === `${ROUTES.REGISTER.INDEX}`;
 
   useEffect(() => {
     if (accessTokenState && isEmpty(accountInfo)) {
